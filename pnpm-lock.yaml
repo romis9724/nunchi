@@ -129,6 +129,9 @@ importers:
 
   tests:
     dependencies:
+      '@nunchi/shared':
+        specifier: workspace:*
+        version: link:../packages/shared
       '@types/pg':
         specifier: ^8.20.0
         version: 8.20.0
