@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import type { CheckRequest, CheckResponse, EventRecord, Grade } from "@nunchi/shared";
 import { toneToGrade } from "@nunchi/shared";
-import { query } from "./db";
+import { getSupabase } from "./supabase";
 import { callReviewEngine } from "@nunchi/llm";
 
 const CACHE_TTL_DAYS = 7;
@@ -55,60 +55,49 @@ function matchKeywords(req: CheckRequest): string[] {
 }
 
 async function fetchNearbyEvents(date: string): Promise<EventRecord[]> {
-  const d = new Date(date);
-  const month = d.getMonth() + 1;
-  const day = d.getDate();
+  try {
+    const d = new Date(date);
+    const month = d.getMonth() + 1;
+    const day = d.getDate();
 
-  const rows = await query<EventRecord>(
-    `SELECT * FROM events
-     WHERE country = 'KR'
-       AND month = $1
-       AND day >= $2 AND day <= $3
-     ORDER BY
-       CASE risk_level
-         WHEN 'critical' THEN 1
-         WHEN 'high'     THEN 2
-         WHEN 'medium'   THEN 3
-         ELSE 4
-       END`,
-    [month, Math.max(1, day - 3), Math.min(31, day + 3)]
-  );
+    const { data, error } = await getSupabase()
+      .from("events")
+      .select("*")
+      .eq("country", "KR")
+      .eq("month", month)
+      .gte("day", Math.max(1, day - 3))
+      .lte("day", Math.min(31, day + 3));
 
-  return rows;
-}
+    if (error || !data) return [];
 
-interface ReviewRow {
-  grade: Grade;
-  risk_score: CheckResponse["riskScore"];
-  flagged_keywords: string[];
-  matched_events: CheckResponse["matchedEvents"];
-  llm_rationale: string;
-  suggestions: string[];
-  rule_triggered: boolean;
+    return (data as EventRecord[]).sort((a, b) => {
+      const order = { critical: 1, high: 2, medium: 3, low: 4 };
+      return (order[a.risk_level] ?? 5) - (order[b.risk_level] ?? 5);
+    });
+  } catch {
+    return [];
+  }
 }
 
 async function getCached(hash: string): Promise<CheckResponse | null> {
   try {
-    const rows = await query<ReviewRow>(
-      `SELECT grade, risk_score, flagged_keywords, matched_events,
-              llm_rationale, suggestions, rule_triggered
-       FROM reviews
-       WHERE input_hash = $1 AND cached_until > NOW()
-       LIMIT 1`,
-      [hash]
-    );
+    const { data, error } = await getSupabase()
+      .from("reviews")
+      .select("grade, risk_score, flagged_keywords, matched_events, llm_rationale, suggestions, rule_triggered")
+      .eq("input_hash", hash)
+      .gt("cached_until", new Date().toISOString())
+      .single();
 
-    if (!rows.length) return null;
-    const row = rows[0];
+    if (error || !data) return null;
 
     return {
-      grade: (row.grade as Grade) ?? "C",
-      riskScore: row.risk_score,
-      flaggedKeywords: row.flagged_keywords,
-      matchedEvents: row.matched_events,
-      rationale: row.llm_rationale,
-      suggestions: row.suggestions,
-      ruleTriggered: row.rule_triggered,
+      grade: (data.grade as Grade) ?? "C",
+      riskScore: data.risk_score,
+      flaggedKeywords: data.flagged_keywords,
+      matchedEvents: data.matched_events,
+      rationale: data.llm_rationale,
+      suggestions: data.suggestions,
+      ruleTriggered: data.rule_triggered,
       cached: true,
     };
   } catch {
@@ -125,39 +114,26 @@ async function saveCache(
     const cachedUntil = new Date();
     cachedUntil.setDate(cachedUntil.getDate() + CACHE_TTL_DAYS);
 
-    await query(
-      `INSERT INTO reviews
-         (input_hash, date, campaign_name, copy, asset_keywords,
-          grade, risk_score, flagged_keywords, matched_events,
-          suggestions, llm_rationale, rule_triggered, cached_until)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)
-       ON CONFLICT (input_hash) DO UPDATE SET
-         grade          = EXCLUDED.grade,
-         risk_score     = EXCLUDED.risk_score,
-         flagged_keywords = EXCLUDED.flagged_keywords,
-         matched_events = EXCLUDED.matched_events,
-         suggestions    = EXCLUDED.suggestions,
-         llm_rationale  = EXCLUDED.llm_rationale,
-         rule_triggered = EXCLUDED.rule_triggered,
-         cached_until   = EXCLUDED.cached_until`,
-      [
-        hash,
-        req.date,
-        req.campaignName ?? null,
-        req.copy,
-        req.assetKeywords ?? [],
-        result.grade,
-        result.riskScore,
-        result.flaggedKeywords,
-        JSON.stringify(result.matchedEvents),
-        result.suggestions,
-        result.rationale,
-        result.ruleTriggered,
-        cachedUntil.toISOString(),
-      ]
+    await getSupabase().from("reviews").upsert(
+      {
+        input_hash: hash,
+        date: req.date,
+        campaign_name: req.campaignName ?? null,
+        copy: req.copy,
+        asset_keywords: req.assetKeywords ?? [],
+        grade: result.grade,
+        risk_score: result.riskScore,
+        flagged_keywords: result.flaggedKeywords,
+        matched_events: result.matchedEvents,
+        suggestions: result.suggestions,
+        llm_rationale: result.rationale,
+        rule_triggered: result.ruleTriggered,
+        cached_until: cachedUntil.toISOString(),
+      },
+      { onConflict: "input_hash" }
     );
   } catch {
-    /* best-effort cache write */
+    /* best-effort */
   }
 }
 
@@ -166,7 +142,7 @@ export async function runReviewEngine(
 ): Promise<CheckResponse> {
   const hash = hashInput(req);
 
-  // 1. Cache check first (covers both rule-triggered and LLM results)
+  // 1. Cache check
   const cached = await getCached(hash);
   if (cached) return cached;
 
@@ -189,10 +165,10 @@ export async function runReviewEngine(
     return result;
   }
 
-  // 3. Fetch nearby events from DB
+  // 3. Fetch nearby events (Supabase REST)
   const nearbyEvents = await fetchNearbyEvents(req.date);
 
-  // 4. LLM (Ollama gemma4)
+  // 4. Gemini LLM
   const llmResult = await callReviewEngine({
     request: req,
     matchedEvents: nearbyEvents,

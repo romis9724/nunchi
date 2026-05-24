@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { query } from "@/lib/db";
+import { getSupabase } from "@/lib/supabase";
 
 export async function POST(request: NextRequest) {
   let body: { email: string; source?: string };
@@ -20,18 +20,17 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    await query(
-      `INSERT INTO waitlist (email, source)
-       VALUES ($1, $2)
-       ON CONFLICT (email) DO NOTHING`,
-      [email, body.source ?? "landing"]
-    );
+    const { error } = await getSupabase()
+      .from("waitlist")
+      .upsert({ email, source: body.source ?? "landing" }, { onConflict: "email", ignoreDuplicates: true });
+
+    if (error) {
+      console.error("[waitlist] supabase error:", error);
+      return NextResponse.json({ error: "등록 중 오류가 발생했습니다." }, { status: 500 });
+    }
   } catch (error) {
-    console.error("[waitlist] db error:", error);
-    return NextResponse.json(
-      { error: "등록 중 오류가 발생했습니다." },
-      { status: 500 }
-    );
+    console.error("[waitlist] error:", error);
+    return NextResponse.json({ error: "등록 중 오류가 발생했습니다." }, { status: 500 });
   }
 
   if (process.env.RESEND_API_KEY) {
@@ -41,12 +40,11 @@ export async function POST(request: NextRequest) {
       await resend.emails.send({
         from: "Nunchi <no-reply@nunchi.app>",
         to: email,
-        subject: "웨이트리스트에 등록되었습니다 — Nunchi",
-        html: `<p>안녕하세요,</p>
-<p>Nunchi 웨이트리스트에 등록해 주셔서 감사합니다. 정식 오픈 시 가장 먼저 알려드리겠습니다.</p>`,
+        subject: "사전 신청 완료 — Nunchi",
+        html: `<p>안녕하세요,</p><p>Nunchi 사전 신청에 감사드립니다. 정식 오픈 시 가장 먼저 알려드리겠습니다.</p>`,
       });
     } catch (emailError) {
-      console.error("[waitlist] email send error:", emailError);
+      console.error("[waitlist] email error:", emailError);
     }
   }
 
