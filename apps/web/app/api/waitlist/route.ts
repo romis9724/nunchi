@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSupabase } from "@/lib/supabase";
+import { getSupabaseAdmin } from "@/lib/supabase";
 
 export async function POST(request: NextRequest) {
   let body: { email: string; source?: string };
@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { error } = await getSupabase()
+    const { error } = await getSupabaseAdmin()
       .from("waitlist")
       .upsert({ email, source: body.source ?? "landing" }, { onConflict: "email", ignoreDuplicates: true });
 

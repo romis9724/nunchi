@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import type { CheckRequest, CheckResponse, EventRecord, Grade } from "@nunchi/shared";
 import { toneToGrade } from "@nunchi/shared";
-import { getSupabase } from "./supabase";
+import { getSupabaseAdmin } from "./supabase";
 import { callReviewEngine } from "@nunchi/llm";
 
 const CACHE_TTL_DAYS = 7;
@@ -60,7 +60,7 @@ async function fetchNearbyEvents(date: string): Promise<EventRecord[]> {
     const month = d.getMonth() + 1;
     const day = d.getDate();
 
-    const { data, error } = await getSupabase()
+    const { data, error } = await getSupabaseAdmin()
       .from("events")
       .select("*")
       .eq("country", "KR")
@@ -81,7 +81,7 @@ async function fetchNearbyEvents(date: string): Promise<EventRecord[]> {
 
 async function getCached(hash: string): Promise<CheckResponse | null> {
   try {
-    const { data, error } = await getSupabase()
+    const { data, error } = await getSupabaseAdmin()
       .from("reviews")
       .select("grade, risk_score, flagged_keywords, matched_events, llm_rationale, suggestions, rule_triggered")
       .eq("input_hash", hash)
@@ -114,7 +114,7 @@ async function saveCache(
     const cachedUntil = new Date();
     cachedUntil.setDate(cachedUntil.getDate() + CACHE_TTL_DAYS);
 
-    await getSupabase().from("reviews").upsert(
+    await getSupabaseAdmin().from("reviews").upsert(
       {
         input_hash: hash,
         date: req.date,
