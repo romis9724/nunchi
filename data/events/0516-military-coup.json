@@ -1,0 +1,28 @@
+{
+  "slug": "military-coup-0516",
+  "date_type": "fixed",
+  "month": 5,
+  "day": 16,
+  "day_end": null,
+  "country": "KR",
+  "name": "5·16 군사정변",
+  "name_en": "May 16 Military Coup (1961)",
+  "category": "political",
+  "risk_level": "high",
+  "summary": "1961년 5월 16일 새벽, 박정희 육군 소장을 중심으로 한 군사 세력이 쿠데타를 일으켜 민주당 장면 내각을 전복했다. 군사혁명위원회(후에 국가재건최고회의)가 행정·입법·사법 3권을 장악하고 비상계엄을 선포했다. 이후 18년간의 박정희 군사독재 체제의 출발점이 된 사건이다.",
+  "related_keywords": ["5·16", "군사정변", "박정희", "쿠데타", "계엄", "군사독재", "혁명", "군사혁명"],
+  "related_motifs": ["군복", "탱크", "계엄 포고문", "군화"],
+  "recommended_tone": "neutral",
+  "references": [
+    {
+      "label": "한국민족문화대백과사전 — 5·16 군사정변",
+      "url": "https://encykorea.aks.ac.kr",
+      "type": "academic"
+    },
+    {
+      "label": "국가기록원 — 5·16 군사정변",
+      "url": "https://www.archives.go.kr",
+      "type": "official"
+    }
+  ]
+}

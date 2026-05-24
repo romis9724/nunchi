@@ -1,0 +1,156 @@
+goal: >-
+  한국 시장 1인 브랜드·SNS 운영 대행사 PMM이 기획 단계(배포 전 1~3분)에
+  캠페인 카피·날짜·컨셉의 사회·문화·역사적 리스크를 사전 검증할 수 있는 웹 SaaS.
+  사용자가 자체 LLM(Claude/Gemini)으로 작성한 카피 초안을 입력하면
+  F~A 5등급 위험도 + 사유 + 대안 카피를 5초 내로 받는다.
+
+constraints:
+  - 한국 시장 컨텍스트 전용 (글로벌 확장은 PMF 후)
+  - 단건 검토 응답 시간 p95 < 5초
+  - 7일 input_hash 캐시 + 인-메모리 CRITICAL_KEYWORDS 룰로 LLM 호출 최소화
+  - 정치적 좌·우 편향 없이 사실만 기록 (해석은 사용자)
+  - 입력 카피는 영업 비밀 — Gemini 학습 제외, service_role 키는 서버 전용
+  - 데이터 출처는 정부 공식·메이저 언론·위키 다중 교차 검증만 인정
+  - MVP 단계는 무인증·익명 모델 (RLS 우회는 의식적 결정)
+  - 단일 운영자(1인 PMM) 모델 — 팀 결재 워크플로우는 out-of-scope
+  - 화폐화 안 함 — 잠재 수요는 웨이트리스트 이메일로 측정
+  - Nunchi는 카피를 생성하지 않는다 — 사용자가 자체 LLM 초안을 가져와 사전 검증만 수행 (대안 카피 제안은 가능, 1차 생성은 out-of-scope)
+  - PMF 검증 인터뷰는 1인 PMM 페르소나 × 5명 (페르소나 일관성 유지, 마케팅 팀·대행사 AE 등 다른 페르소나는 별도 트랙)
+
+acceptance_criteria:
+  - data/events/ 디렉토리 검증된 한국 민감일 JSON 50건 (템플릿 제외, 현재 31)
+  - POST /api/check 가 5등급(F/D/C/B/A) + grade·riskScore·flaggedKeywords·matchedEvents·rationale·suggestions JSON 반환
+  - POST /api/check 응답 시간 p95 < 5초 (k6 1000 RPM 부하 테스트 기준, 캐시 hit 포함)
+  - /calendar 페이지가 SAMPLE_EVENTS 하드코딩 대신 Supabase events 테이블 fetch로 렌더
+  - reviews.grade 컬럼이 migrations SQL에 ALTER로 반영 + production 적용
+  - 5·18 탱크데이 / 4·16 세월호 / 8·15 광복절 입력 → 기대 등급(F/F/A) 산출하는 회귀 테스트셋이 100% 통과
+  - 1인 PMM 페르소나 5명 정성 인터뷰 완료 — 최소 3명이 "기획 단계 예방 가치 있다" 응답 + 인용 가능한 발화 3개 이상 docs/interviews/summary.md에 기록
+  - 웨이트리스트 폼이 Resend 이메일 발송 + Supabase upsert 정상 동작, 누적 이메일 ≥ 20건 (PMF 정량 신호)
+
+ontology_schema:
+  name: NunchiReviewDomain
+  description: >-
+    한국 캠페인 사전 검토 도메인. 입력 카피와 한국 민감일 사건 사이의
+    리스크 매칭을 F/D/C/B/A 5등급으로 분류한다.
+    관계: review.matched_events[] ⇒ event[] 참조, review.rule_match → rule_match 1:1.
+  fields:
+    - name: event
+      type: object
+      description: 한국 민감일 사건 — slug(PK), month, day, category, risk_level(critical/high/medium/low), recommended_tone(avoid/memorial/neutral/celebration), related_keywords[], related_motifs[], references[]
+    - name: campaign_input
+      type: object
+      description: 사용자 입력 — date(YYYY-MM-DD), campaignName?, copy(string), assetKeywords?(string[])
+    - name: review
+      type: object
+      description: "검토 결과 — input_hash(sha256 UNIQUE), grade(F/D/C/B/A), risk_score(safe/caution/danger/critical), flagged_keywords[], matched_events[]⇒event.slug[], llm_rationale, suggestions[], cached_until(timestamp), rule_triggered(bool), cached(bool)"
+    - name: grade
+      type: string
+      description: F=절대회피 / D=강력재검토 / C=톤조정권장 / B=표준진행 / A=권장톤매칭
+    - name: rule_match
+      type: object
+      description: 인-메모리 CRITICAL_KEYWORDS 사전 룰(탱크/계엄/세월호/이태원/욱일기/위안부/박종철 등 20+) — 매칭 시 LLM 호출 생략하고 즉시 F등급 critical
+    - name: waitlist_entry
+      type: object
+      description: PMF 측정용 — email(UNIQUE), source(string)
+
+evaluation_principles:
+  - name: data_accuracy_over_feature_count
+    description: 역사 사건 DB 정확성이 기능 수보다 우선 — 검증된 출처만, 다중 교차 검증
+    weight: 0.156
+  - name: political_neutrality
+    description: 좌·우 편향 없이 사실만 기록, 해석은 사용자 판단
+    weight: 0.156
+  - name: confidentiality_of_campaign_input
+    description: 입력 카피는 영업 비밀 — 학습 제외 / service_role 격리 / 약관 명시
+    weight: 0.148
+  - name: user_decision_sovereignty
+    description: 금지가 아닌 정보 제공 + 권고 — 최종 결정은 마케터·브랜드
+    weight: 0.141
+  - name: korea_first_completeness
+    description: 한국 컨텍스트 50건 완성도 우선, 글로벌은 PMF 후
+    weight: 0.141
+  - name: prevent_false_negatives
+    description: Gemini 429 폴백이 진짜 F를 C로 분류하지 않도록 룰 사전 차단 강화
+    weight: 0.133
+  - name: instant_pre_launch_feedback
+    description: 1~3분 워크플로우에 맞도록 p95 5초 내 응답 (캐시+룰 우선, LLM 폴백)
+    weight: 0.125
+
+exit_conditions:
+  - name: events_50_curated
+    description: 한국 민감일 50건 검증된 데이터 완성
+    criteria: "ls data/events/*.json | grep -v _template | wc -l 결과가 50"
+  - name: calendar_db_driven
+    description: 캘린더 페이지가 Supabase events 테이블 쿼리로 렌더
+    criteria: "apps/web/app/calendar/page.tsx에서 SAMPLE_EVENTS 제거 + getSupabaseAdmin() fetch 확인"
+  - name: reviews_grade_migrated
+    description: reviews.grade 컬럼이 마이그레이션 SQL에 반영되어 production DB에 존재
+    criteria: "scripts/migrate.ts 또는 migrations/*.sql에 ALTER 적용 + supabase production migration 완료"
+  - name: regression_test_passes
+    description: 5·18 / 세월호 / 8·15 등 시나리오 회귀 테스트 100% 기대 등급 산출
+    criteria: "tests/regression/*.test.ts 통과 + CI green"
+  - name: perf_p95_under_5s
+    description: POST /api/check p95 응답 시간 < 5초
+    criteria: "k6 1000 RPM 부하 테스트 리포트 첨부, p95 metric < 5000ms"
+  - name: pmm_interviews_5
+    description: 1인 PMM 페르소나 5명 정성 인터뷰 완료, 3명 이상 예방 가치 있다 + 인용 발화 3+
+    criteria: "docs/interviews/*.md 5개 + summary.md에 정성 지지 3+ 명시 + quotable_excerpts ≥ 3"
+  - name: waitlist_signal
+    description: 웨이트리스트 누적 이메일 ≥ 20건
+    criteria: "select count(*) from waitlist 결과 ≥ 20"
+
+metadata:
+  version: "1.1.0"
+  timestamp: "2026-05-25T00:45:35Z"
+  ambiguity_score: 0.12
+  interview_session: "nunchi-mvp-pmm-pre-compact"
+  revision_key: "nunchi-mvp-pmm-pre-launch-validator-20260524T154535Z"
+  qa_score: 0.92
+  qa_iterations: 2
+  project_type: brownfield
+  context_references:
+    - path: /Users/user/Workspace/Nunchi/CLAUDE.md
+      role: primary
+      summary: "프로젝트 사양서 — 문제 정의, MVP 범위, 데이터 모델 초안"
+    - path: /Users/user/Workspace/Nunchi/docs/STATUS.md
+      role: primary
+      summary: "현재 진행 / 부분 작동 / 미구현 스냅샷"
+    - path: /Users/user/Workspace/Nunchi/docs/roadmap.md
+      role: primary
+      summary: "Phase 0~4 로드맵 + DoD"
+    - path: /Users/user/Workspace/Nunchi/docs/architecture.md
+      role: reference
+      summary: "Hybrid 검토 엔진 파이프라인 + 환경 변수 일람"
+    - path: /Users/user/Workspace/Nunchi/docs/decisions/0002-llm-provider-gemini.md
+      role: reference
+      summary: "ADR-0002: Gemini 2.0 Flash + Ollama 폴백"
+    - path: /Users/user/Workspace/Nunchi/docs/decisions/0003-five-grade-system.md
+      role: reference
+      summary: "ADR-0003: F/D/C/B/A 5등급 시스템"
+    - path: /Users/user/Workspace/Nunchi/apps/web/lib/review-engine.ts
+      role: reference
+      summary: "캐시→룰→Gemini/Ollama 폴백 파이프라인"
+    - path: /Users/user/Workspace/Nunchi/packages/llm/src/claude.ts
+      role: reference
+      summary: "(파일명 레거시) Gemini/Ollama 어댑터"
+    - path: /Users/user/Workspace/Nunchi/packages/shared/src/types.ts
+      role: reference
+      summary: "Grade 타입 + toneToGrade 헬퍼"
+    - path: /Users/user/Workspace/Nunchi/data/events
+      role: primary
+      summary: "큐레이션된 31개 한국 민감일 JSON (목표 50건)"
+  existing_patterns:
+    - "pnpm 모노레포 (apps/web + packages/llm + packages/shared)"
+    - "Next.js 16 App Router + Microsoft Fluent Design CSS custom properties"
+    - "Supabase + pgvector(768) — 임베딩 컬럼 존재하지만 미사용"
+    - "review-engine hybrid pipeline: cache(7d) → CRITICAL_KEYWORDS 룰 → Gemini/Ollama"
+    - "5-grade type system Grade=A|B|C|D|F + toneToGrade 매핑"
+    - "ADR-as-markdown (docs/decisions/000X-*.md)"
+    - "service_role 키는 서버 전용 (apps/web/lib/supabase.ts getSupabaseAdmin)"
+    - "Vercel + pnpm@9.15.9 + --no-frozen-lockfile 워크어라운드"
+  existing_dependencies:
+    - "next ^16.2.6"
+    - "@supabase/supabase-js"
+    - "openai (Gemini OpenAI-호환 endpoint용)"
+    - "resend (웨이트리스트 메일)"
+    - "tailwindcss v4 (import만, 실제는 CSS variables 중심)"

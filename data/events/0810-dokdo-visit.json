@@ -1,0 +1,28 @@
+{
+  "slug": "dokdo-visit-0810",
+  "date_type": "fixed",
+  "month": 8,
+  "day": 10,
+  "day_end": null,
+  "country": "KR",
+  "name": "이명박 대통령 독도 방문",
+  "name_en": "President Lee Myung-bak's Dokdo Visit (2012)",
+  "category": "political",
+  "risk_level": "high",
+  "summary": "2012년 8월 10일, 이명박 대통령이 현직 대통령 최초로 독도를 방문했다. 이에 일본 정부는 강한 항의와 함께 주한 일본대사를 일시 귀국 조치했으며, 한일 관계가 급격히 냉각되었다. 독도 영유권 분쟁은 한국 내 반일 감정과 결합되어 매우 민감한 외교·사회 이슈다.",
+  "related_keywords": ["독도", "이명박", "일본", "영토", "영유권", "다케시마", "한일관계", "반일"],
+  "related_motifs": ["독도", "일장기", "태극기", "섬"],
+  "recommended_tone": "neutral",
+  "references": [
+    {
+      "label": "외교부 — 독도",
+      "url": "https://dokdo.mofa.go.kr",
+      "type": "official"
+    },
+    {
+      "label": "연합뉴스 — 이명박 독도 방문",
+      "url": "https://www.yna.co.kr",
+      "type": "media"
+    }
+  ]
+}

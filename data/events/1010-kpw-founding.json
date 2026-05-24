@@ -1,0 +1,28 @@
+{
+  "slug": "kpw-founding-1010",
+  "date_type": "recurring",
+  "month": 10,
+  "day": 10,
+  "day_end": null,
+  "country": "KR",
+  "name": "조선노동당 창건일",
+  "name_en": "Korean Workers' Party Founding Day (North Korea)",
+  "category": "political",
+  "risk_level": "high",
+  "summary": "매년 10월 10일은 북한 조선노동당의 창건을 기념하는 날(1945년 창당)로, 북한에서 대규모 열병식·도발적 무기 시험이 빈번하게 실시된다. 이 날은 남북 긴장 고조 및 미사일 발사 등 북한 도발 가능성이 높아지는 시기로, 안보 관련 민감 보도가 집중된다. 한국 브랜드가 이 날 군사·폭발 관련 콘텐츠를 게시하면 오해를 살 수 있다.",
+  "related_keywords": ["북한", "조선노동당", "열병식", "김정은", "도발", "미사일", "핵", "10·10"],
+  "related_motifs": ["미사일", "핵", "군복", "북한 국기"],
+  "recommended_tone": "avoid",
+  "references": [
+    {
+      "label": "통일부 — 북한 주요 기념일",
+      "url": "https://www.unikorea.go.kr",
+      "type": "official"
+    },
+    {
+      "label": "국가안보전략연구원",
+      "url": "https://www.inss.re.kr",
+      "type": "academic"
+    }
+  ]
+}

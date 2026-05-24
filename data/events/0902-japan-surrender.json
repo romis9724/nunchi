@@ -1,0 +1,28 @@
+{
+  "slug": "japan-surrender-0902",
+  "date_type": "fixed",
+  "month": 9,
+  "day": 2,
+  "day_end": null,
+  "country": "KR",
+  "name": "일본 공식 항복 문서 서명",
+  "name_en": "Japan's Formal Surrender Signing (1945)",
+  "category": "memorial",
+  "risk_level": "medium",
+  "summary": "1945년 9월 2일, 일본 외무대신 시게미쓰 마모루 등이 미 전함 미주리(USS Missouri)함에서 공식 항복 문서에 서명하며 제2차 세계대전과 35년간의 일제강점기가 공식 종료되었다. 한국의 법정 광복일은 8월 15일(일왕 항복 방송)이나, 9월 2일은 실질적 종전일로 식민지배 피해 논의와 연관될 수 있다.",
+  "related_keywords": ["일본 항복", "종전", "미주리함", "태평양전쟁", "광복", "일제강점기", "식민지"],
+  "related_motifs": ["군함", "태극기", "일장기"],
+  "recommended_tone": "neutral",
+  "references": [
+    {
+      "label": "국가기록원 — 광복과 분단",
+      "url": "https://www.archives.go.kr",
+      "type": "official"
+    },
+    {
+      "label": "한국민족문화대백과사전 — 일본 항복",
+      "url": "https://encykorea.aks.ac.kr",
+      "type": "academic"
+    }
+  ]
+}

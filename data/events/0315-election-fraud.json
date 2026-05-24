@@ -1,0 +1,33 @@
+{
+  "slug": "election-fraud-0315",
+  "date_type": "fixed",
+  "month": 3,
+  "day": 15,
+  "day_end": null,
+  "country": "KR",
+  "name": "3·15 부정선거",
+  "name_en": "March 15 Rigged Election (1960)",
+  "category": "political",
+  "risk_level": "high",
+  "summary": "1960년 3월 15일, 이승만 자유당 정권이 제4대 정·부통령 선거에서 대규모 부정을 자행했다. 3인조·5인조 공개 투표, 투표함 바꿔치기, 야당 참관인 축출 등 조직적 부정이 있었으며, 이에 맞선 마산 시민 항거(3·15 의거)에서 경찰 발포로 사망자가 발생했다. 이는 4·19 혁명의 직접적 원인이 되었다.",
+  "related_keywords": ["3·15", "부정선거", "이승만", "자유당", "4·19", "마산", "의거", "부정투표"],
+  "related_motifs": ["투표함", "선거"],
+  "recommended_tone": "neutral",
+  "references": [
+    {
+      "label": "중앙선거관리위원회 — 선거 역사",
+      "url": "https://www.nec.go.kr",
+      "type": "official"
+    },
+    {
+      "label": "민주화운동기념사업회 — 3·15 의거",
+      "url": "https://www.kdemo.or.kr",
+      "type": "official"
+    },
+    {
+      "label": "한국민족문화대백과사전 — 3·15부정선거",
+      "url": "https://encykorea.aks.ac.kr",
+      "type": "academic"
+    }
+  ]
+}

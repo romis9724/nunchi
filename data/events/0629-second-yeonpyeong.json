@@ -1,0 +1,28 @@
+{
+  "slug": "second-yeonpyeong-0629",
+  "date_type": "fixed",
+  "month": 6,
+  "day": 29,
+  "day_end": null,
+  "country": "KR",
+  "name": "제2연평해전",
+  "name_en": "Second Battle of Yeonpyeong (2002)",
+  "category": "political",
+  "risk_level": "high",
+  "summary": "2002년 6월 29일, 서해 연평도 인근 NLL(북방한계선) 근해에서 북한 경비정이 기습 선제 공격하여 한국 해군 고속정 참수리-357호가 격침되었다. 한국 해군 6명이 전사하고 18명이 부상했다. 한일 월드컵 3·4위전 당일에 발생하여 사회적 충격이 컸으며, 매년 6월 29일 해군 전투원들을 추모한다.",
+  "related_keywords": ["연평해전", "북한", "NLL", "해군", "참수리", "전사", "서해", "교전"],
+  "related_motifs": ["해군", "군함", "서해", "NLL"],
+  "recommended_tone": "memorial",
+  "references": [
+    {
+      "label": "해군본부 — 제2연평해전",
+      "url": "https://www.navy.mil.kr",
+      "type": "official"
+    },
+    {
+      "label": "국방부 — 서해 수호의 날",
+      "url": "https://www.mnd.go.kr",
+      "type": "official"
+    }
+  ]
+}

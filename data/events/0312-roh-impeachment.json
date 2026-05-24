@@ -1,0 +1,28 @@
+{
+  "slug": "roh-impeachment-0312",
+  "date_type": "fixed",
+  "month": 3,
+  "day": 12,
+  "day_end": null,
+  "country": "KR",
+  "name": "노무현 대통령 탄핵소추안 가결",
+  "name_en": "Roh Moo-hyun Presidential Impeachment Vote",
+  "category": "political",
+  "risk_level": "high",
+  "summary": "2004년 3월 12일, 국회는 재적 의원 271명 중 193명의 찬성으로 노무현 대통령 탄핵소추안을 가결했다. 노 대통령은 즉시 직무가 정지되었으나, 헌법재판소가 2004년 5월 14일 탄핵 심판을 기각하면서 63일 만에 직무에 복귀했다. 이 사건은 한국 헌정사상 최초의 대통령 탄핵소추 가결 사례이며, 대규모 시민 저항 운동을 유발했다.",
+  "related_keywords": ["노무현", "탄핵", "국회", "탄핵소추", "헌법재판소", "직무정지", "대통령"],
+  "related_motifs": ["국회의사당", "대통령", "투표"],
+  "recommended_tone": "neutral",
+  "references": [
+    {
+      "label": "헌법재판소 — 2004헌나1 탄핵 기각 결정",
+      "url": "https://www.ccourt.go.kr",
+      "type": "official"
+    },
+    {
+      "label": "국회 — 탄핵소추안 가결 기록",
+      "url": "https://www.assembly.go.kr",
+      "type": "official"
+    }
+  ]
+}
