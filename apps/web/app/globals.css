@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+:root {
+  /* ── Microsoft Fluent Design System ─────────────────────────── */
+  --ms-blue:        #0078D4;   /* Fluent primary blue */
+  --ms-blue-dark:   #106EBE;   /* hover */
+  --ms-blue-darker: #005A9E;   /* pressed */
+  --ms-blue-light:  #EFF6FC;   /* tint */
+  --ms-blue-mid:    #DEECF9;   /* subtle */
+
+  --ms-surface:     #FAF9F8;   /* Fluent canvas */
+  --ms-surface-2:   #F3F2F1;   /* secondary surface */
+  --ms-surface-3:   #EDEBE9;   /* tertiary / hover */
+  --ms-white:       #FFFFFF;
+
+  --ms-text:        #201F1E;   /* Fluent primary text */
+  --ms-text-2:      #605E5C;   /* secondary */
+  --ms-text-3:      #8A8886;   /* placeholder / disabled */
+
+  --ms-border:      #E1DFDD;   /* default border */
+  --ms-border-2:    #C8C6C4;   /* strong border */
+
+  --ms-red:         #D13438;
+  --ms-orange:      #D83B01;
+  --ms-green:       #107C10;
+  --ms-purple:      #8764B8;
+
+  /* Semantic aliases → Fluent names */
+  --warm-white:    var(--ms-surface);
+  --charcoal:      var(--ms-text);
+  --muted-ink:     var(--ms-text-2);
+  --soft-beige:    var(--ms-surface-2);
+  --lavender-gray: var(--ms-blue-light);
+  --border-warm:   var(--ms-border);
+  --border-faint:  var(--ms-surface-3);
+  --coral:         var(--ms-blue);   /* primary action = MS blue */
+
+  --color-background:   var(--ms-surface);
+  --color-surface:      var(--ms-white);
+  --color-surface-2:    var(--ms-surface-2);
+  --color-surface-3:    var(--ms-surface-3);
+  --color-text:         var(--ms-text);
+  --color-text-muted:   var(--ms-text-2);
+  --color-border:       var(--ms-border);
+  --color-accent:       var(--ms-blue);
+
+  /* Grade colors — aligned with MS Fluent semantic */
+  --grade-f-text:  #C50F1F;   /* MS communication red */
+  --grade-f-bg:    #FDE7E9;
+  --grade-f-border:#F4ABAA;
+  --grade-d-text:  #BC4B09;   /* MS warning orange */
+  --grade-d-bg:    #FFF4CE;
+  --grade-d-border:#F9CE89;
+  --grade-c-text:  #605E5C;   /* MS secondary text */
+  --grade-c-bg:    var(--ms-surface-2);
+  --grade-c-border:var(--ms-border);
+  --grade-b-text:  #107C10;   /* MS success green */
+  --grade-b-bg:    #DFF6DD;
+  --grade-b-border:#9FCFA0;
+  --grade-a-text:  #0078D4;   /* MS signature blue — "best" = MS blue */
+  --grade-a-bg:    #EFF6FC;
+  --grade-a-border:#82C5F4;
+
+  /* Typography */
+  --font-display: "Inter Tight", "Pretendard Variable", sans-serif;
+  --font-body:    "Pretendard Variable", "Inter", sans-serif;
+
+  /* Spacing rhythm */
+  --space-xs:  0.5rem;
+  --space-sm:  0.875rem;
+  --space-md:  1.25rem;
+  --space-lg:  2rem;
+  --space-xl:  3.5rem;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration: 180ms;
+}
+
+@theme inline {
+  --color-background: var(--color-background);
+  --color-surface: var(--color-surface);
+  --color-text: var(--color-text);
+  --color-text-muted: var(--color-text-muted);
+  --color-border: var(--color-border);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+}
+
+* { box-sizing: border-box; }
+
+html {
+  font-family: var(--font-body);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--warm-white);
+  color: var(--charcoal);
+  min-height: 100vh;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* Editorial Studio utility classes */
+.studio-card {
+  background: var(--color-surface);
+  border: 1px solid var(--border-warm);
+  border-radius: 14px;
+}
+
+.studio-card-beige {
+  background: var(--soft-beige);
+  border: 1px solid var(--border-warm);
+  border-radius: 14px;
+}
+
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 3px 10px;
+  border-radius: 100px;
+  text-transform: uppercase;
+}
+
+/* 마퀴 애니메이션 */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* 노이즈 텍스처 overlay */
+.noise-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 링크 언더라인 커스텀 */
+.fancy-link {
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--border-warm);
+  transition: text-decoration-color 0.15s;
+}
+
+.fancy-link:hover {
+  text-decoration-color: var(--charcoal);
+}
