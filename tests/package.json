@@ -1,0 +1,30 @@
+{
+  "name": "tests",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "regression": "tsx --test regression/migration_grade.test.ts",
+    "migration:integration": "tsx --test regression/migration_grade_integration.test.ts",
+    "grade:constraint": "tsx --test regression/grade_constraint.test.ts",
+    "test:waitlist": "tsx --test regression/waitlist.test.ts",
+    "test:waitlist:count": "tsx --test regression/waitlist.test.ts",
+    "test:waitlist:email": "tsx --test regression/waitlist_email.test.ts",
+    "test:waitlist:validation": "tsx --test regression/waitlist_route_validation.test.ts",
+    "test:waitlist:success": "tsx --test regression/waitlist_route_success.test.ts",
+    "test:waitlist:db-error": "tsx --test regression/waitlist_route_db_error.test.ts",
+    "test:waitlist:email-error": "tsx --test regression/waitlist_route_email_error.test.ts",
+    "test:waitlist:form": "tsx --test regression/waitlist_form.test.ts",
+    "test:waitlist:form-loading": "tsx --test regression/waitlist_form_loading.test.ts",
+    "test:waitlist:form-success": "tsx --test regression/waitlist_form_success.test.ts",
+    "test:waitlist:form-error": "tsx --test regression/waitlist_form_error.test.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "@types/pg": "^8.20.0",
+    "pg": "^8.21.0"
+  }
+}

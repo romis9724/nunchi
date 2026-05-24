@@ -1,0 +1,28 @@
+{
+  "slug": "imf-crisis-1121",
+  "date_type": "fixed",
+  "month": 11,
+  "day": 21,
+  "day_end": null,
+  "country": "KR",
+  "name": "IMF 외환위기 구제금융 신청",
+  "name_en": "IMF Financial Crisis Bailout Request (1997)",
+  "category": "social",
+  "risk_level": "high",
+  "summary": "1997년 11월 21일, 대한민국 정부가 국제통화기금(IMF)에 550억 달러 규모의 구제금융을 신청했다. '국가 부도'로 불린 이 경제위기로 기업 연쇄 부도, 대규모 실업, 금 모으기 운동이 전국적으로 전개되었다. 실업·경제난·빈부격차를 자극하는 마케팅 소재는 이 날 전후 강한 반발을 유발할 수 있다.",
+  "related_keywords": ["IMF", "외환위기", "경제위기", "구제금융", "금모으기", "실업", "부도", "환란"],
+  "related_motifs": ["금", "달러", "공장 폐쇄", "실업"],
+  "recommended_tone": "neutral",
+  "references": [
+    {
+      "label": "기획재정부 — IMF 외환위기 20주년",
+      "url": "https://www.moef.go.kr",
+      "type": "official"
+    },
+    {
+      "label": "한국은행 — 외환위기 기록",
+      "url": "https://www.bok.or.kr",
+      "type": "official"
+    }
+  ]
+}

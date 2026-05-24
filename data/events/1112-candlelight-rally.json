@@ -1,0 +1,28 @@
+{
+  "slug": "candlelight-rally-1112",
+  "date_type": "fixed",
+  "month": 11,
+  "day": 12,
+  "day_end": null,
+  "country": "KR",
+  "name": "박근혜 퇴진 촛불집회 (최대 규모)",
+  "name_en": "Candlelight Rally for Park Geun-hye's Resignation (2016)",
+  "category": "political",
+  "risk_level": "high",
+  "summary": "2016년 11월 12일, 박근혜-최순실 국정농단 규탄 촛불집회가 서울 광화문광장을 비롯한 전국 각지에서 열렸다. 주최 측 추산 100만 명(경찰 추산 26만 명)이 참가한 최대 규모 집회였다. 비폭력 평화 집회의 상징으로 평가되며, 2017년 박근혜 대통령 탄핵으로 이어진 직접적 동력이 되었다.",
+  "related_keywords": ["촛불집회", "박근혜", "최순실", "퇴진", "광화문", "국정농단", "탄핵"],
+  "related_motifs": ["촛불", "광화문", "광장", "군중"],
+  "recommended_tone": "neutral",
+  "references": [
+    {
+      "label": "중앙일보 — 촛불집회 100만 운집",
+      "url": "https://www.joongang.co.kr",
+      "type": "media"
+    },
+    {
+      "label": "연합뉴스 — 촛불집회",
+      "url": "https://www.yna.co.kr",
+      "type": "media"
+    }
+  ]
+}

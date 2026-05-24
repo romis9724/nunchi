@@ -1,0 +1,28 @@
+{
+  "slug": "womens-day-0308",
+  "date_type": "recurring",
+  "month": 3,
+  "day": 8,
+  "day_end": null,
+  "country": "KR",
+  "name": "세계 여성의 날",
+  "name_en": "International Women's Day",
+  "category": "social",
+  "risk_level": "medium",
+  "summary": "매년 3월 8일, 유엔이 1975년 공식 지정한 세계 여성의 날. 한국에서는 여성 노동권·젠더 평등·미투 운동과 연관된 집회 및 캠페인이 활발하게 열린다. 브랜드가 이 날 성차별적 이미지나 여성을 대상화하는 카피를 사용하면 강한 역풍을 맞을 수 있으며, 반대로 진정성 없는 '핑크워싱'도 비판 대상이 된다.",
+  "related_keywords": ["여성의 날", "페미니즘", "성평등", "젠더", "미투", "유리천장", "여성노동", "여성혐오", "핑크워싱"],
+  "related_motifs": ["여성", "리본", "보라색", "주먹 쥔 손"],
+  "recommended_tone": "neutral",
+  "references": [
+    {
+      "label": "유엔 — International Women's Day",
+      "url": "https://www.un.org/en/observances/womens-day",
+      "type": "official"
+    },
+    {
+      "label": "여성가족부 — 세계 여성의 날",
+      "url": "https://www.mogef.go.kr",
+      "type": "official"
+    }
+  ]
+}

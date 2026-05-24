@@ -1,0 +1,28 @@
+{
+  "slug": "armistice-0727",
+  "date_type": "recurring",
+  "month": 7,
+  "day": 27,
+  "day_end": null,
+  "country": "KR",
+  "name": "한국전쟁 정전협정 체결일",
+  "name_en": "Korean War Armistice Agreement Day",
+  "category": "memorial",
+  "risk_level": "medium",
+  "summary": "1953년 7월 27일, 판문점에서 유엔군·북한군·중국군 3자가 정전협정에 서명하며 3년 1개월간의 한국전쟁이 사실상 종결되었다. 대한민국은 협정 서명에 불참했으며, 정전은 평화조약이 아닌 사실상의 전쟁 중단 합의다. 매년 이 날을 전후해 남북 긴장 및 안보 관련 보도가 집중된다.",
+  "related_keywords": ["정전협정", "6·25", "한국전쟁", "판문점", "휴전", "DMZ", "38선"],
+  "related_motifs": ["판문점", "DMZ", "철조망", "군인"],
+  "recommended_tone": "memorial",
+  "references": [
+    {
+      "label": "국가기록원 — 한국전쟁 정전협정",
+      "url": "https://www.archives.go.kr",
+      "type": "official"
+    },
+    {
+      "label": "국방부 — 6·25전쟁 정전 70주년",
+      "url": "https://www.mnd.go.kr",
+      "type": "official"
+    }
+  ]
+}

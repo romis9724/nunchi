@@ -1,0 +1,28 @@
+{
+  "slug": "lee-han-yeol-0609",
+  "date_type": "fixed",
+  "month": 6,
+  "day": 9,
+  "day_end": null,
+  "country": "KR",
+  "name": "이한열 최루탄 피격",
+  "name_en": "Lee Han-yeol Tear Gas Incident (1987)",
+  "category": "human_rights",
+  "risk_level": "high",
+  "summary": "1987년 6월 9일, 연세대학교 앞 민주화 시위 도중 경찰의 최루탄이 연세대 경영학과 이한열(22세)의 뒷머리에 직격했다. 이한열은 뇌 손상으로 혼수상태에 빠졌다가 7월 5일 사망했다. 동료에게 안겨 쓰러지는 사진이 전 세계에 보도되어 6월 민주항쟁의 상징적 이미지가 되었다.",
+  "related_keywords": ["이한열", "최루탄", "연세대", "민주화", "6월항쟁", "시위", "경찰"],
+  "related_motifs": ["최루탄", "시위대", "대학교"],
+  "recommended_tone": "memorial",
+  "references": [
+    {
+      "label": "이한열기념관",
+      "url": "https://www.leehanyeol.or.kr",
+      "type": "official"
+    },
+    {
+      "label": "민주화운동기념사업회 — 이한열",
+      "url": "https://www.kdemo.or.kr",
+      "type": "official"
+    }
+  ]
+}

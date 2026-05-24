@@ -1,0 +1,28 @@
+{
+  "slug": "yushin-1017",
+  "date_type": "fixed",
+  "month": 10,
+  "day": 17,
+  "day_end": null,
+  "country": "KR",
+  "name": "유신헌법 선포",
+  "name_en": "Yushin Constitution Proclamation (1972)",
+  "category": "political",
+  "risk_level": "high",
+  "summary": "1972년 10월 17일, 박정희 대통령이 비상계엄을 선포하고 국회를 해산한 뒤 유신헌법(제8차 개헌)을 제정했다. 유신체제는 대통령에게 무제한적 권력을 부여하고 간선제(통일주체국민회의)로 대통령을 선출하는 독재 체제였다. 1979년 박정희 암살까지 7년간 지속되었으며, 이 기간 중 긴급조치·민주화 운동 탄압이 이루어졌다.",
+  "related_keywords": ["유신", "유신헌법", "박정희", "비상계엄", "독재", "긴급조치", "10·17"],
+  "related_motifs": ["비상계엄 포고문", "국회", "독재"],
+  "recommended_tone": "neutral",
+  "references": [
+    {
+      "label": "국가기록원 — 유신헌법",
+      "url": "https://www.archives.go.kr",
+      "type": "official"
+    },
+    {
+      "label": "한국민족문화대백과사전 — 유신헌법",
+      "url": "https://encykorea.aks.ac.kr",
+      "type": "academic"
+    }
+  ]
+}

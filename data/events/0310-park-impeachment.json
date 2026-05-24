@@ -1,0 +1,28 @@
+{
+  "slug": "park-impeachment-0310",
+  "date_type": "fixed",
+  "month": 3,
+  "day": 10,
+  "day_end": null,
+  "country": "KR",
+  "name": "박근혜 대통령 탄핵 인용",
+  "name_en": "President Park Geun-hye Impeachment Ruling",
+  "category": "political",
+  "risk_level": "high",
+  "summary": "2017년 3월 10일, 헌법재판소가 국회의 박근혜 대통령 탄핵소추안을 8 대 0 만장일치로 인용, 박근혜 대통령은 즉시 파면되었다. 최순실 국정농단 사태와 수백만 명이 참여한 촛불집회가 직접적 배경이다. 이 날짜는 대통령 탄핵·정치적 책임을 상징하며, 정치적으로 민감한 캠페인 소재가 될 수 있다.",
+  "related_keywords": ["박근혜", "탄핵", "파면", "헌법재판소", "최순실", "국정농단", "촛불", "대통령"],
+  "related_motifs": ["헌재 결정문", "촛불", "광화문"],
+  "recommended_tone": "neutral",
+  "references": [
+    {
+      "label": "헌법재판소 — 2016헌나1 결정",
+      "url": "https://www.ccourt.go.kr",
+      "type": "official"
+    },
+    {
+      "label": "연합뉴스 — 박근혜 파면",
+      "url": "https://www.yna.co.kr",
+      "type": "media"
+    }
+  ]
+}

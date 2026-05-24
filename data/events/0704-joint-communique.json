@@ -1,0 +1,28 @@
+{
+  "slug": "joint-communique-0704",
+  "date_type": "fixed",
+  "month": 7,
+  "day": 4,
+  "day_end": null,
+  "country": "KR",
+  "name": "7·4 남북공동성명",
+  "name_en": "July 4th North-South Joint Communiqué (1972)",
+  "category": "political",
+  "risk_level": "medium",
+  "summary": "1972년 7월 4일, 남북한이 자주·평화·민족 대단결의 3대 원칙을 담은 공동성명을 서울과 평양에서 동시에 발표했다. 한국전쟁 이후 최초의 남북 합의 문서로 평가된다. 그러나 박정희 정부는 이 성명을 유신헌법 선포의 명분으로 활용했다는 비판을 받는다.",
+  "related_keywords": ["7·4 공동성명", "남북", "통일", "평화", "자주", "박정희", "이후락"],
+  "related_motifs": ["남북 분단", "한반도 지도"],
+  "recommended_tone": "neutral",
+  "references": [
+    {
+      "label": "통일부 — 7·4 남북공동성명 전문",
+      "url": "https://www.unikorea.go.kr",
+      "type": "official"
+    },
+    {
+      "label": "한국민족문화대백과사전 — 7·4 남북공동성명",
+      "url": "https://encykorea.aks.ac.kr",
+      "type": "academic"
+    }
+  ]
+}

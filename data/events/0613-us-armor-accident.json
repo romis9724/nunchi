@@ -1,0 +1,28 @@
+{
+  "slug": "us-armor-accident-0613",
+  "date_type": "fixed",
+  "month": 6,
+  "day": 13,
+  "day_end": null,
+  "country": "KR",
+  "name": "미군 장갑차 여중생 사망 사고",
+  "name_en": "US Military Armored Vehicle Schoolgirl Death Incident (2002)",
+  "category": "social",
+  "risk_level": "high",
+  "summary": "2002년 6월 13일, 경기도 양주군(현 양주시) 도로에서 훈련 중이던 미군 M60 부교전차가 중학생 신효순(16세)·심미선(16세)을 치어 사망하게 했다. 미군 병사들은 미군 군사법정에서 무죄 판결을 받았으며, 이에 분노한 시민들이 대규모 촛불집회를 열었다. 주한미군 SOFA(주둔군지위협정) 개정 요구로 이어졌다.",
+  "related_keywords": ["미군", "장갑차", "효순이", "미선이", "SOFA", "주한미군", "촛불집회", "무죄"],
+  "related_motifs": ["장갑차", "군용차량", "미군"],
+  "recommended_tone": "memorial",
+  "references": [
+    {
+      "label": "국가기록원 — 미군 장갑차 사고",
+      "url": "https://www.archives.go.kr",
+      "type": "official"
+    },
+    {
+      "label": "한겨레 — 미선이 효순이 사건",
+      "url": "https://www.hani.co.kr",
+      "type": "media"
+    }
+  ]
+}

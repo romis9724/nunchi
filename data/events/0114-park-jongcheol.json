@@ -1,0 +1,33 @@
+{
+  "slug": "park-jongcheol-0114",
+  "date_type": "recurring",
+  "month": 1,
+  "day": 14,
+  "day_end": null,
+  "country": "KR",
+  "name": "박종철 고문치사 사건",
+  "name_en": "Park Jong-cheol Torture Death Incident",
+  "category": "human_rights",
+  "risk_level": "critical",
+  "summary": "1987년 1월 14일, 서울대학교 재학생 박종철(22세)이 치안본부 남영동 대공수사단 509호실에서 경찰 수사관들의 물고문 등으로 사망. 당국은 '책상을 탁 치니 억 하고 쓰러졌다'는 허위 발표로 사건을 은폐하려 했으나 진상이 폭로되었다. 이 사건은 6월 민주항쟁의 직접적 도화선이 되었으며, 1월 14일은 인권 침해와 고문을 상기시키는 날로 남아 있다.",
+  "related_keywords": ["박종철", "고문", "물고문", "남영동", "치안본부", "책상을 탁", "경찰", "은폐", "조작", "509호"],
+  "related_motifs": ["물", "욕조", "구치소", "경찰"],
+  "recommended_tone": "memorial",
+  "references": [
+    {
+      "label": "국가인권위원회 — 박종철 고문치사 사건",
+      "url": "https://www.humanrights.go.kr",
+      "type": "official"
+    },
+    {
+      "label": "민주화운동기념사업회",
+      "url": "https://www.kdemo.or.kr",
+      "type": "official"
+    },
+    {
+      "label": "나무위키 — 박종철 고문치사 사건",
+      "url": "https://namu.wiki/w/%EB%B0%95%EC%A2%85%EC%B2%A0%20%EA%B3%A0%EB%AC%B8%EC%B9%98%EC%82%AC%20%EC%82%AC%EA%B1%B4",
+      "type": "wiki"
+    }
+  ]
+}

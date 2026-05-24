@@ -1,0 +1,28 @@
+{
+  "slug": "un-membership-0917",
+  "date_type": "fixed",
+  "month": 9,
+  "day": 17,
+  "day_end": null,
+  "country": "KR",
+  "name": "남북한 유엔 동시 가입",
+  "name_en": "Simultaneous UN Membership of South and North Korea (1991)",
+  "category": "political",
+  "risk_level": "low",
+  "summary": "1991년 9월 17일, 대한민국과 조선민주주의인민공화국이 유엔에 동시 가입했다. 남북한이 각각 독립된 국제법적 주체로 국제사회에서 공인되는 계기가 되었다. 분단 국가 현실을 공식화하는 측면도 있어 통일 담론과 함께 언급될 수 있는 날짜다.",
+  "related_keywords": ["유엔", "UN", "남북한", "국제사회", "가입", "외교"],
+  "related_motifs": ["유엔 로고", "한반도 지도", "국기"],
+  "recommended_tone": "neutral",
+  "references": [
+    {
+      "label": "외교부 — 유엔 가입",
+      "url": "https://www.mofa.go.kr",
+      "type": "official"
+    },
+    {
+      "label": "유엔 공식 기록",
+      "url": "https://www.un.org",
+      "type": "official"
+    }
+  ]
+}

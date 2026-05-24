@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { callWaitlistApi } from "../../lib/waitlist";
 
 /* ── Waitlist form ─────────────────────────────────────────── */
 function WaitlistForm({ source, dark = false }: { source: string; dark?: boolean }) {
@@ -13,13 +14,8 @@ function WaitlistForm({ source, dark = false }: { source: string; dark?: boolean
     e.preventDefault();
     setStatus("loading");
     try {
-      const r = await fetch("/api/waitlist", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source }),
-      });
-      const d = await r.json();
-      if (!r.ok) { setErr(d.error ?? "오류가 발생했습니다."); setStatus("error"); return; }
+      const result = await callWaitlistApi(email, source);
+      if (!result.ok) { setErr(result.error ?? "오류가 발생했습니다."); setStatus("error"); return; }
       setStatus("done");
     } catch { setErr("네트워크 오류"); setStatus("error"); }
   };
