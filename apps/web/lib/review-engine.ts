@@ -3,31 +3,9 @@ import type { CheckRequest, CheckResponse, EventRecord, Grade } from "@nunchi/sh
 import { toneToGrade } from "@nunchi/shared";
 import { getSupabaseAdmin } from "./supabase";
 import { callReviewEngine } from "@nunchi/llm";
+import { matchCriticalKeywords } from "./critical-keywords";
 
 const CACHE_TTL_DAYS = 7;
-
-const CRITICAL_KEYWORDS: Record<string, string[]> = {
-  "탱크": ["gwangju-uprising-0518", "korean-war-0625"],
-  "계엄": ["gwangju-uprising-0518"],
-  "발포": ["gwangju-uprising-0518"],
-  "책상 탁": ["gwangju-uprising-0518"],
-  "책상에 탁": ["gwangju-uprising-0518"],
-  "신군부": ["gwangju-uprising-0518"],
-  "전두환": ["gwangju-uprising-0518"],
-  "세월호": ["sewol-ferry-0416"],
-  "노란 리본": ["sewol-ferry-0416"],
-  "304": ["sewol-ferry-0416"],
-  "토벌": ["jeju-uprising-0403"],
-  "4·3": ["jeju-uprising-0403"],
-  "욱일기": ["liberation-day-0815"],
-  "위안부": ["liberation-day-0815"],
-  "강제징용": ["liberation-day-0815"],
-  "남침": ["korean-war-0625"],
-  "6·25": ["korean-war-0625"],
-  "박종철": ["gwangju-uprising-0518"],
-  "이태원": ["itaewon-disaster-1029"],
-  "압사": ["itaewon-disaster-1029"],
-};
 
 function hashInput(req: CheckRequest): string {
   const payload = JSON.stringify({
@@ -41,17 +19,11 @@ function hashInput(req: CheckRequest): string {
 }
 
 function matchKeywords(req: CheckRequest): string[] {
-  const searchText = [
-    req.copy,
-    ...(req.assetKeywords ?? []),
-    req.campaignName ?? "",
-  ]
-    .join(" ")
-    .toLowerCase();
-
-  return Object.keys(CRITICAL_KEYWORDS).filter((kw) =>
-    searchText.includes(kw.toLowerCase())
-  );
+  return matchCriticalKeywords({
+    copy: req.copy,
+    assetKeywords: req.assetKeywords,
+    campaignName: req.campaignName,
+  });
 }
 
 async function fetchNearbyEvents(date: string): Promise<EventRecord[]> {

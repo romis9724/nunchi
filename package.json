@@ -11,6 +11,7 @@
     "db:migrate": "pnpm --filter scripts migrate",
     "db:seed": "pnpm --filter scripts seed",
     "test:regression": "pnpm --filter tests regression",
+    "test:scenarios": "pnpm --filter tests test:scenarios",
     "test:migration": "pnpm --filter tests regression",
     "test:migration:integration": "pnpm --filter tests migration:integration",
     "test:count": "pnpm --filter @nunchi/shared test:count"

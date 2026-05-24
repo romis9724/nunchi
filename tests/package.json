@@ -5,6 +5,9 @@
   "type": "module",
   "scripts": {
     "regression": "tsx --test regression/migration_grade.test.ts",
+    "test:critical-events": "tsx --test regression/critical_events.test.ts",
+    "test:grade-mapping": "tsx --test regression/grade_mapping.test.ts",
+    "test:scenarios": "tsx --test regression/critical_events.test.ts regression/grade_mapping.test.ts",
     "migration:integration": "tsx --test regression/migration_grade_integration.test.ts",
     "grade:constraint": "tsx --test regression/grade_constraint.test.ts",
     "test:waitlist": "tsx --test regression/waitlist.test.ts",
@@ -24,6 +27,7 @@
     "typescript": "^5.7.3"
   },
   "dependencies": {
+    "@nunchi/shared": "workspace:*",
     "@types/pg": "^8.20.0",
     "pg": "^8.21.0"
   }
