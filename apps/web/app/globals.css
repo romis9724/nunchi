@@ -176,7 +176,7 @@ h1, h2, h3 {
    inline style의 gridTemplateColumns를 모바일에서 override.
    className으로 붙여서 사용: rg-2, rg-3, rg-4, rg-5
 ─────────────────────────────────────────────────────────── */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   /* 2단 → 1단 */
   .rg-2, .rg-1-2 { grid-template-columns: 1fr !important; }
   /* 3단 → 1단 */
@@ -225,7 +225,7 @@ h1, h2, h3 {
   .nav-inner { padding: 0 16px !important; }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 479px) {
   /* 초소형: 4·5단도 1단으로 */
   .rg-4, .rg-5 { grid-template-columns: 1fr !important; }
 }

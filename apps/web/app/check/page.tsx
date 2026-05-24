@@ -114,7 +114,7 @@ function CheckForm() {
           </Link>
           <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
             <Link href="/calendar" style={NAV_LINK_STYLE}>
-              Calendar
+              캘린더
             </Link>
           </div>
         </div>
@@ -124,7 +124,7 @@ function CheckForm() {
         {/* Page header */}
         <div style={{ marginBottom: "36px" }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "12px", fontWeight: 600, color: "var(--muted-ink)", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "12px" }}>
-            <span>◈</span> Campaign Check
+            <span>◈</span> 캠페인 검토
           </div>
           <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(24px,4vw,32px)", fontWeight: 800, color: "var(--charcoal)", letterSpacing: "-0.03em", margin: "0 0 8px" }}>
             캠페인 날짜 검토
