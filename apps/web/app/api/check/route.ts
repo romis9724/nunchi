@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import type { CheckRequest } from "@nunchi/shared";
 import { runReviewEngine } from "@/lib/review-engine";
 
+// Vercel Pro 이상에서 최대 300s, Hobby는 10s 기본값
+export const maxDuration = 60;
+
 export async function POST(request: NextRequest) {
   let body: CheckRequest;
 
@@ -42,9 +45,10 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(result);
   } catch (error) {
-    console.error("[check] review engine error:", error);
+    const msg = error instanceof Error ? error.message : String(error);
+    console.error("[check] review engine error:", msg);
     return NextResponse.json(
-      { error: "검토 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요." },
+      { error: "검토 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.", detail: msg },
       { status: 500 }
     );
   }
