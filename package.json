@@ -12,6 +12,9 @@
     "db:seed": "pnpm --filter scripts seed",
     "test:regression": "pnpm --filter web test:regression"
   },
+  "dependencies": {
+    "next": "16.2.6"
+  },
   "devDependencies": {
     "typescript": "^5.7.3"
   }
