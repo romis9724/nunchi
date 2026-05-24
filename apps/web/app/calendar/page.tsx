@@ -116,7 +116,7 @@ export default function CalendarPage() {
         </div>
 
         {/* Grid layout: calendar + sidebar */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: "24px", alignItems: "start" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: "24px", alignItems: "start" }} className="calendar-layout">
 
           {/* Calendar */}
           <div style={{ background: "#FFF", border: "1px solid var(--border-warm)", borderRadius: "16px", overflow: "hidden" }}>

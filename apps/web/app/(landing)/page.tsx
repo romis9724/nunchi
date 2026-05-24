@@ -105,8 +105,8 @@ export default function LandingPage() {
       </header>
 
       {/* HERO */}
-      <section style={{ maxWidth: "1160px", margin: "0 auto", padding: "72px 24px 56px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
+      <section style={{ maxWidth: "1160px", margin: "0 auto", padding: "72px 24px 56px" }} className="hero-section">
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }} className="rg-2">
 
           {/* Left */}
           <div>
@@ -150,7 +150,7 @@ export default function LandingPage() {
               </p>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }} className="rg-2">
               <div style={{ background: "#fff", border: "1px solid var(--ms-border)", borderRadius: "6px", padding: "14px 16px" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
                   <span style={{ fontSize: "10px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.07em", color: "var(--ms-text-3)" }}>미국</span>
@@ -179,8 +179,8 @@ export default function LandingPage() {
       </section>
 
       {/* STATS BAR */}
-      <div style={{ background: "var(--ms-blue)", padding: "24px" }}>
-        <div style={{ maxWidth: "1160px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "24px" }}>
+      <div style={{ background: "var(--ms-blue)", padding: "24px" }} className="stats-bar">
+        <div style={{ maxWidth: "1160px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "24px" }} className="rg-4">
           {[
             { n: "31+", label: "큐레이션된 한국 민감일" },
             { n: "F → A", label: "5단계 위험·호재 등급" },
@@ -196,8 +196,8 @@ export default function LandingPage() {
       </div>
 
       {/* HOW IT WORKS */}
-      <section style={{ padding: "80px 24px", maxWidth: "1160px", margin: "0 auto" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "64px", alignItems: "start" }}>
+      <section style={{ padding: "80px 24px", maxWidth: "1160px", margin: "0 auto" }} className="section-pad">
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "64px", alignItems: "start" }} className="rg-1-2">
           <div>
             <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--ms-blue)", margin: "0 0 14px" }}>사용 방법</p>
             <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(28px,3.5vw,38px)", fontWeight: 800, letterSpacing: "-0.04em", color: "var(--ms-text)", margin: 0, lineHeight: 1.12 }}>
@@ -223,7 +223,7 @@ export default function LandingPage() {
       </section>
 
       {/* GRADE SYSTEM */}
-      <section style={{ background: "var(--ms-surface-2)", borderTop: "1px solid var(--ms-border)", borderBottom: "1px solid var(--ms-border)", padding: "72px 24px" }}>
+      <section style={{ background: "var(--ms-surface-2)", borderTop: "1px solid var(--ms-border)", borderBottom: "1px solid var(--ms-border)", padding: "72px 24px" }} className="section-pad">
         <div style={{ maxWidth: "1160px", margin: "0 auto" }}>
           <div style={{ marginBottom: "36px" }}>
             <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--ms-blue)", margin: "0 0 10px" }}>등급 시스템</p>
@@ -232,7 +232,7 @@ export default function LandingPage() {
             </h2>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)", gap: "8px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)", gap: "8px" }} className="rg-5">
             {[
               { g: "F", label: "즉각 회피",   sub: "역사적 비극과 직접 충돌. 캠페인 재설계 권고.", ex: "5·18, 세월호, 이태원" },
               { g: "D", label: "재검토 필요", sub: "민감 요소 감지. 컨셉·카피 전면 재검토.", ex: "6·25, 현충일 전후" },
@@ -262,11 +262,11 @@ export default function LandingPage() {
       </section>
 
       {/* DEMO LINKS */}
-      <section style={{ maxWidth: "1160px", margin: "0 auto", padding: "64px 24px" }}>
+      <section style={{ maxWidth: "1160px", margin: "0 auto", padding: "64px 24px" }} className="section-pad">
         <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--ms-blue)", marginBottom: "20px" }}>
           직접 체험해보기
         </p>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "10px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "10px" }} className="rg-3">
           {[
             { href: "/check?date=2027-05-18&copy=탱크 시리즈 신상 출시", g: "F", label: "5월 18일 · 군사 테마 신제품", sub: "F등급 — 즉각 위험 감지" },
             { href: "/check?date=2027-04-16&copy=봄 리브랜드 런칭 파티", g: "D", label: "4월 16일 · 런칭 파티", sub: "D등급 — 날짜 재검토 권고" },

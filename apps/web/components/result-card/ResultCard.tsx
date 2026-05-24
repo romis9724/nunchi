@@ -56,7 +56,7 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
       aria-label="캠페인 검토 결과"
     >
       {/* Header strip */}
-      <div style={{ padding: "24px 28px 20px", display: "flex", alignItems: "flex-start", gap: "16px" }}>
+      <div style={{ padding: "20px 20px 16px", display: "flex", alignItems: "flex-start", gap: "16px" }}>
         <div style={{ flex: 1 }}>
           <p style={{ fontSize: "12px", color: "var(--muted-ink)", marginBottom: "10px", display: "flex", gap: "8px", flexWrap: "wrap" }}>
             <span>{date}</span>
@@ -75,10 +75,10 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
         </div>
       </div>
 
-      <div style={{ height: "1px", background: "var(--border-warm)", margin: "0 28px" }} />
+      <div style={{ height: "1px", background: "var(--border-warm)", margin: "0 20px" }} />
 
       {/* Rationale */}
-      <div style={{ padding: "20px 28px" }}>
+      <div style={{ padding: "16px 20px" }}>
         <p style={{ fontSize: "11px", fontWeight: 700, color: "var(--muted-ink)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "10px" }}>
           {isPositive ? "호재 이유" : "분석 근거"}
         </p>
@@ -89,7 +89,7 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
 
       {/* Flagged keywords */}
       {result.flaggedKeywords.length > 0 && (
-        <div style={{ padding: "0 28px 20px" }}>
+        <div style={{ padding: "0 20px 16px" }}>
           <p style={{ fontSize: "11px", fontWeight: 700, color: "var(--muted-ink)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "10px" }}>
             감지된 위험 단어
           </p>
@@ -117,8 +117,8 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
       {/* Matched events */}
       {result.matchedEvents.length > 0 && (
         <>
-          <div style={{ height: "1px", background: "var(--border-warm)", margin: "0 28px" }} />
-          <div style={{ padding: "20px 28px" }}>
+          <div style={{ height: "1px", background: "var(--border-warm)", margin: "0 20px" }} />
+          <div style={{ padding: "16px 20px" }}>
             <p style={{ fontSize: "11px", fontWeight: 700, color: "var(--muted-ink)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "14px" }}>
               {isPositive ? "연관 기념일" : "관련 사건"}
             </p>
@@ -164,8 +164,8 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
       {/* Suggestions */}
       {result.suggestions.length > 0 && (
         <>
-          <div style={{ height: "1px", background: "var(--border-warm)", margin: "0 28px" }} />
-          <div style={{ padding: "20px 28px" }}>
+          <div style={{ height: "1px", background: "var(--border-warm)", margin: "0 20px" }} />
+          <div style={{ padding: "16px 20px" }}>
             <p style={{ fontSize: "11px", fontWeight: 700, color: "var(--muted-ink)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "12px" }}>
               {isPositive ? "활용 아이디어" : "대안 제안"}
             </p>
@@ -194,8 +194,8 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
       )}
 
       {/* Memo */}
-      <div style={{ height: "1px", background: "var(--border-warm)", margin: "0 28px" }} />
-      <div style={{ padding: "20px 28px" }}>
+      <div style={{ height: "1px", background: "var(--border-warm)", margin: "0 20px" }} />
+      <div style={{ padding: "16px 20px" }}>
         <label
           htmlFor="result-memo"
           style={{ fontSize: "11px", fontWeight: 700, color: "var(--muted-ink)", letterSpacing: "0.08em", textTransform: "uppercase", display: "block", marginBottom: "8px" }}
@@ -230,7 +230,7 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
       </div>
 
       {/* Disclaimer */}
-      <div style={{ padding: "0 28px 24px" }}>
+      <div style={{ padding: "0 20px 20px" }}>
         <p style={{ fontSize: "11px", color: "var(--muted-ink)", background: "var(--warm-white)", border: "1px solid var(--border-faint)", borderRadius: "8px", padding: "10px 14px", margin: 0, lineHeight: 1.6 }}>
           ⓘ 이 검토 결과는 참고용입니다. 최종 캠페인 결정은 귀하의 판단과 책임 하에 이루어집니다.
         </p>

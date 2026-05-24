@@ -138,7 +138,7 @@ function CheckForm() {
         <div className="studio-card" style={{ padding: "32px", marginBottom: "32px" }}>
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
             {/* Date + Campaign row */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }} className="form-grid">
               <div>
                 <label htmlFor="date" style={LABEL_STYLE}>
                   캠페인 날짜 <span style={{ color: "var(--coral)" }}>*</span>
@@ -199,7 +199,7 @@ function CheckForm() {
               <label htmlFor="keywords" style={LABEL_STYLE}>
                 비주얼 키워드 <span style={{ fontWeight: 400, color: "var(--muted-ink)" }}>(선택 · Enter로 추가)</span>
               </label>
-              <div style={{ display: "flex", gap: "8px" }}>
+              <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
                 <input
                   id="keywords"
                   type="text"

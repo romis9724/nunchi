@@ -171,3 +171,61 @@ h1, h2, h3 {
 .fancy-link:hover {
   text-decoration-color: var(--charcoal);
 }
+
+/* ── 반응형 그리드 유틸리티 ──────────────────────────────────
+   inline style의 gridTemplateColumns를 모바일에서 override.
+   className으로 붙여서 사용: rg-2, rg-3, rg-4, rg-5
+─────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* 2단 → 1단 */
+  .rg-2, .rg-1-2 { grid-template-columns: 1fr !important; }
+  /* 3단 → 1단 */
+  .rg-3 { grid-template-columns: 1fr !important; }
+  /* 4단 → 2단 */
+  .rg-4 { grid-template-columns: repeat(2, 1fr) !important; }
+  /* 5단 → 2단 */
+  .rg-5 { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* 간격 줄이기 */
+  .rg-2, .rg-3, .rg-4, .rg-5, .rg-1-2 { gap: 16px !important; }
+
+  /* 모바일 전용 패딩 */
+  .mobile-px { padding-left: 16px !important; padding-right: 16px !important; }
+
+  /* 세로 스택 */
+  .mobile-stack { flex-direction: column !important; }
+  .mobile-stack > * { width: 100% !important; }
+
+  /* 텍스트 크기 조정 */
+  .mobile-text-sm { font-size: 12px !important; }
+
+  /* 히어로 섹션 패딩 */
+  .hero-section { padding: 40px 16px 32px !important; }
+
+  /* 통계 바 */
+  .stats-bar { padding: 20px 16px !important; }
+  .stats-bar p:first-child { font-size: 22px !important; }
+
+  /* 섹션 패딩 */
+  .section-pad { padding: 48px 16px !important; }
+
+  /* 캘린더 사이드바 아래로 이동 */
+  .calendar-layout { grid-template-columns: 1fr !important; }
+
+  /* 폼 그리드 */
+  .form-grid { grid-template-columns: 1fr !important; }
+
+  /* 결과 카드 내부 여백 */
+  .result-card-inner { padding: 16px 18px !important; }
+
+  /* 모바일에서 숨기기 */
+  .mobile-hide { display: none !important; }
+
+  /* 네비게이션 */
+  .nav-inner { padding: 0 16px !important; }
+}
+
+@media (max-width: 480px) {
+  /* 초소형: 4·5단도 1단으로 */
+  .rg-4, .rg-5 { grid-template-columns: 1fr !important; }
+}
