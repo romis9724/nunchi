@@ -1,0 +1,22 @@
+{
+  "slug": "hangul-day-1009",
+  "date_type": "recurring",
+  "month": 10,
+  "day": 9,
+  "country": "KR",
+  "name": "한글날",
+  "name_en": "Hangul Day",
+  "category": "independence",
+  "risk_level": "low",
+  "summary": "10월 9일 법정 공휴일. 세종대왕이 훈민정음을 반포한 날을 기념. K-콘텐츠·언어·문화 관련 브랜드에 긍정적 연관성. 한국적 정체성을 강조한 캠페인에 최적.",
+  "related_keywords": ["한글", "한국어", "세종", "훈민정음", "K-문화"],
+  "related_motifs": ["한글 글씨", "세종대왕"],
+  "recommended_tone": "celebration",
+  "references": [
+    {
+      "label": "문화체육관광부 — 한글날",
+      "url": "https://www.mcst.go.kr",
+      "type": "official"
+    }
+  ]
+}

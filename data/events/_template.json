@@ -1,0 +1,23 @@
+{
+  "slug": "example-event-MMDD",
+  "date_type": "recurring",
+  "month": 1,
+  "day": 1,
+  "day_end": null,
+  "country": "KR",
+  "name": "사건명 (한국어)",
+  "name_en": "Event Name (English)",
+  "category": "memorial",
+  "risk_level": "high",
+  "summary": "사건 요약 — 발생 배경, 피해 규모, 사회적 의의를 2–4문장으로. 출처 기반 사실만 기술. 해석·평가 배제.",
+  "related_keywords": ["키워드1", "키워드2"],
+  "related_motifs": ["시각 모티프1"],
+  "recommended_tone": "memorial",
+  "references": [
+    {
+      "label": "출처 이름",
+      "url": "https://example.com",
+      "type": "official"
+    }
+  ]
+}

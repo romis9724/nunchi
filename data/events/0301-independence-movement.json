@@ -1,0 +1,27 @@
+{
+  "slug": "independence-movement-0301",
+  "date_type": "recurring",
+  "month": 3,
+  "day": 1,
+  "country": "KR",
+  "name": "3·1 운동 (삼일절)",
+  "name_en": "March 1st Movement",
+  "category": "independence",
+  "risk_level": "medium",
+  "summary": "1919년 3월 1일 전국에서 일어난 독립 만세 운동. 33인의 민족 대표가 독립선언서를 낭독하고 시위가 전국으로 확산. 일제의 무력 진압으로 사망 7,500여 명, 부상 1만 6천여 명. 3월 1일은 법정 공휴일. 독립·만세·태극기 테마는 긍정적이나, 일제·위안부·강제징용 소재와 결부 시 주의.",
+  "related_keywords": ["위안부", "강제징용", "일제", "욱일기", "야스쿠니", "만세", "독립운동", "31"],
+  "related_motifs": ["욱일기", "일장기", "일제 군복"],
+  "recommended_tone": "celebration",
+  "references": [
+    {
+      "label": "국가보훈부 — 3·1절",
+      "url": "https://www.mpva.go.kr",
+      "type": "official"
+    },
+    {
+      "label": "독립기념관",
+      "url": "https://www.independence.go.kr",
+      "type": "official"
+    }
+  ]
+}

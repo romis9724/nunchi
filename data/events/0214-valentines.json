@@ -1,0 +1,22 @@
+{
+  "slug": "valentines-day-0214",
+  "date_type": "recurring",
+  "month": 2,
+  "day": 14,
+  "country": "KR",
+  "name": "밸런타인데이",
+  "name_en": "Valentine's Day",
+  "category": "commercial",
+  "risk_level": "low",
+  "summary": "2월 14일 연인·가족·친구 간 선물과 메시지를 주고받는 상업 기념일. 초콜릿·카드·꽃 소비 최고조. 식음료·뷰티·패션 브랜드의 핵심 마케팅 시즌.",
+  "related_keywords": ["초콜릿", "사랑", "하트", "선물", "연인"],
+  "related_motifs": ["하트", "초콜릿", "빨간 장미"],
+  "recommended_tone": "celebration",
+  "references": [
+    {
+      "label": "한국무역협회 — 밸런타인데이 소비 트렌드",
+      "url": "https://www.kita.net",
+      "type": "media"
+    }
+  ]
+}

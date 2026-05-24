@@ -1,0 +1,18 @@
+{
+  "name": "nunchi",
+  "version": "0.0.1",
+  "private": true,
+  "packageManager": "pnpm@9.15.9",
+  "scripts": {
+    "dev": "pnpm --filter web dev",
+    "build": "pnpm --filter web build",
+    "lint": "pnpm -r lint",
+    "type-check": "pnpm -r type-check",
+    "db:migrate": "pnpm --filter scripts migrate",
+    "db:seed": "pnpm --filter scripts seed",
+    "test:regression": "pnpm --filter web test:regression"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
+}

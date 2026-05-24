@@ -1,0 +1,22 @@
+{
+  "slug": "park-assassination-1026",
+  "date_type": "recurring",
+  "month": 10,
+  "day": 26,
+  "country": "KR",
+  "name": "10·26 사건 (박정희 대통령 피살)",
+  "name_en": "October 26th Incident",
+  "category": "political",
+  "risk_level": "high",
+  "summary": "1979년 10월 26일 궁정동 안가에서 박정희 대통령이 김재규 중앙정보부장에 의해 피살. 18년간의 유신 체제가 막을 내리고 이후 전두환 신군부의 12·12 군사반란과 5·18 광주항쟁으로 이어지는 정치 격변의 시작. 현재까지 정치적 평가가 엇갈리는 민감한 역사 사건.",
+  "related_keywords": ["10·26", "박정희", "유신", "궁정동", "김재규", "암살", "피살", "독재"],
+  "related_motifs": ["총격", "암살 이미지", "궁정동"],
+  "recommended_tone": "neutral",
+  "references": [
+    {
+      "label": "국가기록원 — 10·26 사건",
+      "url": "https://www.archives.go.kr",
+      "type": "official"
+    }
+  ]
+}

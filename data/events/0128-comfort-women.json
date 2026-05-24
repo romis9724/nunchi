@@ -1,0 +1,22 @@
+{
+  "slug": "comfort-women-memorial-0128",
+  "date_type": "recurring",
+  "month": 1,
+  "day": 28,
+  "country": "KR",
+  "name": "일본군 위안부 피해자 기림의 날 (8·14)",
+  "name_en": "Memorial Day for Comfort Women Victims",
+  "category": "human_rights",
+  "risk_level": "high",
+  "summary": "일본군 위안부 피해자를 기리기 위한 국가기념일. 1991년 8월 14일 故 김학순 할머니가 최초로 공개 증언한 날을 기려 8월 14일로 지정(2018년). 위안부 문제는 한일 외교 현안으로 브랜드의 어느 편 입장으로도 해석될 수 있는 소재는 회피해야 한다.",
+  "related_keywords": ["위안부", "정신대", "나비", "소녀상", "일제", "강제동원", "한일"],
+  "related_motifs": ["소녀상", "나비", "위안부 관련 이미지"],
+  "recommended_tone": "memorial",
+  "references": [
+    {
+      "label": "여성가족부 — 일본군 위안부 피해자 기림의 날",
+      "url": "https://www.mogef.go.kr",
+      "type": "official"
+    }
+  ]
+}

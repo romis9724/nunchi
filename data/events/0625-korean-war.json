@@ -1,0 +1,28 @@
+{
+  "slug": "korean-war-0625",
+  "date_type": "recurring",
+  "month": 6,
+  "day": 25,
+  "day_end": null,
+  "country": "KR",
+  "name": "6·25 한국전쟁 발발일",
+  "name_en": "Korean War Outbreak",
+  "category": "political",
+  "risk_level": "high",
+  "summary": "1950년 6월 25일 새벽 북한 인민군이 38선을 넘어 전면 남침. 3년 1개월간 이어진 전쟁으로 남북 합산 약 250만 명 사망, 1,000만 명 이산가족 발생. 7월 27일 휴전협정. 6월 25일은 '6·25 전쟁일'로 국가보훈처 주관 추모 행사가 열린다.",
+  "related_keywords": ["6·25", "전쟁", "북한", "남침", "휴전", "인민군", "한국전쟁", "625", "38선", "이산가족"],
+  "related_motifs": ["전쟁", "포탄", "군인", "전쟁 폐허", "총", "탱크", "군복"],
+  "recommended_tone": "memorial",
+  "references": [
+    {
+      "label": "국가보훈부 — 6·25전쟁일",
+      "url": "https://www.mpva.go.kr",
+      "type": "official"
+    },
+    {
+      "label": "전쟁기념관",
+      "url": "https://www.warmemo.or.kr",
+      "type": "official"
+    }
+  ]
+}

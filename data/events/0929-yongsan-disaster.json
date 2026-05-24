@@ -1,0 +1,22 @@
+{
+  "slug": "yongsan-disaster-0120",
+  "date_type": "fixed",
+  "month": 1,
+  "day": 20,
+  "country": "KR",
+  "name": "용산 참사",
+  "name_en": "Yongsan Disaster",
+  "category": "social",
+  "risk_level": "medium",
+  "summary": "2009년 1월 20일 서울 용산구 한강로 철거 현장에서 세입자 농성 도중 화재 발생. 세입자 5명·경찰관 1명 사망. 강제 철거 과정에서의 공권력 사용과 세입자 권리 문제를 둘러싼 사회적 논쟁을 일으켰다.",
+  "related_keywords": ["용산", "철거", "세입자", "강제퇴거", "재개발"],
+  "related_motifs": ["화재", "철거 현장", "망루"],
+  "recommended_tone": "neutral",
+  "references": [
+    {
+      "label": "용산참사 진상규명위원회",
+      "url": "https://www.yongsan.or.kr",
+      "type": "official"
+    }
+  ]
+}

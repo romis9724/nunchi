@@ -1,0 +1,22 @@
+{
+  "slug": "childrens-day-0505",
+  "date_type": "recurring",
+  "month": 5,
+  "day": 5,
+  "country": "KR",
+  "name": "어린이날",
+  "name_en": "Children's Day",
+  "category": "celebration",
+  "risk_level": "low",
+  "summary": "5월 5일 법정 공휴일. 어린이의 인격과 행복을 기리는 날. 완구·엔터테인먼트·식품·패밀리 브랜드의 핵심 마케팅 시즌. 가족 나들이·선물 소비 급증.",
+  "related_keywords": ["어린이", "키즈", "장난감", "가족"],
+  "related_motifs": ["어린이", "풍선", "선물상자"],
+  "recommended_tone": "celebration",
+  "references": [
+    {
+      "label": "행정안전부 — 어린이날 국가기념일",
+      "url": "https://www.mois.go.kr",
+      "type": "official"
+    }
+  ]
+}

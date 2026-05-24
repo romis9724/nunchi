@@ -1,0 +1,22 @@
+{
+  "slug": "military-coup-1212",
+  "date_type": "recurring",
+  "month": 12,
+  "day": 12,
+  "country": "KR",
+  "name": "12·12 군사반란",
+  "name_en": "December 12th Military Mutiny",
+  "category": "political",
+  "risk_level": "high",
+  "summary": "1979년 12월 12일 전두환 소장과 하나회가 정승화 육군참모총장을 불법 체포하고 군권을 장악. 이 군사반란이 이듬해 5·18 광주민주화운동 진압의 직접적 원인이 됐다. 대법원은 이를 '군사반란'으로 확정 판결.",
+  "related_keywords": ["12·12", "전두환", "하나회", "군사반란", "신군부", "계엄"],
+  "related_motifs": ["군복", "탱크", "군사 이미지"],
+  "recommended_tone": "neutral",
+  "references": [
+    {
+      "label": "대법원 — 12·12 반란 판결",
+      "url": "https://www.supreme.go.kr",
+      "type": "official"
+    }
+  ]
+}

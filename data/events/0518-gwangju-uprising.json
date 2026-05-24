@@ -1,0 +1,33 @@
+{
+  "slug": "gwangju-uprising-0518",
+  "date_type": "recurring",
+  "month": 5,
+  "day": 18,
+  "day_end": null,
+  "country": "KR",
+  "name": "5·18 광주민주화운동",
+  "name_en": "May 18th Gwangju Uprising",
+  "category": "massacre",
+  "risk_level": "critical",
+  "summary": "1980년 5월 18일~27일, 전두환 신군부의 5·17 쿠데타에 맞서 광주 시민들이 항쟁. 계엄군 장갑차·탱크가 투입되었으며 공식 사망자 166명(민간인 154명, 군인 12명), 부상 3,383명. 5월 18일은 법정 국가기념일로 지정되어 있으며, 전국 추모 행사가 거행된다.",
+  "related_keywords": ["탱크", "계엄", "발포", "군부", "신군부", "전두환", "5·18", "518", "민주화", "광주", "항쟁", "계엄령", "헬기", "장갑차", "총격", "진압"],
+  "related_motifs": ["탱크", "군복", "총구", "철조망", "헬기", "계엄 포고문", "군용 차량"],
+  "recommended_tone": "memorial",
+  "references": [
+    {
+      "label": "5·18민주화운동기록관",
+      "url": "https://www.518archives.go.kr",
+      "type": "official"
+    },
+    {
+      "label": "5·18민주화운동 진상규명조사위원회",
+      "url": "https://www.jinsang.go.kr",
+      "type": "official"
+    },
+    {
+      "label": "행정안전부 — 5·18민주화운동 국가기념일",
+      "url": "https://www.mois.go.kr",
+      "type": "official"
+    }
+  ]
+}

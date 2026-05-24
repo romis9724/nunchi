@@ -1,0 +1,21 @@
+{
+  "name": "scripts",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "migrate": "tsx migrate.ts",
+    "seed": "tsx seed.ts"
+  },
+  "dependencies": {
+    "@nunchi/shared": "workspace:*",
+    "@supabase/supabase-js": "^2.47.10",
+    "pg": "^8.21.0"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.20.0",
+    "dotenv": "^16.4.7",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}

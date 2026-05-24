@@ -1,0 +1,22 @@
+{
+  "slug": "itaewon-disaster-1029",
+  "date_type": "recurring",
+  "month": 10,
+  "day": 29,
+  "country": "KR",
+  "name": "이태원 압사 참사",
+  "name_en": "Itaewon Halloween Crowd Crush",
+  "category": "disaster",
+  "risk_level": "critical",
+  "summary": "2022년 10월 29일 서울 이태원에서 핼러윈 인파가 좁은 골목에 몰리면서 압사 사고 발생. 사망 159명, 부상 197명. 행사 안전 관리 부재와 대응 실패로 사회적 공분을 일으켰으며, 매년 10월 29일에 추모 행사가 열린다.",
+  "related_keywords": ["이태원", "압사", "핼러윈", "1029", "참사", "추모"],
+  "related_motifs": ["핼러윈", "군중", "이태원 골목"],
+  "recommended_tone": "avoid",
+  "references": [
+    {
+      "label": "10·29 이태원참사 피해자 가족협의회",
+      "url": "https://itaewon1029.org",
+      "type": "official"
+    }
+  ]
+}

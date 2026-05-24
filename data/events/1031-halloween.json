@@ -1,0 +1,22 @@
+{
+  "slug": "halloween-1031",
+  "date_type": "recurring",
+  "month": 10,
+  "day": 31,
+  "country": "KR",
+  "name": "핼러윈",
+  "name_en": "Halloween",
+  "category": "commercial",
+  "risk_level": "high",
+  "summary": "10월 31일 핼러윈. 상업적 파티·코스튬 시즌. 단, 2022년 10월 29일 이태원 압사 참사 이후 한국에서는 대규모 핼러윈 행사에 사회적 민감성이 생겼다. 10월 31일 전후 행사형 캠페인은 추모 분위기와 충돌할 수 있어 주의 필요.",
+  "related_keywords": ["핼러윈", "파티", "코스튬", "이태원", "압사"],
+  "related_motifs": ["핼러윈", "군중", "파티"],
+  "recommended_tone": "neutral",
+  "references": [
+    {
+      "label": "이태원참사 추모위원회",
+      "url": "https://itaewon1029.org",
+      "type": "official"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "slug": "sewol-ferry-0416",
+  "date_type": "recurring",
+  "month": 4,
+  "day": 16,
+  "day_end": null,
+  "country": "KR",
+  "name": "세월호 참사",
+  "name_en": "Sewol Ferry Disaster",
+  "category": "disaster",
+  "risk_level": "critical",
+  "summary": "2014년 4월 16일, 인천발 제주행 여객선 세월호(6,825톤)가 전남 진도 인근 해상에서 침몰. 사망·실종 304명(안산 단원고 학생 250명 포함). 구조 실패와 정부 대응 부실이 사회적 공분을 일으켰으며, 이후 '국민 안전'과 '국가 책임'에 관한 광범위한 사회 논쟁을 촉발했다. 4월 16일은 세월호 추모일로 전국에서 추모 행사가 열린다.",
+  "related_keywords": ["세월호", "침몰", "배", "여객선", "노란 리본", "단원고", "진도", "304", "실종", "구조"],
+  "related_motifs": ["배", "선박", "노란 리본", "구명조끼", "바다", "물속"],
+  "recommended_tone": "memorial",
+  "references": [
+    {
+      "label": "4·16 세월호참사 특별조사위원회",
+      "url": "https://www.416commission.go.kr",
+      "type": "official"
+    },
+    {
+      "label": "행정안전부 — 4·16 추모",
+      "url": "https://www.mois.go.kr",
+      "type": "official"
+    }
+  ]
+}

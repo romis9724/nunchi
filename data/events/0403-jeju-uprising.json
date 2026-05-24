@@ -1,0 +1,28 @@
+{
+  "slug": "jeju-uprising-0403",
+  "date_type": "recurring",
+  "month": 4,
+  "day": 3,
+  "day_end": null,
+  "country": "KR",
+  "name": "제주 4·3 사건",
+  "name_en": "Jeju April 3rd Incident",
+  "category": "massacre",
+  "risk_level": "critical",
+  "summary": "1947년 3월 1일 도화(導火)로 시작해 1948년 4월 3일 무장봉기, 1954년 9월 21일 공식 종결. 토벌대·경찰·서북청년단 등에 의해 제주 주민 2만 5천~3만 명이 희생. 한국 현대사 최대 비극 중 하나. 2003년 대통령 공식 사과, 4월 3일은 법정 국가기념일.",
+  "related_keywords": ["4·3", "43", "제주", "토벌", "무장대", "서북청년단", "봉기", "학살", "진압", "오라리"],
+  "related_motifs": ["불", "총", "군복", "토벌 이미지"],
+  "recommended_tone": "memorial",
+  "references": [
+    {
+      "label": "제주4·3사건 진상규명 및 희생자명예회복위원회",
+      "url": "https://www.jeju43.go.kr",
+      "type": "official"
+    },
+    {
+      "label": "제주4·3평화재단",
+      "url": "https://www.jeju43peace.or.kr",
+      "type": "official"
+    }
+  ]
+}
