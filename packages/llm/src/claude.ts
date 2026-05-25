@@ -4,6 +4,7 @@ import {
   buildReviewUserPrompt,
 } from "./prompts/review-campaign";
 import type { Grade } from "@nunchi/shared";
+import { ollamaEmbed } from "./ollamaEmbedClient";
 
 const VALID_GRADES = new Set<Grade>(["A", "B", "C", "D", "F"]);
 
@@ -125,20 +126,11 @@ function parseReviewResponse(text: string): ReviewLLMResult {
 }
 
 export async function generateEmbedding(text: string): Promise<number[]> {
-  // Ollama nomic-embed-text 모델로 임베딩 생성 (있으면 사용, 없으면 해시 폴백)
+  // ollamaEmbed가 성공하면 그대로 반환; 실패 시 해시 폴백으로 graceful degradation
   try {
-    const res = await fetch(`${OLLAMA_BASE_URL}/api/embeddings`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ model: "nomic-embed-text:latest", prompt: text }),
-      signal: AbortSignal.timeout(10_000),
-    });
-    if (res.ok) {
-      const data = await res.json() as { embedding?: number[] };
-      if (data.embedding) return data.embedding;
-    }
+    return await ollamaEmbed(text);
   } catch {
-    /* fall through to hash fallback */
+    /* Ollama down / malformed response → hash fallback (service stays alive) */
   }
 
   // 해시 기반 폴백 (768차원 — nomic-embed-text 기본 차원)
