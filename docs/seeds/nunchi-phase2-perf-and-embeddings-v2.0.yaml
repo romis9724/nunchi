@@ -1,0 +1,139 @@
+goal: >-
+  Nunchi MVP Phase 2 — 코드 작업 한정. (a) k6 부하 테스트로 POST /api/check
+  p95 < 5초 SLA 정량 검증 인프라 추가. (b) pgvector 임베딩 파이프라인 — seed
+  스크립트가 50건 events에 768차원 임베딩을 채우고, review-engine이 의미
+  유사도 검색으로 후보 사건 보강. 둘 다 "코드/스크립트는 만들지만 production
+  apply는 사람이 한다"는 분리 원칙 적용.
+
+constraints:
+  - 한국 시장 컨텍스트 전용 (v1.1 상속)
+  - 임베딩 차원 768 (현재 events.embedding vector(768) 컬럼과 일치)
+  - 임베딩 생성은 Ollama nomic-embed-text 우선, fallback Gemini text-embedding-004
+  - k6 부하 테스트는 production 직접 실행 안 함 — 로컬/preview 환경 + 결과 리포트 첨부
+  - 검토 엔진 응답 시간 p95 < 5초 (기존 SLA)
+  - pgvector 의미 검색은 기존 키워드 매칭/날짜 근사를 대체하지 않고 보강 (union/ranked merge)
+  - service_role 키 클라이언트 노출 금지 (v1.1 상속)
+  - production migration / production seed 재실행 / production k6 실행은 모두 out-of-harness — 사람이 책임
+  - "PR 단위 — code + tests + 문서. 실행 보고서는 PR description 또는 STATUS.md"
+
+acceptance_criteria:
+  - tests/perf/check.k6.js 작성 — 1000 RPM ramp-up (5min) + sustain (5min) 시나리오 + 캐시 hit/룰 매칭/LLM 호출 페이로드 풀 (60/20/20 분포) + p50·p95·p99·error rate 메트릭 출력
+  - tests/perf/ 디렉토리에 k6 설치 안내 + 실행 방법 README 추가 (npm script `pnpm test:perf` 또는 `k6 run` 명령)
+  - scripts/seed.ts에 `--embed` 플래그 추가 — Ollama 또는 Gemini로 generateEmbedding() 호출해 events.embedding 채움 (기존 upsert는 그대로)
+  - packages/llm/src/claude.ts의 generateEmbedding() 함수가 Ollama nomic-embed-text 호출 가능 + Gemini fallback (envs OLLAMA_BASE_URL, OLLAMA_EMBED_MODEL, GEMINI_API_KEY 활용)
+  - "apps/web/lib/review-engine.ts의 fetchNearbyEvents()를 확장 또는 새 fetchSemanticEvents() 추가 — 입력 카피의 임베딩 생성 후 events.embedding과 코사인 유사도 검색 (`<=>` 연산자), top-K (5건) 반환"
+  - migrations/003_events_embedding_index.sql — ivfflat 인덱스 (`CREATE INDEX IF NOT EXISTS events_embedding_idx ON events USING ivfflat (embedding vector_cosine_ops) WITH (lists = 10)`)
+  - 단위 테스트 — generateEmbedding 모킹, 의미 검색 함수의 입력→top-K 동작 검증 (Supabase mock 또는 통합 트리거 분리)
+  - 회귀 영향 0 — 기존 170 tests 모두 여전히 pass
+  - 빌드 통과 — `pnpm --filter web build` OK
+
+ontology_schema:
+  name: NunchiPhase2Domain
+  description: >-
+    Phase 2 코드 작업 도메인. 부하 테스트 시나리오와 임베딩 파이프라인.
+  fields:
+    - name: perf_scenario
+      type: object
+      description: k6 부하 테스트 시나리오 — name, vus(virtual users), duration, payload_pool[], expected_p95_ms
+    - name: perf_metrics
+      type: object
+      description: 결과 — p50_ms, p95_ms, p99_ms, error_rate, total_requests, duration_seconds
+    - name: embedding
+      type: object
+      description: events.embedding — vector(768), generated_at(timestamp), source_text(name+summary+keywords)
+    - name: semantic_search_result
+      type: object
+      description: 의미 검색 응답 — event_slug, similarity_score(0-1), source(keyword|date|semantic)
+    - name: embedding_index
+      type: object
+      description: pgvector ivfflat 인덱스 — operator(vector_cosine_ops), lists(=10), table(events)
+
+evaluation_principles:
+  - name: separation_of_code_and_production
+    description: 코드는 만들되, production 실행(seed --embed, k6 run, migration apply)은 사람이
+    weight: 0.20
+  - name: backward_compatibility
+    description: 기존 170 tests 모두 통과. review-engine 폴백 체인 (cache → rule → LLM) 유지
+    weight: 0.20
+  - name: graceful_degradation
+    description: Ollama down / Gemini quota exhausted 시 의미 검색이 review-engine 전체를 막지 않음 (catch + return [])
+    weight: 0.15
+  - name: incremental_value
+    description: 임베딩이 채워지지 않은 events에 대해서도 시스템 동작 정상 (NULL embedding 무시)
+    weight: 0.15
+  - name: cost_awareness
+    description: 50건 임베딩 생성 < 5분 + < $1, k6 시나리오 1회 실행 자원 합리적
+    weight: 0.10
+  - name: documentation
+    description: README + 실행 방법 + 환경변수 명시
+    weight: 0.10
+  - name: testability
+    description: generateEmbedding / semantic search 모킹 가능, unit test로 검증
+    weight: 0.10
+
+exit_conditions:
+  - name: k6_scenario_runs
+    description: tests/perf/check.k6.js 가 `k6 run` 명령으로 syntax 에러 없이 실행됨 (로컬 dummy target 또는 dry-run)
+    criteria: "k6 run --vus 1 --duration 10s tests/perf/check.k6.js 가 exit 0"
+  - name: seed_embed_flag_works
+    description: pnpm db:seed -- --embed (또는 동등) 실행 시 events.embedding 채워짐
+    criteria: "스크립트 실행 후 select count(*) from events where embedding is not null > 0 (사람이 실제 production 적용 후 검증)"
+  - name: semantic_search_integration
+    description: review-engine에 의미 검색 호출 경로 추가, NULL embedding 안전 처리
+    criteria: "unit test: fetchSemanticEvents() 모킹 OK + review-engine integration 회귀 영향 없음"
+  - name: migration_003_idempotent
+    description: migrations/003 SQL이 idempotent하게 인덱스 생성 (CREATE INDEX IF NOT EXISTS)
+    criteria: "SQL 파일 존재 + 2회 실행해도 에러 없음 (사람이 production 적용)"
+  - name: tests_all_green
+    description: 전체 테스트셋 회귀 0
+    criteria: "pnpm test:scenarios + pnpm --filter @nunchi/shared test/test:count/test:completeness 모두 pass"
+
+metadata:
+  version: "2.0.0"
+  timestamp: "2026-05-25T18:30:00Z"
+  ambiguity_score: 0.10
+  parent_seed: "nunchi-mvp-pmm-pre-launch-validator-20260524T154535Z"
+  revision_key: "nunchi-phase2-perf-and-embeddings-20260525T183000Z"
+  project_type: brownfield
+  context_references:
+    - path: /Users/user/Workspace/Nunchi/docs/seeds/nunchi-pre-launch-validator-v1.1.yaml
+      role: primary
+      summary: "Phase 1 Seed v1.1 — 부모 spec. 본 v2.0은 그 중 AC3 + Task #6(별도 pgvector) 코드 작업만 도려낸 sub-seed."
+    - path: /Users/user/Workspace/Nunchi/CLAUDE.md
+      role: primary
+      summary: "프로젝트 사양"
+    - path: /Users/user/Workspace/Nunchi/docs/STATUS.md
+      role: primary
+      summary: "현재 진행 상황 (50/50 events, with_embedding=0)"
+    - path: /Users/user/Workspace/Nunchi/docs/architecture.md
+      role: reference
+      summary: "검토 엔진 hybrid 파이프라인"
+    - path: /Users/user/Workspace/Nunchi/apps/web/lib/review-engine.ts
+      role: primary
+      summary: "fetchNearbyEvents 위치 — semantic search 보강 대상"
+    - path: /Users/user/Workspace/Nunchi/packages/llm/src/claude.ts
+      role: primary
+      summary: "generateEmbedding() 위치 — Ollama/Gemini 어댑터 확장 대상"
+    - path: /Users/user/Workspace/Nunchi/scripts/seed.ts
+      role: primary
+      summary: "seed 스크립트 — --embed 플래그 추가 대상"
+    - path: /Users/user/Workspace/Nunchi/scripts/migrate.ts
+      role: reference
+      summary: "events.embedding vector(768) 컬럼 정의 위치"
+    - path: /Users/user/Workspace/Nunchi/migrations
+      role: reference
+      summary: "002_add_grade_to_reviews.sql 와 같은 패턴으로 003 추가"
+    - path: /Users/user/Workspace/Nunchi/tests/regression
+      role: reference
+      summary: "회귀 테스트 패턴 — Node test runner + tsx"
+  existing_patterns:
+    - "pnpm 모노레포 (apps/web + packages/llm + packages/shared + tests + scripts)"
+    - "review-engine hybrid pipeline: cache → rule → fetchNearby → LLM"
+    - "@nunchi/llm callReviewEngine + generateEmbedding (Ollama/Gemini)"
+    - "Supabase + pgvector(768)"
+    - "tsx --test runner (Node native test)"
+    - "migrations/00X_*.sql idempotent pattern (IF NOT EXISTS)"
+  existing_dependencies:
+    - "openai (Gemini OpenAI-호환 endpoint)"
+    - "@supabase/supabase-js"
+    - "tsx (모든 패키지)"

@@ -4,6 +4,13 @@ import { fileURLToPath } from "url";
 import fs from "fs";
 import { createClient } from "@supabase/supabase-js";
 import type { EventRecord } from "@nunchi/shared";
+import { generateEmbedding } from "@nunchi/llm";
+
+// CLI flags: pnpm db:seed -- --embed → also populate events.embedding for
+// each curated event using packages/llm's generateEmbedding (Ollama primary,
+// Gemini fallback, hash-based safe fallback). Without --embed, only the
+// curated text columns are upserted (existing behaviour, no API calls).
+const SHOULD_EMBED = process.argv.slice(2).includes("--embed");
 
 // 루트 .env.local → apps/web/.env.local → .env 순서로 로드
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -45,12 +52,32 @@ function loadEvents(): EventRecord[] {
   });
 }
 
+/**
+ * Concatenate the fields that meaningfully describe an event for embedding.
+ * Keeps the text stable across runs so re-embedding doesn't churn.
+ */
+function buildEmbeddingSource(event: EventRecord): string {
+  return [
+    event.name,
+    event.name_en ?? "",
+    event.summary,
+    (event.related_keywords ?? []).join(" "),
+    (event.related_motifs ?? []).join(" "),
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
 async function main() {
   const events = loadEvents();
-  console.log(`\nSeeding ${events.length}건 → Supabase (${supabaseUrl})\n`);
+  console.log(
+    `\nSeeding ${events.length}건 → Supabase (${supabaseUrl})${SHOULD_EMBED ? " [+ embeddings]" : ""}\n`
+  );
 
   let success = 0;
   let failed = 0;
+  let embedded = 0;
+  let embedFailed = 0;
 
   for (const event of events) {
     const { error } = await supabase
@@ -79,13 +106,41 @@ async function main() {
     if (error) {
       console.error(`  ✗ ${event.name} — ${error.message}`);
       failed++;
-    } else {
-      console.log(`  ✓ ${event.name}`);
-      success++;
+      continue;
+    }
+
+    console.log(`  ✓ ${event.name}`);
+    success++;
+
+    if (SHOULD_EMBED) {
+      try {
+        const sourceText = buildEmbeddingSource(event);
+        const embedding = await generateEmbedding(sourceText);
+
+        const { error: embedErr } = await supabase
+          .from("events")
+          .update({ embedding })
+          .eq("slug", event.slug);
+
+        if (embedErr) {
+          console.error(`    ⚠ embed update failed (${event.slug}): ${embedErr.message}`);
+          embedFailed++;
+        } else {
+          console.log(`    ↳ embedding ${embedding.length}d`);
+          embedded++;
+        }
+      } catch (e) {
+        const msg = e instanceof Error ? e.message : String(e);
+        console.error(`    ⚠ embed generation failed (${event.slug}): ${msg}`);
+        embedFailed++;
+      }
     }
   }
 
   console.log(`\n완료: 성공 ${success}건 / 실패 ${failed}건`);
+  if (SHOULD_EMBED) {
+    console.log(`임베딩: 성공 ${embedded}건 / 실패 ${embedFailed}건`);
+  }
 }
 
 main().catch((err) => {

@@ -2,8 +2,97 @@ import crypto from "crypto";
 import type { CheckRequest, CheckResponse, EventRecord, Grade } from "@nunchi/shared";
 import { toneToGrade } from "@nunchi/shared";
 import { getSupabaseAdmin } from "./supabase";
-import { callReviewEngine } from "@nunchi/llm";
+import { callReviewEngine, generateEmbedding } from "@nunchi/llm";
 import { matchCriticalKeywords } from "./critical-keywords";
+
+/**
+ * Top-K events ranked by semantic similarity to the input copy. Uses the
+ * cosine similarity between the input embedding and each event's stored
+ * embedding. Computed in JS (events table is < 100 rows; the cost is
+ * negligible and we avoid needing a Supabase RPC for the `<=>` operator).
+ *
+ * Returns [] on any failure — semantic search is *additive* over keyword +
+ * date matching. The review pipeline must never regress when Ollama is down
+ * or embeddings aren't populated.
+ */
+const SEMANTIC_TOP_K = 5;
+
+function cosineSimilarity(a: readonly number[], b: readonly number[]): number {
+  if (a.length !== b.length || a.length === 0) return 0;
+  let dot = 0;
+  let normA = 0;
+  let normB = 0;
+  for (let i = 0; i < a.length; i++) {
+    dot += a[i] * b[i];
+    normA += a[i] * a[i];
+    normB += b[i] * b[i];
+  }
+  const denom = Math.sqrt(normA) * Math.sqrt(normB);
+  return denom === 0 ? 0 : dot / denom;
+}
+
+export async function fetchSemanticEvents(
+  copy: string,
+  topK: number = SEMANTIC_TOP_K
+): Promise<EventRecord[]> {
+  if (!copy.trim()) return [];
+
+  try {
+    const inputEmbedding = await generateEmbedding(copy);
+
+    const { data, error } = await getSupabaseAdmin()
+      .from("events")
+      .select("*")
+      .eq("country", "KR")
+      .not("embedding", "is", null);
+
+    if (error || !data || data.length === 0) return [];
+
+    // Cast through unknown because supabase-js returns embedding as the raw
+    // pgvector representation; we treat it as number[] for similarity scoring.
+    const rows = data as Array<EventRecord & { embedding: number[] }>;
+
+    const scored = rows
+      .map((row) => ({
+        event: row,
+        score: cosineSimilarity(inputEmbedding, row.embedding ?? []),
+      }))
+      .filter((s) => s.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, topK);
+
+    return scored.map((s) => s.event);
+  } catch {
+    // Ollama / Gemini down OR embeddings not yet populated — fall through.
+    return [];
+  }
+}
+
+/**
+ * Merge nearby (date-based) and semantic (embedding-based) candidate events
+ * by slug, preserving the order: date-based first (higher confidence for
+ * calendar-anchored campaigns), then semantic candidates not already covered.
+ */
+function mergeEventCandidates(
+  nearby: EventRecord[],
+  semantic: EventRecord[]
+): EventRecord[] {
+  const seen = new Set<string>();
+  const merged: EventRecord[] = [];
+  for (const e of nearby) {
+    if (!seen.has(e.slug)) {
+      seen.add(e.slug);
+      merged.push(e);
+    }
+  }
+  for (const e of semantic) {
+    if (!seen.has(e.slug)) {
+      seen.add(e.slug);
+      merged.push(e);
+    }
+  }
+  return merged;
+}
 
 const CACHE_TTL_DAYS = 7;
 
@@ -137,13 +226,20 @@ export async function runReviewEngine(
     return result;
   }
 
-  // 3. Fetch nearby events (Supabase REST)
-  const nearbyEvents = await fetchNearbyEvents(req.date);
+  // 3. Fetch candidate events — date proximity (±3 days) ∪ semantic top-K.
+  //    Semantic search is additive: returns [] when embeddings aren't
+  //    populated or Ollama/Gemini are unavailable, so the pipeline still
+  //    works in pure keyword + date mode.
+  const [nearbyEvents, semanticEvents] = await Promise.all([
+    fetchNearbyEvents(req.date),
+    fetchSemanticEvents(req.copy),
+  ]);
+  const candidateEvents = mergeEventCandidates(nearbyEvents, semanticEvents);
 
   // 4. Gemini LLM
   const llmResult = await callReviewEngine({
     request: req,
-    matchedEvents: nearbyEvents,
+    matchedEvents: candidateEvents,
     flaggedByRule: flaggedKeywords,
   });
 
@@ -156,7 +252,7 @@ export async function runReviewEngine(
     grade: gradeFromLLM,
     riskScore: riskScoreMap[gradeFromLLM],
     flaggedKeywords,
-    matchedEvents: nearbyEvents.map((e) => ({
+    matchedEvents: candidateEvents.map((e) => ({
       id: e.id ?? e.slug,
       name: e.name,
       riskLevel: e.risk_level,

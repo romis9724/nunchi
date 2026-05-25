@@ -20,7 +20,9 @@
     "test:waitlist:form": "tsx --test regression/waitlist_form.test.ts",
     "test:waitlist:form-loading": "tsx --test regression/waitlist_form_loading.test.ts",
     "test:waitlist:form-success": "tsx --test regression/waitlist_form_success.test.ts",
-    "test:waitlist:form-error": "tsx --test regression/waitlist_form_error.test.ts"
+    "test:waitlist:form-error": "tsx --test regression/waitlist_form_error.test.ts",
+    "test:perf:payloads": "tsx --test perf/fixtures/payloads.test.ts",
+    "test:perf:options": "tsx --test perf/options.test.ts"
   },
   "devDependencies": {
     "tsx": "^4.19.2",

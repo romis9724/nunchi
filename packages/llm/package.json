@@ -2,16 +2,24 @@
   "name": "@nunchi/llm",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "scripts": {
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "test:embed": "tsx --test src/generateEmbedding.test.ts",
+    "test:ollama-client": "tsx --test src/ollamaEmbedClient.test.ts",
+    "test:gemini-client": "tsx --test src/geminiEmbedClient.test.ts",
+    "test:orchestrator": "tsx --test src/embeddingOrchestrator.test.ts",
+    "test": "tsx --test src/generateEmbedding.test.ts src/ollamaEmbedClient.test.ts src/geminiEmbedClient.test.ts src/embeddingOrchestrator.test.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.36.3",
     "@nunchi/shared": "workspace:*"
   },
   "devDependencies": {
+    "@types/node": "^20",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.3"
   }
 }
