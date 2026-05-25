@@ -5,17 +5,17 @@ goal: >
   3c Content Automation)로 구현한다.
 
 constraints:
-  - 기존 pnpm monorepo 구조 유지 (apps/web, packages/llm, packages/shared)
-  - Next.js 16 App Router + Supabase Auth/Postgres + pgvector 스택 유지
-  - 관리자 인증: Google OAuth + users.role 컬럼 ('admin'|'user'); 별도 admin 테이블 불가
-  - 온보딩 건너뛰기 불가: 첫 로그인 후 /onboarding 강제, skip 버튼 없음
-  - users 추가 컬럼: company, brand, product_name 모두 nullable (선택사항)
-  - 개인화 LLM 입력: industries[] + channels[] 만 전달 (company/brand/product_name 제외)
-  - LLM 캐시 전략 B-2: 공통 input_hash 캐시 유지 + personalizeRationale() 후처리 레이어
-  - 뉴스 자동화 검증: 반자동 — LLM 초안 생성 후 admin 승인 큐 (자동 배포 불가)
-  - 뉴스 수집 범위: 대형사건·정치사회·기념일만 (연예·스포츠 등 제외)
-  - 이메일 알림: Resend 사용; /contact 공개 접근
-  - 베타 성공 기준: 기한 없음, 17개 AC 모두 안정 통과 = 완료 (11개 기능 요구사항 충족)
+  - "기존 pnpm monorepo 구조 유지 (apps/web, packages/llm, packages/shared)"
+  - "Next.js 16 App Router + Supabase Auth/Postgres + pgvector 스택 유지"
+  - "관리자 인증 — Google OAuth + users.role 컬럼 (admin|user); 별도 admin 테이블 불가"
+  - "온보딩 건너뛰기 불가 — 첫 로그인 후 /onboarding 강제, skip 버튼 없음"
+  - "users 추가 컬럼 — company, brand, product_name 모두 nullable (선택사항)"
+  - "개인화 LLM 입력 — industries[] + channels[] 만 전달 (company/brand/product_name 제외)"
+  - "LLM 캐시 전략 B-2 — 공통 input_hash 캐시 유지 + personalizeRationale() 후처리 레이어"
+  - "뉴스 자동화 검증 — 반자동, LLM 초안 생성 후 admin 승인 큐 (자동 배포 불가)"
+  - "뉴스 수집 범위 — 대형사건·정치사회·기념일만 (연예·스포츠 등 제외)"
+  - "이메일 알림 — Resend 사용; /contact 공개 접근"
+  - "베타 성공 기준 — 기한 없음, 17개 AC 모두 안정 통과 = 완료 (11개 기능 요구사항 충족)"
 
 acceptance_criteria:
   # Phase 3a — Auth & Admin
