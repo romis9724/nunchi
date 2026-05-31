@@ -115,7 +115,16 @@ function CheckForm() {
           </Link>
           <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
             <Link href="/calendar" style={NAV_LINK_STYLE}>
-              캠페인 캘린더
+              민감일 캘린더
+            </Link>
+            <Link href="/contact" style={NAV_LINK_STYLE}>
+              문의하기
+            </Link>
+            <Link
+              href="/onboarding"
+              style={{ ...NAV_LINK_STYLE, background: "var(--ms-blue)", color: "#fff", border: "none", fontWeight: 600 }}
+            >
+              로그인
             </Link>
           </div>
         </div>

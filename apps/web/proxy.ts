@@ -55,10 +55,7 @@ export async function proxy(request: NextRequest) {
   const accessToken = getAccessToken(request);
   const isLoggedIn = !!accessToken;
 
-  // /check requires authentication — redirect to home if not logged in
-  if (pathname.startsWith("/check") && !isLoggedIn) {
-    return NextResponse.redirect(new URL("/", request.url));
-  }
+  // /check는 비로그인도 접근 가능 (personalizedComment만 로그인 시 추가)
 
   // /onboarding requires authentication
   if (pathname.startsWith("/onboarding") && !isLoggedIn) {
@@ -94,5 +91,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/check/:path*", "/onboarding/:path*", "/mypage/:path*", "/admin/:path*"],
+  matcher: ["/onboarding/:path*", "/mypage/:path*", "/admin/:path*"],
 };

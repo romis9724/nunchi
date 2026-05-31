@@ -35,6 +35,9 @@ export default function LandingPage() {
             <Link href="/calendar" style={{ fontSize: "13px", color: "var(--ms-text-2)", textDecoration: "none", padding: "6px 12px", borderRadius: "4px", fontWeight: 500 }}>
               민감일 캘린더
             </Link>
+            <Link href="/contact" style={{ fontSize: "13px", color: "var(--ms-text-2)", textDecoration: "none", padding: "6px 12px", borderRadius: "4px", fontWeight: 500 }}>
+              문의하기
+            </Link>
             <Link href="/check" style={{ fontSize: "13px", fontWeight: 600, background: "var(--ms-blue)", color: "#fff", padding: "7px 16px", borderRadius: "4px", textDecoration: "none" }}>
               무료로 시작
             </Link>
