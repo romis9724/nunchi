@@ -66,6 +66,8 @@ export interface CheckRequest {
 
 export interface MatchedEvent {
   id: string;
+  /** /events/[slug] 라이브러리 상세 페이지 링크용. 캐시된 구버전 결과에는 없을 수 있음 */
+  slug?: string;
   name: string;
   riskLevel: RiskLevel;
   grade: Grade;

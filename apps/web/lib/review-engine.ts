@@ -256,6 +256,7 @@ export async function runReviewEngine(
     flaggedKeywords,
     matchedEvents: candidateEvents.map((e) => ({
       id: e.id ?? e.slug,
+      slug: e.slug,
       name: e.name,
       riskLevel: e.risk_level,
       grade: toneToGrade(e.recommended_tone, e.risk_level),

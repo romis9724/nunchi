@@ -497,26 +497,39 @@ export function CalendarClient({ events }: CalendarClientProps) {
                           <GradeBadge grade={e.grade} size="xs" showLabel={false} />
                         </div>
 
-                        {/* Category + review link row */}
-                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "8px", marginTop: "6px" }}>
+                        {/* Category + 라이브러리 / 검토 액션 row */}
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "8px", marginTop: "6px", flexWrap: "wrap" }}>
                           <span style={{
-                            fontSize: "13px", fontWeight: 600, letterSpacing: "0.04em",
+                            fontSize: "12px", fontWeight: 600, letterSpacing: "0.04em",
                             background: "var(--ms-surface-3)", color: "var(--muted-ink)",
                             padding: "2px 8px", borderRadius: "100px",
                           }}>
                             {CATEGORY_LABEL[e.category] ?? e.category}
                           </span>
-                          <Link
-                            href={`/check?date=${currentYear}-${String(e.month).padStart(2, "0")}-${String(e.day).padStart(2, "0")}`}
-                            style={{
-                              display: "inline-flex", alignItems: "center", gap: "3px",
-                              fontSize: "12px", fontWeight: 700,
-                              color: "var(--brand-red)", textDecoration: "none",
-                              whiteSpace: "nowrap",
-                            }}
-                          >
-                            검토하기 →
-                          </Link>
+                          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                            <Link
+                              href={`/events/${e.slug}`}
+                              style={{
+                                display: "inline-flex", alignItems: "center", gap: "3px",
+                                fontSize: "12px", fontWeight: 600,
+                                color: "var(--ms-text-2)", textDecoration: "none",
+                                whiteSpace: "nowrap",
+                              }}
+                            >
+                              상세 →
+                            </Link>
+                            <Link
+                              href={`/check?date=${currentYear}-${String(e.month).padStart(2, "0")}-${String(e.day).padStart(2, "0")}`}
+                              style={{
+                                display: "inline-flex", alignItems: "center", gap: "3px",
+                                fontSize: "12px", fontWeight: 700,
+                                color: "var(--brand-red)", textDecoration: "none",
+                                whiteSpace: "nowrap",
+                              }}
+                            >
+                              검토하기 →
+                            </Link>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -565,49 +578,80 @@ export function CalendarClient({ events }: CalendarClientProps) {
               </div>
               <div>
                 {monthEvents.map((e) => (
-                  <button
+                  <div
                     key={e.slug}
-                    onClick={() => handleDayClick(e.day)}
                     style={{
-                      display: "flex", alignItems: "center", gap: "12px",
-                      width: "100%", padding: "12px 18px",
+                      display: "flex", alignItems: "stretch",
                       background: selectedDay?.day === e.day ? "var(--brand-red-soft)" : "#fff",
-                      border: "none",
                       borderLeft: `3px solid ${GRADE_DOT_COLOR[e.grade]}`,
                       borderBottom: "1px solid var(--border-faint)",
-                      cursor: "pointer",
-                      textAlign: "left",
                       transition: "background 0.12s",
                     }}
                   >
-                    <span style={{
-                      fontFamily: "var(--font-display)",
-                      fontSize: "13px", fontWeight: 800, color: "var(--charcoal)",
-                      minWidth: "30px", flexShrink: 0, letterSpacing: "-0.01em",
-                    }}>
-                      {e.day}일
-                    </span>
-                    <span
-                      aria-hidden="true"
+                    <button
+                      onClick={() => handleDayClick(e.day)}
                       style={{
-                        display: "inline-flex", alignItems: "center", justifyContent: "center",
-                        minWidth: "20px", height: "18px",
-                        padding: "0 6px",
-                        fontFamily: "var(--font-display)",
-                        fontSize: "10px", fontWeight: 800,
-                        color: GRADE_DOT_COLOR[e.grade],
-                        background: GRADE_ROW_BG[e.grade],
-                        border: `1px solid ${GRADE_DOT_COLOR[e.grade]}40`,
-                        borderRadius: "4px", lineHeight: 1,
-                        flexShrink: 0,
+                        display: "flex", alignItems: "center", gap: "12px",
+                        flex: 1, minWidth: 0,
+                        padding: "12px 14px",
+                        background: "transparent", border: "none",
+                        cursor: "pointer", textAlign: "left",
                       }}
                     >
-                      {e.grade}
-                    </span>
-                    <span style={{ fontSize: "12.5px", fontWeight: 600, color: "var(--charcoal)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                      {e.name}
-                    </span>
-                  </button>
+                      <span style={{
+                        fontFamily: "var(--font-display)",
+                        fontSize: "13px", fontWeight: 800, color: "var(--charcoal)",
+                        minWidth: "30px", flexShrink: 0, letterSpacing: "-0.01em",
+                      }}>
+                        {e.day}일
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        style={{
+                          display: "inline-flex", alignItems: "center", justifyContent: "center",
+                          minWidth: "20px", height: "18px",
+                          padding: "0 6px",
+                          fontFamily: "var(--font-display)",
+                          fontSize: "10px", fontWeight: 800,
+                          color: GRADE_DOT_COLOR[e.grade],
+                          background: GRADE_ROW_BG[e.grade],
+                          border: `1px solid ${GRADE_DOT_COLOR[e.grade]}40`,
+                          borderRadius: "4px", lineHeight: 1,
+                          flexShrink: 0,
+                        }}
+                      >
+                        {e.grade}
+                      </span>
+                      <span style={{ fontSize: "12.5px", fontWeight: 600, color: "var(--charcoal)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                        {e.name}
+                      </span>
+                    </button>
+                    <Link
+                      href={`/events/${e.slug}`}
+                      aria-label={`${e.name} 라이브러리 상세 보기`}
+                      title="라이브러리에서 상세 보기"
+                      style={{
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        padding: "0 12px",
+                        color: "var(--ms-text-3)",
+                        textDecoration: "none",
+                        fontSize: "16px", fontWeight: 700,
+                        borderLeft: "1px solid var(--border-faint)",
+                        flexShrink: 0,
+                        transition: "background 0.12s, color 0.12s",
+                      }}
+                      onMouseOver={(ev) => {
+                        ev.currentTarget.style.color = "var(--brand-red)";
+                        ev.currentTarget.style.background = "var(--brand-red-soft)";
+                      }}
+                      onMouseOut={(ev) => {
+                        ev.currentTarget.style.color = "var(--ms-text-3)";
+                        ev.currentTarget.style.background = "transparent";
+                      }}
+                    >
+                      →
+                    </Link>
+                  </div>
                 ))}
               </div>
             </div>

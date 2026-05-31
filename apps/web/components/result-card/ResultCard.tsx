@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import type { CheckResponse, Grade } from "@noonchi/shared";
 import { GRADE_LABEL, toneToGrade } from "@noonchi/shared";
 import { GradeBadge } from "./GradeBadge";
@@ -439,26 +440,46 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
                     >
                       {event.summary}
                     </p>
-                    {event.references.length > 0 && (
-                      <div style={{ display: "flex", gap: "10px" }}>
-                        {event.references.slice(0, 2).map((ref) => (
-                          <a
-                            key={ref.url}
-                            href={ref.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                              fontSize: "12px",
-                              color: "#2563EB",
-                              textDecoration: "underline",
-                              textUnderlineOffset: "2px",
-                            }}
-                          >
-                            {ref.label} ↗
-                          </a>
-                        ))}
-                      </div>
-                    )}
+                    <div style={{
+                      display: "flex", gap: "12px",
+                      alignItems: "center", flexWrap: "wrap",
+                      paddingTop: "8px",
+                      borderTop: event.references.length > 0 ? "1px dashed var(--ms-border)" : "none",
+                      marginTop: event.references.length > 0 ? "8px" : "0",
+                    }}>
+                      {event.slug && (
+                        <Link
+                          href={`/events/${event.slug}`}
+                          style={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: "4px",
+                            fontSize: "12px",
+                            fontWeight: 700,
+                            color: "var(--brand-red)",
+                            textDecoration: "none",
+                          }}
+                        >
+                          라이브러리에서 보기 →
+                        </Link>
+                      )}
+                      {event.references.slice(0, 2).map((ref) => (
+                        <a
+                          key={ref.url}
+                          href={ref.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            fontSize: "12px",
+                            color: "var(--ms-text-2)",
+                            textDecoration: "underline",
+                            textUnderlineOffset: "2px",
+                          }}
+                        >
+                          {ref.label} ↗
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 );
               })}
