@@ -6,6 +6,7 @@ import type { CheckRequest, CheckResponse } from "@nunchi/shared";
 import { ResultCard } from "@/components/result-card/ResultCard";
 import { NunchiLogo } from "@/components/NunchiLogo";
 import Link from "next/link";
+import { signInWithGoogle } from "@/lib/auth";
 
 const NAV_LINK_STYLE = {
   fontSize: "13px",
@@ -113,19 +114,22 @@ function CheckForm() {
           <Link href="/" style={{ textDecoration: "none", color: "var(--ms-text, var(--charcoal))" }}>
             <NunchiLogo size={22} />
           </Link>
-          <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+          <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
             <Link href="/calendar" style={NAV_LINK_STYLE}>
               민감일 캘린더
             </Link>
             <Link href="/contact" style={NAV_LINK_STYLE}>
               문의하기
             </Link>
-            <Link
-              href="/onboarding"
+            <button
+              onClick={async () => {
+                const result = await signInWithGoogle({ origin: window.location.origin });
+                if (result.url) window.location.href = result.url;
+              }}
               style={{ ...NAV_LINK_STYLE, background: "var(--ms-blue)", color: "#fff", border: "none", fontWeight: 600 }}
             >
-              로그인
-            </Link>
+              Google 로그인
+            </button>
           </div>
         </div>
       </header>

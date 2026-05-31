@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { NunchiLogo } from "../../components/NunchiLogo";
+import { signInWithGoogle } from "../../lib/auth";
 
 /* ── Grade badge inline ─────────────────────────────────────── */
 function GMini({ g }: { g: string }) {
@@ -31,14 +32,23 @@ export default function LandingPage() {
           <Link href="/" style={{ textDecoration: "none", color: "var(--ms-text)" }}>
             <NunchiLogo size={24} />
           </Link>
-          <nav style={{ display: "flex", gap: "4px", alignItems: "center" }}>
-            <Link href="/calendar" style={{ fontSize: "13px", color: "var(--ms-text-2)", textDecoration: "none", padding: "6px 12px", borderRadius: "4px", fontWeight: 500 }}>
+          <nav style={{ display: "flex", gap: "6px", alignItems: "center" }}>
+            <Link href="/calendar" style={{ fontSize: "13px", color: "var(--ms-text-2)", textDecoration: "none", padding: "6px 12px", borderRadius: "4px", fontWeight: 500, border: "1px solid var(--ms-border)", background: "#fff" }}>
               민감일 캘린더
             </Link>
-            <Link href="/contact" style={{ fontSize: "13px", color: "var(--ms-text-2)", textDecoration: "none", padding: "6px 12px", borderRadius: "4px", fontWeight: 500 }}>
+            <Link href="/contact" style={{ fontSize: "13px", color: "var(--ms-text-2)", textDecoration: "none", padding: "6px 12px", borderRadius: "4px", fontWeight: 500, border: "1px solid var(--ms-border)", background: "#fff" }}>
               문의하기
             </Link>
-            <Link href="/check" style={{ fontSize: "13px", fontWeight: 600, background: "var(--ms-blue)", color: "#fff", padding: "7px 16px", borderRadius: "4px", textDecoration: "none" }}>
+            <button
+              onClick={async () => {
+                const result = await signInWithGoogle({ origin: window.location.origin });
+                if (result.url) window.location.href = result.url;
+              }}
+              style={{ fontSize: "13px", color: "var(--ms-text-2)", padding: "6px 12px", borderRadius: "4px", fontWeight: 600, border: "1px solid var(--ms-border)", background: "#fff", cursor: "pointer" }}
+            >
+              로그인
+            </button>
+            <Link href="/check" style={{ fontSize: "13px", fontWeight: 600, background: "var(--ms-blue)", color: "#fff", padding: "7px 16px", borderRadius: "4px", textDecoration: "none", border: "none" }}>
               무료로 시작
             </Link>
           </nav>
