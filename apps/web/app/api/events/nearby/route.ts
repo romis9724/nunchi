@@ -1,17 +1,16 @@
 /**
  * GET /api/events/nearby?date=YYYY-MM-DD
  *
- * 입력 날짜 ±3일 범위의 큐레이션 이벤트를 반환한다.
- * /check 페이지에서 날짜 선택 시 관련 사건을 미리 보여주기 위함.
+ * 입력 날짜와 정확히 일치하는 큐레이션 이벤트를 반환한다.
+ * /check 페이지에서 날짜 선택 시 해당일 관련 사건을 미리 보여주기 위함.
  *
+ * - 같은 month + day 일치만 (±N일 윈도우 미사용)
  * - approved 상태(또는 status 컬럼 없음)만
  * - risk_level 우선순위로 정렬 (critical → low)
  */
 
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase";
-
-const PROXIMITY_DAYS = 3;
 
 const RISK_ORDER: Record<string, number> = {
   critical: 0,
@@ -57,13 +56,13 @@ export async function GET(request: NextRequest) {
 
     if (error) throw error;
 
-    const inProximity = (data ?? []).filter((e) => {
+    // 정확히 같은 month + day만 매칭. day가 null(범위 이벤트)인 경우는 month 일치로 인정.
+    const exactMatches = (data ?? []).filter((e) => {
       if (e.month !== targetMonth) return false;
-      const day = e.day ?? targetDay;
-      return Math.abs(day - targetDay) <= PROXIMITY_DAYS;
+      return e.day === null || e.day === targetDay;
     });
 
-    const sorted = inProximity
+    const sorted = exactMatches
       .map((e) => ({
         id: e.id,
         slug: e.slug,

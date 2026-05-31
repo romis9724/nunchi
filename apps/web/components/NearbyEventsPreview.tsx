@@ -4,13 +4,13 @@ import { useState, useEffect } from "react";
 
 /**
  * NearbyEventsPreview
- * /check 페이지에서 사용자가 날짜를 선택하면 해당 일자 ±3일의
- * 큐레이션 사건을 미리 보여준다. 검토 실행 전에 어떤 사건이
- * 영향을 미칠지 즉시 참고할 수 있도록 한다.
+ * /check 페이지에서 사용자가 날짜를 선택하면 해당 일자와
+ * 정확히 일치하는 큐레이션 사건을 미리 보여준다.
  *
  * - 디바운스 250ms로 입력 중복 호출 방지
  * - 사건 0건이면 차분한 "특이사항 없음" 메시지
- * - 최대 5건만 노출 (스크롤 회피)
+ * - 2건 이상이면 2열 그리드로 표시
+ * - 최대 6건까지 우선 노출 + 더보기
  */
 
 interface NearbyEvent {
@@ -42,7 +42,7 @@ const GRADE_BORDER: Record<string, string> = {
   B: "var(--grade-b-border)", A: "var(--grade-a-border)",
 };
 
-const MAX_SHOWN = 5;
+const MAX_SHOWN = 6;
 
 function MiniGrade({ g }: { g: string }) {
   return (
@@ -119,13 +119,14 @@ export function NearbyEventsPreview({ date }: { date: string }) {
         display: "flex", alignItems: "center", gap: "8px",
       }}>
         <span style={{ color: "var(--ms-blue)" }}>✓</span>
-        <span>이 날짜 ±3일 안에는 특이 사건이 없습니다.</span>
+        <span>이 날짜에는 등록된 사건이 없습니다.</span>
       </div>
     );
   }
 
   const visible = expanded ? events : events.slice(0, MAX_SHOWN);
   const hidden = events.length - visible.length;
+  const twoColumn = events.length >= 2;
 
   return (
     <div style={{
@@ -143,21 +144,27 @@ export function NearbyEventsPreview({ date }: { date: string }) {
           fontSize: "11px", fontWeight: 700, letterSpacing: "0.08em",
           color: "var(--ms-text-2)", textTransform: "uppercase",
         }}>
-          이 날짜 ±3일 · 관련 사건 {events.length}건
+          이 날짜 · 관련 사건 {events.length}건
         </div>
       </div>
 
-      <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: "6px" }}>
+      <ul style={{
+        listStyle: "none", margin: 0, padding: 0,
+        display: "grid",
+        gridTemplateColumns: twoColumn ? "repeat(auto-fit, minmax(220px, 1fr))" : "1fr",
+        gap: "6px",
+      }}>
         {visible.map((ev) => (
           <li
             key={ev.id}
             style={{
-              display: "flex", alignItems: "center", gap: "10px",
-              padding: "8px 10px",
+              display: "flex", alignItems: "flex-start", gap: "10px",
+              padding: "10px 12px",
               background: "#fff",
               border: `1px solid ${GRADE_BORDER[ev.grade] ?? "var(--ms-border)"}`,
               borderLeft: `3px solid ${GRADE_TEXT[ev.grade] ?? "var(--ms-text-2)"}`,
               borderRadius: "8px",
+              minWidth: 0,
             }}
           >
             <MiniGrade g={ev.grade} />
@@ -165,9 +172,10 @@ export function NearbyEventsPreview({ date }: { date: string }) {
               <div style={{
                 fontSize: "13px", fontWeight: 700,
                 color: "var(--charcoal)", letterSpacing: "-0.005em",
-                marginBottom: "2px",
+                marginBottom: "3px",
+                overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
               }}>
-                {ev.month}/{ev.day ?? "?"} · {ev.name}
+                {ev.name}
               </div>
               <div style={{
                 fontSize: "11.5px", color: "var(--ms-text-2)",
