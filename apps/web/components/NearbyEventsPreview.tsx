@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 /**
  * NearbyEventsPreview
@@ -15,6 +16,7 @@ import { useState, useEffect } from "react";
 
 interface NearbyEvent {
   id: string;
+  slug: string;
   name: string;
   month: number;
   day: number | null;
@@ -138,7 +140,7 @@ export function NearbyEventsPreview({ date }: { date: string }) {
     }}>
       <div style={{
         display: "flex", alignItems: "center", justifyContent: "space-between",
-        marginBottom: "10px",
+        marginBottom: "10px", gap: "8px",
       }}>
         <div style={{
           fontSize: "11px", fontWeight: 700, letterSpacing: "0.08em",
@@ -146,6 +148,13 @@ export function NearbyEventsPreview({ date }: { date: string }) {
         }}>
           이 날짜 · 관련 사건 {events.length}건
         </div>
+        <Link href="/events" style={{
+          fontSize: "11px", fontWeight: 700,
+          color: "var(--brand-red)", textDecoration: "none",
+          letterSpacing: "0.02em",
+        }}>
+          전체 라이브러리 →
+        </Link>
       </div>
 
       <ul style={{
@@ -155,37 +164,61 @@ export function NearbyEventsPreview({ date }: { date: string }) {
         gap: "6px",
       }}>
         {visible.map((ev) => (
-          <li
-            key={ev.id}
-            style={{
-              display: "flex", alignItems: "flex-start", gap: "10px",
-              padding: "10px 12px",
-              background: "#fff",
-              border: `1px solid ${GRADE_BORDER[ev.grade] ?? "var(--ms-border)"}`,
-              borderLeft: `3px solid ${GRADE_TEXT[ev.grade] ?? "var(--ms-text-2)"}`,
-              borderRadius: "8px",
-              minWidth: 0,
-            }}
-          >
-            <MiniGrade g={ev.grade} />
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{
-                fontSize: "13px", fontWeight: 700,
-                color: "var(--charcoal)", letterSpacing: "-0.005em",
-                marginBottom: "3px",
-                overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
-              }}>
-                {ev.name}
+          <li key={ev.id} style={{ listStyle: "none" }}>
+            <Link
+              href={`/events/${ev.slug}`}
+              title={`${ev.name} 자세히 보기`}
+              style={{
+                display: "flex", alignItems: "flex-start", gap: "10px",
+                padding: "10px 12px",
+                background: "#fff",
+                border: `1px solid ${GRADE_BORDER[ev.grade] ?? "var(--ms-border)"}`,
+                borderLeft: `3px solid ${GRADE_TEXT[ev.grade] ?? "var(--ms-text-2)"}`,
+                borderRadius: "8px",
+                minWidth: 0,
+                textDecoration: "none",
+                color: "inherit",
+                transition: "transform 0.12s, box-shadow 0.12s",
+                cursor: "pointer",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = "0 6px 16px rgba(15, 23, 42, 0.06)";
+                e.currentTarget.style.transform = "translateY(-1px)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = "none";
+                e.currentTarget.style.transform = "translateY(0)";
+              }}
+            >
+              <MiniGrade g={ev.grade} />
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{
+                  display: "flex", alignItems: "center", gap: "6px",
+                  marginBottom: "3px",
+                }}>
+                  <span style={{
+                    fontSize: "13px", fontWeight: 700,
+                    color: "var(--charcoal)", letterSpacing: "-0.005em",
+                    overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+                    flex: 1, minWidth: 0,
+                  }}>
+                    {ev.name}
+                  </span>
+                  <span aria-hidden="true" style={{
+                    fontSize: "12px", fontWeight: 700, color: "var(--brand-red)",
+                    flexShrink: 0, opacity: 0.6,
+                  }}>→</span>
+                </div>
+                <div style={{
+                  fontSize: "11.5px", color: "var(--ms-text-2)",
+                  lineHeight: 1.5,
+                  overflow: "hidden", textOverflow: "ellipsis",
+                  display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical",
+                }}>
+                  {ev.summary}
+                </div>
               </div>
-              <div style={{
-                fontSize: "11.5px", color: "var(--ms-text-2)",
-                lineHeight: 1.5,
-                overflow: "hidden", textOverflow: "ellipsis",
-                display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical",
-              }}>
-                {ev.summary}
-              </div>
-            </div>
+            </Link>
           </li>
         ))}
       </ul>
