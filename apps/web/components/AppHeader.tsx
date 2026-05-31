@@ -321,6 +321,17 @@ export function AppHeader() {
                 무료로 시작하기 <span style={{ fontSize: "17px" }}>→</span>
               </button>
             )}
+
+            {/* 모바일 드로어 하단 — 법적 링크 */}
+            <div style={{
+              display: "flex", gap: "16px", justifyContent: "center",
+              paddingTop: "16px", marginTop: "8px",
+              borderTop: "1px solid var(--ms-border)",
+              fontSize: "12px",
+            }}>
+              <Link href="/terms" style={{ color: "var(--ms-text-3)", textDecoration: "none", fontWeight: 500 }}>이용약관</Link>
+              <Link href="/privacy" style={{ color: "var(--ms-text-3)", textDecoration: "none", fontWeight: 500 }}>개인정보처리방침</Link>
+            </div>
           </nav>
         </div>
       )}

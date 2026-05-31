@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Inter_Tight } from "next/font/google";
 import "./globals.css";
 import { FeedbackWidget } from "../components/FeedbackWidget";
+import { GlobalFooter } from "../components/GlobalFooter";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -81,15 +82,11 @@ export default function RootLayout({
           as="style"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
         />
-        {/* Plausible — privacy-friendly analytics (외부 환경에서만 로드) */}
-        <script
-          defer
-          data-domain="nunchi-bay.vercel.app"
-          src="https://plausible.io/js/script.tagged-events.js"
-        />
+        {/* TODO: Google Analytics 추가 예정 */}
       </head>
       <body className="min-h-screen">
         {children}
+        <GlobalFooter />
         <FeedbackWidget />
       </body>
     </html>

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { AppHeader } from "../../components/AppHeader";
+import { SiteFooter } from "../../components/SiteFooter";
 
 /* ─────────────────────────────────────────────────────────────
    Noonchi Landing — Editorial SaaS
@@ -793,34 +794,9 @@ export default function LandingPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════
-          8. FOOTER
+          8. FOOTER (공용 컴포넌트)
       ════════════════════════════════════════════════════════ */}
-      <footer style={{
-        background: "#0F0F11", color: "rgba(255,255,255,0.6)",
-        padding: "40px 24px",
-      }}>
-        <div style={{
-          maxWidth: "1200px", margin: "0 auto",
-          display: "flex", justifyContent: "space-between", alignItems: "center",
-          flexWrap: "wrap", gap: "20px",
-        }}>
-          <div>
-            <div style={{
-              fontFamily: "var(--font-display)", fontWeight: 800,
-              color: "#fff", fontSize: "17px",
-              marginBottom: "6px", letterSpacing: "-0.01em",
-            }}>noonch-i</div>
-            <div style={{ fontSize: "12px" }}>
-              한국 마케터를 위한 브랜드 안전 인텔리전스 · Beta
-            </div>
-          </div>
-          <div style={{ display: "flex", gap: "20px", fontSize: "13px" }}>
-            <Link href="/calendar" style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>캘린더</Link>
-            <Link href="/check" style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>캠페인 검토</Link>
-            <Link href="/contact" style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>문의하기</Link>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter variant="default" />
     </div>
   );
 }
