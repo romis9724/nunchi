@@ -6,6 +6,7 @@ import { format, startOfMonth, endOfMonth, eachDayOfInterval, getDay, isToday } 
 import { ko } from "date-fns/locale";
 import type { Grade } from "@nunchi/shared";
 import { GradeBadge } from "@/components/result-card/GradeBadge";
+import { PageHeader } from "@/components/ui";
 
 export interface CalendarEvent {
   month: number;
@@ -140,33 +141,32 @@ export function CalendarClient({ events }: CalendarClientProps) {
   return (
     <main style={{ maxWidth: "1200px", margin: "0 auto", padding: "48px 32px 80px" }}>
 
-      {/* Page header */}
-      <div style={{ marginBottom: "36px", display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "16px" }}>
-        <div>
-          <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(24px,4vw,32px)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--charcoal)", margin: 0 }}>
-            리스크 캘린더
-          </h1>
-        </div>
+      <PageHeader
+        eyebrow="민감일 캘린더"
+        eyebrowIcon="calendar"
+        title="리스크 캘린더"
+        subtitle="월별 민감일과 호재 타이밍을 한눈에 확인하세요. 등급별로 색상이 구분됩니다."
+        actions={
+          <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "center" }}>
+            {LEGEND_ITEMS.map(({ grade, label }) => (
+              <div key={grade} style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+                <span
+                  aria-hidden="true"
+                  style={{
+                    width: "8px", height: "8px", borderRadius: "50%",
+                    background: GRADE_DOT_COLOR[grade],
+                    flexShrink: 0, display: "inline-block",
+                  }}
+                />
+                <span style={{ fontSize: "12px", fontWeight: 600, color: "var(--ms-text-2)", letterSpacing: "0.02em" }}>
+                  {label}
+                </span>
+              </div>
+            ))}
+          </div>
+        }
+      />
 
-        {/* Inline legend */}
-        <div style={{ display: "flex", gap: "14px", flexWrap: "wrap", alignItems: "center" }}>
-          {LEGEND_ITEMS.map(({ grade, label }) => (
-            <div key={grade} style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-              <span
-                aria-hidden="true"
-                style={{
-                  width: "8px", height: "8px", borderRadius: "50%",
-                  background: GRADE_DOT_COLOR[grade],
-                  flexShrink: 0, display: "inline-block",
-                }}
-              />
-              <span style={{ fontSize: "12px", fontWeight: 600, color: "var(--muted-ink)", letterSpacing: "0.02em" }}>
-                {label}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
 
       {/* Grid layout: calendar + sidebar */}
       <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: "24px", alignItems: "start" }} className="calendar-layout">

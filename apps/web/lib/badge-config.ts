@@ -34,9 +34,9 @@ export interface BadgeConfig {
  */
 export const BETA_BADGE: BadgeConfig = {
   label: "Beta",
-  background: "rgba(37,99,235,0.1)",
-  color: "#2563EB",
-  border: "rgba(37,99,235,0.25)",
+  background: "rgba(225, 29, 72, 0.10)",
+  color: "#E11D48",
+  border: "rgba(225, 29, 72, 0.28)",
   fontSize: 10,
   fontWeight: 600,
   borderRadius: 3,

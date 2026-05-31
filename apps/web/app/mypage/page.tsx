@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { NunchiLogo } from "@/components/NunchiLogo";
+import { PageHeader } from "@/components/ui";
 
 const INDUSTRIES = [
   "식품·음료", "패션·뷰티", "IT·테크", "금융·보험", "유통·리테일",
@@ -99,9 +100,13 @@ export default function MyPage() {
           <Link href="/check" style={{ fontSize: "13px", color: "var(--muted-ink)", textDecoration: "none" }}>← 검토로 돌아가기</Link>
         </div>
 
-        <h1 style={{ fontFamily: "var(--font-display)", fontSize: "1.75rem", fontWeight: 800, color: "var(--charcoal)", marginBottom: "24px" }}>
-          내 정보 수정
-        </h1>
+        <PageHeader
+          eyebrow="프로필"
+          eyebrowIcon="user"
+          title="내 정보"
+          subtitle="업종·채널·브랜드 정보를 수정합니다. 검토 결과 맞춤화에 사용됩니다."
+        />
+
 
         <form onSubmit={handleSave}>
           <section style={{ marginBottom: "28px" }}>

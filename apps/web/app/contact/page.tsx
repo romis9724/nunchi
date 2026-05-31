@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { AppHeader } from "@/components/AppHeader";
 import { CONTACT_FORM_FIELDS } from "@/lib/contact-form";
+import { PageHeader } from "@/components/ui";
 
 const INPUT_STYLE = {
   width: "100%",
@@ -116,24 +117,13 @@ export default function ContactPage() {
       >
         {/* Left: page header + form */}
         <div>
-          {/* Page header */}
-          <div style={{ marginBottom: "36px" }}>
-            <h1 style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(24px,4vw,32px)",
-              fontWeight: 800,
-              color: "var(--charcoal)",
-              letterSpacing: "-0.03em",
-              margin: "0 0 8px",
-            }}>
-              문의하기
-            </h1>
-            <p style={{ fontSize: "14px", color: "var(--muted-ink)", lineHeight: 1.6, margin: 0 }}>
-              질문, 제안, 파트너십 문의 — 무엇이든 보내주세요.
-              <br />
-              로그인 없이 누구나 문의할 수 있습니다.
-            </p>
-          </div>
+          <PageHeader
+            eyebrow="피드백 환영"
+            eyebrowIcon="mail"
+            title="문의하기"
+            subtitle="질문, 제안, 파트너십 문의 — 무엇이든 보내주세요. 로그인 없이 누구나 문의할 수 있습니다."
+          />
+
 
           {/* Success state */}
           {status === "success" ? (

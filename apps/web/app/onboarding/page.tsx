@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { NunchiLogo } from "@/components/NunchiLogo";
+import { PageHeader } from "@/components/ui";
 
 const INDUSTRIES = [
   "식품·음료", "패션·뷰티", "IT·테크", "금융·보험", "유통·리테일",
@@ -87,12 +88,13 @@ export default function OnboardingPage() {
           <NunchiLogo size={28} />
         </div>
 
-        <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 800, color: "var(--charcoal)", marginBottom: "8px" }}>
-          온보딩
-        </h1>
-        <p style={{ color: "var(--muted-ink)", fontSize: "15px", marginBottom: "32px" }}>
-          업종과 채널을 선택하면 검토 결과를 맞춤화해 드립니다.
-        </p>
+        <PageHeader
+          eyebrow="환영합니다"
+          eyebrowIcon="sparkle"
+          title="온보딩"
+          subtitle="업종과 채널을 선택하면 검토 결과를 맞춤화해 드립니다."
+        />
+
 
         <form onSubmit={handleSubmit}>
           {/* 업종 */}

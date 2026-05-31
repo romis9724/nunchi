@@ -6,29 +6,7 @@ import type { CheckRequest, CheckResponse } from "@nunchi/shared";
 import { ResultCard } from "@/components/result-card/ResultCard";
 import { AppHeader } from "@/components/AppHeader";
 import { NearbyEventsPreview } from "@/components/NearbyEventsPreview";
-
-const INPUT_STYLE = {
-  width: "100%",
-  padding: "12px 16px",
-  border: "1.5px solid var(--border-warm)",
-  borderRadius: "12px",
-  background: "#FFFFFF",
-  fontSize: "14px",
-  color: "var(--charcoal)",
-  outline: "none",
-  fontFamily: "var(--font-body)",
-  transition: "border-color 0.15s",
-} as const;
-
-const LABEL_STYLE = {
-  display: "block",
-  fontSize: "12px",
-  fontWeight: 700,
-  color: "var(--muted-ink)",
-  letterSpacing: "0.06em",
-  textTransform: "uppercase" as const,
-  marginBottom: "8px",
-};
+import { PageHeader, Card, Field, Input, Textarea, Button, Icon, inputBaseStyle, inputFocusHandlers } from "@/components/ui";
 
 function CheckForm() {
   const searchParams = useSearchParams();
@@ -90,72 +68,50 @@ function CheckForm() {
       <AppHeader />
 
       <main style={{ maxWidth: "720px", margin: "0 auto", padding: "48px 24px 80px" }}>
-        {/* Page header */}
-        <div style={{ marginBottom: "36px" }}>
-          <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(24px,4vw,32px)", fontWeight: 800, color: "var(--charcoal)", letterSpacing: "-0.03em", margin: "0 0 8px" }}>
-            캠페인 검토
-          </h1>
-          <p style={{ fontSize: "14px", color: "var(--muted-ink)", lineHeight: 1.6, margin: 0 }}>
-            날짜와 카피를 입력하면 위험 등급과 호재 기회를 즉시 분석합니다.
-          </p>
-        </div>
+        <PageHeader
+          eyebrow="브랜드 안전 분석"
+          eyebrowIcon="shield"
+          title="캠페인 검토"
+          subtitle="날짜와 카피를 입력하면 위험 등급과 호재 기회를 즉시 분석합니다."
+        />
 
         {/* Form card */}
-        <div style={{
-          background: "#FFFFFF",
-          border: "1px solid var(--border-warm)",
-          borderRadius: "16px",
-          padding: "32px",
-          marginBottom: "32px",
-          boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
-        }}>
-          <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+        <Card padding="lg" style={{ marginBottom: "32px" }}>
+          <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
             {/* Date + Campaign row */}
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }} className="form-grid">
-              <div>
-                <label htmlFor="date" style={LABEL_STYLE}>
-                  캠페인 날짜 <span style={{ color: "var(--coral)" }}>*</span>
-                </label>
-                <div style={{ position: "relative" }}>
-                  <input
-                    id="date"
-                    type="date"
-                    required
-                    value={form.date}
-                    onChange={(e) => setForm((p) => ({ ...p, date: e.target.value }))}
-                    style={INPUT_STYLE}
-                    onFocus={(e) => (e.target.style.borderColor = "var(--charcoal)")}
-                    onBlur={(e) => (e.target.style.borderColor = "var(--border-warm)")}
-                  />
-                </div>
-              </div>
-              <div>
-                <label htmlFor="campaign" style={LABEL_STYLE}>
-                  캠페인명 <span style={{ fontWeight: 400, color: "var(--muted-ink)" }}>(선택)</span>
-                </label>
-                <input
+              <Field label="캠페인 날짜" htmlFor="date" required>
+                <Input
+                  id="date"
+                  type="date"
+                  required
+                  value={form.date}
+                  onChange={(e) => setForm((p) => ({ ...p, date: e.target.value }))}
+                />
+              </Field>
+              <Field label="캠페인명" htmlFor="campaign" optional>
+                <Input
                   id="campaign"
                   type="text"
                   placeholder="예: 여름 한정 에디션"
                   maxLength={200}
                   value={form.campaignName}
                   onChange={(e) => setForm((p) => ({ ...p, campaignName: e.target.value }))}
-                  style={INPUT_STYLE}
-                  onFocus={(e) => (e.target.style.borderColor = "var(--charcoal)")}
-                  onBlur={(e) => (e.target.style.borderColor = "var(--border-warm)")}
                 />
-              </div>
+              </Field>
             </div>
 
             {/* Nearby events preview — full-width below date+campaign row */}
             <NearbyEventsPreview date={form.date} />
 
             {/* Copy */}
-            <div>
-              <label htmlFor="copy" style={LABEL_STYLE}>
-                카피 / 슬로건 <span style={{ color: "var(--coral)" }}>*</span>
-              </label>
-              <textarea
+            <Field
+              label="카피 / 슬로건"
+              htmlFor="copy"
+              required
+              hint={`${form.copy.length} / 2000`}
+            >
+              <Textarea
                 id="copy"
                 required
                 placeholder="예: 봄 항해 컬렉션, 빼빼로 1+1 한정, 광복 75주년 에디션 등 사용하려는 카피를 입력하세요"
@@ -163,49 +119,25 @@ function CheckForm() {
                 maxLength={2000}
                 value={form.copy}
                 onChange={(e) => setForm((p) => ({ ...p, copy: e.target.value }))}
-                style={{ ...INPUT_STYLE, resize: "none" }}
-                onFocus={(e) => (e.target.style.borderColor = "var(--charcoal)")}
-                onBlur={(e) => (e.target.style.borderColor = "var(--border-warm)")}
               />
-              <p style={{ fontSize: "12px", color: "var(--muted-ink)", textAlign: "right", marginTop: "4px" }}>
-                {form.copy.length} / 2000
-              </p>
-            </div>
+            </Field>
 
             {/* Visual keywords */}
-            <div>
-              <label htmlFor="keywords" style={LABEL_STYLE}>
-                비주얼 키워드 <span style={{ fontWeight: 400, color: "var(--muted-ink)" }}>(선택 · Enter로 추가)</span>
-              </label>
+            <Field label="비주얼 키워드" htmlFor="keywords" optional hint="Enter로 추가">
               <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
                 <input
                   id="keywords"
                   type="text"
-                  placeholder="예: 탱크, 군복, 노란 리본…"
+                  placeholder="예: 노란 리본, 추모, 평화…"
                   value={keywordInput}
                   onChange={(e) => setKeywordInput(e.target.value)}
                   onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addKeyword(); } }}
-                  style={{ ...INPUT_STYLE, flex: 1 }}
-                  onFocus={(e) => (e.target.style.borderColor = "var(--charcoal)")}
-                  onBlur={(e) => (e.target.style.borderColor = "var(--border-warm)")}
+                  {...inputFocusHandlers}
+                  style={{ ...inputBaseStyle, height: "var(--input-h)", flex: 1 }}
                 />
-                <button
-                  type="button"
-                  onClick={addKeyword}
-                  style={{
-                    padding: "0 18px",
-                    borderRadius: "12px",
-                    border: "1.5px solid var(--border-warm)",
-                    background: "var(--soft-beige)",
-                    fontSize: "13px",
-                    fontWeight: 600,
-                    color: "var(--charcoal)",
-                    cursor: "pointer",
-                    fontFamily: "var(--font-body)",
-                  }}
-                >
+                <Button type="button" variant="secondary" onClick={addKeyword}>
                   추가
-                </button>
+                </Button>
               </div>
               {(form.assetKeywords ?? []).length > 0 && (
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginTop: "10px" }}>
@@ -234,59 +166,56 @@ function CheckForm() {
                   ))}
                 </div>
               )}
-            </div>
+            </Field>
 
             {/* Error */}
             {error && (
               <div
                 role="alert"
                 style={{
-                  background: "#FEF2F2",
-                  border: "1px solid #FCA5A5",
+                  background: "var(--brand-red-soft)",
+                  border: "1px solid var(--brand-red-mid)",
+                  borderLeft: "3px solid var(--brand-red)",
                   borderRadius: "10px",
                   padding: "12px 16px",
-                  color: "#DC2626",
+                  color: "var(--brand-red-text)",
                   fontSize: "13px",
                   display: "flex",
-                  gap: "8px",
+                  gap: "10px",
                   alignItems: "flex-start",
                 }}
               >
-                <span aria-hidden="true" style={{ flexShrink: 0, marginTop: "1px" }}>⚠️</span>
+                <Icon name="alert" size={16} style={{ color: "var(--brand-red)", flexShrink: 0, marginTop: "1px" }} />
                 <span>{error}</span>
               </div>
             )}
 
             {/* Submit */}
-            <button
+            <Button
               type="submit"
+              variant="primary"
+              size="lg"
+              full
+              iconRight={loading ? undefined : "arrow-right"}
               disabled={loading || !form.copy.trim()}
-              style={{
-                padding: "14px",
-                borderRadius: "12px",
-                border: "none",
-                background: loading || !form.copy.trim() ? "var(--border-warm)" : "var(--charcoal)",
-                color: loading || !form.copy.trim() ? "var(--muted-ink)" : "#FFFFFF",
-                fontSize: "14px",
-                fontWeight: 700,
-                cursor: loading || !form.copy.trim() ? "not-allowed" : "pointer",
-                fontFamily: "var(--font-display)",
-                letterSpacing: "-0.01em",
-                transition: "all 0.15s",
-              }}
+              style={
+                loading || !form.copy.trim()
+                  ? { opacity: 0.5, cursor: "not-allowed", boxShadow: "none" }
+                  : undefined
+              }
             >
               {loading ? "분석 중…" : "검토 시작"}
-            </button>
+            </Button>
           </form>
-        </div>
+        </Card>
 
         {/* Loading state */}
         {loading && (
           <div style={{ textAlign: "center", padding: "48px 0" }}>
             <div style={{
               width: "32px", height: "32px",
-              border: "3px solid var(--border-warm)",
-              borderTopColor: "var(--ms-blue)",
+              border: "3px solid var(--brand-red-mid)",
+              borderTopColor: "var(--brand-red)",
               borderRadius: "50%",
               margin: "0 auto",
               animation: "spin 0.8s linear infinite",
@@ -294,7 +223,7 @@ function CheckForm() {
             <p style={{ fontSize: "14px", color: "var(--muted-ink)", marginTop: "16px", fontWeight: 500 }}>
               날짜·카피를 한국 역사 데이터와 교차 검토 중…
             </p>
-            <p style={{ fontSize: "12px", color: "var(--ms-border)", marginTop: "4px" }}>
+            <p style={{ fontSize: "12px", color: "var(--ms-text-3)", marginTop: "4px" }}>
               보통 5–10초 소요됩니다
             </p>
           </div>
@@ -302,21 +231,15 @@ function CheckForm() {
 
         {/* Empty state — shown before first submit */}
         {!result && !loading && !error && (
-          <div style={{
-            padding: "32px",
-            background: "var(--ms-blue-light)",
-            borderRadius: "12px",
-            border: "1px solid var(--ms-blue-mid)",
-            textAlign: "center",
-          }}>
-            <p style={{ fontSize: "32px", margin: "0 0 12px" }}>🔍</p>
-            <p style={{ fontSize: "14px", fontWeight: 600, color: "var(--ms-blue)", margin: "0 0 6px" }}>
+          <Card tone="soft" padding="lg" style={{ textAlign: "center" }}>
+            <Icon name="search" size={32} style={{ color: "var(--brand-red)", margin: "0 auto 12px", display: "block" }} />
+            <p style={{ fontSize: "14px", fontWeight: 700, color: "var(--ms-text)", margin: "0 0 6px" }}>
               날짜와 카피를 입력하고 검토해보세요
             </p>
-            <p style={{ fontSize: "12px", color: "var(--ms-text-2)", margin: 0, lineHeight: 1.6 }}>
-              5·18, 세월호, 이태원 등 31개+ 민감일과 즉시 교차 분석합니다
+            <p style={{ fontSize: "12.5px", color: "var(--ms-text-2)", margin: 0, lineHeight: 1.6 }}>
+              5·18, 세월호, 이태원 등 60개+ 민감일과 즉시 교차 분석합니다
             </p>
-          </div>
+          </Card>
         )}
 
         {/* Result */}
