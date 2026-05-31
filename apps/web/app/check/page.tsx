@@ -103,7 +103,14 @@ function CheckForm() {
         </div>
 
         {/* Form card */}
-        <div className="studio-card" style={{ padding: "32px", marginBottom: "32px" }}>
+        <div style={{
+          background: "#FFFFFF",
+          border: "1px solid var(--border-warm)",
+          borderRadius: "16px",
+          padding: "32px",
+          marginBottom: "32px",
+          boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
+        }}>
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
             {/* Date + Campaign row */}
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }} className="form-grid">
@@ -111,16 +118,18 @@ function CheckForm() {
                 <label htmlFor="date" style={LABEL_STYLE}>
                   캠페인 날짜 <span style={{ color: "var(--coral)" }}>*</span>
                 </label>
-                <input
-                  id="date"
-                  type="date"
-                  required
-                  value={form.date}
-                  onChange={(e) => setForm((p) => ({ ...p, date: e.target.value }))}
-                  style={INPUT_STYLE}
-                  onFocus={(e) => (e.target.style.borderColor = "var(--charcoal)")}
-                  onBlur={(e) => (e.target.style.borderColor = "var(--border-warm)")}
-                />
+                <div style={{ position: "relative" }}>
+                  <input
+                    id="date"
+                    type="date"
+                    required
+                    value={form.date}
+                    onChange={(e) => setForm((p) => ({ ...p, date: e.target.value }))}
+                    style={INPUT_STYLE}
+                    onFocus={(e) => (e.target.style.borderColor = "var(--charcoal)")}
+                    onBlur={(e) => (e.target.style.borderColor = "var(--border-warm)")}
+                  />
+                </div>
               </div>
               <div>
                 <label htmlFor="campaign" style={LABEL_STYLE}>
@@ -148,7 +157,7 @@ function CheckForm() {
               <textarea
                 id="copy"
                 required
-                placeholder="사용하려는 카피 또는 슬로건을 입력하세요…"
+                placeholder="예: &quot;책상에 탁!&quot;, &quot;탱크처럼 강하게&quot;, &quot;전진하는 하루&quot; 등 사용하려는 카피를 입력하세요"
                 rows={4}
                 maxLength={2000}
                 value={form.copy}
@@ -158,7 +167,7 @@ function CheckForm() {
                 onBlur={(e) => (e.target.style.borderColor = "var(--border-warm)")}
               />
               <p style={{ fontSize: "11px", color: "var(--muted-ink)", textAlign: "right", marginTop: "4px" }}>
-                {form.copy.length}/2000
+                {form.copy.length} / 2000
               </p>
             </div>
 
@@ -231,15 +240,19 @@ function CheckForm() {
               <div
                 role="alert"
                 style={{
-                  fontSize: "13px",
-                  color: "var(--grade-f-text)",
-                  background: "var(--grade-f-bg)",
-                  border: "1px solid var(--grade-f-border)",
+                  background: "#FEF2F2",
+                  border: "1px solid #FCA5A5",
                   borderRadius: "10px",
                   padding: "12px 16px",
+                  color: "#DC2626",
+                  fontSize: "13px",
+                  display: "flex",
+                  gap: "8px",
+                  alignItems: "flex-start",
                 }}
               >
-                {error}
+                <span aria-hidden="true" style={{ flexShrink: 0, marginTop: "1px" }}>⚠️</span>
+                <span>{error}</span>
               </div>
             )}
 
@@ -266,6 +279,45 @@ function CheckForm() {
           </form>
         </div>
 
+        {/* Loading state */}
+        {loading && (
+          <div style={{ textAlign: "center", padding: "48px 0" }}>
+            <div style={{
+              width: "32px", height: "32px",
+              border: "3px solid var(--border-warm)",
+              borderTopColor: "var(--ms-blue)",
+              borderRadius: "50%",
+              margin: "0 auto",
+              animation: "spin 0.8s linear infinite",
+            }} />
+            <p style={{ fontSize: "14px", color: "var(--muted-ink)", marginTop: "16px", fontWeight: 500 }}>
+              날짜·카피를 한국 역사 데이터와 교차 검토 중…
+            </p>
+            <p style={{ fontSize: "12px", color: "var(--ms-border)", marginTop: "4px" }}>
+              보통 5–10초 소요됩니다
+            </p>
+          </div>
+        )}
+
+        {/* Empty state — shown before first submit */}
+        {!result && !loading && !error && (
+          <div style={{
+            padding: "32px",
+            background: "var(--ms-blue-light)",
+            borderRadius: "12px",
+            border: "1px solid var(--ms-blue-mid)",
+            textAlign: "center",
+          }}>
+            <p style={{ fontSize: "32px", margin: "0 0 12px" }}>🔍</p>
+            <p style={{ fontSize: "14px", fontWeight: 600, color: "var(--ms-blue)", margin: "0 0 6px" }}>
+              날짜와 카피를 입력하고 검토해보세요
+            </p>
+            <p style={{ fontSize: "12px", color: "var(--ms-text-2)", margin: 0, lineHeight: 1.6 }}>
+              5·18, 세월호, 이태원 등 31개+ 민감일과 즉시 교차 분석합니다
+            </p>
+          </div>
+        )}
+
         {/* Result */}
         {result && (
           <div ref={resultRef}>
@@ -276,6 +328,12 @@ function CheckForm() {
           </div>
         )}
       </main>
+
+      <style>{`
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
     </div>
   );
 }

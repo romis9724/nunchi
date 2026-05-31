@@ -11,22 +11,110 @@ interface ResultCardProps {
   campaignName?: string;
 }
 
-const GRADE_ACCENT: Record<Grade, string> = {
-  F: "var(--grade-f-border)",
-  D: "var(--grade-d-border)",
-  C: "var(--grade-c-border)",
-  B: "var(--grade-b-border)",
-  A: "var(--grade-a-border)",
+/* ── Grade color tokens ─────────────────────────────────────── */
+const GRADE_SCHEME: Record<Grade, {
+  headerBg: string;
+  headerBorder: string;
+  accent: string;
+  bodyBg: string;
+  bodyBorder: string;
+  textColor: string;
+  tagBg: string;
+  tagBorder: string;
+}> = {
+  F: {
+    headerBg: "#FEE2E2",
+    headerBorder: "#FCA5A5",
+    accent: "#DC2626",
+    bodyBg: "#FFF1F2",
+    bodyBorder: "#FCA5A5",
+    textColor: "#991B1B",
+    tagBg: "#FEE2E2",
+    tagBorder: "#FCA5A5",
+  },
+  D: {
+    headerBg: "#FEF9C3",
+    headerBorder: "#FCD34D",
+    accent: "#D97706",
+    bodyBg: "#FFFBEB",
+    bodyBorder: "#FCD34D",
+    textColor: "#92400E",
+    tagBg: "#FEF9C3",
+    tagBorder: "#FCD34D",
+  },
+  C: {
+    headerBg: "#F3F2F1",
+    headerBorder: "#E1DFDD",
+    accent: "#6B7280",
+    bodyBg: "#F8F8F8",
+    bodyBorder: "#E5E7EB",
+    textColor: "#374151",
+    tagBg: "#F3F2F1",
+    tagBorder: "#E1DFDD",
+  },
+  B: {
+    headerBg: "#DCFCE7",
+    headerBorder: "#86EFAC",
+    accent: "#16A34A",
+    bodyBg: "#F0FDF4",
+    bodyBorder: "#86EFAC",
+    textColor: "#14532D",
+    tagBg: "#DCFCE7",
+    tagBorder: "#86EFAC",
+  },
+  A: {
+    headerBg: "#DBEAFE",
+    headerBorder: "#93C5FD",
+    accent: "#2563EB",
+    bodyBg: "#EFF6FF",
+    bodyBorder: "#93C5FD",
+    textColor: "#1E3A8A",
+    tagBg: "#DBEAFE",
+    tagBorder: "#93C5FD",
+  },
 };
 
-const GRADE_BG: Record<Grade, string> = {
-  F: "var(--grade-f-bg)",
-  D: "var(--grade-d-bg)",
-  C: "#ffffff",
-  B: "var(--grade-b-bg)",
-  A: "var(--grade-a-bg)",
+const GRADE_HEADLINE: Record<Grade, string> = {
+  F: "즉각 회피 — 캠페인 재설계를 권고합니다",
+  D: "재검토 필요 — 컨셉·카피를 수정하세요",
+  C: "일반 주의 — 특이사항 없음",
+  B: "안전 — 진행 가능합니다",
+  A: "최적 타이밍 — 강력한 호재입니다",
 };
 
+/* ── Label ──────────────────────────────────────────────────── */
+function SectionLabel({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) {
+  return (
+    <p
+      style={{
+        fontSize: "10px",
+        fontWeight: 700,
+        color: "var(--ms-text-3)",
+        letterSpacing: "0.1em",
+        textTransform: "uppercase",
+        margin: "0 0 10px",
+        ...style,
+      }}
+    >
+      {children}
+    </p>
+  );
+}
+
+/* ── Divider ────────────────────────────────────────────────── */
+function Divider() {
+  return (
+    <div
+      style={{
+        height: "1px",
+        background: "var(--ms-border)",
+        margin: "0 20px",
+      }}
+    />
+  );
+}
+
+/* ── Main ───────────────────────────────────────────────────── */
 export function ResultCard({ result, date, campaignName }: ResultCardProps) {
   const [memo, setMemo] = useState(() => {
     if (typeof window === "undefined") return "";
@@ -39,15 +127,15 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
   };
 
   const grade = result.grade;
+  const scheme = GRADE_SCHEME[grade];
   const isPositive = grade === "A" || grade === "B";
   const isNegative = grade === "F" || grade === "D";
 
   return (
-    <div
+    <article
       style={{
-        background: GRADE_BG[grade],
-        border: `1px solid var(--border-warm)`,
-        borderLeft: `4px solid ${GRADE_ACCENT[grade]}`,
+        background: scheme.bodyBg,
+        border: `1px solid ${scheme.bodyBorder}`,
         borderRadius: "16px",
         overflow: "hidden",
         fontFamily: "var(--font-body)",
@@ -55,122 +143,283 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
       role="region"
       aria-label="캠페인 검토 결과"
     >
-      {/* Header strip */}
-      <div style={{ padding: "20px 20px 16px", display: "flex", alignItems: "flex-start", gap: "16px" }}>
-        <div style={{ flex: 1 }}>
-          <p style={{ fontSize: "12px", color: "var(--muted-ink)", marginBottom: "10px", display: "flex", gap: "8px", flexWrap: "wrap" }}>
-            <span>{date}</span>
-            {campaignName && <span>· {campaignName}</span>}
-            {result.cached && <span style={{ opacity: 0.5 }}>· 캐시</span>}
+
+      {/* ── HEADER BANNER ─────────────────────────────────────── */}
+      <header
+        style={{
+          background: scheme.headerBg,
+          borderBottom: `2px solid ${scheme.accent}`,
+          padding: "20px 20px 18px",
+        }}
+      >
+        {/* Meta row */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: "14px",
+            flexWrap: "wrap",
+            gap: "8px",
+          }}
+        >
+          <p
+            style={{
+              fontSize: "11px",
+              color: "var(--ms-text-3)",
+              margin: 0,
+              display: "flex",
+              gap: "6px",
+              flexWrap: "wrap",
+              alignItems: "center",
+            }}
+          >
+            <span style={{ fontWeight: 600 }}>{date}</span>
+            {campaignName && (
+              <>
+                <span style={{ opacity: 0.4 }}>·</span>
+                <span>{campaignName}</span>
+              </>
+            )}
+            {result.cached && (
+              <span style={{ opacity: 0.45 }}>· 캐시</span>
+            )}
             {result.ruleTriggered && (
-              <span style={{ color: "var(--grade-f-text)", fontWeight: 600 }}>⚡ 즉시 감지</span>
+              <span
+                style={{
+                  color: scheme.accent,
+                  fontWeight: 700,
+                  background: scheme.tagBg,
+                  border: `1px solid ${scheme.tagBorder}`,
+                  padding: "1px 7px",
+                  borderRadius: "3px",
+                  fontSize: "10px",
+                  letterSpacing: "0.06em",
+                }}
+              >
+                ⚡ 즉시 감지
+              </span>
             )}
           </p>
-          <div style={{ display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap" }}>
-            <GradeBadge grade={grade} size="lg" showLabel />
-            <p style={{ fontSize: "13px", color: "var(--muted-ink)", margin: 0 }}>
-              {isPositive ? "이 날짜, 캠페인에 유리합니다" : isNegative ? "재검토를 권고합니다" : "특이사항 없음"}
-            </p>
+
+          {/* Action buttons */}
+          <div style={{ display: "flex", gap: "6px" }}>
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              style={{
+                fontSize: "11px",
+                padding: "4px 10px",
+                borderRadius: "4px",
+                border: "1px solid var(--ms-border)",
+                background: "#fff",
+                cursor: "pointer",
+                color: "var(--ms-text-2)",
+                fontWeight: 500,
+                transition: "border-color 0.15s",
+              }}
+              onMouseEnter={(e) =>
+                ((e.currentTarget as HTMLButtonElement).style.borderColor =
+                  scheme.accent)
+              }
+              onMouseLeave={(e) =>
+                ((e.currentTarget as HTMLButtonElement).style.borderColor =
+                  "var(--ms-border)")
+              }
+            >
+              ↑ 다시 검토
+            </button>
+            <button
+              onClick={() => {
+                const text = `[눈치 검토 결과] ${date} ${campaignName ?? ""}\n등급: ${result.grade} — ${GRADE_LABEL[result.grade]}\n${result.rationale}`;
+                navigator.clipboard.writeText(text).catch(() => {});
+              }}
+              style={{
+                fontSize: "11px",
+                padding: "4px 10px",
+                borderRadius: "4px",
+                border: "1px solid var(--ms-border)",
+                background: "#fff",
+                cursor: "pointer",
+                color: "var(--ms-text-2)",
+                fontWeight: 500,
+                transition: "border-color 0.15s",
+              }}
+              onMouseEnter={(e) =>
+                ((e.currentTarget as HTMLButtonElement).style.borderColor =
+                  scheme.accent)
+              }
+              onMouseLeave={(e) =>
+                ((e.currentTarget as HTMLButtonElement).style.borderColor =
+                  "var(--ms-border)")
+              }
+            >
+              복사
+            </button>
           </div>
         </div>
-        {/* 다시 검토 / 결과 복사 */}
-        <div style={{ display: "flex", gap: "8px" }}>
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            style={{ fontSize: "11px", padding: "4px 10px", borderRadius: "4px", border: "1px solid var(--border-warm)", background: "#fff", cursor: "pointer", color: "var(--muted-ink)", fontWeight: 500 }}
-          >
-            ↑ 다시 검토
-          </button>
-          <button
-            onClick={() => {
-              const text = `[눈치 검토 결과] ${date} ${campaignName ?? ""}\n등급: ${result.grade} (${result.riskScore})\n${result.rationale}`;
-              navigator.clipboard.writeText(text).catch(() => {});
+
+        {/* Grade + headline */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "14px",
+            flexWrap: "wrap",
+          }}
+        >
+          <GradeBadge grade={grade} size="lg" showLabel />
+          <p
+            style={{
+              fontSize: "14px",
+              fontWeight: 700,
+              color: scheme.textColor,
+              margin: 0,
+              fontFamily: "var(--font-display)",
+              letterSpacing: "-0.01em",
             }}
-            style={{ fontSize: "11px", padding: "4px 10px", borderRadius: "4px", border: "1px solid var(--border-warm)", background: "#fff", cursor: "pointer", color: "var(--muted-ink)", fontWeight: 500 }}
           >
-            복사
-          </button>
+            {GRADE_HEADLINE[grade]}
+          </p>
         </div>
-      </div>
+      </header>
 
-      <div style={{ height: "1px", background: "var(--border-warm)", margin: "0 20px" }} />
-
-      {/* Rationale */}
-      <div style={{ padding: "16px 20px" }}>
-        <p style={{ fontSize: "11px", fontWeight: 700, color: "var(--muted-ink)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "10px" }}>
-          {isPositive ? "호재 이유" : "분석 근거"}
-        </p>
-        <p style={{ fontSize: "14px", color: "var(--charcoal)", lineHeight: 1.7, margin: 0 }}>
+      {/* ── RATIONALE ─────────────────────────────────────────── */}
+      <div style={{ padding: "18px 20px" }}>
+        <SectionLabel>{isPositive ? "호재 이유" : "분석 근거"}</SectionLabel>
+        <p
+          style={{
+            fontSize: "14px",
+            color: "var(--ms-text)",
+            lineHeight: 1.75,
+            margin: 0,
+          }}
+        >
           {result.rationale}
         </p>
       </div>
 
-      {/* Flagged keywords */}
+      {/* ── FLAGGED KEYWORDS ──────────────────────────────────── */}
       {result.flaggedKeywords.length > 0 && (
-        <div style={{ padding: "0 20px 16px" }}>
-          <p style={{ fontSize: "11px", fontWeight: 700, color: "var(--muted-ink)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "10px" }}>
-            감지된 위험 단어
-          </p>
-          <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-            {result.flaggedKeywords.map((kw) => (
-              <span
-                key={kw}
-                style={{
-                  fontSize: "12px",
-                  fontWeight: 600,
-                  color: "var(--grade-f-text)",
-                  background: "var(--grade-f-bg)",
-                  border: "1px solid var(--grade-f-border)",
-                  padding: "3px 10px",
-                  borderRadius: "100px",
-                }}
-              >
-                {kw}
-              </span>
-            ))}
+        <>
+          <Divider />
+          <div style={{ padding: "16px 20px" }}>
+            <SectionLabel>감지된 위험 단어</SectionLabel>
+            <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+              {result.flaggedKeywords.map((kw) => (
+                <span
+                  key={kw}
+                  style={{
+                    fontSize: "12px",
+                    fontWeight: 700,
+                    color: "#DC2626",
+                    background: "#FEE2E2",
+                    border: "1px solid #FCA5A5",
+                    padding: "3px 10px",
+                    borderRadius: "3px",
+                    letterSpacing: "0.02em",
+                  }}
+                >
+                  {kw}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
+        </>
       )}
 
-      {/* Matched events */}
+      {/* ── MATCHED EVENTS ────────────────────────────────────── */}
       {result.matchedEvents.length > 0 && (
         <>
-          <div style={{ height: "1px", background: "var(--border-warm)", margin: "0 20px" }} />
+          <Divider />
           <div style={{ padding: "16px 20px" }}>
-            <p style={{ fontSize: "11px", fontWeight: 700, color: "var(--muted-ink)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "14px" }}>
+            <SectionLabel>
               {isPositive ? "연관 기념일" : "관련 사건"}
-            </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            </SectionLabel>
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "8px" }}
+            >
               {result.matchedEvents.map((event) => {
-                const evGrade = event.grade ?? toneToGrade(event.recommendedTone, event.riskLevel);
+                const evGrade =
+                  event.grade ?? toneToGrade(event.recommendedTone, event.riskLevel);
+                const evScheme = GRADE_SCHEME[evGrade];
                 return (
                   <div
                     key={event.id}
-                    className="studio-card"
-                    style={{ padding: "14px 16px" }}
+                    style={{
+                      background: "#fff",
+                      border: `1px solid ${evScheme.bodyBorder}`,
+                      borderLeft: `4px solid ${evScheme.accent}`,
+                      borderRadius: "8px",
+                      padding: "12px 14px",
+                    }}
                   >
-                    <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "8px",
+                        marginBottom: "6px",
+                        flexWrap: "wrap",
+                      }}
+                    >
                       <GradeBadge grade={evGrade} size="xs" showLabel={false} />
-                      <span style={{ fontWeight: 600, fontSize: "13px", fontFamily: "var(--font-display)" }}>
+                      <span
+                        style={{
+                          fontWeight: 700,
+                          fontSize: "13px",
+                          color: "var(--ms-text)",
+                          fontFamily: "var(--font-display)",
+                          letterSpacing: "-0.01em",
+                        }}
+                      >
                         {event.name}
                       </span>
+                      <span
+                        style={{
+                          fontSize: "10px",
+                          fontWeight: 600,
+                          color: evScheme.textColor,
+                          background: evScheme.tagBg,
+                          border: `1px solid ${evScheme.tagBorder}`,
+                          padding: "1px 6px",
+                          borderRadius: "3px",
+                          letterSpacing: "0.05em",
+                          textTransform: "uppercase",
+                        }}
+                      >
+                        {GRADE_LABEL[evGrade]}
+                      </span>
                     </div>
-                    <p style={{ fontSize: "13px", color: "var(--muted-ink)", lineHeight: 1.6, margin: "0 0 8px" }}>
+                    <p
+                      style={{
+                        fontSize: "13px",
+                        color: "var(--ms-text-2)",
+                        lineHeight: 1.65,
+                        margin: "0 0 8px",
+                      }}
+                    >
                       {event.summary}
                     </p>
-                    <div style={{ display: "flex", gap: "12px" }}>
-                      {event.references.slice(0, 2).map((ref) => (
-                        <a
-                          key={ref.url}
-                          href={ref.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{ fontSize: "11px", color: "#5A72E0", textDecoration: "underline", textUnderlineOffset: "2px" }}
-                        >
-                          {ref.label} ↗
-                        </a>
-                      ))}
-                    </div>
+                    {event.references.length > 0 && (
+                      <div style={{ display: "flex", gap: "10px" }}>
+                        {event.references.slice(0, 2).map((ref) => (
+                          <a
+                            key={ref.url}
+                            href={ref.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              fontSize: "11px",
+                              color: "#2563EB",
+                              textDecoration: "underline",
+                              textUnderlineOffset: "2px",
+                            }}
+                          >
+                            {ref.label} ↗
+                          </a>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 );
               })}
@@ -179,31 +428,53 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
         </>
       )}
 
-      {/* Suggestions */}
+      {/* ── SUGGESTIONS ───────────────────────────────────────── */}
       {result.suggestions.length > 0 && (
         <>
-          <div style={{ height: "1px", background: "var(--border-warm)", margin: "0 20px" }} />
+          <Divider />
           <div style={{ padding: "16px 20px" }}>
-            <p style={{ fontSize: "11px", fontWeight: 700, color: "var(--muted-ink)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "12px" }}>
+            <SectionLabel>
               {isPositive ? "활용 아이디어" : "대안 제안"}
-            </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+            </SectionLabel>
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "6px" }}
+            >
               {result.suggestions.map((s, i) => (
                 <div
                   key={i}
                   style={{
                     display: "flex",
                     gap: "12px",
-                    padding: "12px 16px",
-                    background: "var(--warm-white)",
-                    border: "1px solid var(--border-warm)",
-                    borderRadius: "10px",
+                    padding: "11px 14px",
+                    background: "#fff",
+                    border: `1px solid ${scheme.bodyBorder}`,
+                    borderLeft: `3px solid ${scheme.accent}`,
+                    borderRadius: "6px",
                   }}
                 >
-                  <span style={{ fontSize: "11px", fontFamily: "monospace", color: "var(--muted-ink)", marginTop: "2px", minWidth: "20px" }}>
+                  <span
+                    style={{
+                      fontSize: "10px",
+                      fontFamily: "monospace",
+                      color: scheme.accent,
+                      fontWeight: 700,
+                      marginTop: "2px",
+                      minWidth: "18px",
+                      opacity: 0.8,
+                    }}
+                  >
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <p style={{ fontSize: "13px", color: "var(--charcoal)", lineHeight: 1.65, margin: 0 }}>{s}</p>
+                  <p
+                    style={{
+                      fontSize: "13px",
+                      color: "var(--ms-text)",
+                      lineHeight: 1.65,
+                      margin: 0,
+                    }}
+                  >
+                    {s}
+                  </p>
                 </div>
               ))}
             </div>
@@ -211,52 +482,118 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
         </>
       )}
 
-      {/* 대안 날짜 제안 — F/D 등급일 때만 */}
-      {(grade === "F" || grade === "D") && (
-        <div style={{ padding: "12px 20px", background: "var(--grade-b-bg)", borderTop: "1px solid var(--border-warm)" }}>
-          <p style={{ fontSize: "12px", color: "var(--ms-text-2)", margin: "0 0 8px", fontWeight: 600 }}>
-            다른 날짜로 재검토
-          </p>
-          <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-            {[1, 7, 14].map((offset) => {
-              const d = new Date(date);
-              d.setDate(d.getDate() + offset);
-              const ds = d.toISOString().split("T")[0];
-              return (
-                <a
-                  key={ds}
-                  href={`/check?date=${ds}`}
-                  style={{ fontSize: "12px", padding: "4px 10px", borderRadius: "4px", border: "1px solid var(--grade-b-border)", background: "#fff", color: "var(--grade-b-text)", textDecoration: "none", fontWeight: 500 }}
-                >
-                  {ds.slice(5).replace("-", "/")} +{offset}일
-                </a>
-              );
-            })}
+      {/* ── ALTERNATIVE DATES — F/D only ──────────────────────── */}
+      {isNegative && (
+        <>
+          <Divider />
+          <div
+            style={{
+              padding: "14px 20px",
+              background: "#F0FDF4",
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              flexWrap: "wrap",
+            }}
+          >
+            <p
+              style={{
+                fontSize: "11px",
+                color: "#14532D",
+                margin: 0,
+                fontWeight: 700,
+                whiteSpace: "nowrap",
+              }}
+            >
+              다른 날짜 시도
+            </p>
+            <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+              {[1, 7, 14].map((offset) => {
+                const d = new Date(date);
+                d.setDate(d.getDate() + offset);
+                const ds = d.toISOString().split("T")[0];
+                return (
+                  <a
+                    key={ds}
+                    href={`/check?date=${ds}`}
+                    style={{
+                      fontSize: "12px",
+                      padding: "4px 10px",
+                      borderRadius: "4px",
+                      border: "1px solid #86EFAC",
+                      background: "#fff",
+                      color: "#16A34A",
+                      textDecoration: "none",
+                      fontWeight: 600,
+                      transition: "background 0.15s",
+                    }}
+                    onMouseEnter={(e) =>
+                      ((e.currentTarget as HTMLAnchorElement).style.background =
+                        "#DCFCE7")
+                    }
+                    onMouseLeave={(e) =>
+                      ((e.currentTarget as HTMLAnchorElement).style.background =
+                        "#fff")
+                    }
+                  >
+                    {ds.slice(5).replace("-", "/")} +{offset}일
+                  </a>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        </>
       )}
 
-      {/* 맞춤 코멘트 — 로그인 사용자 + onboarding 완료 시만 표시 */}
+      {/* ── PERSONALIZED COMMENT ──────────────────────────────── */}
       {result.personalizedComment && (
         <>
-          <div style={{ height: "1px", background: "var(--border-warm)", margin: "0 20px" }} />
+          <Divider />
           <div style={{ padding: "16px 20px" }}>
-            <p style={{ fontSize: "11px", fontWeight: 700, color: "var(--ms-blue, #2563EB)", letterSpacing: "0.08em", textTransform: "uppercase", margin: "0 0 8px" }}>
+            <p
+              style={{
+                fontSize: "10px",
+                fontWeight: 700,
+                color: "#1D4ED8",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                margin: "0 0 10px",
+              }}
+            >
               맞춤 코멘트
             </p>
-            <p style={{ fontSize: "13px", color: "var(--charcoal)", lineHeight: 1.7, margin: 0, padding: "12px 14px", background: "var(--ms-blue-light, #EFF6FF)", borderRadius: "8px", border: "1px solid var(--ms-blue-mid, #BFDBFE)" }}>
+            <p
+              style={{
+                fontSize: "13px",
+                color: "var(--ms-text)",
+                lineHeight: 1.75,
+                margin: 0,
+                padding: "12px 14px",
+                background: "#EFF6FF",
+                borderRadius: "8px",
+                border: "1px solid #BFDBFE",
+              }}
+            >
               {result.personalizedComment}
             </p>
           </div>
         </>
       )}
 
-      {/* Memo */}
-      <div style={{ height: "1px", background: "var(--border-warm)", margin: "0 20px" }} />
+      {/* ── MEMO ──────────────────────────────────────────────── */}
+      <Divider />
       <div style={{ padding: "16px 20px" }}>
         <label
           htmlFor="result-memo"
-          style={{ fontSize: "11px", fontWeight: 700, color: "var(--muted-ink)", letterSpacing: "0.08em", textTransform: "uppercase", display: "block", marginBottom: "8px" }}
+          style={{
+            fontSize: "10px",
+            fontWeight: 700,
+            color: "var(--ms-text-3)",
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+            display: "block",
+            marginBottom: "8px",
+          }}
         >
           메모
         </label>
@@ -268,31 +605,54 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
           rows={3}
           style={{
             width: "100%",
-            padding: "10px 14px",
-            border: "1px solid var(--border-warm)",
-            borderRadius: "10px",
-            background: "var(--warm-white)",
+            padding: "10px 12px",
+            border: "1px solid var(--ms-border)",
+            borderRadius: "8px",
+            background: "#fff",
             fontSize: "13px",
-            color: "var(--charcoal)",
+            color: "var(--ms-text)",
             resize: "none",
             outline: "none",
             fontFamily: "var(--font-body)",
-            lineHeight: 1.6,
+            lineHeight: 1.65,
+            transition: "border-color 0.15s",
           }}
-          onFocus={(e) => (e.target.style.borderColor = "var(--muted-ink)")}
-          onBlur={(e) => (e.target.style.borderColor = "var(--border-warm)")}
+          onFocus={(e) =>
+            (e.target.style.borderColor = scheme.accent)
+          }
+          onBlur={(e) =>
+            (e.target.style.borderColor = "var(--ms-border)")
+          }
         />
-        <p style={{ fontSize: "11px", color: "var(--muted-ink)", marginTop: "6px" }}>
+        <p
+          style={{
+            fontSize: "11px",
+            color: "var(--ms-text-3)",
+            marginTop: "5px",
+            margin: "5px 0 0",
+          }}
+        >
           메모는 이 기기에만 저장됩니다.
         </p>
       </div>
 
-      {/* Disclaimer */}
-      <div style={{ padding: "0 20px 20px" }}>
-        <p style={{ fontSize: "11px", color: "var(--muted-ink)", background: "var(--warm-white)", border: "1px solid var(--border-faint)", borderRadius: "8px", padding: "10px 14px", margin: 0, lineHeight: 1.6 }}>
+      {/* ── DISCLAIMER ────────────────────────────────────────── */}
+      <div style={{ padding: "0 20px 18px" }}>
+        <p
+          style={{
+            fontSize: "11px",
+            color: "var(--ms-text-3)",
+            background: "var(--ms-surface-2)",
+            border: "1px solid var(--ms-border)",
+            borderRadius: "6px",
+            padding: "9px 12px",
+            margin: 0,
+            lineHeight: 1.6,
+          }}
+        >
           ⓘ 이 검토 결과는 참고용입니다. 최종 캠페인 결정은 귀하의 판단과 책임 하에 이루어집니다.
         </p>
       </div>
-    </div>
+    </article>
   );
 }
