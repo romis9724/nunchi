@@ -31,6 +31,11 @@ export default function AdminPage() {
             <div style={{ fontWeight: 700, marginBottom: "4px" }}>뉴스 승인 큐</div>
             <div style={{ fontSize: "13px", color: "var(--muted-ink)" }}>자동 수집 이벤트 검토·승인</div>
           </Link>
+          <Link href="/admin/users" style={CARD_STYLE}>
+            <div style={{ fontSize: "24px", marginBottom: "8px" }}>👥</div>
+            <div style={{ fontWeight: 700, marginBottom: "4px" }}>베타 유저 관리</div>
+            <div style={{ fontSize: "13px", color: "var(--muted-ink)" }}>가입자 목록·역할 관리</div>
+          </Link>
         </div>
       </div>
     </main>

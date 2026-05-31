@@ -24,6 +24,7 @@ export default function OnboardingPage() {
   const [productName, setProductName] = useState("");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   function toggle(list: string[], item: string, setter: (v: string[]) => void) {
     setter(list.includes(item) ? list.filter((i) => i !== item) : [...list, item]);
@@ -57,7 +58,26 @@ export default function OnboardingPage() {
       return;
     }
 
-    router.push("/check");
+    setSaving(false);
+    setShowSuccess(true);
+    setTimeout(() => router.push("/check"), 1800);
+  }
+
+  if (showSuccess) {
+    return (
+      <main style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "var(--rice-paper, #F8F7F4)" }}>
+        <div style={{ textAlign: "center", maxWidth: 360, padding: "0 24px" }}>
+          <div style={{ fontSize: "56px", marginBottom: "16px" }}>🎉</div>
+          <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.5rem", fontWeight: 800, color: "var(--charcoal)", margin: "0 0 10px" }}>
+            설정 완료!
+          </h2>
+          <p style={{ color: "var(--muted-ink)", fontSize: "15px", lineHeight: 1.6, margin: "0 0 8px" }}>
+            맞춤 캠페인 검토를 시작할 준비가 됐습니다.
+          </p>
+          <p style={{ color: "var(--muted-ink)", fontSize: "13px" }}>잠시 후 자동으로 이동합니다…</p>
+        </div>
+      </main>
+    );
   }
 
   return (

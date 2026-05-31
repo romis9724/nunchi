@@ -261,6 +261,8 @@ export default function LandingPage() {
           <div style={{ display: "flex", gap: "16px" }}>
             <Link href="/calendar" style={{ fontSize: "12px", color: "var(--ms-text-2)", textDecoration: "none" }}>민감일 캘린더</Link>
             <Link href="/check" style={{ fontSize: "12px", color: "var(--ms-text-2)", textDecoration: "none" }}>캠페인 검토</Link>
+            <Link href="/privacy" style={{ fontSize: "12px", color: "var(--ms-text-2)", textDecoration: "none" }}>개인정보처리방침</Link>
+            <Link href="/terms" style={{ fontSize: "12px", color: "var(--ms-text-2)", textDecoration: "none" }}>이용약관</Link>
           </div>
         </div>
       </footer>
