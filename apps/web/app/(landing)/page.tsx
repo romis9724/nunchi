@@ -3,29 +3,136 @@
 import Link from "next/link";
 import { AppHeader } from "../../components/AppHeader";
 
-/* ── Grade badge ──────────────────────────────────────────── */
-function GMini({ g }: { g: string }) {
-  const map: Record<string, [string, string]> = {
-    F: ["var(--grade-f-text)", "var(--grade-f-bg)"],
-    D: ["var(--grade-d-text)", "var(--grade-d-bg)"],
-    C: ["var(--grade-c-text)", "var(--grade-c-bg)"],
-    B: ["var(--grade-b-text)", "var(--grade-b-bg)"],
-    A: ["var(--grade-a-text)", "var(--grade-a-bg)"],
-  };
-  const [text, bg] = map[g] ?? map["C"];
+/* ─────────────────────────────────────────────────────────────
+   Nunchi Landing — AdCreative.ai-inspired layout
+   - 밝은 배경 + 빨강(브랜드) 액센트
+   - 좌측 정렬 hero · 굵은 헤드라인 · 구체적 숫자
+   - 실제 사고 사례를 hero 직후 사회적 증거로 노출
+─────────────────────────────────────────────────────────────── */
+
+/* ── Design constants ────────────────────────────────────────── */
+const RED = "var(--brand-red)";
+const RED_DARK = "var(--brand-red-dark)";
+const RED_SOFT = "var(--brand-red-soft)";
+const RED_MID = "var(--brand-red-mid)";
+const RED_TEXT = "var(--brand-red-text)";
+
+const TEXT = "var(--ms-text)";
+const MUTED = "var(--ms-text-2)";
+const FAINT = "var(--ms-text-3)";
+const BG = "#FFFFFF";
+const BG_SOFT = "var(--ms-surface)";
+const BORDER = "var(--ms-border)";
+
+/* ── Content ─────────────────────────────────────────────────── */
+const TRUST_LOGOS = ["스타벅스", "펩시", "H&M", "D&G", "네이버", "카카오"];
+
+const STATS = [
+  { n: "60+", label: "큐레이션 리스크 이벤트" },
+  { n: "5초", label: "캠페인 검토 소요 시간" },
+  { n: "F→A", label: "5단계 등급 자동 분류" },
+  { n: "0원", label: "베타 기간 무료" },
+];
+
+const BEFORE_AFTER = [
+  { before: "추모일·기념일 맥락 모름", after: "F등급 즉시 경고", icon: "📅" },
+  { before: "출시 후 사후 대응", after: "출시 전 사전 검토", icon: "⚡" },
+  { before: "브랜드 위기·임원 해임", after: "대안 카피 자동 제안", icon: "🛡️" },
+  { before: "팀 전체 긴급 대응 비용", after: "5초 안에 1인 검토", icon: "⏱️" },
+];
+
+const FEATURES = [
+  {
+    badge: "01",
+    title: "한국 역사 60+ 사건 DB",
+    body: "5·18, 4·16, 6·25, 이태원 등 검증된 민감일을 캘린더 형태로 정리. 각 사건의 키워드·시각 모티프·권장 톤까지 한눈에.",
+    metric: "60+",
+    metricLabel: "등록 이벤트",
+  },
+  {
+    badge: "02",
+    title: "AI 맥락 교차 검토",
+    body: "날짜 + 캠페인명 + 카피 + 시각 키워드를 동시에 분석. 단순 단어 매칭이 아닌 사건 맥락과 의미를 이해합니다.",
+    metric: "5초",
+    metricLabel: "분석 시간",
+  },
+  {
+    badge: "03",
+    title: "대안 카피 자동 제안",
+    body: "F등급 위험 발견 시 안전한 대안 표현, 다른 적합 일자, 호재 활용 포인트까지 함께 제시. 단순 경고에 그치지 않습니다.",
+    metric: "F→A",
+    metricLabel: "5단계 등급",
+  },
+];
+
+const GRADES = [
+  { g: "F", label: "즉각 회피", sub: "역사적 비극과 직접 충돌", ex: "5·18, 세월호, 이태원" },
+  { g: "D", label: "재검토 필요", sub: "민감 요소 감지", ex: "6·25, 현충일 전후" },
+  { g: "C", label: "일반 주의", sub: "특별한 위험·호재 없음", ex: "대부분의 평일" },
+  { g: "B", label: "안전", sub: "민감 요소 없음", ex: "제헌절, 식목일" },
+  { g: "A", label: "최적 타이밍", sub: "강한 긍정 연관", ex: "광복절, 빼빼로데이" },
+];
+
+const DEMOS = [
+  {
+    href: "/check?date=2027-05-18&copy=탱크 시리즈 신상 출시",
+    g: "F",
+    date: "5월 18일",
+    concept: "탱크 시리즈 신상 출시",
+    verdict: "F등급 — 즉각 위험",
+    reason: "광주민주화운동 기념일",
+  },
+  {
+    href: "/check?date=2027-04-16&copy=봄 리브랜드 런칭 파티",
+    g: "D",
+    date: "4월 16일",
+    concept: "봄 리브랜드 런칭 파티",
+    verdict: "D등급 — 재검토 권고",
+    reason: "세월호 참사 추모일",
+  },
+  {
+    href: "/check?date=2027-08-15&copy=광복 한정판 독립 에디션",
+    g: "A",
+    date: "8월 15일",
+    concept: "광복 한정판 에디션",
+    verdict: "A등급 — 최적 타이밍",
+    reason: "광복절 호재 매칭",
+  },
+];
+
+const GRADE_BG: Record<string, string> = {
+  F: "var(--grade-f-bg)",
+  D: "var(--grade-d-bg)",
+  C: "var(--grade-c-bg)",
+  B: "var(--grade-b-bg)",
+  A: "var(--grade-a-bg)",
+};
+const GRADE_TEXT: Record<string, string> = {
+  F: "var(--grade-f-text)",
+  D: "var(--grade-d-text)",
+  C: "var(--grade-c-text)",
+  B: "var(--grade-b-text)",
+  A: "var(--grade-a-text)",
+};
+
+/* ── Small atoms ─────────────────────────────────────────────── */
+function GradeBadge({ g, size = 36 }: { g: string; size?: number }) {
   return (
     <span
       style={{
         display: "inline-flex",
         alignItems: "center",
-        fontWeight: 800,
-        fontSize: "12px",
-        color: text,
-        background: bg,
-        padding: "2px 10px",
-        borderRadius: "3px",
+        justifyContent: "center",
+        width: size,
+        height: size,
+        fontWeight: 900,
+        fontSize: size * 0.5,
+        color: GRADE_TEXT[g] ?? GRADE_TEXT.C,
+        background: GRADE_BG[g] ?? GRADE_BG.C,
+        borderRadius: "8px",
         fontFamily: "var(--font-display)",
         letterSpacing: "0.02em",
+        lineHeight: 1,
       }}
     >
       {g}
@@ -33,600 +140,727 @@ function GMini({ g }: { g: string }) {
   );
 }
 
-/* ── Constants ────────────────────────────────────────────── */
-const DARK_BG = "#0B0F1C";
-const DARK_BG2 = "#0F1523";
-const MUTED = "#8FA3BF";
-const BLUE = "#3B82F6";
+function Eyebrow({ children }: { children: React.ReactNode }) {
+  return (
+    <div
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: "8px",
+        fontSize: "12px",
+        fontWeight: 700,
+        letterSpacing: "0.12em",
+        textTransform: "uppercase",
+        color: RED,
+        background: RED_SOFT,
+        border: `1px solid ${RED_MID}`,
+        padding: "6px 14px",
+        borderRadius: "999px",
+      }}
+    >
+      <span style={{ width: 6, height: 6, borderRadius: "50%", background: RED }} />
+      {children}
+    </div>
+  );
+}
 
-const STATS = [
-  { n: "60+", label: "큐레이션 리스크 이벤트" },
-  { n: "F → A", label: "5단계 위험·호재 등급" },
-  { n: "AI 분석", label: "맥락 기반 자동 교차 검토" },
-  { n: "베타 무료", label: "지금 바로 시작 가능" },
-];
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <div
+      style={{
+        fontSize: "12px",
+        fontWeight: 800,
+        letterSpacing: "0.16em",
+        textTransform: "uppercase",
+        color: RED,
+        marginBottom: "16px",
+      }}
+    >
+      {children}
+    </div>
+  );
+}
 
-const BEFORE_AFTER = [
-  { before: "✗ 추모일·기념일 맥락 모름", after: "✓ F등급 즉시 경고" },
-  { before: "✗ 출시 후 사후 대응", after: "✓ 출시 전 사전 검토" },
-  { before: "✗ 브랜드 위기·임원 해임", after: "✓ 대안 카피 자동 제안" },
-  { before: "✗ 팀 전체 긴급 대응 비용", after: "✓ 마케터 한 명이 5초에 검토" },
-];
-
-const FEATURES = [
-  {
-    icon: "📅",
-    title: "날짜 리스크 분석",
-    body: "입력한 캠페인 날짜가 한국 역사 민감일과 충돌하는지 즉시 판단합니다. F부터 A까지 5단계 등급으로 한눈에 확인.",
-    example: "5·18 / 4·16 / 6·25 / 이태원 등 60건+",
-  },
-  {
-    icon: "🔍",
-    title: "키워드 위험 감지",
-    body: '"탱크", "책상 탁", "봄 런칭" 등 맥락 위험 키워드를 자동으로 감지하고 사유와 함께 플래그합니다.',
-    example: "블랙리스트 키워드 자동 매칭",
-  },
-  {
-    icon: "✏️",
-    title: "AI 맞춤 제안",
-    body: "위험 등급과 함께 대안 카피, 대체 날짜, 안전한 컨셉을 제시합니다. 단순 경고에 그치지 않습니다.",
-    example: "업종·채널별 맞춤 분석",
-  },
-];
-
-const GRADES = [
-  {
-    g: "F",
-    label: "즉각 회피",
-    sub: "역사적 비극과 직접 충돌. 캠페인 재설계 권고.",
-    ex: "5·18, 세월호, 이태원",
-    accent: "#DC2626",
-    tc: "var(--grade-f-text)",
-    bg: "var(--grade-f-bg)",
-    bc: "var(--grade-f-border)",
-  },
-  {
-    g: "D",
-    label: "재검토 필요",
-    sub: "민감 요소 감지. 컨셉·카피 전면 재검토.",
-    ex: "6·25, 현충일 전후",
-    accent: "#D97706",
-    tc: "var(--grade-d-text)",
-    bg: "var(--grade-d-bg)",
-    bc: "var(--grade-d-border)",
-  },
-  {
-    g: "C",
-    label: "일반 주의",
-    sub: "특별한 위험·호재 없음. 표준 주의.",
-    ex: "대부분의 평일",
-    accent: "#6B7280",
-    tc: "var(--grade-c-text)",
-    bg: "var(--ms-surface-2)",
-    bc: "var(--ms-border)",
-  },
-  {
-    g: "B",
-    label: "안전",
-    sub: "긍정적 연관 있거나 민감 요소 없음.",
-    ex: "제헌절, 식목일",
-    accent: "#16A34A",
-    tc: "var(--grade-b-text)",
-    bg: "var(--grade-b-bg)",
-    bc: "var(--grade-b-border)",
-  },
-  {
-    g: "A",
-    label: "최적 타이밍",
-    sub: "기념일·이벤트 시즌과 강한 긍정 연관.",
-    ex: "광복절, 빼빼로데이",
-    accent: "#2563EB",
-    tc: "var(--grade-a-text)",
-    bg: "var(--grade-a-bg)",
-    bc: "var(--grade-a-border)",
-  },
-];
-
-const DEMOS = [
-  {
-    href: "/check?date=2027-05-18&copy=탱크 시리즈 신상 출시",
-    g: "F",
-    label: "5월 18일 · 군사 테마 신제품",
-    sub: "F등급 — 즉각 위험 감지",
-    accent: "#DC2626",
-    tc: "var(--grade-f-text)",
-  },
-  {
-    href: "/check?date=2027-04-16&copy=봄 리브랜드 런칭 파티",
-    g: "D",
-    label: "4월 16일 · 런칭 파티",
-    sub: "D등급 — 날짜 재검토 권고",
-    accent: "#D97706",
-    tc: "var(--grade-d-text)",
-  },
-  {
-    href: "/check?date=2027-08-15&copy=광복 한정판 독립 에디션",
-    g: "A",
-    label: "8월 15일 · 광복 한정판",
-    sub: "A등급 — 최적 타이밍",
-    accent: "#2563EB",
-    tc: "var(--grade-a-text)",
-  },
-];
-
-/* ── Main ─────────────────────────────────────────────────── */
+/* ── Main ────────────────────────────────────────────────────── */
 export default function LandingPage() {
   return (
-    <div style={{ background: DARK_BG, minHeight: "100vh", fontFamily: "var(--font-body)" }}>
+    <div style={{ background: BG, minHeight: "100vh", fontFamily: "var(--font-body)", color: TEXT }}>
       <AppHeader />
 
-      {/* ── 1. DARK HERO ─────────────────────────────────────── */}
-      <section style={{ background: DARK_BG, padding: "80px 24px 72px" }} className="hero-section">
-        <div style={{ maxWidth: "1160px", margin: "0 auto" }}>
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "6px",
-              fontSize: "12px",
-              fontWeight: 600,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase" as const,
-              color: BLUE,
-              border: `1px solid ${BLUE}30`,
-              background: `${BLUE}18`,
-              padding: "4px 12px",
-              borderRadius: "3px",
-              marginBottom: "28px",
-            }}
-          >
-            브랜드 안전 · 날짜 리스크 분석
-          </div>
+      {/* ════════════════════════════════════════════════════════
+          1. HERO — 좌측 정렬 · 굵은 헤드라인 · 빨강 액센트
+      ════════════════════════════════════════════════════════ */}
+      <section
+        style={{
+          background: `linear-gradient(180deg, ${BG} 0%, ${BG} 60%, ${RED_SOFT} 100%)`,
+          padding: "72px 24px 96px",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        {/* 배경 장식 — 우상단 큰 빨강 글로우 */}
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            top: "-200px",
+            right: "-200px",
+            width: "640px",
+            height: "640px",
+            background: `radial-gradient(circle, ${RED}22 0%, transparent 70%)`,
+            pointerEvents: "none",
+          }}
+        />
+
+        <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative" }}>
+          <Eyebrow>브랜드 안전 · 날짜 리스크 분석</Eyebrow>
 
           <h1
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
-              fontWeight: 800,
-              letterSpacing: "-0.04em",
-              lineHeight: 1.06,
-              color: "#FFFFFF",
-              margin: "0 0 22px",
+              fontSize: "clamp(2.75rem, 6vw, 5rem)",
+              fontWeight: 900,
+              letterSpacing: "-0.045em",
+              lineHeight: 1.02,
+              color: TEXT,
+              margin: "28px 0 24px",
+              maxWidth: "920px",
             }}
           >
-            출시 전에,
+            광고 사고는 <span style={{ color: RED }}>출시 전</span>에 막습니다.
             <br />
-            <span style={{ color: BLUE }}>리스크를 잡습니다</span>
+            5초면 됩니다.
           </h1>
 
           <p
             style={{
-              fontSize: "17px",
+              fontSize: "clamp(1rem, 1.8vw, 1.25rem)",
+              lineHeight: 1.6,
               color: MUTED,
-              lineHeight: 1.65,
-              maxWidth: "480px",
-              marginBottom: "36px",
+              maxWidth: "640px",
+              margin: "0 0 36px",
             }}
           >
-            마케팅 캠페인의 날짜 × 카피가 한국 역사·사회
-            맥락과 충돌하는지 AI가 즉시 분석합니다.
+            마케팅 캠페인의 <strong style={{ color: TEXT }}>날짜 × 카피</strong>가 한국 역사·사회 맥락과
+            충돌하는지 AI가 즉시 분석합니다. F부터 A까지 5단계 등급으로 한눈에.
           </p>
 
-          <div
-            style={{ display: "flex", gap: "12px", flexWrap: "wrap" as const, alignItems: "center", marginBottom: "56px" }}
-          >
+          {/* Dual CTA */}
+          <div style={{ display: "flex", gap: "14px", flexWrap: "wrap", marginBottom: "32px" }}>
             <Link
               href="/check"
               style={{
-                display: "inline-block",
-                padding: "13px 30px",
-                borderRadius: "4px",
-                background: BLUE,
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                background: RED,
                 color: "#fff",
-                fontSize: "15px",
                 fontWeight: 700,
+                fontSize: "16px",
+                padding: "16px 28px",
+                borderRadius: "10px",
                 textDecoration: "none",
-                fontFamily: "var(--font-body)",
-                whiteSpace: "nowrap" as const,
-                boxShadow: `0 2px 16px ${BLUE}50`,
-                transition: "background 0.15s, box-shadow 0.15s",
-              }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget as HTMLAnchorElement;
-                el.style.background = "#2563EB";
-                el.style.boxShadow = `0 4px 20px ${BLUE}60`;
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget as HTMLAnchorElement;
-                el.style.background = BLUE;
-                el.style.boxShadow = `0 2px 16px ${BLUE}50`;
+                boxShadow: `0 12px 32px ${RED}40, 0 0 0 1px ${RED_DARK}`,
+                transition: "transform 0.15s, box-shadow 0.15s",
               }}
             >
-              지금 무료로 시작하기 →
+              지금 무료로 검토하기 <span style={{ fontSize: "18px" }}>→</span>
             </Link>
-            <span style={{ fontSize: "14px", color: `${MUTED}99` }}>회원가입 불필요</span>
+            <Link
+              href="/calendar"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                background: "#fff",
+                color: TEXT,
+                fontWeight: 600,
+                fontSize: "16px",
+                padding: "16px 24px",
+                borderRadius: "10px",
+                textDecoration: "none",
+                border: `1.5px solid ${BORDER}`,
+              }}
+            >
+              리스크 캘린더 보기
+            </Link>
           </div>
 
-          {/* Hero card */}
+          <p style={{ fontSize: "13px", color: FAINT, margin: 0 }}>
+            ✓ 회원가입 불필요 &nbsp;·&nbsp; ✓ 한국 사건 60+ 큐레이션 &nbsp;·&nbsp; ✓ 5초 안에 결과
+          </p>
+
+          {/* Hero에 바로 붙는 실제 사례 카드 — 강력한 사회적 증거 */}
           <div
             style={{
-              background: "rgba(255,255,255,0.06)",
-              border: "1px solid rgba(220,38,38,0.4)",
-              borderLeft: "4px solid #DC2626",
-              borderRadius: "12px",
-              padding: "20px 24px",
-              maxWidth: "560px",
+              marginTop: "56px",
+              background: "#fff",
+              border: `1px solid ${RED_MID}`,
+              borderLeft: `4px solid ${RED}`,
+              borderRadius: "14px",
+              padding: "24px 28px",
+              maxWidth: "720px",
+              boxShadow: "0 24px 56px rgba(225, 29, 72, 0.08)",
             }}
           >
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "10px" }}>
-              <span style={{ fontSize: "13px", fontWeight: 600, textTransform: "uppercase" as const, letterSpacing: "0.06em", color: MUTED }}>
-                실제 사례 · 2026.05.18
-              </span>
-              <GMini g="F" />
+            <div style={{ display: "flex", alignItems: "flex-start", gap: "16px" }}>
+              <GradeBadge g="F" size={44} />
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div
+                  style={{
+                    fontSize: "11px",
+                    fontWeight: 700,
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    color: RED,
+                    marginBottom: "6px",
+                  }}
+                >
+                  실제 사고 사례 · 2026.05.18
+                </div>
+                <p
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "17px",
+                    fontWeight: 700,
+                    color: TEXT,
+                    margin: "0 0 6px",
+                    letterSpacing: "-0.01em",
+                  }}
+                >
+                  스타벅스 “탱크데이” 텀블러 · “책상에 탁!” 런칭 카피
+                </p>
+                <p style={{ fontSize: "13.5px", color: MUTED, margin: 0, lineHeight: 1.55 }}>
+                  → 전국 불매 운동 · 대표 해임 · 정부 보이콧 · 미국 본사 공식 사과
+                </p>
+              </div>
             </div>
-            <p style={{ fontSize: "14px", color: "#FFFFFF", lineHeight: 1.6, margin: "0 0 6px", fontWeight: 600 }}>
-              "탱크데이" 텀블러 · "책상에 탁!" 런칭 카피
-            </p>
-            <p style={{ fontSize: "13px", color: MUTED, margin: 0, lineHeight: 1.5 }}>
-              → 전국 불매 운동 · 대표 해임 · 정부 보이콧 · 미국 본사 공식 사과
-            </p>
           </div>
         </div>
       </section>
 
-      {/* ── 2. STATS BAR ─────────────────────────────────────── */}
-      <div
-        style={{
-          background: DARK_BG2,
-          borderTop: "1px solid rgba(255,255,255,0.06)",
-          borderBottom: "1px solid rgba(255,255,255,0.06)",
-          padding: "28px 24px",
-        }}
-        className="stats-bar"
-      >
+      {/* ════════════════════════════════════════════════════════
+          2. STATS — 빨강 강조 숫자 4개
+      ════════════════════════════════════════════════════════ */}
+      <section style={{ background: "#fff", padding: "56px 24px", borderTop: `1px solid ${BORDER}` }}>
         <div
-          style={{ maxWidth: "1160px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "24px" }}
-          className="rg-4"
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+            gap: "32px",
+          }}
         >
-          {STATS.map((item) => (
-            <div key={item.n} style={{ textAlign: "center" }}>
-              <p style={{ fontFamily: "var(--font-display)", fontSize: "26px", fontWeight: 800, color: "#fff", margin: "0 0 4px", letterSpacing: "-0.04em" }}>
-                {item.n}
-              </p>
-              <p style={{ fontSize: "13px", color: MUTED, margin: 0, fontWeight: 500 }}>
-                {item.label}
-              </p>
+          {STATS.map((s) => (
+            <div key={s.label} style={{ textAlign: "left" }}>
+              <div
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(2.25rem, 4vw, 3rem)",
+                  fontWeight: 900,
+                  color: RED,
+                  letterSpacing: "-0.03em",
+                  lineHeight: 1,
+                  marginBottom: "8px",
+                }}
+              >
+                {s.n}
+              </div>
+              <div style={{ fontSize: "13px", color: MUTED, fontWeight: 500 }}>{s.label}</div>
             </div>
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* ── 3. WHY — Before / After (white) ──────────────────── */}
-      <section style={{ background: "#FFFFFF", padding: "80px 24px" }} className="section-pad">
-        <div style={{ maxWidth: "1160px", margin: "0 auto" }}>
-          <p style={{ display: "inline-flex", alignItems: "center", fontSize: "13px", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "#2563EB", background: "#EFF6FF", border: "1px solid #BFDBFE", borderRadius: "20px", padding: "5px 14px", margin: "0 0 16px" }}>
-            왜 필요한가
-          </p>
+      {/* ════════════════════════════════════════════════════════
+          3. BEFORE / AFTER
+      ════════════════════════════════════════════════════════ */}
+      <section style={{ background: BG_SOFT, padding: "96px 24px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <SectionLabel>왜 필요한가</SectionLabel>
           <h2
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(26px,3.5vw,38px)",
-              fontWeight: 800,
-              letterSpacing: "-0.04em",
-              color: "var(--ms-text)",
-              margin: "0 0 40px",
-              lineHeight: 1.12,
+              fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
+              fontWeight: 900,
+              letterSpacing: "-0.03em",
+              color: TEXT,
+              margin: "0 0 48px",
+              maxWidth: "640px",
+              lineHeight: 1.15,
             }}
           >
             마케터가 놓치기 쉬운
             <br />
-            날짜 리스크
+            <span style={{ color: RED }}>날짜 리스크</span>
           </h2>
 
           <div
-            style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px", border: "1px solid var(--ms-border)", borderRadius: "10px", overflow: "hidden" }}
-            className="rg-2"
+            style={{
+              background: "#fff",
+              borderRadius: "16px",
+              border: `1px solid ${BORDER}`,
+              overflow: "hidden",
+            }}
           >
-            <div style={{ background: "#FEF2F2", padding: "16px 24px", borderBottom: "1px solid #FECACA" }}>
-              <span style={{ fontSize: "12px", fontWeight: 700, color: "#DC2626", textTransform: "uppercase" as const, letterSpacing: "0.06em" }}>
-                Before nunchi
-              </span>
-            </div>
-            <div style={{ background: "#EFF6FF", padding: "16px 24px", borderBottom: "1px solid #BFDBFE" }}>
-              <span style={{ fontSize: "12px", fontWeight: 700, color: "#2563EB", textTransform: "uppercase" as const, letterSpacing: "0.06em" }}>
-                After nunchi
-              </span>
-            </div>
-            {BEFORE_AFTER.map((row, i) => [
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                background: RED_SOFT,
+                borderBottom: `1px solid ${BORDER}`,
+              }}
+            >
               <div
-                key={`b-${i}`}
                 style={{
                   padding: "16px 24px",
-                  background: i % 2 === 0 ? "#FFFFFF" : "#FAFAFA",
-                  borderBottom: i < BEFORE_AFTER.length - 1 ? "1px solid var(--ms-border)" : "none",
-                  fontSize: "14px",
-                  color: "var(--ms-text-2)",
-                  lineHeight: 1.5,
+                  fontSize: "12px",
+                  fontWeight: 800,
+                  letterSpacing: "0.12em",
+                  color: RED,
+                  textTransform: "uppercase",
+                  borderRight: `1px solid ${RED_MID}`,
                 }}
               >
-                {row.before}
-              </div>,
+                Before Nunchi
+              </div>
               <div
-                key={`a-${i}`}
                 style={{
                   padding: "16px 24px",
-                  background: i % 2 === 0 ? "#F8FAFF" : "#F0F6FF",
-                  borderBottom: i < BEFORE_AFTER.length - 1 ? "1px solid #BFDBFE40" : "none",
-                  fontSize: "14px",
-                  color: "var(--ms-text)",
-                  fontWeight: 600,
-                  lineHeight: 1.5,
+                  fontSize: "12px",
+                  fontWeight: 800,
+                  letterSpacing: "0.12em",
+                  color: "var(--ms-blue)",
+                  textTransform: "uppercase",
+                  background: "var(--ms-blue-light)",
                 }}
               >
-                {row.after}
-              </div>,
-            ])}
+                After Nunchi
+              </div>
+            </div>
+
+            {BEFORE_AFTER.map((row, i) => (
+              <div
+                key={i}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  borderBottom: i === BEFORE_AFTER.length - 1 ? "none" : `1px solid ${BORDER}`,
+                }}
+              >
+                <div
+                  style={{
+                    padding: "20px 24px",
+                    fontSize: "15px",
+                    color: MUTED,
+                    borderRight: `1px solid ${BORDER}`,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                  }}
+                >
+                  <span style={{ color: RED, fontWeight: 700 }}>✗</span> {row.before}
+                </div>
+                <div
+                  style={{
+                    padding: "20px 24px",
+                    fontSize: "15px",
+                    color: TEXT,
+                    fontWeight: 600,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                  }}
+                >
+                  <span style={{ color: "var(--ms-blue)", fontWeight: 700 }}>✓</span> {row.after}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── 4. FEATURES (white) ──────────────────────────────── */}
-      <section style={{ background: "#FFFFFF", padding: "0 24px 80px" }} className="section-pad">
-        <div style={{ maxWidth: "1160px", margin: "0 auto" }}>
-          <p style={{ display: "inline-flex", alignItems: "center", fontSize: "13px", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "#2563EB", background: "#EFF6FF", border: "1px solid #BFDBFE", borderRadius: "20px", padding: "5px 14px", margin: "0 0 16px" }}>
-            핵심 기능
-          </p>
+      {/* ════════════════════════════════════════════════════════
+          4. FEATURES — 좌측 빨강 번호 카드
+      ════════════════════════════════════════════════════════ */}
+      <section style={{ background: "#fff", padding: "96px 24px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <SectionLabel>핵심 기능</SectionLabel>
           <h2
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(26px,3.5vw,38px)",
-              fontWeight: 800,
-              letterSpacing: "-0.04em",
-              color: "var(--ms-text)",
-              margin: "0 0 36px",
-              lineHeight: 1.12,
+              fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
+              fontWeight: 900,
+              letterSpacing: "-0.03em",
+              color: TEXT,
+              margin: "0 0 56px",
+              maxWidth: "720px",
+              lineHeight: 1.15,
             }}
           >
-            3가지로 충분합니다
+            단순 검색이 아닙니다.
+            <br />
+            <span style={{ color: RED }}>맥락을 이해</span>합니다.
           </h2>
 
           <div
-            style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "16px" }}
-            className="rg-3"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "24px",
+            }}
           >
             {FEATURES.map((f) => (
-              <div
-                key={f.title}
+              <article
+                key={f.badge}
                 style={{
-                  background: "#FFFFFF",
-                  border: "1px solid var(--ms-border)",
-                  borderRadius: "8px",
-                  padding: "28px 24px",
+                  background: "#fff",
+                  border: `1px solid ${BORDER}`,
+                  borderRadius: "16px",
+                  padding: "28px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "16px",
+                  transition: "border-color 0.15s, box-shadow 0.15s",
                 }}
               >
-                <div style={{ fontSize: "28px", marginBottom: "14px" }}>{f.icon}</div>
-                <h3 style={{ fontFamily: "var(--font-display)", fontSize: "17px", fontWeight: 700, color: "var(--ms-text)", margin: "0 0 10px", letterSpacing: "-0.02em" }}>
+                <div
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: 44,
+                    height: 44,
+                    background: RED_SOFT,
+                    color: RED,
+                    fontFamily: "var(--font-display)",
+                    fontWeight: 900,
+                    fontSize: "16px",
+                    borderRadius: "10px",
+                    border: `1px solid ${RED_MID}`,
+                  }}
+                >
+                  {f.badge}
+                </div>
+                <h3
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "20px",
+                    fontWeight: 800,
+                    color: TEXT,
+                    margin: 0,
+                    letterSpacing: "-0.02em",
+                  }}
+                >
                   {f.title}
                 </h3>
-                <p style={{ fontSize: "15px", color: "var(--ms-text-2)", lineHeight: 1.7, margin: "0 0 14px" }}>
+                <p style={{ fontSize: "14px", color: MUTED, lineHeight: 1.65, margin: 0, flex: 1 }}>
                   {f.body}
                 </p>
-                <p style={{ fontSize: "12px", color: "var(--ms-text-3)", fontWeight: 600, margin: 0, background: "var(--ms-surface-2)", display: "inline-block", padding: "3px 10px", borderRadius: "3px" }}>
-                  {f.example}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── 5. GRADE SYSTEM (light gray) ─────────────────────── */}
-      <section
-        style={{ background: "#F8F9FC", borderTop: "1px solid var(--ms-border)", borderBottom: "1px solid var(--ms-border)", padding: "72px 24px" }}
-        className="section-pad"
-      >
-        <div style={{ maxWidth: "1160px", margin: "0 auto" }}>
-          <p style={{ display: "inline-flex", alignItems: "center", fontSize: "13px", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "#2563EB", background: "#EFF6FF", border: "1px solid #BFDBFE", borderRadius: "20px", padding: "5px 14px", margin: "0 0 16px" }}>
-            등급 시스템
-          </p>
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(24px,3vw,32px)",
-              fontWeight: 800,
-              letterSpacing: "-0.04em",
-              color: "var(--ms-text)",
-              margin: "0 0 32px",
-            }}
-          >
-            위험만 체크하지 않습니다. 기회도 찾아드립니다.
-          </h2>
-
-          <div
-            style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)", gap: "8px" }}
-            className="rg-5"
-          >
-            {GRADES.map((item) => (
-              <div
-                key={item.g}
-                style={{
-                  background: item.bg,
-                  border: `1px solid ${item.bc}`,
-                  borderLeft: `4px solid ${item.accent}`,
-                  borderRadius: "6px",
-                  padding: "18px 16px",
-                }}
-              >
-                <p style={{ fontFamily: "var(--font-display)", fontSize: "32px", fontWeight: 800, color: item.tc, margin: "0 0 4px", letterSpacing: "-0.04em", lineHeight: 1 }}>
-                  {item.g}
-                </p>
-                <p style={{ fontSize: "13px", fontWeight: 700, color: "var(--ms-text)", margin: "0 0 8px" }}>
-                  {item.label}
-                </p>
-                <p style={{ fontSize: "13px", color: "var(--ms-text-2)", lineHeight: 1.6, margin: "0 0 10px" }}>
-                  {item.sub}
-                </p>
-                <p style={{ fontSize: "13px", color: item.tc, fontWeight: 700, margin: 0 }}>
-                  예: {item.ex}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── 6. DEMO CTA (dark) ───────────────────────────────── */}
-      <section style={{ background: DARK_BG, padding: "80px 24px" }} className="section-pad">
-        <div style={{ maxWidth: "1160px", margin: "0 auto" }}>
-          <p style={{ display: "inline-flex", alignItems: "center", fontSize: "13px", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "#93C5FD", background: "rgba(147,197,253,0.12)", border: "1px solid rgba(147,197,253,0.25)", borderRadius: "20px", padding: "5px 14px", marginBottom: "20px" }}>
-            직접 체험해보기
-          </p>
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(26px,3.5vw,36px)",
-              fontWeight: 800,
-              letterSpacing: "-0.04em",
-              color: "#FFFFFF",
-              margin: "0 0 32px",
-              lineHeight: 1.12,
-            }}
-          >
-            3가지 시나리오로 바로 확인하세요
-          </h2>
-
-          <div
-            style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "12px", marginBottom: "56px" }}
-            className="rg-3"
-          >
-            {DEMOS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                style={{
-                  textDecoration: "none",
-                  background: "rgba(255,255,255,0.06)",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  borderLeft: `4px solid ${item.accent}`,
-                  borderRadius: "8px",
-                  padding: "20px 22px",
-                  display: "block",
-                  transition: "background 0.15s, transform 0.15s",
-                }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget as HTMLAnchorElement;
-                  el.style.background = "rgba(255,255,255,0.10)";
-                  el.style.transform = "translateY(-2px)";
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget as HTMLAnchorElement;
-                  el.style.background = "rgba(255,255,255,0.06)";
-                  el.style.transform = "translateY(0)";
-                }}
-              >
-                <div style={{ marginBottom: "10px" }}>
-                  <GMini g={item.g} />
+                <div style={{ display: "flex", alignItems: "baseline", gap: "8px", paddingTop: "12px", borderTop: `1px solid ${BORDER}` }}>
+                  <span
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "26px",
+                      fontWeight: 900,
+                      color: RED,
+                      letterSpacing: "-0.02em",
+                    }}
+                  >
+                    {f.metric}
+                  </span>
+                  <span style={{ fontSize: "12px", color: FAINT, fontWeight: 500 }}>{f.metricLabel}</span>
                 </div>
-                <p style={{ fontFamily: "var(--font-display)", fontSize: "14px", fontWeight: 700, color: "#FFFFFF", margin: "0 0 5px", letterSpacing: "-0.01em" }}>
-                  {item.label}
-                </p>
-                <p style={{ fontSize: "12px", color: item.tc, fontWeight: 700, margin: 0 }}>
-                  {item.sub} →
-                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════
+          5. GRADE LADDER (F → A)
+      ════════════════════════════════════════════════════════ */}
+      <section style={{ background: BG_SOFT, padding: "96px 24px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <SectionLabel>5단계 등급</SectionLabel>
+          <h2
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
+              fontWeight: 900,
+              letterSpacing: "-0.03em",
+              color: TEXT,
+              margin: "0 0 16px",
+              maxWidth: "720px",
+              lineHeight: 1.15,
+            }}
+          >
+            한눈에 위험 · 호재를
+            <br />
+            동시에 판단합니다.
+          </h2>
+          <p style={{ fontSize: "15px", color: MUTED, margin: "0 0 48px", maxWidth: "560px" }}>
+            F부터 A까지 5단계로 자동 분류. 위험만 차단하는 게 아니라 호재 타이밍도 알려드립니다.
+          </p>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+              gap: "16px",
+            }}
+          >
+            {GRADES.map((grade) => (
+              <div
+                key={grade.g}
+                style={{
+                  background: "#fff",
+                  border: `1px solid ${BORDER}`,
+                  borderRadius: "14px",
+                  padding: "24px 20px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "12px",
+                }}
+              >
+                <GradeBadge g={grade.g} size={44} />
+                <div>
+                  <div
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "17px",
+                      fontWeight: 800,
+                      color: TEXT,
+                      marginBottom: "4px",
+                    }}
+                  >
+                    {grade.label}
+                  </div>
+                  <div style={{ fontSize: "13px", color: MUTED, lineHeight: 1.5 }}>{grade.sub}</div>
+                </div>
+                <div
+                  style={{
+                    fontSize: "11px",
+                    color: FAINT,
+                    fontFamily: "var(--font-body)",
+                    paddingTop: "12px",
+                    borderTop: `1px solid ${BORDER}`,
+                  }}
+                >
+                  예: {grade.ex}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════
+          6. LIVE DEMOS — 실제 케이스 클릭 가능
+      ════════════════════════════════════════════════════════ */}
+      <section style={{ background: "#fff", padding: "96px 24px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <SectionLabel>지금 직접 확인하기</SectionLabel>
+          <h2
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
+              fontWeight: 900,
+              letterSpacing: "-0.03em",
+              color: TEXT,
+              margin: "0 0 48px",
+              maxWidth: "720px",
+              lineHeight: 1.15,
+            }}
+          >
+            3가지 시나리오로 체험해보세요.
+          </h2>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "20px",
+            }}
+          >
+            {DEMOS.map((demo) => (
+              <Link
+                key={demo.href}
+                href={demo.href}
+                style={{
+                  background: "#fff",
+                  border: `1px solid ${BORDER}`,
+                  borderRadius: "14px",
+                  padding: "24px",
+                  textDecoration: "none",
+                  color: TEXT,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "16px",
+                  transition: "border-color 0.15s, transform 0.15s",
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                  <GradeBadge g={demo.g} size={40} />
+                  <span style={{ fontSize: "12px", color: FAINT, fontWeight: 600 }}>{demo.date}</span>
+                </div>
+                <div>
+                  <div
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "16px",
+                      fontWeight: 700,
+                      color: TEXT,
+                      marginBottom: "6px",
+                      letterSpacing: "-0.01em",
+                    }}
+                  >
+                    {demo.concept}
+                  </div>
+                  <div style={{ fontSize: "13px", color: MUTED, marginBottom: "4px" }}>{demo.verdict}</div>
+                  <div style={{ fontSize: "12px", color: FAINT }}>{demo.reason}</div>
+                </div>
+                <div
+                  style={{
+                    fontSize: "13px",
+                    fontWeight: 600,
+                    color: RED,
+                    paddingTop: "12px",
+                    borderTop: `1px solid ${BORDER}`,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "6px",
+                  }}
+                >
+                  검토 결과 보기 <span>→</span>
+                </div>
               </Link>
             ))}
           </div>
-
-          <div style={{ textAlign: "center" }}>
-            <h3
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "clamp(22px,3vw,32px)",
-                fontWeight: 800,
-                letterSpacing: "-0.04em",
-                color: "#fff",
-                margin: "0 0 12px",
-                lineHeight: 1.12,
-              }}
-            >
-              내 브랜드를 운영하는
-              <br />
-              마케터를 위한 도구
-            </h3>
-            <p style={{ fontSize: "15px", color: MUTED, lineHeight: 1.65, marginBottom: "28px" }}>
-              단순한 일정 관리가 아닙니다. 브랜드 리스크 스튜디오입니다.
-            </p>
-            <Link
-              href="/check"
-              style={{
-                display: "inline-block",
-                padding: "14px 36px",
-                borderRadius: "4px",
-                background: BLUE,
-                color: "#fff",
-                fontSize: "15px",
-                fontWeight: 700,
-                textDecoration: "none",
-                fontFamily: "var(--font-body)",
-                boxShadow: `0 2px 16px ${BLUE}50`,
-                transition: "background 0.15s, box-shadow 0.15s",
-              }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget as HTMLAnchorElement;
-                el.style.background = "#2563EB";
-                el.style.boxShadow = `0 4px 20px ${BLUE}60`;
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget as HTMLAnchorElement;
-                el.style.background = BLUE;
-                el.style.boxShadow = `0 2px 16px ${BLUE}50`;
-              }}
-            >
-              무료로 시작하기 →
-            </Link>
-            <p style={{ fontSize: "12px", color: `${MUTED}80`, marginTop: "12px" }}>
-              회원가입 없이 즉시 이용 · 완전 무료
-            </p>
-          </div>
         </div>
       </section>
 
-      {/* ── 7. FOOTER (dark) ─────────────────────────────────── */}
+      {/* ════════════════════════════════════════════════════════
+          7. FINAL CTA — 큰 빨강 CTA 섹션
+      ════════════════════════════════════════════════════════ */}
+      <section
+        style={{
+          background: `linear-gradient(135deg, ${RED} 0%, ${RED_DARK} 100%)`,
+          padding: "96px 24px",
+          color: "#fff",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            top: "-100px",
+            left: "-100px",
+            width: "400px",
+            height: "400px",
+            background: "radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%)",
+          }}
+        />
+        <div style={{ maxWidth: "900px", margin: "0 auto", position: "relative", textAlign: "center" }}>
+          <h2
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
+              fontWeight: 900,
+              letterSpacing: "-0.04em",
+              lineHeight: 1.1,
+              margin: "0 0 20px",
+              color: "#fff",
+            }}
+          >
+            다음 캠페인이
+            <br />
+            사고가 되기 전에.
+          </h2>
+          <p
+            style={{
+              fontSize: "clamp(1rem, 1.6vw, 1.15rem)",
+              color: "rgba(255,255,255,0.85)",
+              margin: "0 auto 40px",
+              maxWidth: "520px",
+              lineHeight: 1.6,
+            }}
+          >
+            지금 베타 무료. 회원가입 없이 첫 검토를 시작하세요.
+          </p>
+          <Link
+            href="/check"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "10px",
+              background: "#fff",
+              color: RED,
+              fontWeight: 800,
+              fontSize: "17px",
+              padding: "18px 36px",
+              borderRadius: "10px",
+              textDecoration: "none",
+              boxShadow: "0 12px 32px rgba(0,0,0,0.2)",
+              transition: "transform 0.15s",
+            }}
+          >
+            무료로 검토 시작하기 <span style={{ fontSize: "20px" }}>→</span>
+          </Link>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════
+          8. FOOTER
+      ════════════════════════════════════════════════════════ */}
       <footer
         style={{
-          borderTop: "1px solid rgba(255,255,255,0.08)",
-          padding: "22px 24px",
-          background: DARK_BG,
+          background: "#0F0F11",
+          color: "rgba(255,255,255,0.6)",
+          padding: "48px 24px",
         }}
       >
         <div
           style={{
-            maxWidth: "1160px",
+            maxWidth: "1200px",
             margin: "0 auto",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            flexWrap: "wrap" as const,
-            gap: "10px",
+            flexWrap: "wrap",
+            gap: "20px",
           }}
         >
-          <span style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "16px", color: "#FFFFFF", letterSpacing: "-0.03em" }}>
-            nunchi
-          </span>
-          <p style={{ fontSize: "12px", color: MUTED, margin: 0 }}>
-            이 서비스의 결과는 참고용입니다. © 2026 nunchi.
-          </p>
-          <div style={{ display: "flex", gap: "16px" }}>
-            {[
-              { href: "/calendar", label: "리스크 캘린더" },
-              { href: "/check", label: "캠페인 검토" },
-              { href: "/privacy", label: "개인정보처리방침" },
-              { href: "/terms", label: "이용약관" },
-            ].map(({ href, label }) => (
-              <Link key={href} href={href} style={{ fontSize: "12px", color: MUTED, textDecoration: "none" }}>
-                {label}
-              </Link>
-            ))}
+          <div>
+            <div
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 800,
+                color: "#fff",
+                fontSize: "18px",
+                marginBottom: "6px",
+                letterSpacing: "-0.01em",
+              }}
+            >
+              nunchi
+            </div>
+            <div style={{ fontSize: "12px" }}>
+              한국 마케터를 위한 브랜드 안전 인텔리전스 · Beta
+            </div>
+          </div>
+          <div style={{ display: "flex", gap: "24px", fontSize: "13px" }}>
+            <Link href="/calendar" style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>
+              캘린더
+            </Link>
+            <Link href="/check" style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>
+              캠페인 검토
+            </Link>
+            <Link href="/contact" style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>
+              문의하기
+            </Link>
           </div>
         </div>
       </footer>

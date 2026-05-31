@@ -25,6 +25,15 @@
   --ms-green:       #107C10;
   --ms-purple:      #8764B8;
 
+  /* ── Nunchi Brand Red (랜딩/CTA 전용) ────────────────────── */
+  --brand-red:        #E11D48;   /* Rose 600 — primary CTA & accent */
+  --brand-red-dark:   #BE123C;   /* Rose 700 — hover/pressed */
+  --brand-red-darker: #9F1239;   /* Rose 800 — active */
+  --brand-red-soft:   #FFF1F2;   /* Rose 50 — section tint */
+  --brand-red-mid:    #FECDD3;   /* Rose 200 — subtle border */
+  --brand-red-ring:   #FB7185;   /* Rose 400 — focus ring */
+  --brand-red-text:   #881337;   /* Rose 900 — text on light red */
+
   /* Semantic aliases → Fluent names */
   --warm-white:    var(--ms-surface);
   --charcoal:      var(--ms-text);
