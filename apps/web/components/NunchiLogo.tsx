@@ -1,9 +1,12 @@
 "use client";
 
+import { BETA_BADGE } from "../lib/badge-config";
+
 interface NunchiLogoProps {
   size?: number;
   color?: string;
   showText?: boolean;
+  showBeta?: boolean;
   className?: string;
 }
 
@@ -11,6 +14,7 @@ export function NunchiLogo({
   size = 28,
   color = "currentColor",
   showText = true,
+  showBeta = true,
 }: NunchiLogoProps) {
   return (
     <span
@@ -71,6 +75,29 @@ export function NunchiLogo({
           }}
         >
           nunchi
+        </span>
+      )}
+
+      {/* Beta 배지 */}
+      {showBeta && (
+        <span
+          aria-label="베타 서비스"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            fontSize: BETA_BADGE.fontSize + "px",
+            fontWeight: BETA_BADGE.fontWeight,
+            letterSpacing: BETA_BADGE.letterSpacing,
+            color: BETA_BADGE.color,
+            background: BETA_BADGE.background,
+            border: `1px solid ${BETA_BADGE.border}`,
+            borderRadius: BETA_BADGE.borderRadius + "px",
+            padding: `${BETA_BADGE.paddingY}px ${BETA_BADGE.paddingX}px`,
+            lineHeight: 1,
+            fontFamily: "var(--font-display, 'Inter Tight', sans-serif)",
+          }}
+        >
+          {BETA_BADGE.label}
         </span>
       )}
     </span>

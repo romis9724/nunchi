@@ -1,65 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { callWaitlistApi } from "../../lib/waitlist";
-
-/* ── Waitlist form ─────────────────────────────────────────── */
-function WaitlistForm({ source, dark = false }: { source: string; dark?: boolean }) {
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
-  const [err, setErr] = useState("");
-
-  const submit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("loading");
-    try {
-      const result = await callWaitlistApi(email, source);
-      if (!result.ok) { setErr(result.error ?? "오류가 발생했습니다."); setStatus("error"); return; }
-      setStatus("done");
-    } catch { setErr("네트워크 오류"); setStatus("error"); }
-  };
-
-  if (status === "done") return (
-    <p style={{ fontSize: "14px", color: dark ? "rgba(255,255,255,0.8)" : "var(--grade-b-text)", fontWeight: 500 }}>
-      ✓ 신청 완료 — 오픈 시 가장 먼저 알려드릴게요.
-    </p>
-  );
-
-  return (
-    <form onSubmit={submit} style={{ display: "flex", gap: "8px", flexWrap: "wrap", maxWidth: "480px" }}>
-      <input
-        type="email" required value={email}
-        onChange={e => setEmail(e.target.value)}
-        placeholder="이메일 주소"
-        style={{
-          flex: "1 1 200px", padding: "10px 14px",
-          border: `1px solid ${dark ? "rgba(255,255,255,0.25)" : "var(--ms-border)"}`,
-          borderRadius: "4px",
-          background: dark ? "rgba(255,255,255,0.1)" : "#fff",
-          color: dark ? "#fff" : "var(--ms-text)",
-          fontSize: "14px", fontFamily: "var(--font-body)",
-          outline: "none",
-        }}
-        onFocus={e => (e.target.style.borderColor = dark ? "rgba(255,255,255,0.5)" : "var(--ms-blue)")}
-        onBlur={e => (e.target.style.borderColor = dark ? "rgba(255,255,255,0.25)" : "var(--ms-border)")}
-      />
-      <button type="submit" disabled={status === "loading"} style={{
-        padding: "10px 20px", borderRadius: "4px", border: "none",
-        background: "var(--ms-blue)", color: "#fff",
-        fontSize: "14px", fontWeight: 600, cursor: "pointer",
-        fontFamily: "var(--font-body)",
-        opacity: status === "loading" ? 0.6 : 1, whiteSpace: "nowrap",
-      }}
-      onMouseEnter={e => ((e.target as HTMLElement).style.background = "var(--ms-blue-dark)")}
-      onMouseLeave={e => ((e.target as HTMLElement).style.background = "var(--ms-blue)")}
-      >
-        {status === "loading" ? "신청 중…" : "사전 신청"}
-      </button>
-      {status === "error" && <p style={{ width: "100%", fontSize: "12px", color: dark ? "#ffb3b3" : "var(--grade-f-text)" }}>{err}</p>}
-    </form>
-  );
-}
+import { NunchiLogo } from "../../components/NunchiLogo";
 
 /* ── Grade badge inline ─────────────────────────────────────── */
 function GMini({ g }: { g: string }) {
@@ -86,8 +28,8 @@ export default function LandingPage() {
       {/* NAV */}
       <header style={{ borderBottom: "1px solid var(--ms-border)", background: "rgba(250,249,248,0.96)", backdropFilter: "blur(12px)", position: "sticky", top: 0, zIndex: 20 }}>
         <div style={{ maxWidth: "1160px", margin: "0 auto", padding: "0 24px", height: "56px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <Link href="/" style={{ textDecoration: "none", fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "18px", letterSpacing: "-0.04em", color: "var(--ms-text)" }}>
-            nunchi
+          <Link href="/" style={{ textDecoration: "none", color: "var(--ms-text)" }}>
+            <NunchiLogo size={24} />
           </Link>
           <nav style={{ display: "flex", gap: "4px", alignItems: "center" }}>
             <Link href="/calendar" style={{ fontSize: "13px", color: "var(--ms-text-2)", textDecoration: "none", padding: "6px 12px", borderRadius: "4px", fontWeight: 500 }}>
@@ -110,7 +52,7 @@ export default function LandingPage() {
               브랜드 안전 · 날짜 리스크 분석
             </div>
 
-            <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(36px,5vw,56px)", fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 1.08, color: "var(--ms-text)", margin: "0 0 20px" }}>
+            <h1 style={{ fontFamily: "var(--font-display)", fontSize: "var(--text-hero)", fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 1.08, color: "var(--ms-text)", margin: "0 0 20px" }}>
               캠페인 날짜,<br />
               <span style={{ color: "var(--ms-blue)" }}>안전하게</span><br />
               출시하세요
@@ -121,14 +63,23 @@ export default function LandingPage() {
               위험은 출시 전에 잡고, 호재는 놓치지 않게.
             </p>
 
-            <WaitlistForm source="hero" />
-
-            <p style={{ fontSize: "12px", color: "var(--ms-text-3)", marginTop: "12px" }}>
-              회원가입 불필요 ·{" "}
-              <Link href="/check" style={{ color: "var(--ms-blue)", textDecoration: "underline", textUnderlineOffset: "3px" }}>
-                지금 바로 1건 검토해보기 →
+            <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "center" }}>
+              <Link href="/check" style={{
+                display: "inline-block",
+                padding: "11px 24px",
+                borderRadius: "4px",
+                background: "var(--ms-blue)",
+                color: "#fff",
+                fontSize: "14px",
+                fontWeight: 600,
+                textDecoration: "none",
+                fontFamily: "var(--font-body)",
+                whiteSpace: "nowrap",
+              }}>
+                지금 무료로 시작하기 →
               </Link>
-            </p>
+              <span style={{ fontSize: "12px", color: "var(--ms-text-3)" }}>회원가입 불필요 · 즉시 이용 가능</span>
+            </div>
           </div>
 
           {/* Right — case cards */}
@@ -299,8 +250,21 @@ export default function LandingPage() {
           <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.5)", lineHeight: 1.65, marginBottom: "30px" }}>
             단순한 일정 관리가 아닙니다.<br />브랜드 캘린더 스튜디오입니다.
           </p>
-          <WaitlistForm source="bottom" dark />
-          <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.25)", marginTop: "12px" }}>스팸 없음 · 언제든 수신 취소 가능</p>
+          <Link href="/check" style={{
+            display: "inline-block",
+            padding: "14px 32px",
+            borderRadius: "4px",
+            background: "rgba(255,255,255,0.15)",
+            border: "1px solid rgba(255,255,255,0.3)",
+            color: "#fff",
+            fontSize: "15px",
+            fontWeight: 600,
+            textDecoration: "none",
+            fontFamily: "var(--font-body)",
+          }}>
+            무료로 시작하기 →
+          </Link>
+          <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.25)", marginTop: "12px" }}>회원가입 없이 즉시 이용 · 완전 무료</p>
         </div>
       </section>
 

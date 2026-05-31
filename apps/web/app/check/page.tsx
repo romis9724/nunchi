@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import type { CheckRequest, CheckResponse } from "@nunchi/shared";
 import { ResultCard } from "@/components/result-card/ResultCard";
+import { NunchiLogo } from "@/components/NunchiLogo";
 import Link from "next/link";
 
 const NAV_LINK_STYLE = {
@@ -109,12 +110,12 @@ function CheckForm() {
         zIndex: 10,
       }}>
         <div style={{ maxWidth: "720px", margin: "0 auto", padding: "0 24px", height: "56px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <Link href="/" style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "17px", letterSpacing: "-0.04em", color: "var(--ms-text, var(--charcoal))", textDecoration: "none" }}>
-            nunchi
+          <Link href="/" style={{ textDecoration: "none", color: "var(--ms-text, var(--charcoal))" }}>
+            <NunchiLogo size={22} />
           </Link>
           <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
             <Link href="/calendar" style={NAV_LINK_STYLE}>
-              캘린더
+              캠페인 캘린더
             </Link>
           </div>
         </div>
