@@ -17,9 +17,12 @@ export interface CalendarEvent {
   category: string;
 }
 
-const GRADE_DOT: Record<Grade, string> = {
-  A: "var(--grade-a-border)", B: "var(--grade-b-border)",
-  C: "var(--grade-c-border)", D: "var(--grade-d-border)", F: "var(--grade-f-border)",
+const GRADE_DOT_COLOR: Record<Grade, string> = {
+  F: "#C50F1F",
+  D: "#BC4B09",
+  C: "#CA8A04",
+  B: "#107C10",
+  A: "var(--grade-a-border)",
 };
 
 const GRADE_ROW_BG: Record<Grade, string> = {
@@ -27,21 +30,49 @@ const GRADE_ROW_BG: Record<Grade, string> = {
   C: "#ffffff",           D: "var(--grade-d-bg)", F: "var(--grade-f-bg)",
 };
 
+const GRADE_ORDER: Grade[] = ["F", "D", "C", "B", "A"];
+
+function gradeRank(g: Grade): number {
+  return GRADE_ORDER.indexOf(g);
+}
+
+function sortByGrade(events: CalendarEvent[]): CalendarEvent[] {
+  return [...events].sort((a, b) => gradeRank(a.grade) - gradeRank(b.grade));
+}
+
+interface SelectedDay {
+  day: number;
+  events: CalendarEvent[];
+}
+
 interface CalendarClientProps {
   events: CalendarEvent[];
 }
 
+const LEGEND_ITEMS: { grade: Grade; label: string }[] = [
+  { grade: "F", label: "즉각회피" },
+  { grade: "D", label: "재검토" },
+  { grade: "C", label: "주의" },
+  { grade: "B", label: "안전" },
+];
+
 export function CalendarClient({ events }: CalendarClientProps) {
   const [current, setCurrent] = useState(new Date());
-  const [selected, setSelected] = useState<CalendarEvent | null>(null);
+  const [selectedDay, setSelectedDay] = useState<SelectedDay | null>(null);
 
   const monthStart = startOfMonth(current);
   const monthEnd = endOfMonth(current);
   const days = eachDayOfInterval({ start: monthStart, end: monthEnd });
   const startPad = getDay(monthStart);
 
-  const prevMonth = () => setCurrent((d) => new Date(d.getFullYear(), d.getMonth() - 1, 1));
-  const nextMonth = () => setCurrent((d) => new Date(d.getFullYear(), d.getMonth() + 1, 1));
+  const prevMonth = () => {
+    setCurrent((d) => new Date(d.getFullYear(), d.getMonth() - 1, 1));
+    setSelectedDay(null);
+  };
+  const nextMonth = () => {
+    setCurrent((d) => new Date(d.getFullYear(), d.getMonth() + 1, 1));
+    setSelectedDay(null);
+  };
 
   const eventsByDay: Record<number, CalendarEvent[]> = {};
   for (const e of events) {
@@ -50,8 +81,22 @@ export function CalendarClient({ events }: CalendarClientProps) {
       eventsByDay[e.day].push(e);
     }
   }
+  // Sort each day's events by risk (F first)
+  for (const d of Object.keys(eventsByDay)) {
+    eventsByDay[Number(d)] = sortByGrade(eventsByDay[Number(d)]);
+  }
 
-  const monthEvents = events.filter((e) => e.month === current.getMonth() + 1);
+  const monthEvents = sortByGrade(
+    events.filter((e) => e.month === current.getMonth() + 1)
+  ).sort((a, b) => a.day - b.day);
+
+  const currentYear = current.getFullYear();
+  const currentMonthNum = current.getMonth() + 1;
+
+  function handleDayClick(d: number) {
+    const dayEvents = eventsByDay[d] ?? [];
+    setSelectedDay({ day: d, events: dayEvents });
+  }
 
   return (
     <main style={{ maxWidth: "1200px", margin: "0 auto", padding: "48px 32px 80px" }}>
@@ -66,9 +111,24 @@ export function CalendarClient({ events }: CalendarClientProps) {
         </div>
 
         {/* Grade legend */}
-        <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-          {(["A","B","C","D","F"] as Grade[]).map((g) => (
-            <GradeBadge key={g} grade={g} size="xs" showLabel={false} />
+        <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "center" }}>
+          {LEGEND_ITEMS.map(({ grade, label }) => (
+            <div key={grade} style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+              <span
+                aria-hidden="true"
+                style={{
+                  width: "8px",
+                  height: "8px",
+                  borderRadius: "50%",
+                  background: GRADE_DOT_COLOR[grade],
+                  flexShrink: 0,
+                  display: "inline-block",
+                }}
+              />
+              <span style={{ fontSize: "11px", fontWeight: 600, color: "var(--muted-ink)", letterSpacing: "0.02em" }}>
+                {label}({grade})
+              </span>
+            </div>
           ))}
         </div>
       </div>
@@ -106,21 +166,31 @@ export function CalendarClient({ events }: CalendarClientProps) {
               const dayEvents = eventsByDay[d] ?? [];
               const topGrade = dayEvents[0]?.grade;
               const isHighlight = topGrade === "F" || topGrade === "A";
+              const isSelected = selectedDay?.day === d;
 
               return (
                 <button
                   key={d}
-                  onClick={() => setSelected(dayEvents[0] ?? null)}
+                  onClick={() => handleDayClick(d)}
+                  aria-pressed={isSelected}
+                  aria-label={`${currentMonthNum}월 ${d}일${dayEvents.length ? ` — 이벤트 ${dayEvents.length}건` : ""}`}
                   style={{
                     minHeight: "80px",
                     padding: "8px",
                     textAlign: "left",
-                    background: isHighlight && topGrade ? GRADE_ROW_BG[topGrade] : "transparent",
-                    cursor: dayEvents.length ? "pointer" : "default",
+                    background: isSelected
+                      ? "var(--ms-blue-mid)"
+                      : isHighlight && topGrade
+                        ? GRADE_ROW_BG[topGrade]
+                        : "transparent",
+                    cursor: "pointer",
                     borderTop: "none",
                     borderLeft: "none",
                     borderRight: "1px solid var(--border-faint)",
-                    borderBottom: "1px solid var(--border-faint)",
+                    borderBottom: isSelected
+                      ? "2px solid var(--ms-blue)"
+                      : "1px solid var(--border-faint)",
+                    outline: "none",
                   } as React.CSSProperties}
                 >
                   <span style={{
@@ -132,12 +202,31 @@ export function CalendarClient({ events }: CalendarClientProps) {
                   }}>
                     {d}
                   </span>
-                  {dayEvents.slice(0, 2).map((e) => (
-                    <div key={e.slug} style={{ display: "flex", alignItems: "center", gap: "4px", marginTop: "4px" }}>
-                      <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: GRADE_DOT[e.grade], flexShrink: 0 }} />
-                      <span style={{ fontSize: "10px", color: "var(--muted-ink)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{e.name}</span>
+
+                  {/* Up to 3 dots for events, sorted by severity */}
+                  {dayEvents.length > 0 && (
+                    <div style={{ display: "flex", gap: "3px", marginTop: "5px", flexWrap: "wrap" }}>
+                      {dayEvents.slice(0, 3).map((e) => (
+                        <span
+                          key={e.slug}
+                          title={e.name}
+                          style={{
+                            width: "7px",
+                            height: "7px",
+                            borderRadius: "50%",
+                            background: GRADE_DOT_COLOR[e.grade],
+                            flexShrink: 0,
+                            display: "inline-block",
+                          }}
+                        />
+                      ))}
+                      {dayEvents.length > 3 && (
+                        <span style={{ fontSize: "9px", color: "var(--muted-ink)", lineHeight: "7px" }}>
+                          +{dayEvents.length - 3}
+                        </span>
+                      )}
                     </div>
-                  ))}
+                  )}
                 </button>
               );
             })}
@@ -147,34 +236,76 @@ export function CalendarClient({ events }: CalendarClientProps) {
         {/* Sidebar */}
         <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
 
-          {/* Selected event detail */}
-          {selected ? (
-            <div style={{ background: GRADE_ROW_BG[selected.grade], border: "1px solid var(--border-warm)", borderRadius: "14px", padding: "20px", position: "relative" }}>
-              <button
-                onClick={() => setSelected(null)}
-                aria-label="닫기"
-                style={{ position: "absolute", top: "12px", right: "12px", background: "none", border: "none", cursor: "pointer", fontSize: "16px", color: "var(--muted-ink)" }}
-              >
-                ×
-              </button>
-              <div style={{ marginBottom: "12px" }}>
-                <GradeBadge grade={selected.grade} size="sm" showLabel />
+          {/* Selected day detail panel */}
+          {selectedDay ? (
+            <div style={{ background: "#FFF", border: "1px solid var(--border-warm)", borderRadius: "14px", overflow: "hidden" }}>
+              {/* Panel header */}
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 16px", borderBottom: "1px solid var(--border-faint)", background: "var(--ms-surface-2)" }}>
+                <p style={{ fontSize: "13px", fontWeight: 700, color: "var(--charcoal)", margin: 0, fontFamily: "var(--font-display)" }}>
+                  {currentMonthNum}월 {selectedDay.day}일
+                </p>
+                <button
+                  onClick={() => setSelectedDay(null)}
+                  aria-label="닫기"
+                  style={{ background: "none", border: "none", cursor: "pointer", fontSize: "16px", color: "var(--muted-ink)", lineHeight: 1, padding: "2px 4px" }}
+                >
+                  ×
+                </button>
               </div>
-              <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "16px", color: "var(--charcoal)", margin: "0 0 6px", letterSpacing: "-0.02em" }}>{selected.name}</h3>
-              <p style={{ fontSize: "12px", color: "var(--muted-ink)", margin: "0 0 12px" }}>매년 {selected.month}월 {selected.day}일</p>
-              <p style={{ fontSize: "13px", color: "var(--charcoal)", lineHeight: 1.65, margin: "0 0 16px" }}>{selected.summary}</p>
-              <Link
-                href={`/check?date=${new Date().getFullYear()}-${String(selected.month).padStart(2,"0")}-${String(selected.day).padStart(2,"0")}`}
-                style={{
-                  display: "inline-flex", alignItems: "center", gap: "6px",
-                  fontSize: "13px", fontWeight: 700,
-                  background: "var(--charcoal)", color: "#FFF",
-                  padding: "10px 18px", borderRadius: "10px", textDecoration: "none",
-                  fontFamily: "var(--font-display)",
-                }}
-              >
-                이 날짜로 검토 →
-              </Link>
+
+              {/* Event list or empty state */}
+              {selectedDay.events.length === 0 ? (
+                <div style={{ padding: "20px 16px", textAlign: "center" }}>
+                  <p style={{ fontSize: "13px", color: "var(--muted-ink)", margin: "0 0 12px", lineHeight: 1.6 }}>
+                    이 날은 등록된 민감일이 없습니다.
+                  </p>
+                  <Link
+                    href={`/check?date=${currentYear}-${String(currentMonthNum).padStart(2, "0")}-${String(selectedDay.day).padStart(2, "0")}`}
+                    style={{
+                      display: "inline-flex", alignItems: "center", gap: "4px",
+                      fontSize: "12px", fontWeight: 700,
+                      color: "var(--ms-blue)", textDecoration: "none",
+                    }}
+                  >
+                    캠페인 검토하기 →
+                  </Link>
+                </div>
+              ) : (
+                <div>
+                  {selectedDay.events.map((e) => (
+                    <div
+                      key={e.slug}
+                      style={{
+                        padding: "14px 16px",
+                        borderBottom: "1px solid var(--border-faint)",
+                        background: GRADE_ROW_BG[e.grade],
+                      }}
+                    >
+                      <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
+                        <GradeBadge grade={e.grade} size="xs" showLabel={false} />
+                        <span style={{ fontSize: "13px", fontWeight: 700, color: "var(--charcoal)", fontFamily: "var(--font-display)" }}>
+                          {e.name}
+                        </span>
+                      </div>
+                      {e.summary && (
+                        <p style={{ fontSize: "12px", color: "var(--muted-ink)", margin: "0 0 8px", lineHeight: 1.55 }}>
+                          {e.summary}
+                        </p>
+                      )}
+                      <Link
+                        href={`/check?date=${currentYear}-${String(e.month).padStart(2, "0")}-${String(e.day).padStart(2, "0")}`}
+                        style={{
+                          display: "inline-flex", alignItems: "center", gap: "4px",
+                          fontSize: "11px", fontWeight: 700,
+                          color: "var(--ms-blue)", textDecoration: "none",
+                        }}
+                      >
+                        캠페인 검토하기 →
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           ) : (
             <div style={{ background: "var(--lavender-gray)", border: "1px solid var(--border-warm)", borderRadius: "14px", padding: "20px", textAlign: "center" }}>
@@ -194,11 +325,11 @@ export function CalendarClient({ events }: CalendarClientProps) {
                 {monthEvents.map((e) => (
                   <button
                     key={e.slug}
-                    onClick={() => setSelected(e)}
+                    onClick={() => handleDayClick(e.day)}
                     style={{
                       display: "flex", alignItems: "center", gap: "12px",
                       width: "100%", padding: "12px 16px",
-                      background: selected?.slug === e.slug ? GRADE_ROW_BG[e.grade] : "transparent",
+                      background: selectedDay?.day === e.day ? "var(--ms-blue-mid)" : GRADE_ROW_BG[e.grade],
                       border: "none", borderBottom: "1px solid var(--border-faint)", cursor: "pointer",
                       textAlign: "left",
                     }}

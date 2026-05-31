@@ -73,6 +73,24 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
             </p>
           </div>
         </div>
+        {/* 다시 검토 / 결과 복사 */}
+        <div style={{ display: "flex", gap: "8px" }}>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            style={{ fontSize: "11px", padding: "4px 10px", borderRadius: "4px", border: "1px solid var(--border-warm)", background: "#fff", cursor: "pointer", color: "var(--muted-ink)", fontWeight: 500 }}
+          >
+            ↑ 다시 검토
+          </button>
+          <button
+            onClick={() => {
+              const text = `[눈치 검토 결과] ${date} ${campaignName ?? ""}\n등급: ${result.grade} (${result.riskScore})\n${result.rationale}`;
+              navigator.clipboard.writeText(text).catch(() => {});
+            }}
+            style={{ fontSize: "11px", padding: "4px 10px", borderRadius: "4px", border: "1px solid var(--border-warm)", background: "#fff", cursor: "pointer", color: "var(--muted-ink)", fontWeight: 500 }}
+          >
+            복사
+          </button>
+        </div>
       </div>
 
       <div style={{ height: "1px", background: "var(--border-warm)", margin: "0 20px" }} />
@@ -191,6 +209,31 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
             </div>
           </div>
         </>
+      )}
+
+      {/* 대안 날짜 제안 — F/D 등급일 때만 */}
+      {(grade === "F" || grade === "D") && (
+        <div style={{ padding: "12px 20px", background: "var(--grade-b-bg)", borderTop: "1px solid var(--border-warm)" }}>
+          <p style={{ fontSize: "12px", color: "var(--ms-text-2)", margin: "0 0 8px", fontWeight: 600 }}>
+            다른 날짜로 재검토
+          </p>
+          <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+            {[1, 7, 14].map((offset) => {
+              const d = new Date(date);
+              d.setDate(d.getDate() + offset);
+              const ds = d.toISOString().split("T")[0];
+              return (
+                <a
+                  key={ds}
+                  href={`/check?date=${ds}`}
+                  style={{ fontSize: "12px", padding: "4px 10px", borderRadius: "4px", border: "1px solid var(--grade-b-border)", background: "#fff", color: "var(--grade-b-text)", textDecoration: "none", fontWeight: 500 }}
+                >
+                  {ds.slice(5).replace("-", "/")} +{offset}일
+                </a>
+              );
+            })}
+          </div>
+        </div>
       )}
 
       {/* 맞춤 코멘트 — 로그인 사용자 + onboarding 완료 시만 표시 */}

@@ -13,10 +13,25 @@ interface Event {
   source: string;
 }
 
+const RISK_COLOR: Record<string, string> = {
+  critical: "#C50F1F",
+  high: "#BC4B09",
+  medium: "#CA8A04",
+  low: "#107C10",
+};
+
+const STATUS_COLOR: Record<string, string> = {
+  draft: "#9CA3AF",
+  pending_review: "#F59E0B",
+  approved: "#16A34A",
+  archived: "#6B7280",
+};
+
 export default function AdminEventsPage() {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<string>("all");
+  const [search, setSearch] = useState<string>("");
 
   useEffect(() => {
     fetch("/api/admin/events")
@@ -34,14 +49,10 @@ export default function AdminEventsPage() {
     setEvents((prev) => prev.map((e) => e.id === id ? { ...e, status } : e));
   }
 
-  const filtered = filter === "all" ? events : events.filter((e) => e.status === filter);
-
-  const STATUS_COLOR: Record<string, string> = {
-    draft: "#9CA3AF",
-    pending_review: "#F59E0B",
-    approved: "#16A34A",
-    archived: "#6B7280",
-  };
+  const filtered = events.filter((e) =>
+    (filter === "all" || e.status === filter) &&
+    (search === "" || e.name.toLowerCase().includes(search.toLowerCase()))
+  );
 
   return (
     <main style={{ minHeight: "100vh", background: "var(--rice-paper, #F8F7F4)", padding: "32px 24px" }}>
@@ -51,16 +62,41 @@ export default function AdminEventsPage() {
           <h1 style={{ fontFamily: "var(--font-display)", fontSize: "1.4rem", fontWeight: 800, color: "var(--charcoal)", margin: 0 }}>이벤트 관리</h1>
         </div>
 
-        <div style={{ display: "flex", gap: "8px", marginBottom: "20px" }}>
-          {["all", "approved", "pending_review", "draft", "archived"].map((s) => (
-            <button key={s} onClick={() => setFilter(s)}
-              style={{ padding: "6px 14px", borderRadius: "20px", fontSize: "12px", fontWeight: 600, cursor: "pointer", border: "1.5px solid",
-                borderColor: filter === s ? "var(--charcoal)" : "var(--border-warm)",
-                background: filter === s ? "var(--charcoal)" : "#fff",
-                color: filter === s ? "#fff" : "var(--muted-ink)" }}>
-              {s === "all" ? "전체" : s}
-            </button>
+        {/* 통계 카드 */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "12px", marginBottom: "24px" }}>
+          {[
+            { label: "전체", count: events.length, color: "var(--charcoal)" },
+            { label: "승인됨", count: events.filter((e) => e.status === "approved").length, color: "#107C10" },
+            { label: "검토 대기", count: events.filter((e) => e.status === "pending_review").length, color: "#BC4B09" },
+            { label: "보관됨", count: events.filter((e) => e.status === "archived").length, color: "#8A8886" },
+          ].map(({ label, count, color }) => (
+            <div key={label} style={{ padding: "16px", background: "#fff", borderRadius: "8px", border: "1px solid var(--border-warm)", textAlign: "center" }}>
+              <p style={{ fontFamily: "var(--font-display)", fontSize: "28px", fontWeight: 800, color, margin: "0 0 4px" }}>{count}</p>
+              <p style={{ fontSize: "12px", color: "var(--muted-ink)", margin: 0 }}>{label}</p>
+            </div>
           ))}
+        </div>
+
+        {/* 검색/필터 바 */}
+        <div style={{ display: "flex", gap: "12px", marginBottom: "16px", alignItems: "center" }}>
+          <input
+            type="text"
+            placeholder="이벤트 이름 검색..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            style={{ flex: 1, padding: "8px 12px", border: "1px solid var(--border-warm)", borderRadius: "6px", fontSize: "13px", background: "#fff", color: "var(--charcoal)", outline: "none" }}
+          />
+          <select
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            style={{ padding: "8px 12px", border: "1px solid var(--border-warm)", borderRadius: "6px", fontSize: "13px", background: "#fff", color: "var(--charcoal)", cursor: "pointer" }}
+          >
+            <option value="all">전체</option>
+            <option value="approved">승인됨</option>
+            <option value="pending_review">검토 대기</option>
+            <option value="draft">임시저장</option>
+            <option value="archived">보관됨</option>
+          </select>
         </div>
 
         {loading ? (
@@ -81,9 +117,13 @@ export default function AdminEventsPage() {
                     <td style={{ padding: "12px 16px" }}>{event.date}</td>
                     <td style={{ padding: "12px 16px", fontWeight: 500 }}>{event.name}</td>
                     <td style={{ padding: "12px 16px", color: "var(--muted-ink)" }}>{event.category}</td>
-                    <td style={{ padding: "12px 16px" }}>{event.risk_level}</td>
                     <td style={{ padding: "12px 16px" }}>
-                      <span style={{ display: "inline-block", padding: "2px 8px", borderRadius: "10px", fontSize: "11px", fontWeight: 600, background: STATUS_COLOR[event.status] + "20", color: STATUS_COLOR[event.status] }}>
+                      <span style={{ color: RISK_COLOR[event.risk_level] ?? "#666", fontWeight: 600 }}>
+                        {event.risk_level}
+                      </span>
+                    </td>
+                    <td style={{ padding: "12px 16px" }}>
+                      <span style={{ display: "inline-block", padding: "2px 8px", borderRadius: "10px", fontSize: "11px", fontWeight: 600, background: (STATUS_COLOR[event.status] ?? "#9CA3AF") + "20", color: STATUS_COLOR[event.status] ?? "#9CA3AF" }}>
                         {event.status}
                       </span>
                     </td>

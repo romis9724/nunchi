@@ -16,6 +16,8 @@ interface PendingEvent {
 export default function NewsQueuePage() {
   const [events, setEvents] = useState<PendingEvent[]>([]);
   const [loading, setLoading] = useState(true);
+  const [triggering, setTriggering] = useState(false);
+  const [triggerResult, setTriggerResult] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/admin/events?status=pending_review")
@@ -32,6 +34,28 @@ export default function NewsQueuePage() {
     });
     setEvents((prev) => prev.filter((e) => e.id !== id));
   }
+
+  const triggerCron = async () => {
+    setTriggering(true);
+    setTriggerResult(null);
+    try {
+      const res = await fetch("/api/admin/trigger-news", { method: "POST" });
+      const data = await res.json();
+      if (res.ok) {
+        setTriggerResult(`수집 완료: ${data.eventsCreated ?? 0}건 추가됨`);
+        // 목록 새로고침
+        const updated = await fetch("/api/admin/events?status=pending_review");
+        const updatedData: PendingEvent[] = await updated.json();
+        setEvents(updatedData);
+      } else {
+        setTriggerResult(`오류: ${data.error ?? "알 수 없는 오류"}`);
+      }
+    } catch {
+      setTriggerResult("오류: 요청 실패");
+    } finally {
+      setTriggering(false);
+    }
+  };
 
   const RISK_COLOR: Record<string, string> = {
     critical: "#DC2626", high: "#EA580C", medium: "#CA8A04", low: "#16A34A",
@@ -50,6 +74,21 @@ export default function NewsQueuePage() {
               {events.length}
             </span>
           )}
+
+          <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: "12px" }}>
+            {triggerResult && (
+              <span style={{ fontSize: "12px", color: triggerResult.startsWith("오류") ? "#DC2626" : "#16A34A", fontWeight: 500 }}>
+                {triggerResult}
+              </span>
+            )}
+            <button
+              onClick={triggerCron}
+              disabled={triggering}
+              style={{ padding: "8px 16px", background: triggering ? "#E5E7EB" : "var(--charcoal, #1C1C1C)", color: triggering ? "#9CA3AF" : "#fff", border: "none", borderRadius: "6px", fontSize: "13px", fontWeight: 600, cursor: triggering ? "not-allowed" : "pointer" }}
+            >
+              {triggering ? "수집 중…" : "뉴스 수동 수집"}
+            </button>
+          </div>
         </div>
 
         {loading ? (
