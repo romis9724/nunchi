@@ -95,7 +95,6 @@ export function AppHeader() {
               </button>
               {menuOpen && (
                 <div style={{ position: "absolute", right: 0, top: "calc(100% + 6px)", background: "#fff", border: "1px solid var(--ms-border)", borderRadius: "8px", boxShadow: "0 4px 16px rgba(0,0,0,0.08)", minWidth: "140px", overflow: "hidden", zIndex: 50 }}>
-                  <Link href="/mypage" onClick={() => setMenuOpen(false)} style={{ display: "block", padding: "10px 14px", fontSize: "13px", color: "var(--ms-text)", textDecoration: "none", fontWeight: 500 }}>내 정보 수정</Link>
                   <button onClick={handleLogout} style={{ display: "block", width: "100%", padding: "10px 14px", fontSize: "13px", color: "var(--ms-red, #D13438)", textAlign: "left", background: "none", border: "none", cursor: "pointer", fontWeight: 500 }}>로그아웃</button>
                 </div>
               )}
