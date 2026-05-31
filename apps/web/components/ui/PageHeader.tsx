@@ -59,7 +59,7 @@ export function PageHeader({
         textAlign: align,
       }}
     >
-      <div style={{ display: "flex", flexDirection: "column", gap: "12px", maxWidth: "720px", flex: 1, minWidth: 0 }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "12px", maxWidth: "720px", flex: "1 1 280px", minWidth: 0 }}>
         {eyebrow && (
           <div
             style={{
@@ -142,7 +142,7 @@ export function PageHeader({
         )}
       </div>
       {actions && (
-        <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
+        <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap", flexShrink: 0 }}>
           {actions}
         </div>
       )}

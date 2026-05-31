@@ -147,7 +147,7 @@ export function CalendarClient({ events }: CalendarClientProps) {
   const monthYearLabel = format(current, "yyyy · M월", { locale: ko });
 
   return (
-    <main style={{ maxWidth: "1240px", margin: "0 auto", padding: "48px 32px 80px" }}>
+    <main className="cal-main" style={{ maxWidth: "1240px", margin: "0 auto", padding: "48px 32px 80px" }}>
 
       <PageHeader
         eyebrow="민감일 캘린더"
@@ -185,8 +185,20 @@ export function CalendarClient({ events }: CalendarClientProps) {
       />
 
 
-      {/* Grid layout: calendar + sidebar */}
+      {/* Grid layout: calendar + sidebar (스택 on mobile) */}
       <div style={{ display: "grid", gridTemplateColumns: "1fr 340px", gap: "24px", alignItems: "start" }} className="calendar-layout">
+        <style>{`
+          @media (max-width: 960px) {
+            .calendar-layout { grid-template-columns: 1fr !important; }
+          }
+          @media (max-width: 640px) {
+            .cal-main { padding: 24px 16px 56px !important; }
+            .cal-header-num { font-size: 22px !important; }
+            .cal-day-cell { min-height: 80px !important; padding: 6px !important; }
+            .cal-day-num { font-size: 14px !important; }
+            .cal-month-nav-btn { width: 32px !important; height: 32px !important; }
+          }
+        `}</style>
 
         {/* Calendar — elevated card */}
         <div style={{
@@ -200,21 +212,22 @@ export function CalendarClient({ events }: CalendarClientProps) {
           {/* Month nav — 매거진 톤 */}
           <div style={{
             display: "flex", alignItems: "center", justifyContent: "space-between",
-            padding: "20px 24px",
+            padding: "16px 18px",
             borderBottom: "1px solid var(--ms-border)",
             background: "linear-gradient(180deg, #FFFFFF 0%, var(--ms-surface) 100%)",
-            gap: "12px",
+            gap: "10px",
           }}>
             <button
               onClick={prevMonth}
               aria-label="이전 달"
+              className="cal-month-nav-btn"
               style={{ background: "#fff", border: "1px solid var(--ms-border)", borderRadius: "10px", width: "36px", height: "36px", cursor: "pointer", fontSize: "15px", color: "var(--charcoal)", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", transition: "border-color 0.12s" }}
             >
               ←
             </button>
 
-            <div style={{ display: "flex", alignItems: "baseline", gap: "12px" }}>
-              <h2 style={{
+            <div style={{ display: "flex", alignItems: "baseline", gap: "10px", flexWrap: "wrap", justifyContent: "center" }}>
+              <h2 className="cal-header-num" style={{
                 fontFamily: "var(--font-display)",
                 fontWeight: 900,
                 fontSize: "26px",
@@ -246,6 +259,7 @@ export function CalendarClient({ events }: CalendarClientProps) {
             <button
               onClick={nextMonth}
               aria-label="다음 달"
+              className="cal-month-nav-btn"
               style={{ background: "#fff", border: "1px solid var(--ms-border)", borderRadius: "10px", width: "36px", height: "36px", cursor: "pointer", fontSize: "15px", color: "var(--charcoal)", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", transition: "border-color 0.12s" }}
             >
               →
@@ -296,6 +310,7 @@ export function CalendarClient({ events }: CalendarClientProps) {
                   onMouseLeave={() => setHoveredDay(null)}
                   aria-pressed={isSelected}
                   aria-label={`${currentMonthNum}월 ${d}일${dayEvents.length ? ` — 이벤트 ${dayEvents.length}건` : ""}`}
+                  className="cal-day-cell"
                   style={{
                     minHeight: "110px",
                     padding: "10px 10px 8px",
@@ -314,11 +329,12 @@ export function CalendarClient({ events }: CalendarClientProps) {
                     flexDirection: "column",
                     gap: "8px",
                     boxShadow: isSelected ? "inset 0 0 0 1px var(--brand-red-mid)" : "none",
+                    minWidth: 0,
                   } as React.CSSProperties}
                 >
                   {/* Date number + today badge row */}
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <span style={{
+                    <span className="cal-day-num" style={{
                       fontFamily: "var(--font-display)",
                       fontSize: "17px",
                       fontWeight: 800,

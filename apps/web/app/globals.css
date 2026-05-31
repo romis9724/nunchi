@@ -125,7 +125,10 @@ body {
   background-color: var(--warm-white);
   color: var(--charcoal);
   min-height: 100vh;
+  overflow-x: hidden;       /* 모바일에서 가로 스크롤 방지 */
 }
+
+html { overflow-x: hidden; }
 
 h1, h2, h3 {
   font-family: var(--font-display);
