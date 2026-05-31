@@ -13,7 +13,7 @@
  *
  * HTTP layer is mocked by replacing globalThis.fetch — no real network calls.
  *
- * Run: pnpm --filter @nunchi/llm test:gemini-client
+ * Run: pnpm --filter @noonchi/llm test:gemini-client
  */
 
 import { describe, it, afterEach } from "node:test";

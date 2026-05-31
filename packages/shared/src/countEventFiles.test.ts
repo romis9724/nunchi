@@ -23,7 +23,7 @@ import { countEventFiles } from "./countEventFiles.js";
 // ---------------------------------------------------------------------------
 
 function makeTempDir(suffix: string): string {
-  const dir = join(tmpdir(), `nunchi-count-test-${process.pid}-${suffix}`);
+  const dir = join(tmpdir(), `noonchi-count-test-${process.pid}-${suffix}`);
   mkdirSync(dir, { recursive: true });
   return dir;
 }

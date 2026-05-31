@@ -43,7 +43,7 @@ export async function orchestrateEmbedding(
  * Production-ready wrapper that wires up the default Ollama and Gemini clients.
  *
  * Usage in review-engine or seed scripts:
- *   import { generateEmbeddingWithFallback } from "@nunchi/llm/embeddingOrchestrator";
+ *   import { generateEmbeddingWithFallback } from "@noonchi/llm/embeddingOrchestrator";
  *
  * Throws if BOTH providers fail. Callers should catch and return [] for graceful
  * degradation so that semantic search failure does not block the review-engine.

@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import type { CheckResponse, Grade } from "@nunchi/shared";
-import { GRADE_LABEL, toneToGrade } from "@nunchi/shared";
+import type { CheckResponse, Grade } from "@noonchi/shared";
+import { GRADE_LABEL, toneToGrade } from "@noonchi/shared";
 import { GradeBadge } from "./GradeBadge";
 
 interface ResultCardProps {
@@ -118,12 +118,12 @@ function Divider() {
 export function ResultCard({ result, date, campaignName }: ResultCardProps) {
   const [memo, setMemo] = useState(() => {
     if (typeof window === "undefined") return "";
-    return localStorage.getItem(`nunchi-memo-${date}`) ?? "";
+    return localStorage.getItem(`noonchi-memo-${date}`) ?? "";
   });
 
   const handleMemoChange = (v: string) => {
     setMemo(v);
-    localStorage.setItem(`nunchi-memo-${date}`, v);
+    localStorage.setItem(`noonchi-memo-${date}`, v);
   };
 
   const grade = result.grade;
@@ -230,7 +230,7 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
             </button>
             <button
               onClick={() => {
-                const text = `[눈치 검토 결과] ${date} ${campaignName ?? ""}\n등급: ${result.grade} — ${GRADE_LABEL[result.grade]}\n${result.rationale}`;
+                const text = `[noonch-i 검토 결과] ${date} ${campaignName ?? ""}\n등급: ${result.grade} — ${GRADE_LABEL[result.grade]}\n${result.rationale}`;
                 navigator.clipboard.writeText(text).catch(() => {});
               }}
               style={{

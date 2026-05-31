@@ -4,7 +4,7 @@
  * Verifies that sendContactNotification:
  *  1. Calls client.emails.send() exactly once for a given InquiryRow.
  *  2. Sends to the ADMIN_EMAIL env var address (or the default fallback).
- *  3. Uses "Nunchi 알림 <noreply@nunchi.so>" as the `from` address.
+ *  3. Uses "Noonchi 알림 <noreply@noonchi.so>" as the `from` address.
  *  4. Includes the inquiry name in the email subject.
  *  5. Includes the inquiry name, email, and message in the HTML body.
  *  6. Includes the inquiry id in the HTML body.
@@ -87,7 +87,7 @@ describe("sendContactNotification — Resend API call", () => {
     assert.strictEqual(calls.length, 1, "emails.send() must be called exactly once");
   });
 
-  it("sends from 'Nunchi 알림 <noreply@nunchi.so>'", async () => {
+  it("sends from 'Noonchi 알림 <noreply@noonchi.so>'", async () => {
     // Arrange
     const { client, calls } = createMockResendClient();
 
@@ -97,15 +97,15 @@ describe("sendContactNotification — Resend API call", () => {
     // Assert
     assert.strictEqual(
       calls[0].from,
-      "Nunchi 알림 <noreply@nunchi.so>",
-      "from address must be 'Nunchi 알림 <noreply@nunchi.so>'"
+      "Noonchi 알림 <noreply@noonchi.so>",
+      "from address must be 'Noonchi 알림 <noreply@noonchi.so>'"
     );
   });
 
   it("sends to the ADMIN_EMAIL env var when set", async () => {
     // Arrange
     const original = process.env.ADMIN_EMAIL;
-    process.env.ADMIN_EMAIL = "custom-admin@nunchi.so";
+    process.env.ADMIN_EMAIL = "custom-admin@noonchi.so";
     const { client, calls } = createMockResendClient();
 
     try {
@@ -114,7 +114,7 @@ describe("sendContactNotification — Resend API call", () => {
 
       // Assert
       assert.ok(
-        calls[0].to.includes("custom-admin@nunchi.so"),
+        calls[0].to.includes("custom-admin@noonchi.so"),
         "must send to ADMIN_EMAIL env var when set"
       );
     } finally {
@@ -127,7 +127,7 @@ describe("sendContactNotification — Resend API call", () => {
     }
   });
 
-  it("falls back to 'admin@nunchi.so' when ADMIN_EMAIL is not set", async () => {
+  it("falls back to 'admin@noonchi.so' when ADMIN_EMAIL is not set", async () => {
     // Arrange
     const original = process.env.ADMIN_EMAIL;
     delete process.env.ADMIN_EMAIL;
@@ -139,8 +139,8 @@ describe("sendContactNotification — Resend API call", () => {
 
       // Assert
       assert.ok(
-        calls[0].to.includes("admin@nunchi.so"),
-        "must fall back to 'admin@nunchi.so' when ADMIN_EMAIL is not set"
+        calls[0].to.includes("admin@noonchi.so"),
+        "must fall back to 'admin@noonchi.so' when ADMIN_EMAIL is not set"
       );
     } finally {
       // Restore

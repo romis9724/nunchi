@@ -33,7 +33,7 @@ const MIGRATION_PATH = resolve(
 );
 
 // Unique schema name per run to guarantee isolation
-const SCHEMA = `nunchi_migration_test_${Date.now()}`;
+const SCHEMA = `noonchi_migration_test_${Date.now()}`;
 
 const pool = new Pool({ connectionString: TEST_DB_URL });
 

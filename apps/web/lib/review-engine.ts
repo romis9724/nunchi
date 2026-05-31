@@ -1,8 +1,8 @@
 import crypto from "crypto";
-import type { CheckRequest, CheckResponse, EventRecord, Grade } from "@nunchi/shared";
-import { toneToGrade } from "@nunchi/shared";
+import type { CheckRequest, CheckResponse, EventRecord, Grade } from "@noonchi/shared";
+import { toneToGrade } from "@noonchi/shared";
 import { getSupabaseAdmin } from "./supabase";
-import { callReviewEngine, generateEmbedding } from "@nunchi/llm";
+import { callReviewEngine, generateEmbedding } from "@noonchi/llm";
 import { matchCriticalKeywords } from "./critical-keywords";
 
 /**

@@ -1,4 +1,4 @@
-# Nunchi (눈치)
+# Noonchi (눈치)
 
 > **캠페인 기획 단계**에서 날짜 × 컨셉 × 카피 조합의 사회·문화·역사적 리스크를 사전 검증해, 브랜드 사고를 예방하는 SaaS.
 
@@ -20,7 +20,7 @@ license: TBD
 기존 도구는 이 빈틈을 메우지 못한다 — 마케팅 이슈 캘린더는 "이날 무엇을 기념하라"만,
 Brand Safety 툴은 사후 검증만 다룬다.
 
-Nunchi는 그 빈틈을 메운다.
+Noonchi는 그 빈틈을 메운다.
 
 ## 핵심 가치
 
@@ -45,7 +45,7 @@ Nunchi는 그 빈틈을 메운다.
 ## 디렉토리
 
 ```
-nunchi/
+noonchi/
 ├── CLAUDE.md                       # 프로젝트 컨텍스트 (Claude/협업자용)
 ├── apps/web/                       # Next.js 16 (App Router)
 │   ├── app/(landing)/              # 랜딩 + 웨이트리스트

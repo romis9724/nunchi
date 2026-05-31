@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { NunchiLogo } from "@/components/NunchiLogo";
+import { NoonchiLogo } from "@/components/NoonchiLogo";
 import { PageHeader } from "@/components/ui";
 
 const INDUSTRIES = [
@@ -85,7 +85,7 @@ export default function OnboardingPage() {
     <main style={{ minHeight: "100vh", background: "var(--rice-paper, #F8F7F4)", padding: "40px 20px" }}>
       <div style={{ maxWidth: 600, margin: "0 auto" }}>
         <div style={{ marginBottom: "32px", display: "flex", alignItems: "center", gap: "12px" }}>
-          <NunchiLogo size={28} />
+          <NoonchiLogo size={28} />
         </div>
 
         <PageHeader

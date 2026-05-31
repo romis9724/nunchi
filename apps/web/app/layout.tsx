@@ -17,7 +17,7 @@ const interTight = Inter_Tight({
 });
 
 export const metadata: Metadata = {
-  title: "눈치 (nunchi) — 캠페인 날짜 리스크 & 호재 검증",
+  title: "눈치 (noonch-i) — 캠페인 날짜 리스크 & 호재 검증",
   description: "마케터를 위한 브랜드 캘린더 스튜디오. 날짜 × 카피의 한국 민감일 위험과 최적 타이밍을 AI로 즉시 분석합니다.",
 };
 

@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import type { CheckRequest, CheckResponse } from "@nunchi/shared";
+import type { CheckRequest, CheckResponse } from "@noonchi/shared";
 import { ResultCard } from "@/components/result-card/ResultCard";
 import { AppHeader } from "@/components/AppHeader";
 import { NearbyEventsPreview } from "@/components/NearbyEventsPreview";

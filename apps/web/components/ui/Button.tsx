@@ -1,5 +1,5 @@
 /**
- * Button — Nunchi 통합 버튼 컴포넌트
+ * Button — Noonchi 통합 버튼 컴포넌트
  *
  * variants:
  *  - primary:    빨강 솔리드 (CTA)

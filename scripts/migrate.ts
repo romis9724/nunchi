@@ -14,7 +14,7 @@ const loaded = candidates.find((p) => fs.existsSync(p));
 if (loaded) config({ path: loaded });
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL ?? "postgresql://localhost/nunchi",
+  connectionString: process.env.DATABASE_URL ?? "postgresql://localhost/noonchi",
 });
 
 const SQL = `
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS waitlist (
 `;
 
 async function main() {
-  console.log("Running migrations on:", process.env.DATABASE_URL ?? "postgresql://localhost/nunchi");
+  console.log("Running migrations on:", process.env.DATABASE_URL ?? "postgresql://localhost/noonchi");
   await pool.query(SQL);
   console.log("Migration complete.");
   await pool.end();

@@ -35,7 +35,7 @@ const MIGRATION_PATH = resolve(
 );
 
 // Unique schema per run to guarantee isolation
-const SCHEMA = `nunchi_grade_constraint_test_${Date.now()}`;
+const SCHEMA = `noonchi_grade_constraint_test_${Date.now()}`;
 
 const pool = new Pool({ connectionString: TEST_DB_URL });
 

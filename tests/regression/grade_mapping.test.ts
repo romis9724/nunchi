@@ -22,7 +22,7 @@ import {
   type Grade,
   type RecommendedTone,
   type RiskLevel,
-} from "@nunchi/shared";
+} from "@noonchi/shared";
 
 interface Case {
   name: string;

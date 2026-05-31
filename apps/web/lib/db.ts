@@ -5,7 +5,7 @@ let pool: Pool | null = null;
 export function getPool(): Pool {
   if (!pool) {
     const connectionString =
-      process.env.DATABASE_URL ?? "postgresql://localhost/nunchi";
+      process.env.DATABASE_URL ?? "postgresql://localhost/noonchi";
     pool = new Pool({ connectionString, max: 10 });
   }
   return pool;

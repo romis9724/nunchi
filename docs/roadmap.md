@@ -1,4 +1,4 @@
-# Nunchi — 로드맵
+# Noonchi — 로드맵
 
 > 현재 위치: **Phase 0 완료, Phase 1 진행 중**.
 > 진행 현황 상세: [`STATUS.md`](./STATUS.md)

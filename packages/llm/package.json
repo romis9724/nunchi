@@ -1,5 +1,5 @@
 {
-  "name": "@nunchi/llm",
+  "name": "@noonchi/llm",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.36.3",
-    "@nunchi/shared": "workspace:*"
+    "@noonchi/shared": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20",

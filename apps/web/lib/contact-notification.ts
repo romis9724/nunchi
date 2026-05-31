@@ -2,7 +2,7 @@
  * sendContactNotification — admin email alert for new /contact inquiries.
  *
  * When a visitor submits the /contact form and the inquiry row is successfully
- * inserted into Supabase, this function is called to notify the Nunchi admin
+ * inserted into Supabase, this function is called to notify the Noonchi admin
  * team via Resend so they can follow up promptly.
  *
  * Design decisions:
@@ -74,7 +74,7 @@ export async function sendContactNotification(
     ) as unknown as ResendClient;
   }
 
-  const adminEmail = process.env.ADMIN_EMAIL ?? "admin@nunchi.so";
+  const adminEmail = process.env.ADMIN_EMAIL ?? "admin@noonchi.so";
 
   const html = [
     "<h2>새로운 문의가 도착했습니다</h2>",
@@ -92,9 +92,9 @@ export async function sendContactNotification(
     .join("\n");
 
   const { error } = await client.emails.send({
-    from: "Nunchi 알림 <noreply@nunchi.so>",
+    from: "noonch-i 알림 <noreply@noonchi.so>",
     to: [adminEmail],
-    subject: `[Nunchi] 새 문의: ${inquiry.name}`,
+    subject: `[noonch-i] 새 문의: ${inquiry.name}`,
     html,
   });
 

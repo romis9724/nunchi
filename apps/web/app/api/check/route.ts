@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import type { CheckRequest } from "@nunchi/shared";
+import type { CheckRequest } from "@noonchi/shared";
 import { runReviewEngine } from "@/lib/review-engine";
-import { personalizeRationale } from "@nunchi/llm";
+import { personalizeRationale } from "@noonchi/llm";
 import { getSupabase } from "@/lib/supabase";
 
 // Vercel Pro 이상에서 최대 300s, Hobby는 10s 기본값

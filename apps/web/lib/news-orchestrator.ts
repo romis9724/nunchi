@@ -73,7 +73,7 @@ export async function runNewsOrchestrator(): Promise<NewsAutomationResult> {
   // 2. Filter and convert to event drafts — import filter from packages/llm
   let filtered: RawNaverItem[];
   try {
-    const { filterNewsByCategory } = await import("@nunchi/llm");
+    const { filterNewsByCategory } = await import("@noonchi/llm");
     filtered = filterNewsByCategory(items as Parameters<typeof filterNewsByCategory>[0]) as unknown as RawNaverItem[];
   } catch {
     // fallback: use all items if filter module unavailable

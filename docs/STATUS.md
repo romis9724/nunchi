@@ -1,6 +1,6 @@
-# Nunchi — 진행 현황 스냅샷
+# Noonchi — 진행 현황 스냅샷
 
-> **이 문서는 Nunchi가 어디까지 왔고 무엇이 남았는지의 단일 출처(Source of Truth)다.**
+> **이 문서는 Noonchi가 어디까지 왔고 무엇이 남았는지의 단일 출처(Source of Truth)다.**
 > 마지막 갱신: 2026-05-25
 
 ## TL;DR
@@ -30,7 +30,7 @@
 - [x] 룰 매칭 — 20+ 고위험 키워드(탱크·계엄·세월호·이태원·압사·욱일기 등) 즉시 F등급
 - [x] LLM 호출 — Gemini 2.0 Flash 우선, 실패 시 Ollama gemma4 폴백
 - [x] 429 graceful degradation — C등급 + 안내 메시지
-- [x] 결과 ↔ 등급 매핑 (`@nunchi/shared` `toneToGrade()`)
+- [x] 결과 ↔ 등급 매핑 (`@noonchi/shared` `toneToGrade()`)
 
 ### 데이터 (`data/events/`)
 - [x] **50개 JSON 큐레이션** — 모두 의미 있는 summary, 정부/학술 출처 링크, related_keywords·motifs 명시

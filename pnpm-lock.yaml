@@ -21,10 +21,10 @@ importers:
       '@anthropic-ai/sdk':
         specifier: ^0.36.3
         version: 0.36.3
-      '@nunchi/llm':
+      '@noonchi/llm':
         specifier: workspace:*
         version: link:../../packages/llm
-      '@nunchi/shared':
+      '@noonchi/shared':
         specifier: workspace:*
         version: link:../../packages/shared
       '@supabase/supabase-js':
@@ -88,7 +88,7 @@ importers:
       '@anthropic-ai/sdk':
         specifier: ^0.36.3
         version: 0.36.3
-      '@nunchi/shared':
+      '@noonchi/shared':
         specifier: workspace:*
         version: link:../shared
     devDependencies:
@@ -116,10 +116,10 @@ importers:
 
   scripts:
     dependencies:
-      '@nunchi/llm':
+      '@noonchi/llm':
         specifier: workspace:*
         version: link:../packages/llm
-      '@nunchi/shared':
+      '@noonchi/shared':
         specifier: workspace:*
         version: link:../packages/shared
       '@supabase/supabase-js':
@@ -144,7 +144,7 @@ importers:
 
   tests:
     dependencies:
-      '@nunchi/shared':
+      '@noonchi/shared':
         specifier: workspace:*
         version: link:../packages/shared
       '@types/pg':

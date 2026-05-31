@@ -1,5 +1,5 @@
 /**
- * Navigation utility functions for the Nunchi web app.
+ * Navigation utility functions for the Noonchi web app.
  *
  * Pure functions — no DOM, no React, no side effects.
  * Safe to import in any environment and unit-testable without a browser.

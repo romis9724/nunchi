@@ -3,8 +3,8 @@ import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
 import fs from "fs";
 import { createClient } from "@supabase/supabase-js";
-import type { EventRecord } from "@nunchi/shared";
-import { generateEmbedding } from "@nunchi/llm";
+import type { EventRecord } from "@noonchi/shared";
+import { generateEmbedding } from "@noonchi/llm";
 
 // CLI flags: pnpm db:seed -- --embed → also populate events.embedding for
 // each curated event using packages/llm's generateEmbedding (Ollama primary,

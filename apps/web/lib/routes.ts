@@ -1,5 +1,5 @@
 /**
- * Route path constants and navigation metadata for the Nunchi web app.
+ * Route path constants and navigation metadata for the Noonchi web app.
  *
  * Pure data module — no DOM, no React, no side effects.
  * Safe to import in any environment and unit-testable without a browser.

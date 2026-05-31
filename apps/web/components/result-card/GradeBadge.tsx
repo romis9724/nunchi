@@ -1,7 +1,7 @@
 "use client";
 
-import type { Grade } from "@nunchi/shared";
-import { GRADE_LABEL } from "@nunchi/shared";
+import type { Grade } from "@noonchi/shared";
+import { GRADE_LABEL } from "@noonchi/shared";
 
 const GRADE_STYLE: Record<Grade, { text: string; bg: string; border: string; dot: string }> = {
   F: { text: "var(--grade-f-text)", bg: "var(--grade-f-bg)",   border: "var(--grade-f-border)", dot: "#B53A2A" },

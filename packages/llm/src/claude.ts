@@ -3,7 +3,7 @@ import {
   buildReviewSystemPrompt,
   buildReviewUserPrompt,
 } from "./prompts/review-campaign";
-import type { Grade } from "@nunchi/shared";
+import type { Grade } from "@noonchi/shared";
 import { ollamaEmbed } from "./ollamaEmbedClient";
 
 const VALID_GRADES = new Set<Grade>(["A", "B", "C", "D", "F"]);

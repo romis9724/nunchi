@@ -117,7 +117,7 @@ async function crawlDate(month: number, day: number): Promise<ParsedEvent[]> {
   try {
     const res = await fetch(url, {
       headers: {
-        "User-Agent": "Mozilla/5.0 (compatible; Nunchi/1.0; +https://nunchi-bay.vercel.app)",
+        "User-Agent": "Mozilla/5.0 (compatible; Noonchi/1.0; +https://noonchi-bay.vercel.app)",
         "Accept": "text/html,application/xhtml+xml",
         "Accept-Language": "ko-KR,ko;q=0.9",
       },

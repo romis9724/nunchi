@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { NunchiLogo } from "@/components/NunchiLogo";
+import { NoonchiLogo } from "@/components/NoonchiLogo";
 import { PageHeader } from "@/components/ui";
 
 const INDUSTRIES = [
@@ -96,7 +96,7 @@ export default function MyPage() {
     <main style={{ minHeight: "100vh", background: "var(--rice-paper, #F8F7F4)", padding: "40px 20px" }}>
       <div style={{ maxWidth: 600, margin: "0 auto" }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "32px" }}>
-          <NunchiLogo size={28} />
+          <NoonchiLogo size={28} />
           <Link href="/check" style={{ fontSize: "13px", color: "var(--muted-ink)", textDecoration: "none" }}>← 검토로 돌아가기</Link>
         </div>
 

@@ -66,7 +66,7 @@ describe("signInWithGoogle", () => {
 
     // Act
     await signInWithGoogle(
-      { origin: "https://app.nunchi.so" },
+      { origin: "https://app.noonchi.so" },
       client
     );
 
@@ -82,7 +82,7 @@ describe("signInWithGoogle", () => {
   it("constructs redirectTo as origin + '/auth/callback' by default", async () => {
     // Arrange
     const { client, calls } = createMockSupabase();
-    const origin = "https://app.nunchi.so";
+    const origin = "https://app.noonchi.so";
 
     // Act
     await signInWithGoogle({ origin }, client);
@@ -98,7 +98,7 @@ describe("signInWithGoogle", () => {
   it("constructs redirectTo using a custom redirectPath", async () => {
     // Arrange
     const { client, calls } = createMockSupabase();
-    const origin = "https://app.nunchi.so";
+    const origin = "https://app.noonchi.so";
     const redirectPath = "/login/callback";
 
     // Act
@@ -119,7 +119,7 @@ describe("signInWithGoogle", () => {
 
     // Act
     const result = await signInWithGoogle(
-      { origin: "https://app.nunchi.so" },
+      { origin: "https://app.noonchi.so" },
       client
     );
 
@@ -137,7 +137,7 @@ describe("signInWithGoogle", () => {
 
     // Act
     const result = await signInWithGoogle(
-      { origin: "https://app.nunchi.so" },
+      { origin: "https://app.noonchi.so" },
       client
     );
 
@@ -158,7 +158,7 @@ describe("signInWithGoogle", () => {
     // Act & Assert
     await assert.rejects(
       () =>
-        signInWithGoogle({ origin: "https://app.nunchi.so" }, client),
+        signInWithGoogle({ origin: "https://app.noonchi.so" }, client),
       (err: unknown) => {
         assert.ok(err instanceof Error, "thrown value must be an Error");
         assert.ok(

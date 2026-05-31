@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { NunchiLogo } from "./NunchiLogo";
+import { NoonchiLogo } from "./NoonchiLogo";
 import { getSupabase } from "@/lib/supabase";
 import { signInWithGoogle, signOut } from "@/lib/auth";
 
@@ -67,7 +67,7 @@ export function AppHeader() {
       }}>
         {/* 로고 */}
         <Link href="/" style={{ textDecoration: "none", color: "var(--ms-text)" }}>
-          <NunchiLogo size={24} />
+          <NoonchiLogo size={24} />
         </Link>
 
         {/* 데스크탑 nav */}

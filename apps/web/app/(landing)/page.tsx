@@ -4,7 +4,7 @@ import Link from "next/link";
 import { AppHeader } from "../../components/AppHeader";
 
 /* ─────────────────────────────────────────────────────────────
-   Nunchi Landing — Editorial SaaS
+   Noonchi Landing — Editorial SaaS
    - 2-column hero: 좌측 카피 + 우측 라이브 데모 카드 스택
    - 빨강 액센트 / 한국어 keep-all 줄바꿈
    - 사례는 다양 (이태원·세월호·광복절·빼빼로데이)
@@ -425,7 +425,7 @@ export default function LandingPage() {
               </h2>
               <p style={{ fontSize: "15px", color: MUTED, margin: 0, lineHeight: 1.65 }}>
                 특정 날짜에 어떤 사건이 있었는지, 어떤 표현이 어떤 사건을 연상시키는지
-                — 마케터 한 명이 다 알 수 없습니다. Nunchi가 대신합니다.
+                — 마케터 한 명이 다 알 수 없습니다. Noonchi가 대신합니다.
               </p>
             </div>
 
@@ -446,7 +446,7 @@ export default function LandingPage() {
                   padding: "14px 20px", fontSize: "11px", fontWeight: 800,
                   letterSpacing: "0.12em", color: "var(--grade-b-text)",
                   textTransform: "uppercase", background: "var(--grade-b-bg)",
-                }}>After Nunchi</div>
+                }}>After Noonchi</div>
               </div>
               {BEFORE_AFTER.map((row, i) => (
                 <div key={i} style={{
@@ -710,7 +710,7 @@ export default function LandingPage() {
               fontFamily: "var(--font-display)", fontWeight: 800,
               color: "#fff", fontSize: "17px",
               marginBottom: "6px", letterSpacing: "-0.01em",
-            }}>nunchi</div>
+            }}>noonch-i</div>
             <div style={{ fontSize: "12px" }}>
               한국 마케터를 위한 브랜드 안전 인텔리전스 · Beta
             </div>

@@ -1,7 +1,7 @@
 /**
  * Regression: BETA_BADGE config — AC5 (Beta badge next to logo)
  *
- * Verifies that the badge configuration used by NunchiLogo and all page
+ * Verifies that the badge configuration used by NoonchiLogo and all page
  * headers has the expected shape and values. This is a pure data test —
  * no DOM, no React, no network.
  *

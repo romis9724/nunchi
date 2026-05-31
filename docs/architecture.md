@@ -1,4 +1,4 @@
-# Nunchi — 아키텍처
+# Noonchi — 아키텍처
 
 > 데이터 흐름 / 컴포넌트 / 환경 변수 / 의사결정 근거. 변경 시 본 문서를 함께 갱신한다.
 
@@ -157,7 +157,7 @@ ADR: [`decisions/0003-five-grade-system.md`](./decisions/0003-five-grade-system.
 | `NEXT_PUBLIC_SUPABASE_URL` | 클라이언트·서버 양쪽 접근 |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | 클라이언트용. 익명 권한 |
 | `SUPABASE_SERVICE_ROLE_KEY` | **서버 전용**. API 라우트에서 RLS 우회 |
-| `DATABASE_URL` | 로컬 마이그레이션용 직접 Postgres 연결 (예: `postgresql://localhost/nunchi`) |
+| `DATABASE_URL` | 로컬 마이그레이션용 직접 Postgres 연결 (예: `postgresql://localhost/noonchi`) |
 
 ### LLM (`GEMINI_API_KEY` 또는 Ollama 둘 중 하나는 있어야 동작)
 | 변수 | 기본값 | 설명 |

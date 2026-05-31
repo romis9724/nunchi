@@ -21,7 +21,7 @@ export interface OAuthSignInClient {
  */
 export interface SignInWithGoogleOptions {
   /**
-   * The application origin (e.g. "https://app.nunchi.so").
+   * The application origin (e.g. "https://app.noonchi.so").
    * Used as the base when constructing the `redirectTo` URL.
    *
    * Defaults to `window.location.origin` in browser environments and to an

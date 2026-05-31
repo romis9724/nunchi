@@ -23,7 +23,7 @@ export default function AdminPage() {
         <h1 style={{ fontFamily: "var(--font-display)", fontSize: "1.75rem", fontWeight: 800, color: "var(--charcoal)", marginBottom: "8px" }}>
           관리자
         </h1>
-        <p style={{ color: "var(--muted-ink)", fontSize: "14px", marginBottom: "32px" }}>nunchi Beta 관리 패널</p>
+        <p style={{ color: "var(--muted-ink)", fontSize: "14px", marginBottom: "32px" }}>noonch-i Beta 관리 패널</p>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: "16px" }}>
           <Link href="/admin/events" style={CARD_STYLE}>

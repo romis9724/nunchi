@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
-import { toneToGrade } from "@nunchi/shared";
-import type { EventRecord } from "@nunchi/shared";
+import { toneToGrade } from "@noonchi/shared";
+import type { EventRecord } from "@noonchi/shared";
 import { getSupabaseAdmin } from "@/lib/supabase";
 import { CalendarClient, type CalendarEvent } from "./CalendarClient";
 

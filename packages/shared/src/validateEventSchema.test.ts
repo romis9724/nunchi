@@ -57,7 +57,7 @@ function validRecord(): Record<string, unknown> {
 }
 
 /** Write `obj` to a temp file and return its path */
-const TEMP_DIR = join(tmpdir(), `nunchi-test-${process.pid}`);
+const TEMP_DIR = join(tmpdir(), `noonchi-test-${process.pid}`);
 
 function writeTempJson(obj: unknown, name = "event.json"): string {
   mkdirSync(TEMP_DIR, { recursive: true });

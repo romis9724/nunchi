@@ -11,7 +11,7 @@
  *
  * HTTP layer is mocked by replacing globalThis.fetch — no real network calls.
  *
- * Run: pnpm --filter @nunchi/llm test:ollama-client
+ * Run: pnpm --filter @noonchi/llm test:ollama-client
  */
 
 import { describe, it, afterEach } from "node:test";

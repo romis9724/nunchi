@@ -8,8 +8,8 @@
     "seed": "tsx seed.ts"
   },
   "dependencies": {
-    "@nunchi/llm": "workspace:*",
-    "@nunchi/shared": "workspace:*",
+    "@noonchi/llm": "workspace:*",
+    "@noonchi/shared": "workspace:*",
     "@supabase/supabase-js": "^2.47.10",
     "pg": "^8.21.0"
   },

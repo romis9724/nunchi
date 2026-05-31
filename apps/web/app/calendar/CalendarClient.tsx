@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, getDay, isToday } from "date-fns";
 import { ko } from "date-fns/locale";
-import type { Grade } from "@nunchi/shared";
+import type { Grade } from "@noonchi/shared";
 import { GradeBadge } from "@/components/result-card/GradeBadge";
 import { PageHeader } from "@/components/ui";
 

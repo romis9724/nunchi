@@ -1,5 +1,5 @@
 goal: >
-  Nunchi 웹앱(Next.js 16 App Router / Supabase)의 MVP → Beta 전환.
+  Noonchi 웹앱(Next.js 16 App Router / Supabase)의 MVP → Beta 전환.
   인터뷰에서 확정된 11개 기능 요구사항(각각 세부 인수기준으로 분해되어 총 17개 AC)을
   기존 pnpm 모노레포 코드베이스에 3개 Phase(3a Auth·Admin / 3b Onboarding·Personalization /
   3c Content Automation)로 구현한다.
@@ -40,9 +40,9 @@ acceptance_criteria:
   - "/contact 공개 접근; 문의 제출 시 inquiries 테이블 저장 + Resend 이메일 발송"
 
 ontology_schema:
-  name: NunchiiBeta
+  name: NoonchiiBeta
   description: >
-    Nunchi Beta 단계의 핵심 도메인 모델.
+    Noonchi Beta 단계의 핵심 도메인 모델.
     인증된 사용자 프로필, 한국 민감일 이벤트(수동+자동), 캠페인 검토,
     문의 엔티티를 포함한다.
   fields:
@@ -86,7 +86,7 @@ exit_conditions:
 
 metadata:
   version: "3.0.0"
-  project: "nunchi-beta"
+  project: "noonchi-beta"
   interview_session_id: "interview_20260525_123510"
   ambiguity_score: 0.18
   created_at: "2026-05-25"

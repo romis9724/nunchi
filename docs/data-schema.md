@@ -1,4 +1,4 @@
-# Nunchi 데이터 스키마
+# Noonchi 데이터 스키마
 
 > 단일 출처 (Source of Truth). `data/events/*.json`과 Supabase 테이블은 이 문서를 기준으로 정렬한다.
 

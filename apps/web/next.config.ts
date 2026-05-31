@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  transpilePackages: ["@nunchi/shared", "@nunchi/llm"],
+  transpilePackages: ["@noonchi/shared", "@noonchi/llm"],
 };
 
 export default nextConfig;

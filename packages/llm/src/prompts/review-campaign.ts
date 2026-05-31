@@ -1,4 +1,4 @@
-import type { EventRecord, CheckRequest, Grade } from "@nunchi/shared";
+import type { EventRecord, CheckRequest, Grade } from "@noonchi/shared";
 
 export interface ReviewPromptInput {
   request: CheckRequest;

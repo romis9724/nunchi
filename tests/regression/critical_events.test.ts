@@ -4,7 +4,7 @@
  * Verifies that historically-grounded campaign-copy + date combinations
  * still trip the in-memory CRITICAL_KEYWORDS rule and short-circuit to
  * F-grade without any LLM or DB round-trip. These are the "must never
- * regress" cases that justify Nunchi's existence.
+ * regress" cases that justify Noonchi's existence.
  *
  * Scope:
  *   - matchCriticalKeywords() pure function only

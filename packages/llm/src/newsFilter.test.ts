@@ -15,7 +15,7 @@
  *   - 스포츠 기사 (야구, 축구, 올림픽 등 키워드 포함)
  *   - 기타 기사 (어느 카테고리에도 해당 없음)
  *
- * Run: pnpm --filter @nunchi/llm test:news-filter
+ * Run: pnpm --filter @noonchi/llm test:news-filter
  */
 
 import { describe, it } from "node:test";

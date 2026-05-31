@@ -7,7 +7,7 @@
  * - company / brand / product_name은 전달하지 않아 개인정보 노출 최소화.
  */
 
-import type { Grade } from "@nunchi/shared";
+import type { Grade } from "@noonchi/shared";
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const GEMINI_MODEL = process.env.GEMINI_MODEL ?? "gemini-2.0-flash";

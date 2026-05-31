@@ -30,7 +30,7 @@ export interface BadgeConfig {
 
 /**
  * Configuration for the "Beta" product-stage badge that appears next to the
- * Nunchi logo across all page headers.
+ * Noonchi logo across all page headers.
  */
 export const BETA_BADGE: BadgeConfig = {
   label: "Beta",

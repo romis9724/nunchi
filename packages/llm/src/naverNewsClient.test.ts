@@ -11,7 +11,7 @@
  *
  * HTTP 레이어는 globalThis.fetch 교체로 목(mock) 처리 — 실제 네트워크 호출 없음.
  *
- * Run: pnpm --filter @nunchi/llm test:naver-news
+ * Run: pnpm --filter @noonchi/llm test:naver-news
  */
 
 import { describe, it, afterEach } from "node:test";

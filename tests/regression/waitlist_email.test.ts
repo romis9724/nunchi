@@ -81,7 +81,7 @@ describe("sendWaitlistConfirmationEmail — Sub-AC 8b", () => {
     );
   });
 
-  it("sends from the Nunchi sender address", async () => {
+  it("sends from the Noonchi sender address", async () => {
     // Arrange
     const { resend, calls } = createMockResend();
 
@@ -94,8 +94,8 @@ describe("sendWaitlistConfirmationEmail — Sub-AC 8b", () => {
       "'from' must be a non-empty string"
     );
     assert.ok(
-      calls[0].from.toLowerCase().includes("nunchi"),
-      `'from' must reference 'Nunchi', got: ${calls[0].from}`
+      calls[0].from.toLowerCase().includes("noonchi"),
+      `'from' must reference 'Noonchi', got: ${calls[0].from}`
     );
   });
 

@@ -489,14 +489,14 @@ export async function sendWaitlistConfirmationEmail(
   }
 
   const { error } = await client.emails.send({
-    from: "Nunchi <noreply@nunchi.so>",
+    from: "noonch-i <noreply@noonchi.so>",
     to: [email],
-    subject: "웨이트리스트 등록 확인 — Nunchi",
+    subject: "웨이트리스트 등록 확인 — noonch-i",
     html: [
       "<p>안녕하세요!</p>",
-      "<p>눈치(nunchi) 웨이트리스트에 등록해 주셔서 감사합니다.</p>",
+      "<p>눈치(noonch-i) 웨이트리스트에 등록해 주셔서 감사합니다.</p>",
       "<p>서비스가 준비되면 가장 먼저 연락드리겠습니다.</p>",
-      "<p>감사합니다,<br/>눈치 팀</p>",
+      "<p>감사합니다,<br/>noonch-i 팀</p>",
     ].join("\n"),
   });
 

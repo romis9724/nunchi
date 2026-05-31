@@ -12,7 +12,7 @@
  *
  * 두 클라이언트 모두 mock 함수로 주입 — 실제 네트워크 호출 없음.
  *
- * Run: pnpm --filter @nunchi/llm test:orchestrator
+ * Run: pnpm --filter @noonchi/llm test:orchestrator
  */
 
 import { describe, it } from "node:test";

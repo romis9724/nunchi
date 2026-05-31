@@ -121,14 +121,14 @@ describe("submitInquiry — happy path", () => {
 
     // Act
     await submitInquiry(
-      { name: "테스터", email: "test@nunchi.so", message: "안녕하세요" },
+      { name: "테스터", email: "test@noonchi.so", message: "안녕하세요" },
       client
     );
 
     // Assert
     const payload = calls[0].payload;
     assert.strictEqual(payload["name"], "테스터", "name must be forwarded to insert");
-    assert.strictEqual(payload["email"], "test@nunchi.so", "email must be forwarded to insert");
+    assert.strictEqual(payload["email"], "test@noonchi.so", "email must be forwarded to insert");
     assert.strictEqual(payload["message"], "안녕하세요", "message must be forwarded to insert");
   });
 

@@ -1,7 +1,7 @@
 "use client";
 
-import type { RiskScore } from "@nunchi/shared";
-import { RISK_SCORE_LABEL } from "@nunchi/shared";
+import type { RiskScore } from "@noonchi/shared";
+import { RISK_SCORE_LABEL } from "@noonchi/shared";
 
 const BADGE_STYLES: Record<RiskScore, string> = {
   critical:

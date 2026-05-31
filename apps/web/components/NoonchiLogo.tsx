@@ -2,7 +2,7 @@
 
 import { BETA_BADGE } from "../lib/badge-config";
 
-interface NunchiLogoProps {
+interface NoonchiLogoProps {
   size?: number;
   color?: string;
   showText?: boolean;
@@ -10,12 +10,12 @@ interface NunchiLogoProps {
   className?: string;
 }
 
-export function NunchiLogo({
+export function NoonchiLogo({
   size = 28,
   color = "currentColor",
   showText = true,
   showBeta = true,
-}: NunchiLogoProps) {
+}: NoonchiLogoProps) {
   return (
     <span
       style={{
@@ -37,7 +37,7 @@ export function NunchiLogo({
             lineHeight: 1,
           }}
         >
-          nunchi
+          noonch-i
         </span>
       )}
 

@@ -1,5 +1,5 @@
 goal: >-
-  Nunchi MVP Phase 2 — 코드 작업 한정. (a) k6 부하 테스트로 POST /api/check
+  Noonchi MVP Phase 2 — 코드 작업 한정. (a) k6 부하 테스트로 POST /api/check
   p95 < 5초 SLA 정량 검증 인프라 추가. (b) pgvector 임베딩 파이프라인 — seed
   스크립트가 50건 events에 768차원 임베딩을 채우고, review-engine이 의미
   유사도 검색으로 후보 사건 보강. 둘 다 "코드/스크립트는 만들지만 production
@@ -28,7 +28,7 @@ acceptance_criteria:
   - 빌드 통과 — `pnpm --filter web build` OK
 
 ontology_schema:
-  name: NunchiPhase2Domain
+  name: NoonchiPhase2Domain
   description: >-
     Phase 2 코드 작업 도메인. 부하 테스트 시나리오와 임베딩 파이프라인.
   fields:
@@ -86,50 +86,50 @@ exit_conditions:
     criteria: "SQL 파일 존재 + 2회 실행해도 에러 없음 (사람이 production 적용)"
   - name: tests_all_green
     description: 전체 테스트셋 회귀 0
-    criteria: "pnpm test:scenarios + pnpm --filter @nunchi/shared test/test:count/test:completeness 모두 pass"
+    criteria: "pnpm test:scenarios + pnpm --filter @noonchi/shared test/test:count/test:completeness 모두 pass"
 
 metadata:
   version: "2.0.0"
   timestamp: "2026-05-25T18:30:00Z"
   ambiguity_score: 0.10
-  parent_seed: "nunchi-mvp-pmm-pre-launch-validator-20260524T154535Z"
-  revision_key: "nunchi-phase2-perf-and-embeddings-20260525T183000Z"
+  parent_seed: "noonchi-mvp-pmm-pre-launch-validator-20260524T154535Z"
+  revision_key: "noonchi-phase2-perf-and-embeddings-20260525T183000Z"
   project_type: brownfield
   context_references:
-    - path: /Users/user/Workspace/Nunchi/docs/seeds/nunchi-pre-launch-validator-v1.1.yaml
+    - path: /Users/user/Workspace/Noonchi/docs/seeds/noonchi-pre-launch-validator-v1.1.yaml
       role: primary
       summary: "Phase 1 Seed v1.1 — 부모 spec. 본 v2.0은 그 중 AC3 + Task #6(별도 pgvector) 코드 작업만 도려낸 sub-seed."
-    - path: /Users/user/Workspace/Nunchi/CLAUDE.md
+    - path: /Users/user/Workspace/Noonchi/CLAUDE.md
       role: primary
       summary: "프로젝트 사양"
-    - path: /Users/user/Workspace/Nunchi/docs/STATUS.md
+    - path: /Users/user/Workspace/Noonchi/docs/STATUS.md
       role: primary
       summary: "현재 진행 상황 (50/50 events, with_embedding=0)"
-    - path: /Users/user/Workspace/Nunchi/docs/architecture.md
+    - path: /Users/user/Workspace/Noonchi/docs/architecture.md
       role: reference
       summary: "검토 엔진 hybrid 파이프라인"
-    - path: /Users/user/Workspace/Nunchi/apps/web/lib/review-engine.ts
+    - path: /Users/user/Workspace/Noonchi/apps/web/lib/review-engine.ts
       role: primary
       summary: "fetchNearbyEvents 위치 — semantic search 보강 대상"
-    - path: /Users/user/Workspace/Nunchi/packages/llm/src/claude.ts
+    - path: /Users/user/Workspace/Noonchi/packages/llm/src/claude.ts
       role: primary
       summary: "generateEmbedding() 위치 — Ollama/Gemini 어댑터 확장 대상"
-    - path: /Users/user/Workspace/Nunchi/scripts/seed.ts
+    - path: /Users/user/Workspace/Noonchi/scripts/seed.ts
       role: primary
       summary: "seed 스크립트 — --embed 플래그 추가 대상"
-    - path: /Users/user/Workspace/Nunchi/scripts/migrate.ts
+    - path: /Users/user/Workspace/Noonchi/scripts/migrate.ts
       role: reference
       summary: "events.embedding vector(768) 컬럼 정의 위치"
-    - path: /Users/user/Workspace/Nunchi/migrations
+    - path: /Users/user/Workspace/Noonchi/migrations
       role: reference
       summary: "002_add_grade_to_reviews.sql 와 같은 패턴으로 003 추가"
-    - path: /Users/user/Workspace/Nunchi/tests/regression
+    - path: /Users/user/Workspace/Noonchi/tests/regression
       role: reference
       summary: "회귀 테스트 패턴 — Node test runner + tsx"
   existing_patterns:
     - "pnpm 모노레포 (apps/web + packages/llm + packages/shared + tests + scripts)"
     - "review-engine hybrid pipeline: cache → rule → fetchNearby → LLM"
-    - "@nunchi/llm callReviewEngine + generateEmbedding (Ollama/Gemini)"
+    - "@noonchi/llm callReviewEngine + generateEmbedding (Ollama/Gemini)"
     - "Supabase + pgvector(768)"
     - "tsx --test runner (Node native test)"
     - "migrations/00X_*.sql idempotent pattern (IF NOT EXISTS)"

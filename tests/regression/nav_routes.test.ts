@@ -140,7 +140,7 @@ describe("NAV_ITEMS navigation metadata", () => {
   const expectedRoutes: Array<{ label: string; href: RoutePath }> = [
     { label: "홈", href: ROUTES.HOME },
     { label: "캠페인 검토", href: ROUTES.CHECK },
-    { label: "민감일 캘린더", href: ROUTES.CALENDAR },
+    { label: "리스크 캘린더", href: ROUTES.CALENDAR },
     { label: "온보딩", href: ROUTES.ONBOARDING },
     { label: "관리자", href: ROUTES.ADMIN },
     { label: "이벤트 관리", href: ROUTES.ADMIN_EVENTS },

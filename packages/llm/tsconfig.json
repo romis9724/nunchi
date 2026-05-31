@@ -6,7 +6,7 @@
     "strict": true,
     "noEmit": true,
     "paths": {
-      "@nunchi/shared": ["../shared/src/index.ts"]
+      "@noonchi/shared": ["../shared/src/index.ts"]
     }
   },
   "include": ["src"]
