@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
+import { AdminGuard } from "@/components/AdminGuard";
 
 interface BetaUser {
   id: string;
@@ -41,6 +42,7 @@ export default function AdminUsersPage() {
   };
 
   return (
+    <AdminGuard>
     <main style={{ minHeight: "100vh", background: "var(--rice-paper, #F8F7F4)" }}>
       <AppHeader />
       <div style={{ maxWidth: 1000, margin: "0 auto", padding: "32px 24px" }}>
@@ -112,5 +114,6 @@ export default function AdminUsersPage() {
         )}
       </div>
     </main>
+    </AdminGuard>
   );
 }

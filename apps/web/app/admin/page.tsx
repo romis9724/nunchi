@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import { AdminGuard } from "@/components/AdminGuard";
+import { AppHeader } from "@/components/AppHeader";
 
 const CARD_STYLE = {
   display: "block",
@@ -13,6 +17,7 @@ const CARD_STYLE = {
 
 export default function AdminPage() {
   return (
+    <AdminGuard>
     <main style={{ minHeight: "100vh", background: "var(--rice-paper, #F8F7F4)", padding: "40px 24px" }}>
       <div style={{ maxWidth: 800, margin: "0 auto" }}>
         <h1 style={{ fontFamily: "var(--font-display)", fontSize: "1.75rem", fontWeight: 800, color: "var(--charcoal)", marginBottom: "8px" }}>
@@ -39,5 +44,6 @@ export default function AdminPage() {
         </div>
       </div>
     </main>
+    </AdminGuard>
   );
 }

@@ -55,6 +55,7 @@ export default function AdminEventsPage() {
   );
 
   return (
+    <AdminGuard>
     <main style={{ minHeight: "100vh", background: "var(--rice-paper, #F8F7F4)", padding: "32px 24px" }}>
       <div style={{ maxWidth: 1000, margin: "0 auto" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "24px" }}>
@@ -150,5 +151,6 @@ export default function AdminEventsPage() {
         )}
       </div>
     </main>
+    </AdminGuard>
   );
 }

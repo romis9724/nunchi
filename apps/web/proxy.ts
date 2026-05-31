@@ -67,29 +67,12 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(new URL("/", request.url));
   }
 
-  // /admin/* requires admin role
-  if (pathname.startsWith("/admin")) {
-    if (!isLoggedIn) {
-      return NextResponse.redirect(new URL("/", request.url));
-    }
-
-    const userId = decodeJwtSub(accessToken);
-    if (!userId) {
-      return new NextResponse(null, { status: 403 });
-    }
-
-    const role = await getUserRole(userId, accessToken);
-    if (role !== "admin") {
-      return new NextResponse(
-        JSON.stringify({ error: "관리자 권한이 필요합니다." }),
-        { status: 403, headers: { "Content-Type": "application/json" } }
-      );
-    }
-  }
+  // /admin/* — proxy에서는 체크하지 않음 (Supabase v2 세션이 localStorage에 있어 서버 쿠키 접근 불가)
+  // 대신 각 admin 페이지의 AdminGuard 클라이언트 컴포넌트에서 인증·권한 검증
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/onboarding/:path*", "/mypage/:path*", "/admin/:path*"],
+  matcher: ["/onboarding/:path*", "/mypage/:path*"],
 };
