@@ -4,22 +4,7 @@ import { useState, useRef, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import type { CheckRequest, CheckResponse } from "@nunchi/shared";
 import { ResultCard } from "@/components/result-card/ResultCard";
-import { NunchiLogo } from "@/components/NunchiLogo";
-import Link from "next/link";
-import { signInWithGoogle } from "@/lib/auth";
-
-const NAV_LINK_STYLE = {
-  fontSize: "13px",
-  color: "var(--ms-text-2, var(--muted-ink))",
-  textDecoration: "none",
-  fontWeight: 500,
-  padding: "6px 12px",
-  borderRadius: "4px",
-  border: "1px solid var(--ms-border, var(--border-warm))",
-  background: "transparent",
-  cursor: "pointer",
-  transition: "all 0.12s",
-} as const;
+import { AppHeader } from "@/components/AppHeader";
 
 const INPUT_STYLE = {
   width: "100%",
@@ -101,38 +86,7 @@ function CheckForm() {
 
   return (
     <div style={{ minHeight: "100vh", background: "var(--warm-white)", fontFamily: "var(--font-body)" }}>
-      {/* Nav */}
-      <header style={{
-        borderBottom: "1px solid var(--border-warm)",
-        background: "rgba(248,247,244,0.92)",
-        backdropFilter: "blur(12px)",
-        position: "sticky",
-        top: 0,
-        zIndex: 10,
-      }}>
-        <div style={{ maxWidth: "720px", margin: "0 auto", padding: "0 24px", height: "56px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <Link href="/" style={{ textDecoration: "none", color: "var(--ms-text, var(--charcoal))" }}>
-            <NunchiLogo size={22} />
-          </Link>
-          <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
-            <Link href="/calendar" style={NAV_LINK_STYLE}>
-              민감일 캘린더
-            </Link>
-            <Link href="/contact" style={NAV_LINK_STYLE}>
-              문의하기
-            </Link>
-            <button
-              onClick={async () => {
-                const result = await signInWithGoogle({ origin: window.location.origin });
-                if (result.url) window.location.href = result.url;
-              }}
-              style={{ ...NAV_LINK_STYLE, background: "var(--ms-blue)", color: "#fff", border: "none", fontWeight: 600 }}
-            >
-              Google 로그인
-            </button>
-          </div>
-        </div>
-      </header>
+      <AppHeader />
 
       <main style={{ maxWidth: "720px", margin: "0 auto", padding: "48px 24px 80px" }}>
         {/* Page header */}

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { NunchiLogo } from "@/components/NunchiLogo";
+import { AppHeader } from "@/components/AppHeader";
 import { toneToGrade } from "@nunchi/shared";
 import type { EventRecord } from "@nunchi/shared";
 import { getSupabaseAdmin } from "@/lib/supabase";
@@ -67,17 +67,18 @@ export default async function CalendarPage() {
   return (
     <div style={{ background: "var(--warm-white)", minHeight: "100vh", fontFamily: "var(--font-body)" }}>
 
-      {/* NAV */}
-      <header style={{ borderBottom: "1px solid var(--border-warm)", background: "rgba(248,247,244,0.92)", backdropFilter: "blur(12px)", position: "sticky", top: 0, zIndex: 10 }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 32px", height: "60px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <Link href="/" style={{ textDecoration: "none", color: "var(--ms-text, var(--charcoal))" }}>
-            <NunchiLogo size={24} />
-          </Link>
-          <Link href="/check" style={{ fontSize: "13px", fontWeight: 600, background: "var(--ms-blue, var(--charcoal))", color: "#FFF", padding: "7px 16px", borderRadius: "4px", textDecoration: "none" }}>
-            캠페인 검토
-          </Link>
+      <AppHeader />
+
+      {/* 안내 배너 */}
+      <div style={{ background: "var(--ms-blue-light)", borderBottom: "1px solid var(--ms-blue-mid)", padding: "12px 24px" }}>
+        <div style={{ maxWidth: "1160px", margin: "0 auto", display: "flex", alignItems: "center", gap: "10px" }}>
+          <span style={{ fontSize: "13px", color: "var(--ms-blue)", fontWeight: 500 }}>
+            📅 날짜를 클릭하면 해당일의 민감도와 관련 사건을 확인할 수 있습니다. 캠페인 검토는{" "}
+          </span>
+          <Link href="/check" style={{ fontSize: "13px", color: "var(--ms-blue)", fontWeight: 700, textDecoration: "underline" }}>캠페인 검토</Link>
+          <span style={{ fontSize: "13px", color: "var(--ms-blue)", fontWeight: 500 }}>페이지를 이용하세요.</span>
         </div>
-      </header>
+      </div>
 
       <CalendarClient events={events} />
     </div>

@@ -1,22 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import { NunchiLogo } from "@/components/NunchiLogo";
+import { AppHeader } from "@/components/AppHeader";
 import { CONTACT_FORM_FIELDS } from "@/lib/contact-form";
-
-const NAV_LINK_STYLE = {
-  fontSize: "13px",
-  color: "var(--ms-text-2, var(--muted-ink))",
-  textDecoration: "none",
-  fontWeight: 500,
-  padding: "6px 12px",
-  borderRadius: "4px",
-  border: "1px solid var(--ms-border, var(--border-warm))",
-  background: "transparent",
-  cursor: "pointer",
-  transition: "all 0.12s",
-} as const;
 
 const INPUT_STYLE = {
   width: "100%",
@@ -104,262 +90,245 @@ export default function ContactPage() {
         fontFamily: "var(--font-body)",
       }}
     >
-      {/* Navigation */}
-      <header
-        style={{
-          borderBottom: "1px solid var(--border-warm)",
-          background: "rgba(248,247,244,0.92)",
-          backdropFilter: "blur(12px)",
-          position: "sticky",
-          top: 0,
-          zIndex: 10,
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "720px",
-            margin: "0 auto",
-            padding: "0 24px",
-            height: "56px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          <Link
-            href="/"
-            style={{ textDecoration: "none", color: "var(--ms-text, var(--charcoal))" }}
-          >
-            <NunchiLogo size={22} />
-          </Link>
-          <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-            <Link href="/check" style={NAV_LINK_STYLE}>
-              캠페인 검토
-            </Link>
-            <Link href="/calendar" style={NAV_LINK_STYLE}>
-              민감일 캘린더
-            </Link>
-          </div>
-        </div>
-      </header>
+      <AppHeader />
 
       {/* Main content */}
       <main
-        style={{ maxWidth: "720px", margin: "0 auto", padding: "48px 24px 80px" }}
+        style={{ maxWidth: "900px", margin: "0 auto", padding: "48px 24px 80px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "48px", alignItems: "start" }}
+        className="rg-2"
       >
-        {/* Page header */}
-        <div style={{ marginBottom: "36px" }}>
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "6px",
-              fontSize: "12px",
-              fontWeight: 600,
-              color: "var(--muted-ink)",
-              letterSpacing: "0.06em",
-              textTransform: "uppercase",
-              marginBottom: "12px",
-            }}
-          >
-            <span>✉</span> 문의하기
-          </div>
-          <h1
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(24px,4vw,32px)",
-              fontWeight: 800,
-              color: "var(--charcoal)",
-              letterSpacing: "-0.03em",
-              margin: "0 0 8px",
-            }}
-          >
-            문의 및 피드백
-          </h1>
-          <p
-            style={{
-              fontSize: "14px",
-              color: "var(--muted-ink)",
-              lineHeight: 1.6,
-              margin: 0,
-            }}
-          >
-            질문, 제안, 파트너십 문의 — 무엇이든 보내주세요.
-            <br />
-            로그인 없이 누구나 문의할 수 있습니다.
-          </p>
-        </div>
-
-        {/* Success state */}
-        {status === "success" ? (
-          <div
-            role="status"
-            aria-live="polite"
-            style={{
-              padding: "32px",
-              borderRadius: "16px",
-              border: "1px solid var(--border-warm)",
-              background: "#F6FAF3",
-              textAlign: "center",
-            }}
-          >
-            <div style={{ fontSize: "32px", marginBottom: "16px" }}>✓</div>
-            <h2
+        {/* Left: page header + form */}
+        <div>
+          {/* Page header */}
+          <div style={{ marginBottom: "36px" }}>
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "6px",
+                fontSize: "12px",
+                fontWeight: 600,
+                color: "var(--muted-ink)",
+                letterSpacing: "0.06em",
+                textTransform: "uppercase",
+                marginBottom: "12px",
+              }}
+            >
+              <span>✉</span> 문의하기
+            </div>
+            <h1
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "20px",
-                fontWeight: 700,
+                fontSize: "clamp(24px,4vw,32px)",
+                fontWeight: 800,
                 color: "var(--charcoal)",
+                letterSpacing: "-0.03em",
                 margin: "0 0 8px",
               }}
             >
-              문의가 접수되었습니다
-            </h2>
-            <p style={{ fontSize: "14px", color: "var(--muted-ink)", margin: "0 0 24px" }}>
-              빠른 시일 내에 이메일로 답변 드리겠습니다.
-            </p>
-            <button
-              type="button"
-              onClick={() => setStatus("idle")}
+              문의 및 피드백
+            </h1>
+            <p
               style={{
-                padding: "10px 24px",
-                borderRadius: "10px",
-                border: "1.5px solid var(--border-warm)",
-                background: "transparent",
-                fontSize: "13px",
-                fontWeight: 600,
-                color: "var(--charcoal)",
-                cursor: "pointer",
-                fontFamily: "var(--font-body)",
+                fontSize: "14px",
+                color: "var(--muted-ink)",
+                lineHeight: 1.6,
+                margin: 0,
               }}
             >
-              새 문의 작성
-            </button>
+              질문, 제안, 파트너십 문의 — 무엇이든 보내주세요.
+              <br />
+              로그인 없이 누구나 문의할 수 있습니다.
+            </p>
           </div>
-        ) : (
-          /* Form card */
-          <div
-            className="studio-card"
-            style={{ padding: "32px", marginBottom: "32px" }}
-          >
-            <form
-              onSubmit={handleSubmit}
-              style={{ display: "flex", flexDirection: "column", gap: "24px" }}
-              noValidate
+
+          {/* Success state */}
+          {status === "success" ? (
+            <div
+              role="status"
+              aria-live="polite"
+              style={{
+                padding: "32px",
+                borderRadius: "16px",
+                border: "1px solid var(--border-warm)",
+                background: "#F6FAF3",
+                textAlign: "center",
+              }}
             >
-              {/* Name field */}
-              <div>
-                <label htmlFor="name" style={LABEL_STYLE}>
-                  {CONTACT_FORM_FIELDS[0].label}{" "}
-                  <span style={{ color: "var(--coral)" }}>*</span>
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  type={CONTACT_FORM_FIELDS[0].type}
-                  required={CONTACT_FORM_FIELDS[0].required}
-                  value={form.name}
-                  onChange={handleChange}
-                  placeholder="홍길동"
-                  maxLength={100}
-                  style={INPUT_STYLE}
-                  onFocus={(e) => (e.target.style.borderColor = "var(--charcoal)")}
-                  onBlur={(e) => (e.target.style.borderColor = "var(--border-warm)")}
-                />
-              </div>
-
-              {/* Email field */}
-              <div>
-                <label htmlFor="email" style={LABEL_STYLE}>
-                  {CONTACT_FORM_FIELDS[1].label}{" "}
-                  <span style={{ color: "var(--coral)" }}>*</span>
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type={CONTACT_FORM_FIELDS[1].type}
-                  required={CONTACT_FORM_FIELDS[1].required}
-                  value={form.email}
-                  onChange={handleChange}
-                  placeholder="hello@example.com"
-                  maxLength={254}
-                  style={INPUT_STYLE}
-                  onFocus={(e) => (e.target.style.borderColor = "var(--charcoal)")}
-                  onBlur={(e) => (e.target.style.borderColor = "var(--border-warm)")}
-                />
-              </div>
-
-              {/* Message field */}
-              <div>
-                <label htmlFor="message" style={LABEL_STYLE}>
-                  {CONTACT_FORM_FIELDS[2].label}{" "}
-                  <span style={{ color: "var(--coral)" }}>*</span>
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required={CONTACT_FORM_FIELDS[2].required}
-                  value={form.message}
-                  onChange={handleChange}
-                  placeholder="문의 내용을 입력해주세요…"
-                  rows={6}
-                  maxLength={3000}
-                  style={{ ...INPUT_STYLE, resize: "none" }}
-                  onFocus={(e) => (e.target.style.borderColor = "var(--charcoal)")}
-                  onBlur={(e) => (e.target.style.borderColor = "var(--border-warm)")}
-                />
-                <p
-                  style={{
-                    fontSize: "11px",
-                    color: "var(--muted-ink)",
-                    textAlign: "right",
-                    marginTop: "4px",
-                  }}
-                >
-                  {form.message.length}/3000
-                </p>
-              </div>
-
-              {/* Error */}
-              {status === "error" && errorMessage && (
-                <div
-                  role="alert"
-                  style={{
-                    fontSize: "13px",
-                    color: "var(--grade-f-text)",
-                    background: "var(--grade-f-bg)",
-                    border: "1px solid var(--grade-f-border)",
-                    borderRadius: "10px",
-                    padding: "12px 16px",
-                  }}
-                >
-                  {errorMessage}
-                </div>
-              )}
-
-              {/* Submit */}
-              <button
-                type="submit"
-                disabled={!canSubmit}
+              <div style={{ fontSize: "32px", marginBottom: "16px" }}>✓</div>
+              <h2
                 style={{
-                  padding: "14px",
-                  borderRadius: "12px",
-                  border: "none",
-                  background: canSubmit ? "var(--charcoal)" : "var(--border-warm)",
-                  color: canSubmit ? "#FFFFFF" : "var(--muted-ink)",
-                  fontSize: "14px",
-                  fontWeight: 700,
-                  cursor: canSubmit ? "pointer" : "not-allowed",
                   fontFamily: "var(--font-display)",
-                  letterSpacing: "-0.01em",
-                  transition: "all 0.15s",
+                  fontSize: "20px",
+                  fontWeight: 700,
+                  color: "var(--charcoal)",
+                  margin: "0 0 8px",
                 }}
               >
-                {isSubmitting ? "전송 중…" : "문의 보내기"}
+                문의가 접수되었습니다
+              </h2>
+              <p style={{ fontSize: "14px", color: "var(--muted-ink)", margin: "0 0 24px" }}>
+                빠른 시일 내에 이메일로 답변 드리겠습니다.
+              </p>
+              <button
+                type="button"
+                onClick={() => setStatus("idle")}
+                style={{
+                  padding: "10px 24px",
+                  borderRadius: "10px",
+                  border: "1.5px solid var(--border-warm)",
+                  background: "transparent",
+                  fontSize: "13px",
+                  fontWeight: 600,
+                  color: "var(--charcoal)",
+                  cursor: "pointer",
+                  fontFamily: "var(--font-body)",
+                }}
+              >
+                새 문의 작성
               </button>
-            </form>
-          </div>
-        )}
+            </div>
+          ) : (
+            /* Form card */
+            <div
+              className="studio-card"
+              style={{ padding: "32px", marginBottom: "32px" }}
+            >
+              <form
+                onSubmit={handleSubmit}
+                style={{ display: "flex", flexDirection: "column", gap: "24px" }}
+                noValidate
+              >
+                {/* Name field */}
+                <div>
+                  <label htmlFor="name" style={LABEL_STYLE}>
+                    {CONTACT_FORM_FIELDS[0].label}{" "}
+                    <span style={{ color: "var(--coral)" }}>*</span>
+                  </label>
+                  <input
+                    id="name"
+                    name="name"
+                    type={CONTACT_FORM_FIELDS[0].type}
+                    required={CONTACT_FORM_FIELDS[0].required}
+                    value={form.name}
+                    onChange={handleChange}
+                    placeholder="홍길동"
+                    maxLength={100}
+                    style={INPUT_STYLE}
+                    onFocus={(e) => (e.target.style.borderColor = "var(--charcoal)")}
+                    onBlur={(e) => (e.target.style.borderColor = "var(--border-warm)")}
+                  />
+                </div>
+
+                {/* Email field */}
+                <div>
+                  <label htmlFor="email" style={LABEL_STYLE}>
+                    {CONTACT_FORM_FIELDS[1].label}{" "}
+                    <span style={{ color: "var(--coral)" }}>*</span>
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type={CONTACT_FORM_FIELDS[1].type}
+                    required={CONTACT_FORM_FIELDS[1].required}
+                    value={form.email}
+                    onChange={handleChange}
+                    placeholder="hello@example.com"
+                    maxLength={254}
+                    style={INPUT_STYLE}
+                    onFocus={(e) => (e.target.style.borderColor = "var(--charcoal)")}
+                    onBlur={(e) => (e.target.style.borderColor = "var(--border-warm)")}
+                  />
+                </div>
+
+                {/* Message field */}
+                <div>
+                  <label htmlFor="message" style={LABEL_STYLE}>
+                    {CONTACT_FORM_FIELDS[2].label}{" "}
+                    <span style={{ color: "var(--coral)" }}>*</span>
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required={CONTACT_FORM_FIELDS[2].required}
+                    value={form.message}
+                    onChange={handleChange}
+                    placeholder="문의 내용을 입력해주세요…"
+                    rows={6}
+                    maxLength={3000}
+                    style={{ ...INPUT_STYLE, resize: "none" }}
+                    onFocus={(e) => (e.target.style.borderColor = "var(--charcoal)")}
+                    onBlur={(e) => (e.target.style.borderColor = "var(--border-warm)")}
+                  />
+                  <p
+                    style={{
+                      fontSize: "11px",
+                      color: "var(--muted-ink)",
+                      textAlign: "right",
+                      marginTop: "4px",
+                    }}
+                  >
+                    {form.message.length}/3000
+                  </p>
+                </div>
+
+                {/* Error */}
+                {status === "error" && errorMessage && (
+                  <div
+                    role="alert"
+                    style={{
+                      fontSize: "13px",
+                      color: "var(--grade-f-text)",
+                      background: "var(--grade-f-bg)",
+                      border: "1px solid var(--grade-f-border)",
+                      borderRadius: "10px",
+                      padding: "12px 16px",
+                    }}
+                  >
+                    {errorMessage}
+                  </div>
+                )}
+
+                {/* Submit */}
+                <button
+                  type="submit"
+                  disabled={!canSubmit}
+                  style={{
+                    padding: "14px",
+                    borderRadius: "12px",
+                    border: "none",
+                    background: canSubmit ? "var(--charcoal)" : "var(--border-warm)",
+                    color: canSubmit ? "#FFFFFF" : "var(--muted-ink)",
+                    fontSize: "14px",
+                    fontWeight: 700,
+                    cursor: canSubmit ? "pointer" : "not-allowed",
+                    fontFamily: "var(--font-display)",
+                    letterSpacing: "-0.01em",
+                    transition: "all 0.15s",
+                  }}
+                >
+                  {isSubmitting ? "전송 중…" : "문의 보내기"}
+                </button>
+              </form>
+            </div>
+          )}
+        </div>
+
+        {/* Right: FAQ */}
+        <div>
+          <h2 style={{ fontSize: "18px", fontWeight: 700, color: "var(--charcoal)", marginBottom: "20px" }}>자주 묻는 질문</h2>
+          {[
+            { q: "베타 기간 동안 무료인가요?", a: "네, 베타 기간 동안은 전면 무료입니다. 요금제는 베타 종료 후 공지됩니다." },
+            { q: "검토 결과는 얼마나 정확한가요?", a: "AI가 한국 역사·사회 맥락 DB와 교차 검토합니다. 참고용으로 활용하시고, 최종 결정은 팀 내부에서 검토 후 진행하세요." },
+            { q: "입력한 카피가 외부에 공유되나요?", a: "절대 공유되지 않습니다. 검토 결과는 캐싱 목적으로만 저장되며, 제3자에게 제공하지 않습니다." },
+            { q: "API 연동이 가능한가요?", a: "베타 이후 API 플랜 제공 예정입니다. 관심 있으시면 문의 폼으로 남겨주세요." },
+          ].map(({ q, a }) => (
+            <div key={q} style={{ marginBottom: "20px", paddingBottom: "20px", borderBottom: "1px solid var(--border-warm)" }}>
+              <p style={{ fontSize: "14px", fontWeight: 700, color: "var(--charcoal)", marginBottom: "6px" }}>{q}</p>
+              <p style={{ fontSize: "13px", color: "var(--muted-ink)", lineHeight: 1.65, margin: 0 }}>{a}</p>
+            </div>
+          ))}
+        </div>
       </main>
     </div>
   );

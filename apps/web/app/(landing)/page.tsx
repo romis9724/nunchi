@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { NunchiLogo } from "../../components/NunchiLogo";
-import { signInWithGoogle } from "../../lib/auth";
+import { AppHeader } from "../../components/AppHeader";
 
 /* ── Grade badge inline ─────────────────────────────────────── */
 function GMini({ g }: { g: string }) {
@@ -26,34 +25,7 @@ export default function LandingPage() {
   return (
     <div style={{ background: "var(--ms-surface)", minHeight: "100vh", fontFamily: "var(--font-body)" }}>
 
-      {/* NAV */}
-      <header style={{ borderBottom: "1px solid var(--ms-border)", background: "rgba(250,249,248,0.96)", backdropFilter: "blur(12px)", position: "sticky", top: 0, zIndex: 20 }}>
-        <div style={{ maxWidth: "1160px", margin: "0 auto", padding: "0 24px", height: "56px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <Link href="/" style={{ textDecoration: "none", color: "var(--ms-text)" }}>
-            <NunchiLogo size={24} />
-          </Link>
-          <nav style={{ display: "flex", gap: "6px", alignItems: "center" }}>
-            <Link href="/calendar" style={{ fontSize: "13px", color: "var(--ms-text-2)", textDecoration: "none", padding: "6px 12px", borderRadius: "4px", fontWeight: 500, border: "1px solid var(--ms-border)", background: "#fff" }}>
-              민감일 캘린더
-            </Link>
-            <Link href="/contact" style={{ fontSize: "13px", color: "var(--ms-text-2)", textDecoration: "none", padding: "6px 12px", borderRadius: "4px", fontWeight: 500, border: "1px solid var(--ms-border)", background: "#fff" }}>
-              문의하기
-            </Link>
-            <button
-              onClick={async () => {
-                const result = await signInWithGoogle({ origin: window.location.origin });
-                if (result.url) window.location.href = result.url;
-              }}
-              style={{ fontSize: "13px", color: "var(--ms-text-2)", padding: "6px 12px", borderRadius: "4px", fontWeight: 600, border: "1px solid var(--ms-border)", background: "#fff", cursor: "pointer" }}
-            >
-              로그인
-            </button>
-            <Link href="/check" style={{ fontSize: "13px", fontWeight: 600, background: "var(--ms-blue)", color: "#fff", padding: "7px 16px", borderRadius: "4px", textDecoration: "none", border: "none" }}>
-              무료로 시작
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <AppHeader />
 
       {/* HERO */}
       <section style={{ maxWidth: "1160px", margin: "0 auto", padding: "72px 24px 56px" }} className="hero-section">
