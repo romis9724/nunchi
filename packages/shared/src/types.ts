@@ -85,6 +85,8 @@ export interface CheckResponse {
   cached: boolean;
   /** 사용자 업종·채널 기반 맞춤 코멘트 (industries·channels만 LLM에 전달). 비로그인 시 undefined. */
   personalizedComment?: string;
+  /** true면 LLM 일시 장애로 인한 임시 fallback 결과 — UI에서 경고 표시 권장 */
+  transient?: boolean;
 }
 
 export interface WaitlistEntry {

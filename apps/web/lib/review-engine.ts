@@ -267,6 +267,7 @@ export async function runReviewEngine(
     suggestions: llmResult.suggestions,
     ruleTriggered: false,
     cached: false,
+    transient: llmResult.transient,
   };
 
   // transient 결과(429 등 일시적 fallback)는 캐시하지 않음

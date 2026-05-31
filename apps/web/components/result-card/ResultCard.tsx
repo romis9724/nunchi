@@ -286,16 +286,55 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
       {/* ── RATIONALE ─────────────────────────────────────────── */}
       <div style={{ padding: "18px 20px" }}>
         <SectionLabel>{isPositive ? "호재 이유" : "분석 근거"}</SectionLabel>
-        <p
-          style={{
-            fontSize: "14px",
-            color: "var(--ms-text)",
-            lineHeight: 1.75,
-            margin: 0,
-          }}
-        >
-          {result.rationale}
-        </p>
+        {result.transient ? (
+          <div
+            role="status"
+            style={{
+              background: "var(--grade-d-bg)",
+              border: "1px solid var(--grade-d-border)",
+              borderLeft: "3px solid var(--grade-d-text)",
+              borderRadius: "10px",
+              padding: "14px 16px",
+              display: "flex",
+              gap: "12px",
+              alignItems: "flex-start",
+            }}
+          >
+            <span style={{ fontSize: "16px", lineHeight: 1, marginTop: "2px" }}>⚠️</span>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <p style={{
+                fontSize: "13.5px", fontWeight: 700,
+                color: "var(--grade-d-text)", margin: "0 0 4px",
+              }}>
+                AI 분석이 임시로 제한되었습니다
+              </p>
+              <p style={{
+                fontSize: "13px", color: "var(--ms-text-2)",
+                lineHeight: 1.65, margin: "0 0 8px",
+              }}>
+                현재 AI 모델 호출 한도에 도달했습니다. 잠시 후 다시 검토해 주세요.
+                아래 <strong>관련 사건</strong> 정보는 정상적으로 표시됩니다.
+              </p>
+              <p style={{
+                fontSize: "11.5px", color: "var(--ms-text-3)",
+                margin: 0, lineHeight: 1.5,
+              }}>
+                * 등급(C)은 임시 분류이며 실제 위험도를 반영하지 않습니다.
+              </p>
+            </div>
+          </div>
+        ) : (
+          <p
+            style={{
+              fontSize: "14px",
+              color: "var(--ms-text)",
+              lineHeight: 1.75,
+              margin: 0,
+            }}
+          >
+            {result.rationale}
+          </p>
+        )}
       </div>
 
       {/* ── FLAGGED KEYWORDS ──────────────────────────────────── */}
