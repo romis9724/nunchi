@@ -7,8 +7,8 @@ import { toneToGrade } from "@noonchi/shared";
 import type { EventRecord } from "@noonchi/shared";
 
 export const metadata: Metadata = {
-  title: "한국 민감일 사건 인덱스",
-  description: "마케팅 캠페인 검토에 필요한 한국 역사·사회 민감일 60+. 5·18, 세월호, 이태원, 광복절 등 사건별 위험도·키워드·권장 톤 정리.",
+  title: "리스크 라이브러리",
+  description: "마케팅 캠페인 검토에 필요한 한국 민감일·호재일 60+. 5·18, 세월호, 이태원, 광복절 등 일자별 위험도·키워드·권장 톤 정리.",
   alternates: { canonical: "https://nunchi-bay.vercel.app/events" },
 };
 
@@ -62,10 +62,10 @@ export default async function EventsIndexPage() {
       <AppHeader />
       <main style={{ maxWidth: "1100px", margin: "0 auto", padding: "48px 24px 80px" }}>
         <PageHeader
-          eyebrow="민감일 인덱스"
+          eyebrow="민감일 라이브러리"
           eyebrowIcon="list"
-          title={<>한국 민감일 <span style={{ color: "var(--brand-red)" }}>{events.length}건</span></>}
-          subtitle="마케팅 캠페인 검토에 사용되는 큐레이션 사건 전체. 월별로 정리되어 있습니다."
+          title={<>리스크 <span style={{ color: "var(--brand-red)" }}>라이브러리</span></>}
+          subtitle={`마케팅 캠페인 검토에 사용되는 큐레이션 ${events.length}건 전체. 월별로 정리되어 있습니다.`}
           metrics={[
             { value: totalRisk, label: "고위험 일자", tone: "red" },
             { value: totalGood, label: "호재 일자", tone: "blue" },

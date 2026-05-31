@@ -111,7 +111,7 @@ export default async function EventDetailPage({ params }: PageProps) {
           fontSize: "13px", color: "var(--ms-text-2)",
           textDecoration: "none", marginBottom: "20px",
         }}>
-          ← 사건 인덱스
+          ← 리스크 라이브러리
         </Link>
 
         <PageHeader

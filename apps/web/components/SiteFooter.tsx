@@ -16,7 +16,7 @@ interface SiteFooterProps {
 const PRODUCT_LINKS = [
   { label: "캠페인 검토", href: "/check" },
   { label: "리스크 캘린더", href: "/calendar" },
-  { label: "사건 인덱스", href: "/events" },
+  { label: "리스크 라이브러리", href: "/events" },
 ];
 
 const COMPANY_LINKS = [
