@@ -51,7 +51,7 @@ export async function orchestrateEmbedding(
 export async function generateEmbeddingWithFallback(
   text: string
 ): Promise<number[]> {
-  const { ollamaEmbed } = await import("./ollamaEmbedClient.js");
-  const { geminiEmbed } = await import("./geminiEmbedClient.js");
+  const { ollamaEmbed } = await import("./ollamaEmbedClient");
+  const { geminiEmbed } = await import("./geminiEmbedClient");
   return orchestrateEmbedding(text, ollamaEmbed, geminiEmbed);
 }

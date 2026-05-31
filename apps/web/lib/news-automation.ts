@@ -114,7 +114,7 @@ export async function handleCronNewsAutomation(
   } else {
     // Lazy import: the real orchestrator is only resolved at runtime so that
     // test environments are never burdened with its dependencies.
-    const mod = await import("./news-orchestrator.js");
+    const mod = await import("./news-orchestrator");
     runOrchestrator = mod.runNewsOrchestrator;
   }
 

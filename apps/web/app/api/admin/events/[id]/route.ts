@@ -6,7 +6,7 @@ type EventStatus = (typeof ALLOWED_STATUSES)[number];
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   let body: unknown;
   try {
@@ -24,7 +24,7 @@ export async function PATCH(
   const { error } = await supabase
     .from("events")
     .update({ status: status as EventStatus })
-    .eq("id", params.id);
+    .eq("id", (await params).id);
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
