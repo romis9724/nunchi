@@ -10,7 +10,9 @@ export function getSupabase(): SupabaseClient {
     if (!url || !key) {
       throw new Error("NEXT_PUBLIC_SUPABASE_URL 또는 NEXT_PUBLIC_SUPABASE_ANON_KEY가 설정되지 않았습니다.");
     }
-    _supabase = createClient(url, key);
+    _supabase = createClient(url, key, {
+      auth: { flowType: "pkce" },
+    });
   }
   return _supabase;
 }
