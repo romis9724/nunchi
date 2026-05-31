@@ -651,7 +651,106 @@ export default function LandingPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════
-          7. FINAL CTA
+          7. FAQ
+      ════════════════════════════════════════════════════════ */}
+      <section style={{ background: BG_SOFT, padding: "clamp(64px, 10vw, 112px) 24px" }}>
+        <div style={{ maxWidth: "880px", margin: "0 auto" }}>
+          <SectionLabel>자주 묻는 질문</SectionLabel>
+          <h2 style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(2rem, 4vw, 3.25rem)",
+            fontWeight: 900, letterSpacing: "-0.03em",
+            color: TEXT, margin: "0 0 40px",
+            lineHeight: 1.15,
+          }}>
+            궁금하실 만한 것들
+          </h2>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+            {[
+              {
+                q: "AI 분석은 얼마나 정확한가요?",
+                a: "큐레이션된 60+ 한국 사건 DB와 Gemini LLM을 결합해 사건의 맥락·키워드·시각 모티프를 동시 분석합니다. 다만 결과는 참고용이며, 최종 캠페인 결정은 마케터 본인의 판단과 법무·홍보 팀 검토를 병행하시기 바랍니다.",
+              },
+              {
+                q: "어떤 사건들을 포함하나요?",
+                a: "국가 추모일(5·18, 4·16, 6·25, 10·29 등), 국가 기념일(광복절, 한글날, 어린이날 등), 정치·사회 사건, 상업 이벤트(빼빼로데이, 발렌타인 등)까지 5가지 카테고리로 분류된 한국 컨텍스트 사건을 우선 큐레이션합니다.",
+              },
+              {
+                q: "내 캠페인 데이터가 학습에 사용되나요?",
+                a: "아니요. 검토 요청은 익명화되어 캐싱 목적으로만 저장되며, 외부 LLM 학습에는 일절 사용되지 않습니다. 회사명·브랜드명·제품명은 검토 결과 맞춤화에만 사용되고 외부로 전송되지 않습니다.",
+              },
+              {
+                q: "F등급이 나오면 무조건 안 해야 하나요?",
+                a: "F등급은 '즉각 회피 권고'이지만 절대 금지는 아닙니다. 노출되는 메시지의 톤·시각 모티프를 추모·중립으로 조정하거나 일자를 옮기는 등 대안이 함께 제시됩니다. 최종 판단은 브랜드 정체성과 캠페인 목적에 맞춰 결정하시면 됩니다.",
+              },
+              {
+                q: "유료 플랜이 있나요?",
+                a: "현재는 베타 기간으로 모든 기능 무료입니다. 정식 출시 시 검토 횟수 기반 구독제(개인·팀·기업) 도입을 검토 중이며, 베타 사용자에게는 혜택을 제공할 예정입니다.",
+              },
+              {
+                q: "글로벌 캠페인도 지원하나요?",
+                a: "현재는 한국 컨텍스트에 집중하고 있습니다. 한국 마케터·대행사가 한국 시장에 출시하는 캠페인 검토를 우선 지원하며, 글로벌 확장은 PMF 확인 후 일본·미국·동남아 순으로 검토할 예정입니다.",
+              },
+            ].map((item, i) => (
+              <details
+                key={i}
+                style={{
+                  background: "#fff",
+                  border: `1px solid ${BORDER}`,
+                  borderRadius: "14px",
+                  padding: "0",
+                  overflow: "hidden",
+                }}
+              >
+                <summary style={{
+                  cursor: "pointer",
+                  padding: "20px 24px",
+                  fontFamily: "var(--font-display)",
+                  fontSize: "16px",
+                  fontWeight: 700,
+                  color: TEXT,
+                  letterSpacing: "-0.01em",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  gap: "16px",
+                  listStyle: "none",
+                }}>
+                  <span style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                    <span style={{
+                      display: "inline-flex", alignItems: "center", justifyContent: "center",
+                      width: "26px", height: "26px",
+                      background: RED_SOFT, color: RED,
+                      fontFamily: "var(--font-display)",
+                      fontSize: "12px", fontWeight: 800,
+                      borderRadius: "6px",
+                      border: `1px solid ${RED_MID}`,
+                      flexShrink: 0,
+                    }}>Q</span>
+                    {item.q}
+                  </span>
+                  <span style={{
+                    color: RED, fontSize: "20px", fontWeight: 700,
+                    flexShrink: 0, transition: "transform 0.2s",
+                  }}>+</span>
+                </summary>
+                <div style={{
+                  padding: "0 24px 22px 62px",
+                  fontSize: "14px",
+                  color: MUTED,
+                  lineHeight: 1.75,
+                }}>
+                  {item.a}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════
+          8. FINAL CTA
       ════════════════════════════════════════════════════════ */}
       <section style={{
         background: `linear-gradient(135deg, ${RED} 0%, ${RED_DARK} 100%)`,
