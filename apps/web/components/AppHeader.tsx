@@ -60,14 +60,14 @@ export function AppHeader() {
         maxWidth: "1240px",
         margin: "0 auto",
         padding: "0 24px",
-        height: "60px",
+        height: "68px",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
       }}>
         {/* 로고 */}
         <Link href="/" style={{ textDecoration: "none", color: "var(--ms-text)" }}>
-          <NoonchiLogo size={24} />
+          <NoonchiLogo size={30} />
         </Link>
 
         {/* 데스크탑 nav */}
