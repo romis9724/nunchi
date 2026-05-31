@@ -3,52 +3,56 @@
 import Link from "next/link";
 import { AdminGuard } from "@/components/AdminGuard";
 import { AppHeader } from "@/components/AppHeader";
+import { PageHeader, Card } from "@/components/ui";
 
-const CARD_STYLE = {
-  display: "block",
-  padding: "24px",
-  background: "#fff",
-  border: "1px solid var(--border-warm)",
-  borderRadius: "12px",
-  textDecoration: "none",
-  color: "var(--charcoal)",
-  transition: "box-shadow 0.15s",
-} as const;
+const ADMIN_TILES = [
+  { href: "/admin/events", icon: "📅", title: "이벤트 관리", desc: "민감일 CRUD · 상태·출처 관리" },
+  { href: "/admin/news-queue", icon: "📰", title: "뉴스 승인 큐", desc: "자동 수집 이벤트 검토·승인" },
+  { href: "/admin/users", icon: "👥", title: "베타 유저", desc: "가입자 목록·역할 관리" },
+  { href: "/admin/inquiries", icon: "✉️", title: "문의 관리", desc: "문의 확인·이메일 답장" },
+] as const;
 
 export default function AdminPage() {
   return (
     <AdminGuard>
-    <main style={{ minHeight: "100vh", background: "var(--rice-paper, #F8F7F4)", padding: "40px 24px" }}>
-      <div style={{ maxWidth: 800, margin: "0 auto" }}>
-        <h1 style={{ fontFamily: "var(--font-display)", fontSize: "1.75rem", fontWeight: 800, color: "var(--charcoal)", marginBottom: "8px" }}>
-          관리자
-        </h1>
-        <p style={{ color: "var(--muted-ink)", fontSize: "14px", marginBottom: "32px" }}>noonch-i Beta 관리 패널</p>
+    <div style={{ minHeight: "100vh", background: "var(--ms-surface)", fontFamily: "var(--font-body)" }}>
+      <AppHeader />
+      <main style={{ maxWidth: 900, margin: "0 auto", padding: "48px 24px 80px" }}>
+        <PageHeader
+          eyebrow="관리자"
+          eyebrowIcon="lock"
+          title={<>noonch-i <span style={{ color: "var(--brand-red)" }}>관리 패널</span></>}
+          subtitle="이벤트·유저·문의·뉴스 큐를 한곳에서 관리합니다."
+        />
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: "16px" }}>
-          <Link href="/admin/events" style={CARD_STYLE}>
-            <div style={{ fontSize: "24px", marginBottom: "8px" }}>📅</div>
-            <div style={{ fontWeight: 700, marginBottom: "4px" }}>이벤트 관리</div>
-            <div style={{ fontSize: "13px", color: "var(--muted-ink)" }}>이벤트 관리 (상태·출처)</div>
-          </Link>
-          <Link href="/admin/news-queue" style={CARD_STYLE}>
-            <div style={{ fontSize: "24px", marginBottom: "8px" }}>📰</div>
-            <div style={{ fontWeight: 700, marginBottom: "4px" }}>뉴스 승인 큐</div>
-            <div style={{ fontSize: "13px", color: "var(--muted-ink)" }}>자동 수집 이벤트 검토·승인</div>
-          </Link>
-          <Link href="/admin/users" style={CARD_STYLE}>
-            <div style={{ fontSize: "24px", marginBottom: "8px" }}>👥</div>
-            <div style={{ fontWeight: 700, marginBottom: "4px" }}>베타 유저 관리</div>
-            <div style={{ fontSize: "13px", color: "var(--muted-ink)" }}>가입자 목록·역할 관리</div>
-          </Link>
-          <Link href="/admin/inquiries" style={CARD_STYLE}>
-            <div style={{ fontSize: "24px", marginBottom: "8px" }}>✉️</div>
-            <div style={{ fontWeight: 700, marginBottom: "4px" }}>문의 관리</div>
-            <div style={{ fontSize: "13px", color: "var(--muted-ink)" }}>문의 목록 확인·이메일 답장</div>
-          </Link>
+          {ADMIN_TILES.map((tile) => (
+            <Link key={tile.href} href={tile.href} style={{ textDecoration: "none" }}>
+              <Card padding="lg" tone="default" style={{
+                display: "flex", flexDirection: "column", gap: "10px",
+                transition: "transform 0.15s, border-color 0.15s",
+                cursor: "pointer", height: "100%",
+              }}>
+                <div style={{
+                  width: "44px", height: "44px", borderRadius: "10px",
+                  background: "var(--brand-red-soft)", border: "1px solid var(--brand-red-mid)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: "22px",
+                }}>{tile.icon}</div>
+                <div style={{
+                  fontFamily: "var(--font-display)",
+                  fontWeight: 800, fontSize: "16px",
+                  color: "var(--ms-text)", letterSpacing: "-0.01em",
+                }}>{tile.title}</div>
+                <div style={{ fontSize: "13px", color: "var(--ms-text-2)", lineHeight: 1.5 }}>
+                  {tile.desc}
+                </div>
+              </Card>
+            </Link>
+          ))}
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
     </AdminGuard>
   );
 }

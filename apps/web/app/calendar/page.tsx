@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { toneToGrade } from "@noonchi/shared";
 import type { EventRecord } from "@noonchi/shared";
@@ -70,16 +69,6 @@ export default async function CalendarPage() {
 
       <AppHeader />
 
-      {/* 안내 배너 */}
-      <div style={{ background: "var(--brand-red-soft)", borderBottom: "1px solid var(--brand-red-mid)", padding: "12px 24px" }}>
-        <div style={{ maxWidth: "1240px", margin: "0 auto", display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
-          <span style={{ fontSize: "13px", color: "var(--brand-red-text)", fontWeight: 500 }}>
-            📅 날짜를 클릭하면 해당일의 민감도와 관련 사건을 확인할 수 있습니다. 캠페인 검토는
-          </span>
-          <Link href="/check" style={{ fontSize: "13px", color: "var(--brand-red)", fontWeight: 700, textDecoration: "underline" }}>캠페인 검토</Link>
-          <span style={{ fontSize: "13px", color: "var(--brand-red-text)", fontWeight: 500 }}>페이지를 이용하세요.</span>
-        </div>
-      </div>
 
       <CalendarClient events={events} />
     </div>

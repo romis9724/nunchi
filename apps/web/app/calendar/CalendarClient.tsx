@@ -138,22 +138,39 @@ export function CalendarClient({ events }: CalendarClientProps) {
     return "transparent";
   }
 
+  // 이달 통계 — 등급별 카운트
+  const monthCount = {
+    F: monthEvents.filter((e) => e.grade === "F").length,
+    D: monthEvents.filter((e) => e.grade === "D").length,
+    A: monthEvents.filter((e) => e.grade === "A").length,
+  };
+  const monthYearLabel = format(current, "yyyy · M월", { locale: ko });
+
   return (
-    <main style={{ maxWidth: "1200px", margin: "0 auto", padding: "48px 32px 80px" }}>
+    <main style={{ maxWidth: "1240px", margin: "0 auto", padding: "48px 32px 80px" }}>
 
       <PageHeader
         eyebrow="민감일 캘린더"
         eyebrowIcon="calendar"
         title="리스크 캘린더"
-        subtitle="월별 민감일과 호재 타이밍을 한눈에 확인하세요. 등급별로 색상이 구분됩니다."
+        subtitle={`${monthYearLabel} · 월별 민감일과 호재 타이밍을 한눈에 확인하세요.`}
+        metrics={[
+          { value: monthCount.F + monthCount.D, label: "주의 일자", tone: "red" },
+          { value: monthCount.A, label: "호재 일자", tone: "blue" },
+          { value: monthEvents.length, label: "이달 총 이벤트", tone: "neutral" },
+        ]}
         actions={
-          <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "center" }}>
+          <div style={{
+            display: "flex", gap: "10px", flexWrap: "wrap", alignItems: "center",
+            background: "#fff", padding: "8px 14px", borderRadius: "999px",
+            border: "1px solid var(--ms-border)",
+          }}>
             {LEGEND_ITEMS.map(({ grade, label }) => (
-              <div key={grade} style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+              <div key={grade} style={{ display: "flex", alignItems: "center", gap: "6px" }}>
                 <span
                   aria-hidden="true"
                   style={{
-                    width: "8px", height: "8px", borderRadius: "50%",
+                    width: "10px", height: "10px", borderRadius: "3px",
                     background: GRADE_DOT_COLOR[grade],
                     flexShrink: 0, display: "inline-block",
                   }}
@@ -169,24 +186,46 @@ export function CalendarClient({ events }: CalendarClientProps) {
 
 
       {/* Grid layout: calendar + sidebar */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: "24px", alignItems: "start" }} className="calendar-layout">
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 340px", gap: "24px", alignItems: "start" }} className="calendar-layout">
 
-        {/* Calendar */}
-        <div style={{ background: "#FFF", border: "1px solid var(--border-warm)", borderRadius: "16px", overflow: "hidden" }}>
+        {/* Calendar — elevated card */}
+        <div style={{
+          background: "#FFF",
+          border: "1px solid var(--ms-border)",
+          borderRadius: "18px",
+          overflow: "hidden",
+          boxShadow: "0 12px 32px rgba(15, 23, 42, 0.04), 0 2px 8px rgba(15, 23, 42, 0.02)",
+        }}>
 
-          {/* Month nav */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 20px", borderBottom: "1px solid var(--border-warm)", gap: "12px" }}>
+          {/* Month nav — 매거진 톤 */}
+          <div style={{
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+            padding: "20px 24px",
+            borderBottom: "1px solid var(--ms-border)",
+            background: "linear-gradient(180deg, #FFFFFF 0%, var(--ms-surface) 100%)",
+            gap: "12px",
+          }}>
             <button
               onClick={prevMonth}
               aria-label="이전 달"
-              style={{ background: "none", border: "1px solid var(--border-warm)", borderRadius: "8px", width: "32px", height: "32px", cursor: "pointer", fontSize: "14px", color: "var(--charcoal)", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}
+              style={{ background: "#fff", border: "1px solid var(--ms-border)", borderRadius: "10px", width: "36px", height: "36px", cursor: "pointer", fontSize: "15px", color: "var(--charcoal)", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", transition: "border-color 0.12s" }}
             >
               ←
             </button>
 
-            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-              <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "17px", letterSpacing: "-0.02em", color: "var(--charcoal)", margin: 0 }}>
-                {format(current, "yyyy년 M월", { locale: ko })}
+            <div style={{ display: "flex", alignItems: "baseline", gap: "12px" }}>
+              <h2 style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 900,
+                fontSize: "26px",
+                letterSpacing: "-0.035em",
+                color: "var(--charcoal)",
+                margin: 0,
+                lineHeight: 1,
+              }}>
+                {format(current, "yyyy", { locale: ko })}
+                <span style={{ color: "var(--brand-red)", margin: "0 6px" }}>·</span>
+                {format(current, "M월", { locale: ko })}
               </h2>
               {!isCurrentMonth && (
                 <button
@@ -194,12 +233,12 @@ export function CalendarClient({ events }: CalendarClientProps) {
                   aria-label="오늘로 이동"
                   style={{
                     background: "var(--brand-red-soft)", border: "1px solid var(--brand-red-mid)",
-                    borderRadius: "6px", padding: "3px 10px", cursor: "pointer",
-                    fontSize: "12px", fontWeight: 700, color: "var(--brand-red)",
-                    fontFamily: "var(--font-body)", letterSpacing: "0.01em",
+                    borderRadius: "999px", padding: "4px 12px", cursor: "pointer",
+                    fontSize: "11.5px", fontWeight: 700, color: "var(--brand-red)",
+                    fontFamily: "var(--font-body)", letterSpacing: "0.02em",
                   }}
                 >
-                  오늘
+                  오늘로
                 </button>
               )}
             </div>
@@ -207,18 +246,24 @@ export function CalendarClient({ events }: CalendarClientProps) {
             <button
               onClick={nextMonth}
               aria-label="다음 달"
-              style={{ background: "none", border: "1px solid var(--border-warm)", borderRadius: "8px", width: "32px", height: "32px", cursor: "pointer", fontSize: "14px", color: "var(--charcoal)", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}
+              style={{ background: "#fff", border: "1px solid var(--ms-border)", borderRadius: "10px", width: "36px", height: "36px", cursor: "pointer", fontSize: "15px", color: "var(--charcoal)", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", transition: "border-color 0.12s" }}
             >
               →
             </button>
           </div>
 
           {/* Day headers */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", borderBottom: "1px solid var(--border-faint)" }}>
-            {["일", "월", "화", "수", "목", "금", "토"].map((d) => (
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", borderBottom: "1px solid var(--border-faint)", background: "var(--ms-surface)" }}>
+            {["일", "월", "화", "수", "목", "금", "토"].map((d, i) => (
               <div
                 key={d}
-                style={{ padding: "10px 0", textAlign: "center", fontSize: "12px", fontWeight: 700, color: "var(--muted-ink)", letterSpacing: "0.04em" }}
+                style={{
+                  padding: "12px 0", textAlign: "center",
+                  fontSize: "11.5px", fontWeight: 800,
+                  color: i === 0 ? "var(--brand-red)" : "var(--ms-text-2)",
+                  letterSpacing: "0.08em",
+                  fontFamily: "var(--font-display)",
+                }}
               >
                 {d}
               </div>
@@ -240,6 +285,9 @@ export function CalendarClient({ events }: CalendarClientProps) {
               const isSelected = selectedDay?.day === d;
               const todayCell = isToday(day);
 
+              const topGrade = dayEvents[0]?.grade;
+              const leftStripColor = topGrade ? GRADE_LEFT_BORDER[topGrade] : "transparent";
+
               return (
                 <button
                   key={d}
@@ -249,50 +297,112 @@ export function CalendarClient({ events }: CalendarClientProps) {
                   aria-pressed={isSelected}
                   aria-label={`${currentMonthNum}월 ${d}일${dayEvents.length ? ` — 이벤트 ${dayEvents.length}건` : ""}`}
                   style={{
-                    minHeight: "80px",
-                    padding: "8px",
+                    minHeight: "110px",
+                    padding: "10px 10px 8px",
                     textAlign: "left",
                     background: getDayCellBackground(d, day),
                     cursor: "pointer",
                     borderTop: "none",
-                    borderLeft: "none",
+                    borderLeft: dayEvents.length > 0 ? `3px solid ${leftStripColor}` : "3px solid transparent",
                     borderRight: "1px solid var(--border-faint)",
                     borderBottom: "1px solid var(--border-faint)",
                     outline: isSelected ? "2px solid var(--brand-red)" : "none",
                     outlineOffset: "-2px",
-                    transition: "background 0.12s",
+                    transition: "background 0.15s, transform 0.15s",
+                    position: "relative",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "8px",
+                    boxShadow: isSelected ? "inset 0 0 0 1px var(--brand-red-mid)" : "none",
                   } as React.CSSProperties}
                 >
-                  <span style={{
-                    fontSize: "12px", fontWeight: 700, lineHeight: 1,
-                    display: "inline-flex", alignItems: "center", justifyContent: "center",
-                    width: "24px", height: "24px", borderRadius: "50%",
-                    background: todayCell ? "var(--brand-red)" : "transparent",
-                    color: todayCell ? "#FFF" : "var(--charcoal)",
-                  }}>
-                    {d}
-                  </span>
+                  {/* Date number + today badge row */}
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                    <span style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "17px",
+                      fontWeight: 800,
+                      lineHeight: 1,
+                      letterSpacing: "-0.02em",
+                      color: todayCell ? "#FFF" : "var(--charcoal)",
+                      background: todayCell ? "var(--brand-red)" : "transparent",
+                      padding: todayCell ? "4px 8px" : "0",
+                      borderRadius: todayCell ? "6px" : "0",
+                    }}>
+                      {d}
+                    </span>
+                    {dayEvents.length > 1 && (
+                      <span style={{
+                        fontSize: "10px",
+                        fontWeight: 700,
+                        color: "var(--ms-text-3)",
+                        background: "var(--ms-surface-2)",
+                        padding: "2px 5px",
+                        borderRadius: "4px",
+                        letterSpacing: "0.02em",
+                      }}>
+                        {dayEvents.length}
+                      </span>
+                    )}
+                  </div>
 
-                  {/* Up to 3 event dots, sorted by severity */}
+                  {/* Event chips — 등급별 컬러 chip */}
                   {dayEvents.length > 0 && (
-                    <div style={{ display: "flex", gap: "3px", marginTop: "5px", flexWrap: "wrap" }}>
-                      {dayEvents.slice(0, 3).map((e) => (
+                    <div style={{ display: "flex", gap: "3px", flexWrap: "wrap" }}>
+                      {dayEvents.slice(0, 2).map((e) => (
                         <span
                           key={e.slug}
                           title={e.name}
                           style={{
-                            width: "6px", height: "6px", borderRadius: "50%",
-                            background: GRADE_DOT_COLOR[e.grade],
-                            flexShrink: 0, display: "inline-block",
+                            display: "inline-flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            minWidth: "20px",
+                            height: "18px",
+                            padding: "0 6px",
+                            fontFamily: "var(--font-display)",
+                            fontSize: "10px",
+                            fontWeight: 800,
+                            letterSpacing: "0.02em",
+                            color: GRADE_DOT_COLOR[e.grade],
+                            background: GRADE_ROW_BG[e.grade],
+                            border: `1px solid ${GRADE_DOT_COLOR[e.grade]}40`,
+                            borderRadius: "4px",
+                            lineHeight: 1,
                           }}
-                        />
+                        >
+                          {e.grade}
+                        </span>
                       ))}
-                      {dayEvents.length > 3 && (
-                        <span style={{ fontSize: "9px", color: "var(--muted-ink)", lineHeight: "6px" }}>
-                          +{dayEvents.length - 3}
+                      {dayEvents.length > 2 && (
+                        <span style={{
+                          fontSize: "10px",
+                          fontWeight: 600,
+                          color: "var(--ms-text-2)",
+                          lineHeight: "18px",
+                        }}>
+                          +{dayEvents.length - 2}
                         </span>
                       )}
                     </div>
+                  )}
+
+                  {/* First event name preview (truncated) */}
+                  {dayEvents.length > 0 && (
+                    <span style={{
+                      fontSize: "11px",
+                      color: "var(--ms-text-2)",
+                      lineHeight: 1.35,
+                      marginTop: "auto",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      display: "-webkit-box",
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: "vertical" as const,
+                      fontWeight: 500,
+                    }}>
+                      {dayEvents[0].name}
+                    </span>
                   )}
                 </button>
               );
@@ -400,26 +510,42 @@ export function CalendarClient({ events }: CalendarClientProps) {
             </div>
           ) : (
             <div style={{
-              background: "var(--brand-red-soft)", border: "1px solid var(--brand-red-mid)",
-              borderRadius: "14px", padding: "24px 20px", textAlign: "center",
+              background: "linear-gradient(180deg, var(--brand-red-soft) 0%, #fff 100%)",
+              border: "1px solid var(--brand-red-mid)",
+              borderRadius: "14px", padding: "28px 22px", textAlign: "center",
+              boxShadow: "0 8px 24px rgba(225, 29, 72, 0.06)",
             }}>
-              <p style={{ fontSize: "24px", margin: "0 0 10px" }}>📅</p>
-              <p style={{ fontSize: "13px", color: "var(--brand-red)", fontWeight: 600, margin: "0 0 4px" }}>
+              <div style={{
+                width: "48px", height: "48px", borderRadius: "12px",
+                background: "#fff", border: "1px solid var(--brand-red-mid)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                margin: "0 auto 14px", boxShadow: "0 4px 12px rgba(225, 29, 72, 0.08)",
+              }}>
+                <span style={{ fontSize: "22px" }}>📅</span>
+              </div>
+              <p style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "15px", color: "var(--brand-red)", fontWeight: 800,
+                margin: "0 0 6px", letterSpacing: "-0.01em",
+              }}>
                 날짜를 클릭해보세요
               </p>
-              <p style={{ fontSize: "12px", color: "var(--ms-text-2)", margin: 0, lineHeight: 1.6 }}>
+              <p style={{ fontSize: "12.5px", color: "var(--ms-text-2)", margin: 0, lineHeight: 1.6 }}>
                 해당일의 민감도와 관련 사건을<br />바로 확인할 수 있습니다
               </p>
             </div>
           )}
 
-          {/* Month events list */}
+          {/* Month events list — 등급 컬러 좌측 보더 */}
           {monthEvents.length > 0 && (
-            <div style={{ background: "#FFF", border: "1px solid var(--border-warm)", borderRadius: "14px", overflow: "hidden" }}>
-              <div style={{ padding: "12px 16px", borderBottom: "1px solid var(--border-faint)" }}>
-                <p style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--muted-ink)", margin: 0 }}>
+            <div style={{ background: "#FFF", border: "1px solid var(--ms-border)", borderRadius: "14px", overflow: "hidden", boxShadow: "var(--card-shadow)" }}>
+              <div style={{ padding: "14px 18px", borderBottom: "1px solid var(--border-faint)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <p style={{ fontSize: "12px", fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--ms-text-2)", margin: 0 }}>
                   이달의 주요 날짜
                 </p>
+                <span style={{ fontSize: "11px", color: "var(--ms-text-3)", fontWeight: 600 }}>
+                  {monthEvents.length}건
+                </span>
               </div>
               <div>
                 {monthEvents.map((e) => (
@@ -427,27 +553,42 @@ export function CalendarClient({ events }: CalendarClientProps) {
                     key={e.slug}
                     onClick={() => handleDayClick(e.day)}
                     style={{
-                      display: "flex", alignItems: "center", gap: "10px",
-                      width: "100%", padding: "10px 16px",
-                      background: selectedDay?.day === e.day ? "var(--brand-red-soft)" : "transparent",
-                      border: "none", borderBottom: "1px solid var(--border-faint)", cursor: "pointer",
+                      display: "flex", alignItems: "center", gap: "12px",
+                      width: "100%", padding: "12px 18px",
+                      background: selectedDay?.day === e.day ? "var(--brand-red-soft)" : "#fff",
+                      border: "none",
+                      borderLeft: `3px solid ${GRADE_DOT_COLOR[e.grade]}`,
+                      borderBottom: "1px solid var(--border-faint)",
+                      cursor: "pointer",
                       textAlign: "left",
+                      transition: "background 0.12s",
                     }}
                   >
                     <span style={{
-                      fontSize: "12px", fontWeight: 700, color: "var(--muted-ink)",
-                      minWidth: "26px", flexShrink: 0,
+                      fontFamily: "var(--font-display)",
+                      fontSize: "13px", fontWeight: 800, color: "var(--charcoal)",
+                      minWidth: "30px", flexShrink: 0, letterSpacing: "-0.01em",
                     }}>
                       {e.day}일
                     </span>
                     <span
                       aria-hidden="true"
                       style={{
-                        width: "8px", height: "8px", borderRadius: "50%",
-                        background: GRADE_DOT_COLOR[e.grade], flexShrink: 0,
+                        display: "inline-flex", alignItems: "center", justifyContent: "center",
+                        minWidth: "20px", height: "18px",
+                        padding: "0 6px",
+                        fontFamily: "var(--font-display)",
+                        fontSize: "10px", fontWeight: 800,
+                        color: GRADE_DOT_COLOR[e.grade],
+                        background: GRADE_ROW_BG[e.grade],
+                        border: `1px solid ${GRADE_DOT_COLOR[e.grade]}40`,
+                        borderRadius: "4px", lineHeight: 1,
+                        flexShrink: 0,
                       }}
-                    />
-                    <span style={{ fontSize: "12px", fontWeight: 600, color: "var(--charcoal)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                    >
+                      {e.grade}
+                    </span>
+                    <span style={{ fontSize: "12.5px", fontWeight: 600, color: "var(--charcoal)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                       {e.name}
                     </span>
                   </button>
@@ -456,18 +597,20 @@ export function CalendarClient({ events }: CalendarClientProps) {
             </div>
           )}
 
-          {/* Quick check CTA */}
+          {/* Quick check CTA — brand red */}
           <Link
             href="/check"
             style={{
               display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
               padding: "14px", borderRadius: "12px",
-              background: "var(--charcoal)", color: "#FFF",
+              background: "var(--brand-red)", color: "#FFF",
               fontSize: "14px", fontWeight: 700, textDecoration: "none",
-              fontFamily: "var(--font-display)", letterSpacing: "-0.01em",
+              fontFamily: "var(--font-body)", letterSpacing: "-0.005em",
+              boxShadow: "0 6px 16px rgba(225, 29, 72, 0.22), 0 0 0 1px var(--brand-red-dark)",
+              transition: "transform 0.15s",
             }}
           >
-            검토 시작하기
+            지금 검토 시작하기 <span style={{ fontSize: "16px" }}>→</span>
           </Link>
         </div>
       </div>

@@ -120,8 +120,8 @@ export default function ContactPage() {
           <PageHeader
             eyebrow="피드백 환영"
             eyebrowIcon="mail"
-            title="문의하기"
-            subtitle="질문, 제안, 파트너십 문의 — 무엇이든 보내주세요. 로그인 없이 누구나 문의할 수 있습니다."
+            title={<>무엇이든 <span style={{ color: "var(--brand-red)" }}>편하게</span> 보내주세요</>}
+            subtitle="질문, 제안, 파트너십 문의 — 로그인 없이 누구나 문의할 수 있습니다. 보통 1영업일 안에 답변드립니다."
           />
 
 

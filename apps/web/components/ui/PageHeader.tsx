@@ -1,9 +1,11 @@
 /**
- * PageHeader — 모든 페이지 상단 헤더 패턴 통일
+ * PageHeader — 매거진 스타일 페이지 상단 헤더
  *
- * - 선택적 eyebrow (빨강 알약 형태, 아이콘 옵션)
- * - h1 + 옵션 강조 (color="red"인 span 자식)
- * - 부제목 + 옵션 액션 슬롯
+ * - 선택적 eyebrow (빨강 알약 + 아이콘)
+ * - h1 (display font, 큼직한 임팩트)
+ * - 부제목 또는 인사이트 메트릭
+ * - actions 슬롯 (legend, CTA 등)
+ * - metrics 슬롯 ("이달 위험 7건 · 호재 2건" 같은 인사이트)
  */
 
 import type { ReactNode } from "react";
@@ -14,6 +16,8 @@ interface PageHeaderProps {
   eyebrowIcon?: IconName;
   title: ReactNode;
   subtitle?: ReactNode;
+  /** ['숫자 라벨', '의미 라벨'] 쌍의 배열 */
+  metrics?: Array<{ value: ReactNode; label: ReactNode; tone?: "red" | "neutral" | "blue" }>;
   actions?: ReactNode;
   align?: "left" | "center";
   size?: "md" | "lg";
@@ -24,14 +28,24 @@ export function PageHeader({
   eyebrowIcon,
   title,
   subtitle,
+  metrics,
   actions,
   align = "left",
-  size = "md",
+  size = "lg",
 }: PageHeaderProps) {
   const titleFs =
     size === "lg"
-      ? "clamp(1.75rem, 3.4vw, 2.5rem)"
-      : "clamp(1.375rem, 2.5vw, 1.875rem)";
+      ? "clamp(2rem, 4vw, 3rem)"
+      : "clamp(1.5rem, 2.8vw, 2.125rem)";
+
+  const titleWeight = 900;
+  const titleSpacing = "-0.04em";
+
+  const toneColor = (tone?: string) => {
+    if (tone === "red") return "var(--brand-red)";
+    if (tone === "blue") return "var(--grade-a-text)";
+    return "var(--ms-text)";
+  };
 
   return (
     <header
@@ -41,18 +55,18 @@ export function PageHeader({
         justifyContent: align === "center" ? "center" : "space-between",
         alignItems: "flex-end",
         flexWrap: "wrap",
-        gap: "16px",
+        gap: "24px",
         textAlign: align,
       }}
     >
-      <div style={{ display: "flex", flexDirection: "column", gap: "10px", maxWidth: "640px" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "12px", maxWidth: "720px", flex: 1, minWidth: 0 }}>
         {eyebrow && (
           <div
             style={{
               display: "inline-flex",
               alignItems: "center",
               gap: "6px",
-              fontSize: "11px",
+              fontSize: "12px",
               fontWeight: 700,
               letterSpacing: "0.12em",
               textTransform: "uppercase",
@@ -73,9 +87,9 @@ export function PageHeader({
           style={{
             fontFamily: "var(--font-display)",
             fontSize: titleFs,
-            fontWeight: 900,
-            letterSpacing: "-0.035em",
-            lineHeight: 1.1,
+            fontWeight: titleWeight,
+            letterSpacing: titleSpacing,
+            lineHeight: 1.05,
             color: "var(--ms-text)",
             margin: 0,
           }}
@@ -85,18 +99,53 @@ export function PageHeader({
         {subtitle && (
           <p
             style={{
-              fontSize: "14.5px",
+              fontSize: "15px",
               color: "var(--ms-text-2)",
-              lineHeight: 1.6,
+              lineHeight: 1.65,
               margin: 0,
-              maxWidth: "560px",
+              maxWidth: "640px",
             }}
           >
             {subtitle}
           </p>
         )}
+        {metrics && metrics.length > 0 && (
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "20px 32px",
+              marginTop: "8px",
+              alignItems: "baseline",
+            }}
+          >
+            {metrics.map((m, i) => (
+              <div key={i} style={{ display: "flex", alignItems: "baseline", gap: "8px" }}>
+                <span
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "26px",
+                    fontWeight: 900,
+                    letterSpacing: "-0.025em",
+                    color: toneColor(m.tone),
+                    lineHeight: 1,
+                  }}
+                >
+                  {m.value}
+                </span>
+                <span style={{ fontSize: "13px", color: "var(--ms-text-2)", fontWeight: 500 }}>
+                  {m.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
-      {actions && <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>{actions}</div>}
+      {actions && (
+        <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
+          {actions}
+        </div>
+      )}
     </header>
   );
 }

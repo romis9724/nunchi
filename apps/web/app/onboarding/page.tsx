@@ -91,8 +91,8 @@ export default function OnboardingPage() {
         <PageHeader
           eyebrow="환영합니다"
           eyebrowIcon="sparkle"
-          title="온보딩"
-          subtitle="업종과 채널을 선택하면 검토 결과를 맞춤화해 드립니다."
+          title={<>당신의 브랜드에 <span style={{ color: "var(--brand-red)" }}>맞춤</span></>}
+          subtitle="업종과 채널을 선택하면 검토 결과를 당신의 컨텍스트에 맞춰 정밀하게 분석합니다."
         />
 
 

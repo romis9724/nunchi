@@ -103,8 +103,8 @@ export default function MyPage() {
         <PageHeader
           eyebrow="프로필"
           eyebrowIcon="user"
-          title="내 정보"
-          subtitle="업종·채널·브랜드 정보를 수정합니다. 검토 결과 맞춤화에 사용됩니다."
+          title={<>내 <span style={{ color: "var(--brand-red)" }}>정보</span></>}
+          subtitle="업종·채널·브랜드 정보를 수정합니다. 모든 검토 결과의 맞춤 코멘트에 즉시 반영됩니다."
         />
 
 

@@ -71,8 +71,8 @@ function CheckForm() {
         <PageHeader
           eyebrow="브랜드 안전 분석"
           eyebrowIcon="shield"
-          title="캠페인 검토"
-          subtitle="날짜와 카피를 입력하면 위험 등급과 호재 기회를 즉시 분석합니다."
+          title={<>날짜 × 카피, <span style={{ color: "var(--brand-red)" }}>5초 검토</span></>}
+          subtitle="입력한 날짜·카피·시각 키워드를 한국 역사 60+ 사건과 교차 분석해 F부터 A까지 5단계 등급으로 결과를 알려드립니다."
         />
 
         {/* Form card */}
