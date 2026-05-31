@@ -115,6 +115,14 @@ body {
 h1, h2, h3 {
   font-family: var(--font-display);
   letter-spacing: -0.02em;
+  /* 한국어 단어가 중간에 끊기지 않도록 — '막습니다' → '막습니'+'다' 방지 */
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+p, span, a, button, li {
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 /* Editorial Studio utility classes */
