@@ -269,6 +269,9 @@ export async function runReviewEngine(
     cached: false,
   };
 
-  await saveCache(hash, req, result);
+  // transient 결과(429 등 일시적 fallback)는 캐시하지 않음
+  if (!llmResult.transient) {
+    await saveCache(hash, req, result);
+  }
   return result;
 }

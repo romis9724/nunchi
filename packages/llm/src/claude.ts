@@ -51,11 +51,12 @@ async function callGemini(input: ReviewPromptInput): Promise<ReviewLLMResult> {
   if (!res.ok) {
     const errText = await res.text();
     if (res.status === 429) {
-      // 분당 요청 초과 — C등급 fallback 반환 (에러 대신)
+      // 분당 요청 초과 — C등급 fallback 반환 (에러 대신). transient: 캐시 금지
       return {
         grade: "C" as const,
         rationale: "현재 AI 분석 요청이 많아 잠시 후 다시 시도해주세요. 지금은 일반 주의(C등급)로 임시 분류됩니다.",
         suggestions: [],
+        transient: true,
       };
     }
     throw new Error(`Gemini API error: ${res.status} ${errText}`);

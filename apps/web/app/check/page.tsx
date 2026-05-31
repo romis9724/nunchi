@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import type { CheckRequest, CheckResponse } from "@nunchi/shared";
 import { ResultCard } from "@/components/result-card/ResultCard";
 import { AppHeader } from "@/components/AppHeader";
+import { NearbyEventsPreview } from "@/components/NearbyEventsPreview";
 
 const INPUT_STYLE = {
   width: "100%",
@@ -95,7 +96,7 @@ function CheckForm() {
             <span>◈</span> 캠페인 검토
           </div>
           <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(24px,4vw,32px)", fontWeight: 800, color: "var(--charcoal)", letterSpacing: "-0.03em", margin: "0 0 8px" }}>
-            캠페인 날짜 검토
+            캠페인 날짜
           </h1>
           <p style={{ fontSize: "14px", color: "var(--muted-ink)", lineHeight: 1.6, margin: 0 }}>
             날짜와 카피를 입력하면 위험 등급과 호재 기회를 즉시 분석합니다.
@@ -130,6 +131,7 @@ function CheckForm() {
                     onBlur={(e) => (e.target.style.borderColor = "var(--border-warm)")}
                   />
                 </div>
+                <NearbyEventsPreview date={form.date} />
               </div>
               <div>
                 <label htmlFor="campaign" style={LABEL_STYLE}>
@@ -157,7 +159,7 @@ function CheckForm() {
               <textarea
                 id="copy"
                 required
-                placeholder="예: &quot;책상에 탁!&quot;, &quot;탱크처럼 강하게&quot;, &quot;전진하는 하루&quot; 등 사용하려는 카피를 입력하세요"
+                placeholder="예: 봄 항해 컬렉션, 빼빼로 1+1 한정, 광복 75주년 에디션 등 사용하려는 카피를 입력하세요"
                 rows={4}
                 maxLength={2000}
                 value={form.copy}

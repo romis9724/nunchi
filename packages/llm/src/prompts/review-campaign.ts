@@ -104,4 +104,6 @@ export interface ReviewLLMResult {
   grade: Grade;
   rationale: string;
   suggestions: string[];
+  /** true면 일시적 결과(429 fallback 등) — 캐시하지 말 것 */
+  transient?: boolean;
 }
