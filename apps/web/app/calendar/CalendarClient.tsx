@@ -257,7 +257,7 @@ export function CalendarClient({ events }: CalendarClientProps) {
               {selectedDay.events.length === 0 ? (
                 <div style={{ padding: "20px 16px", textAlign: "center" }}>
                   <p style={{ fontSize: "13px", color: "var(--muted-ink)", margin: "0 0 12px", lineHeight: 1.6 }}>
-                    이 날은 등록된 민감일이 없습니다.
+                    이 날은 등록된 리스크 이벤트가 없습니다.
                   </p>
                   <Link
                     href={`/check?date=${currentYear}-${String(currentMonthNum).padStart(2, "0")}-${String(selectedDay.day).padStart(2, "0")}`}

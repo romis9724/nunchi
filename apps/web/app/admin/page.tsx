@@ -29,7 +29,7 @@ export default function AdminPage() {
           <Link href="/admin/events" style={CARD_STYLE}>
             <div style={{ fontSize: "24px", marginBottom: "8px" }}>📅</div>
             <div style={{ fontWeight: 700, marginBottom: "4px" }}>이벤트 관리</div>
-            <div style={{ fontSize: "13px", color: "var(--muted-ink)" }}>민감일 CRUD (상태·출처 관리)</div>
+            <div style={{ fontSize: "13px", color: "var(--muted-ink)" }}>이벤트 관리 (상태·출처)</div>
           </Link>
           <Link href="/admin/news-queue" style={CARD_STYLE}>
             <div style={{ fontSize: "24px", marginBottom: "8px" }}>📰</div>

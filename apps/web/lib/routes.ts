@@ -54,7 +54,7 @@ export const NAV_ITEMS: readonly NavItem[] = [
   },
   {
     key: "calendar",
-    label: "민감일 캘린더",
+    label: "리스크 캘린더",
     href: ROUTES.CALENDAR,
     icon: "calendar",
   },

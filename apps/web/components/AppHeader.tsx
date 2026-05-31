@@ -14,7 +14,7 @@ interface User {
 
 const NAV: { label: string; href: string }[] = [
   { label: "캠페인 검토", href: "/check" },
-  { label: "민감일 캘린더", href: "/calendar" },
+  { label: "리스크 캘린더", href: "/calendar" },
   { label: "문의하기", href: "/contact" },
 ];
 

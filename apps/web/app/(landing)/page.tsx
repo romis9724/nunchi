@@ -114,7 +114,7 @@ export default function LandingPage() {
       <div style={{ background: "var(--ms-blue)", padding: "24px" }} className="stats-bar">
         <div style={{ maxWidth: "1160px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "24px" }} className="rg-4">
           {[
-            { n: "31+", label: "큐레이션된 한국 민감일" },
+            { n: "31+", label: "큐레이션된 한국 리스크 이벤트" },
             { n: "F → A", label: "5단계 위험·호재 등급" },
             { n: "5초 이내", label: "AI 검토 응답속도" },
             { n: "무료", label: "베타 기간 전면 무료" },
@@ -259,7 +259,7 @@ export default function LandingPage() {
           <span style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "16px", color: "var(--ms-text)", letterSpacing: "-0.03em" }}>nunchi</span>
           <p style={{ fontSize: "12px", color: "var(--ms-text-3)", margin: 0 }}>이 서비스의 결과는 참고용입니다. © 2026 Nunchi.</p>
           <div style={{ display: "flex", gap: "16px" }}>
-            <Link href="/calendar" style={{ fontSize: "12px", color: "var(--ms-text-2)", textDecoration: "none" }}>민감일 캘린더</Link>
+            <Link href="/calendar" style={{ fontSize: "12px", color: "var(--ms-text-2)", textDecoration: "none" }}>리스크 캘린더</Link>
             <Link href="/check" style={{ fontSize: "12px", color: "var(--ms-text-2)", textDecoration: "none" }}>캠페인 검토</Link>
             <Link href="/privacy" style={{ fontSize: "12px", color: "var(--ms-text-2)", textDecoration: "none" }}>개인정보처리방침</Link>
             <Link href="/terms" style={{ fontSize: "12px", color: "var(--ms-text-2)", textDecoration: "none" }}>이용약관</Link>
