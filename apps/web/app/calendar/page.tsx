@@ -31,6 +31,7 @@ async function fetchCalendarEvents(): Promise<CalendarEvent[]> {
   const { data, error } = await supabase
     .from("events")
     .select("slug, month, day, name, category, risk_level, recommended_tone, summary")
+    .eq("status", "approved")
     .not("day", "is", null)
     .order("month", { ascending: true })
     .order("day", { ascending: true });

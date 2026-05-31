@@ -44,6 +44,7 @@ export async function fetchSemanticEvents(
       .from("events")
       .select("*")
       .eq("country", "KR")
+      .eq("status", "approved")
       .not("embedding", "is", null);
 
     if (error || !data || data.length === 0) return [];
@@ -125,6 +126,7 @@ async function fetchNearbyEvents(date: string): Promise<EventRecord[]> {
       .from("events")
       .select("*")
       .eq("country", "KR")
+      .eq("status", "approved")
       .eq("month", month)
       .gte("day", Math.max(1, day - 3))
       .lte("day", Math.min(31, day + 3));
