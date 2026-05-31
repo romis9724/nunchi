@@ -83,6 +83,8 @@ export interface CheckResponse {
   suggestions: string[];
   ruleTriggered: boolean;
   cached: boolean;
+  /** 사용자 업종·채널 기반 맞춤 코멘트 (industries·channels만 LLM에 전달). 비로그인 시 undefined. */
+  personalizedComment?: string;
 }
 
 export interface WaitlistEntry {

@@ -11,7 +11,9 @@
     "test:ollama-client": "tsx --test src/ollamaEmbedClient.test.ts",
     "test:gemini-client": "tsx --test src/geminiEmbedClient.test.ts",
     "test:orchestrator": "tsx --test src/embeddingOrchestrator.test.ts",
-    "test": "tsx --test src/generateEmbedding.test.ts src/ollamaEmbedClient.test.ts src/geminiEmbedClient.test.ts src/embeddingOrchestrator.test.ts"
+    "test:naver-news": "tsx --test src/naverNewsClient.test.ts",
+    "test:news-filter": "tsx --test src/newsFilter.test.ts",
+    "test": "tsx --test src/generateEmbedding.test.ts src/ollamaEmbedClient.test.ts src/geminiEmbedClient.test.ts src/embeddingOrchestrator.test.ts src/naverNewsClient.test.ts src/newsFilter.test.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.36.3",

@@ -61,7 +61,7 @@ export function CalendarClient({ events }: CalendarClientProps) {
         <div>
           <p style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--muted-ink)", marginBottom: "8px" }}>◈ Brand Calendar</p>
           <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(24px,4vw,32px)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--charcoal)", margin: 0 }}>
-            민감일 캘린더
+            캠페인 캘린더
           </h1>
         </div>
 

@@ -193,6 +193,21 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
         </>
       )}
 
+      {/* 맞춤 코멘트 — 로그인 사용자 + onboarding 완료 시만 표시 */}
+      {result.personalizedComment && (
+        <>
+          <div style={{ height: "1px", background: "var(--border-warm)", margin: "0 20px" }} />
+          <div style={{ padding: "16px 20px" }}>
+            <p style={{ fontSize: "11px", fontWeight: 700, color: "var(--ms-blue, #2563EB)", letterSpacing: "0.08em", textTransform: "uppercase", margin: "0 0 8px" }}>
+              맞춤 코멘트
+            </p>
+            <p style={{ fontSize: "13px", color: "var(--charcoal)", lineHeight: 1.7, margin: 0, padding: "12px 14px", background: "var(--ms-blue-light, #EFF6FF)", borderRadius: "8px", border: "1px solid var(--ms-blue-mid, #BFDBFE)" }}>
+              {result.personalizedComment}
+            </p>
+          </div>
+        </>
+      )}
+
       {/* Memo */}
       <div style={{ height: "1px", background: "var(--border-warm)", margin: "0 20px" }} />
       <div style={{ padding: "16px 20px" }}>

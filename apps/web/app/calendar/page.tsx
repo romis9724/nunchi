@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { NunchiLogo } from "@/components/NunchiLogo";
 import { toneToGrade } from "@nunchi/shared";
 import type { EventRecord } from "@nunchi/shared";
 import { getSupabaseAdmin } from "@/lib/supabase";
@@ -69,8 +70,8 @@ export default async function CalendarPage() {
       {/* NAV */}
       <header style={{ borderBottom: "1px solid var(--border-warm)", background: "rgba(248,247,244,0.92)", backdropFilter: "blur(12px)", position: "sticky", top: 0, zIndex: 10 }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 32px", height: "60px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <Link href="/" style={{ textDecoration: "none", fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "18px", letterSpacing: "-0.04em", color: "var(--ms-text, var(--charcoal))" }}>
-            nunchi
+          <Link href="/" style={{ textDecoration: "none", color: "var(--ms-text, var(--charcoal))" }}>
+            <NunchiLogo size={24} />
           </Link>
           <Link href="/check" style={{ fontSize: "13px", fontWeight: 600, background: "var(--ms-blue, var(--charcoal))", color: "#FFF", padding: "7px 16px", borderRadius: "4px", textDecoration: "none" }}>
             캠페인 검토
