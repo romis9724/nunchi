@@ -5,7 +5,7 @@
   "framework": "nextjs",
   "crons": [
     {
-      "path": "/api/cron/collect-news",
+      "path": "/api/cron/news-automation",
       "schedule": "0 0 * * *"
     }
   ]
