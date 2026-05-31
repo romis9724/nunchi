@@ -129,12 +129,14 @@ export function CalendarClient({ events }: CalendarClientProps) {
     const isHovered = hoveredDay === d;
     const dayEvents = eventsByDay[d] ?? [];
     const topGrade = dayEvents[0]?.grade;
-    const isHighlight = topGrade === "F" || topGrade === "A";
+    // F 등급의 디폴트 빨강 배경은 제거 — 좌측 stripe + F chip 만으로 충분히 표시.
+    // A 등급(호재)만 차분한 파랑 tint 유지 (긍정 강조).
+    const isPositiveHighlight = topGrade === "A";
 
     if (isSelected) return "var(--brand-red-soft)";
     if (isHovered && dayEvents.length > 0) return "var(--ms-surface-3)";
     if (isHovered) return "var(--ms-surface-2)";
-    if (isHighlight && topGrade) return GRADE_ROW_BG[topGrade];
+    if (isPositiveHighlight && topGrade) return GRADE_ROW_BG[topGrade];
     return "transparent";
   }
 
