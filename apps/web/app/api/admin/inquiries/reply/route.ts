@@ -16,11 +16,11 @@ export async function POST(request: NextRequest) {
   try {
     await sendMail({
       to: body.to,
-      subject: `[Nunchi] 문의 답장 — ${body.name ?? ""}`,
+      subject: `[nunchi] 문의 답장 — ${body.name ?? ""}`,
       html: `
         <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px">
           <div style="margin-bottom:24px">
-            <h2 style="color:#0078D4;margin:0 0 4px">Nunchi 팀입니다</h2>
+            <h2 style="color:#0078D4;margin:0 0 4px">nunchi 팀입니다</h2>
             <p style="color:#666;margin:0;font-size:14px">문의하신 내용에 대한 답변을 드립니다.</p>
           </div>
           <div style="background:#f8f8f8;border-left:4px solid #0078D4;padding:16px 20px;border-radius:0 8px 8px 0;margin-bottom:24px;white-space:pre-wrap;line-height:1.7;font-size:14px;color:#333">${body.message.trim().replace(/</g, "&lt;").replace(/>/g, "&gt;")}</div>
