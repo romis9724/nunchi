@@ -93,10 +93,14 @@ export async function runNewsOrchestrator(): Promise<NewsAutomationResult> {
     const date = pubDateToISO(item.pubDate);
 
     try {
+      const d = new Date(date);
+      const slug = `naver-${d.getFullYear()}${String(d.getMonth()+1).padStart(2,"0")}${String(d.getDate()).padStart(2,"0")}-${title.slice(0,20).replace(/[^a-zA-Z0-9가-힣]/g,"_")}`.slice(0, 80);
+
       const { error } = await supabase.from("events").insert({
-        event_date: date,       // 뉴스 이벤트 전용 YYYY-MM-DD 컬럼
-        month: new Date(date).getMonth() + 1,
-        day: new Date(date).getDate(),
+        slug,
+        event_date: date,
+        month: d.getMonth() + 1,
+        day: d.getDate(),
         date_type: "fixed",
         name: title,
         category: "social",
