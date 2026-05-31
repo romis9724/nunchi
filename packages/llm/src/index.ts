@@ -6,3 +6,4 @@ export * from "./geminiEmbedClient";
 export * from "./embeddingOrchestrator";
 export * from "./naverNewsClient";
 export * from "./newsFilter";
+export * from "./prompts/personalize-rationale";
