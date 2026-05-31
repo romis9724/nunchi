@@ -1,12 +1,18 @@
 import { NextResponse } from "next/server";
+import { runNewsOrchestrator } from "@/lib/news-orchestrator";
 
+// Vercel Functions에서 자기 자신을 HTTP 호출하면 실패하므로 직접 실행
 export async function POST() {
-  const cronSecret = process.env.CRON_SECRET;
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://nunchi-bay.vercel.app";
-
-  const res = await fetch(`${appUrl}/api/cron/news-automation`, {
-    headers: { "Authorization": `Bearer ${cronSecret}` },
-  });
-  const data = await res.json();
-  return NextResponse.json(data, { status: res.status });
+  try {
+    const result = await runNewsOrchestrator();
+    return NextResponse.json({
+      ok: true,
+      eventsCreated: result.eventsCreated,
+      errors: result.errors,
+    });
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error("[trigger-news] error:", msg);
+    return NextResponse.json({ error: msg }, { status: 500 });
+  }
 }

@@ -27,6 +27,30 @@ const STATUS_COLOR: Record<string, string> = {
   archived: "#6B7280",
 };
 
+const CATEGORY_KR: Record<string, { label: string; color: string; bg: string }> = {
+  massacre:     { label: "학살·인권",   color: "#7F1D1D", bg: "#FEE2E2" },
+  disaster:     { label: "재난·사고",   color: "#7C2D12", bg: "#FFEDD5" },
+  political:    { label: "정치",        color: "#1E3A8A", bg: "#DBEAFE" },
+  social:       { label: "사회",        color: "#1E40AF", bg: "#EFF6FF" },
+  human_rights: { label: "인권·민주",   color: "#6B21A8", bg: "#F3E8FF" },
+  memorial:     { label: "기념일",      color: "#065F46", bg: "#D1FAE5" },
+  independence: { label: "독립·광복",   color: "#0F766E", bg: "#CCFBF1" },
+  labor:        { label: "노동",        color: "#92400E", bg: "#FEF3C7" },
+  celebration:  { label: "경축·상업",   color: "#047857", bg: "#D1FAE5" },
+  commercial:   { label: "상업",        color: "#0369A1", bg: "#E0F2FE" },
+};
+
+function CategoryBadge({ category }: { category: string }) {
+  const cfg = CATEGORY_KR[category] ?? { label: category, color: "#6B7280", bg: "#F3F4F6" };
+  return (
+    <span style={{
+      display: "inline-block", padding: "2px 8px", borderRadius: "10px",
+      fontSize: "11px", fontWeight: 600,
+      color: cfg.color, background: cfg.bg,
+    }}>{cfg.label}</span>
+  );
+}
+
 export default function AdminEventsPage() {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
@@ -117,7 +141,7 @@ export default function AdminEventsPage() {
                   <tr key={event.id} style={{ borderBottom: "1px solid var(--border-warm)" }}>
                     <td style={{ padding: "12px 16px" }}>{event.date}</td>
                     <td style={{ padding: "12px 16px", fontWeight: 500 }}>{event.name}</td>
-                    <td style={{ padding: "12px 16px", color: "var(--muted-ink)" }}>{event.category}</td>
+                    <td style={{ padding: "12px 16px" }}><CategoryBadge category={event.category} /></td>
                     <td style={{ padding: "12px 16px" }}>
                       <span style={{ color: RISK_COLOR[event.risk_level] ?? "#666", fontWeight: 600 }}>
                         {event.risk_level}
