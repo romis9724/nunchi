@@ -1,5 +1,5 @@
 "use client";
-
+import { AdminGuard } from "@/components/AdminGuard";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 

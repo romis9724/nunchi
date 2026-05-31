@@ -1,9 +1,8 @@
 "use client";
-
+import { AdminGuard } from "@/components/AdminGuard";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
-import { AdminGuard } from "@/components/AdminGuard";
 
 interface BetaUser {
   id: string;
