@@ -143,11 +143,8 @@ export function CalendarClient({ events }: CalendarClientProps) {
       {/* Page header */}
       <div style={{ marginBottom: "36px", display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "16px" }}>
         <div>
-          <p style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--muted-ink)", marginBottom: "8px" }}>
-            ◈ Brand Calendar
-          </p>
           <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(24px,4vw,32px)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--charcoal)", margin: 0 }}>
-            캠페인 캘린더
+            리스크 캘린더
           </h1>
         </div>
 

@@ -92,11 +92,8 @@ function CheckForm() {
       <main style={{ maxWidth: "720px", margin: "0 auto", padding: "48px 24px 80px" }}>
         {/* Page header */}
         <div style={{ marginBottom: "36px" }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "12px", fontWeight: 600, color: "var(--muted-ink)", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "12px" }}>
-            <span>◈</span> 캠페인 검토
-          </div>
           <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(24px,4vw,32px)", fontWeight: 800, color: "var(--charcoal)", letterSpacing: "-0.03em", margin: "0 0 8px" }}>
-            캠페인 날짜
+            캠페인 검토
           </h1>
           <p style={{ fontSize: "14px", color: "var(--muted-ink)", lineHeight: 1.6, margin: 0 }}>
             날짜와 카피를 입력하면 위험 등급과 호재 기회를 즉시 분석합니다.
@@ -131,7 +128,6 @@ function CheckForm() {
                     onBlur={(e) => (e.target.style.borderColor = "var(--border-warm)")}
                   />
                 </div>
-                <NearbyEventsPreview date={form.date} />
               </div>
               <div>
                 <label htmlFor="campaign" style={LABEL_STYLE}>
@@ -150,6 +146,9 @@ function CheckForm() {
                 />
               </div>
             </div>
+
+            {/* Nearby events preview — full-width below date+campaign row */}
+            <NearbyEventsPreview date={form.date} />
 
             {/* Copy */}
             <div>
@@ -324,7 +323,7 @@ function CheckForm() {
         {result && (
           <div ref={resultRef}>
             <p style={{ fontSize: "12px", fontWeight: 700, color: "var(--muted-ink)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "12px" }}>
-              ◈ 검토 결과
+              검토 결과
             </p>
             <ResultCard result={result} date={form.date} campaignName={form.campaignName} />
           </div>

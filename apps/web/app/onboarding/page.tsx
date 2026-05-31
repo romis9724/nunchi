@@ -88,7 +88,7 @@ export default function OnboardingPage() {
         </div>
 
         <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 800, color: "var(--charcoal)", marginBottom: "8px" }}>
-          서비스 맞춤 설정
+          온보딩
         </h1>
         <p style={{ color: "var(--muted-ink)", fontSize: "15px", marginBottom: "32px" }}>
           업종과 채널을 선택하면 검토 결과를 맞춤화해 드립니다.

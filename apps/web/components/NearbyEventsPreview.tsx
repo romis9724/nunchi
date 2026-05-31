@@ -98,7 +98,7 @@ export function NearbyEventsPreview({ date }: { date: string }) {
   if (events === null) {
     return loading ? (
       <div style={{
-        marginTop: "10px", fontSize: "12px", color: "var(--ms-text-3)",
+        marginTop: "0", fontSize: "12px", color: "var(--ms-text-3)",
         padding: "8px 12px",
       }}>
         ⌛ 해당 날짜 사건 확인 중…
@@ -109,7 +109,7 @@ export function NearbyEventsPreview({ date }: { date: string }) {
   if (events.length === 0) {
     return (
       <div style={{
-        marginTop: "10px",
+        marginTop: "0",
         background: "var(--ms-blue-light)",
         border: "1px solid var(--ms-blue-mid)",
         borderRadius: "10px",
@@ -130,7 +130,7 @@ export function NearbyEventsPreview({ date }: { date: string }) {
 
   return (
     <div style={{
-      marginTop: "10px",
+      marginTop: "0",
       background: "var(--ms-surface)",
       border: "1px solid var(--ms-border)",
       borderRadius: "10px",

@@ -118,19 +118,6 @@ export default function ContactPage() {
         <div>
           {/* Page header */}
           <div style={{ marginBottom: "36px" }}>
-            <div style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "6px",
-              fontSize: "12px",
-              fontWeight: 600,
-              color: "var(--muted-ink)",
-              letterSpacing: "0.06em",
-              textTransform: "uppercase",
-              marginBottom: "12px",
-            }}>
-              <span>✉</span> 문의하기
-            </div>
             <h1 style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(24px,4vw,32px)",
@@ -139,7 +126,7 @@ export default function ContactPage() {
               letterSpacing: "-0.03em",
               margin: "0 0 8px",
             }}>
-              문의 및 피드백
+              문의하기
             </h1>
             <p style={{ fontSize: "14px", color: "var(--muted-ink)", lineHeight: 1.6, margin: 0 }}>
               질문, 제안, 파트너십 문의 — 무엇이든 보내주세요.
