@@ -8,8 +8,9 @@ export async function GET(request: NextRequest) {
   const supabase = getSupabaseAdmin();
   let query = supabase
     .from("events")
-    .select("id, date, name, category, risk_level, status, source, summary")
-    .order("date", { ascending: false });
+    .select("id, month, day, event_date, name, category, risk_level, status, source, summary")
+    .order("month", { ascending: true })
+    .order("day", { ascending: true });
 
   if (status) {
     query = query.eq("status", status);
@@ -19,5 +20,14 @@ export async function GET(request: NextRequest) {
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
-  return NextResponse.json(data ?? []);
+
+  // 날짜 표시용 date 문자열 조합
+  const result = (data ?? []).map((e) => ({
+    ...e,
+    date: e.event_date
+      ? e.event_date
+      : `${String(e.month).padStart(2, "0")}-${String(e.day ?? 0).padStart(2, "0")}`,
+  }));
+
+  return NextResponse.json(result);
 }
