@@ -98,10 +98,10 @@ export default function AdminInquiriesPage() {
                           <span style={{ fontWeight: 700, fontSize: "14px", color: "var(--charcoal)" }}>{inq.name}</span>
                           <span style={{ fontSize: "12px", color: "var(--muted-ink)" }}>{inq.email}</span>
                           {sentIds.has(inq.id) && (
-                            <span style={{ fontSize: "11px", background: "#D1FAE5", color: "#065F46", borderRadius: "8px", padding: "1px 8px", fontWeight: 600 }}>답장 완료</span>
+                            <span style={{ fontSize: "12px", background: "#D1FAE5", color: "#065F46", borderRadius: "8px", padding: "1px 8px", fontWeight: 600 }}>답장 완료</span>
                           )}
                         </div>
-                        <span style={{ fontSize: "11px", color: "var(--muted-ink)", whiteSpace: "nowrap", marginLeft: "8px" }}>
+                        <span style={{ fontSize: "12px", color: "var(--muted-ink)", whiteSpace: "nowrap", marginLeft: "8px" }}>
                           {formatDate(inq.created_at)}
                         </span>
                       </div>
@@ -127,7 +127,7 @@ export default function AdminInquiriesPage() {
 
                 {/* 원문 */}
                 <div style={{ background: "var(--rice-paper, #F8F7F4)", borderRadius: "8px", padding: "12px 14px", marginBottom: "16px" }}>
-                  <p style={{ fontSize: "11px", fontWeight: 600, color: "var(--muted-ink)", margin: "0 0 6px", textTransform: "uppercase", letterSpacing: "0.06em" }}>원문 문의</p>
+                  <p style={{ fontSize: "12px", fontWeight: 600, color: "var(--muted-ink)", margin: "0 0 6px", textTransform: "uppercase", letterSpacing: "0.06em" }}>원문 문의</p>
                   <p style={{ fontSize: "13px", color: "var(--charcoal)", lineHeight: 1.7, margin: 0, whiteSpace: "pre-wrap" }}>{selected.message}</p>
                 </div>
 

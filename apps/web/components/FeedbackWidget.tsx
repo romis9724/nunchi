@@ -114,7 +114,7 @@ export function FeedbackWidget() {
                     onClick={() => setType(t)}
                     style={{
                       flex: 1,
-                      fontSize: "11px",
+                      fontSize: "12px",
                       padding: "5px 4px",
                       borderRadius: "4px",
                       border: "1px solid",

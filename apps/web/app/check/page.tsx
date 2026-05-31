@@ -166,7 +166,7 @@ function CheckForm() {
                 onFocus={(e) => (e.target.style.borderColor = "var(--charcoal)")}
                 onBlur={(e) => (e.target.style.borderColor = "var(--border-warm)")}
               />
-              <p style={{ fontSize: "11px", color: "var(--muted-ink)", textAlign: "right", marginTop: "4px" }}>
+              <p style={{ fontSize: "12px", color: "var(--muted-ink)", textAlign: "right", marginTop: "4px" }}>
                 {form.copy.length} / 2000
               </p>
             </div>
@@ -321,7 +321,7 @@ function CheckForm() {
         {/* Result */}
         {result && (
           <div ref={resultRef}>
-            <p style={{ fontSize: "11px", fontWeight: 700, color: "var(--muted-ink)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "12px" }}>
+            <p style={{ fontSize: "12px", fontWeight: 700, color: "var(--muted-ink)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "12px" }}>
               ◈ 검토 결과
             </p>
             <ResultCard result={result} date={form.date} campaignName={form.campaignName} />

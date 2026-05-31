@@ -143,7 +143,7 @@ export function CalendarClient({ events }: CalendarClientProps) {
       {/* Page header */}
       <div style={{ marginBottom: "36px", display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "16px" }}>
         <div>
-          <p style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--muted-ink)", marginBottom: "8px" }}>
+          <p style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--muted-ink)", marginBottom: "8px" }}>
             ◈ Brand Calendar
           </p>
           <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(24px,4vw,32px)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--charcoal)", margin: 0 }}>
@@ -163,7 +163,7 @@ export function CalendarClient({ events }: CalendarClientProps) {
                   flexShrink: 0, display: "inline-block",
                 }}
               />
-              <span style={{ fontSize: "11px", fontWeight: 600, color: "var(--muted-ink)", letterSpacing: "0.02em" }}>
+              <span style={{ fontSize: "12px", fontWeight: 600, color: "var(--muted-ink)", letterSpacing: "0.02em" }}>
                 {label}
               </span>
             </div>
@@ -198,7 +198,7 @@ export function CalendarClient({ events }: CalendarClientProps) {
                   style={{
                     background: "var(--ms-blue-light)", border: "1px solid var(--ms-blue-mid)",
                     borderRadius: "6px", padding: "3px 10px", cursor: "pointer",
-                    fontSize: "11px", fontWeight: 700, color: "var(--ms-blue)",
+                    fontSize: "12px", fontWeight: 700, color: "var(--ms-blue)",
                     fontFamily: "var(--font-body)", letterSpacing: "0.01em",
                   }}
                 >
@@ -221,7 +221,7 @@ export function CalendarClient({ events }: CalendarClientProps) {
             {["일", "월", "화", "수", "목", "금", "토"].map((d) => (
               <div
                 key={d}
-                style={{ padding: "10px 0", textAlign: "center", fontSize: "11px", fontWeight: 700, color: "var(--muted-ink)", letterSpacing: "0.04em" }}
+                style={{ padding: "10px 0", textAlign: "center", fontSize: "12px", fontWeight: 700, color: "var(--muted-ink)", letterSpacing: "0.04em" }}
               >
                 {d}
               </div>
@@ -377,7 +377,7 @@ export function CalendarClient({ events }: CalendarClientProps) {
                         {/* Category + review link row */}
                         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "8px", marginTop: "6px" }}>
                           <span style={{
-                            fontSize: "10px", fontWeight: 600, letterSpacing: "0.04em",
+                            fontSize: "13px", fontWeight: 600, letterSpacing: "0.04em",
                             background: "var(--ms-surface-3)", color: "var(--muted-ink)",
                             padding: "2px 8px", borderRadius: "100px",
                           }}>
@@ -387,7 +387,7 @@ export function CalendarClient({ events }: CalendarClientProps) {
                             href={`/check?date=${currentYear}-${String(e.month).padStart(2, "0")}-${String(e.day).padStart(2, "0")}`}
                             style={{
                               display: "inline-flex", alignItems: "center", gap: "3px",
-                              fontSize: "11px", fontWeight: 700,
+                              fontSize: "12px", fontWeight: 700,
                               color: "var(--ms-blue)", textDecoration: "none",
                               whiteSpace: "nowrap",
                             }}
@@ -420,7 +420,7 @@ export function CalendarClient({ events }: CalendarClientProps) {
           {monthEvents.length > 0 && (
             <div style={{ background: "#FFF", border: "1px solid var(--border-warm)", borderRadius: "14px", overflow: "hidden" }}>
               <div style={{ padding: "12px 16px", borderBottom: "1px solid var(--border-faint)" }}>
-                <p style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--muted-ink)", margin: 0 }}>
+                <p style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--muted-ink)", margin: 0 }}>
                   이달의 주요 날짜
                 </p>
               </div>
@@ -438,7 +438,7 @@ export function CalendarClient({ events }: CalendarClientProps) {
                     }}
                   >
                     <span style={{
-                      fontSize: "11px", fontWeight: 700, color: "var(--muted-ink)",
+                      fontSize: "12px", fontWeight: 700, color: "var(--muted-ink)",
                       minWidth: "26px", flexShrink: 0,
                     }}>
                       {e.day}일

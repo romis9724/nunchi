@@ -88,7 +88,7 @@ export function AppHeader() {
                 onClick={() => setMenuOpen(!menuOpen)}
                 style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "13px", fontWeight: 600, color: "var(--ms-text)", padding: "6px 12px", borderRadius: "4px", border: "1px solid var(--ms-border)", background: "#fff", cursor: "pointer" }}
               >
-                <span style={{ width: "20px", height: "20px", borderRadius: "50%", background: "var(--ms-blue)", color: "#fff", display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: "11px", fontWeight: 700 }}>
+                <span style={{ width: "20px", height: "20px", borderRadius: "50%", background: "var(--ms-blue)", color: "#fff", display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: 700 }}>
                   {displayName.charAt(0).toUpperCase()}
                 </span>
                 {displayName}

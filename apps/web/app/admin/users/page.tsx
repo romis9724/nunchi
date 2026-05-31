@@ -81,7 +81,7 @@ export default function AdminUsersPage() {
                   <tr key={user.id} style={{ borderBottom: "1px solid var(--ms-border)" }}>
                     <td style={{ padding: "12px 16px", fontWeight: 500 }}>{user.email}</td>
                     <td style={{ padding: "12px 16px" }}>
-                      <span style={{ fontSize: "11px", fontWeight: 600, padding: "2px 8px", borderRadius: "10px", background: user.role === "admin" ? "#EDE7F6" : "var(--ms-blue-light)", color: user.role === "admin" ? "#5E35B1" : "var(--ms-blue)" }}>
+                      <span style={{ fontSize: "12px", fontWeight: 600, padding: "2px 8px", borderRadius: "10px", background: user.role === "admin" ? "#EDE7F6" : "var(--ms-blue-light)", color: user.role === "admin" ? "#5E35B1" : "var(--ms-blue)" }}>
                         {user.role}
                       </span>
                     </td>

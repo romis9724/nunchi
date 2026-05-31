@@ -50,7 +50,7 @@ function RiskBadge({ level }: { level: string }) {
       display: "inline-flex",
       alignItems: "center",
       gap: "4px",
-      fontSize: "11px",
+      fontSize: "12px",
       fontWeight: 700,
       padding: "3px 8px",
       borderRadius: "6px",
@@ -71,7 +71,7 @@ function CategoryBadge({ category }: { category: string }) {
       whiteSpace: "nowrap",
       padding: "3px 8px",
       borderRadius: "6px",
-      fontSize: "11px",
+      fontSize: "12px",
       fontWeight: 600,
       color: c.color,
       background: c.bg,
@@ -179,7 +179,7 @@ export default function NewsQueuePage() {
                 borderRadius: "11px",
                 background: "#EF4444",
                 color: "#fff",
-                fontSize: "11px",
+                fontSize: "12px",
                 fontWeight: 700,
               }}>
                 {events.length}
@@ -268,7 +268,7 @@ export default function NewsQueuePage() {
                         </span>
                         <CategoryBadge category={event.category} />
                       </div>
-                      <span style={{ fontSize: "11px", color: "var(--muted-ink)", flexShrink: 0 }}>
+                      <span style={{ fontSize: "12px", color: "var(--muted-ink)", flexShrink: 0 }}>
                         {event.source === "naver_auto" ? "네이버 자동" : "수동 입력"}
                       </span>
                     </div>

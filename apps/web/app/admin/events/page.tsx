@@ -46,7 +46,7 @@ function Badge({ category }: { category: string }) {
     <span style={{
       display: "inline-block", whiteSpace: "nowrap",
       padding: "2px 8px", borderRadius: "10px",
-      fontSize: "11px", fontWeight: 600,
+      fontSize: "12px", fontWeight: 600,
       color: c.color, background: c.bg,
     }}>
       {c.label}
@@ -149,13 +149,13 @@ export default function AdminEventsPage() {
                         <div style={{ display: "flex", gap: "6px" }}>
                           <button
                             onClick={() => changeStatus(event.id, "pending_review")}
-                            style={{ fontSize: "11px", padding: "4px 10px", borderRadius: "4px", border: "1px solid #F59E0B", background: "#FFFBEB", color: "#92400E", cursor: "pointer", fontWeight: 600, whiteSpace: "nowrap" }}
+                            style={{ fontSize: "12px", padding: "4px 10px", borderRadius: "4px", border: "1px solid #F59E0B", background: "#FFFBEB", color: "#92400E", cursor: "pointer", fontWeight: 600, whiteSpace: "nowrap" }}
                           >
                             대기
                           </button>
                           <button
                             onClick={() => { if (confirm(`"${event.name.slice(0,20)}…" 을 삭제하시겠습니까?`)) changeStatus(event.id, "archived"); }}
-                            style={{ fontSize: "11px", padding: "4px 10px", borderRadius: "4px", border: "1px solid #FCA5A5", background: "#FEF2F2", color: "#DC2626", cursor: "pointer", fontWeight: 600, whiteSpace: "nowrap" }}
+                            style={{ fontSize: "12px", padding: "4px 10px", borderRadius: "4px", border: "1px solid #FCA5A5", background: "#FEF2F2", color: "#DC2626", cursor: "pointer", fontWeight: 600, whiteSpace: "nowrap" }}
                           >
                             삭제
                           </button>

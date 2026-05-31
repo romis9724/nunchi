@@ -168,7 +168,7 @@ export default function LandingPage() {
               display: "inline-flex",
               alignItems: "center",
               gap: "6px",
-              fontSize: "11px",
+              fontSize: "12px",
               fontWeight: 600,
               letterSpacing: "0.08em",
               textTransform: "uppercase" as const,
@@ -244,7 +244,7 @@ export default function LandingPage() {
             >
               지금 무료로 시작하기 →
             </Link>
-            <span style={{ fontSize: "13px", color: `${MUTED}99` }}>회원가입 불필요</span>
+            <span style={{ fontSize: "14px", color: `${MUTED}99` }}>회원가입 불필요</span>
           </div>
 
           {/* Hero card */}
@@ -259,7 +259,7 @@ export default function LandingPage() {
             }}
           >
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "10px" }}>
-              <span style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase" as const, letterSpacing: "0.07em", color: MUTED }}>
+              <span style={{ fontSize: "13px", fontWeight: 600, textTransform: "uppercase" as const, letterSpacing: "0.06em", color: MUTED }}>
                 실제 사례 · 2026.05.18
               </span>
               <GMini g="F" />
@@ -293,7 +293,7 @@ export default function LandingPage() {
               <p style={{ fontFamily: "var(--font-display)", fontSize: "26px", fontWeight: 800, color: "#fff", margin: "0 0 4px", letterSpacing: "-0.04em" }}>
                 {item.n}
               </p>
-              <p style={{ fontSize: "12px", color: MUTED, margin: 0, fontWeight: 500 }}>
+              <p style={{ fontSize: "13px", color: MUTED, margin: 0, fontWeight: 500 }}>
                 {item.label}
               </p>
             </div>
@@ -304,7 +304,7 @@ export default function LandingPage() {
       {/* ── 3. WHY — Before / After (white) ──────────────────── */}
       <section style={{ background: "#FFFFFF", padding: "80px 24px" }} className="section-pad">
         <div style={{ maxWidth: "1160px", margin: "0 auto" }}>
-          <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" as const, color: "var(--ms-blue)", margin: "0 0 12px" }}>
+          <p style={{ display: "inline-flex", alignItems: "center", fontSize: "13px", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "#2563EB", background: "#EFF6FF", border: "1px solid #BFDBFE", borderRadius: "20px", padding: "5px 14px", margin: "0 0 16px" }}>
             왜 필요한가
           </p>
           <h2
@@ -373,7 +373,7 @@ export default function LandingPage() {
       {/* ── 4. FEATURES (white) ──────────────────────────────── */}
       <section style={{ background: "#FFFFFF", padding: "0 24px 80px" }} className="section-pad">
         <div style={{ maxWidth: "1160px", margin: "0 auto" }}>
-          <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" as const, color: "var(--ms-blue)", margin: "0 0 12px" }}>
+          <p style={{ display: "inline-flex", alignItems: "center", fontSize: "13px", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "#2563EB", background: "#EFF6FF", border: "1px solid #BFDBFE", borderRadius: "20px", padding: "5px 14px", margin: "0 0 16px" }}>
             핵심 기능
           </p>
           <h2
@@ -408,10 +408,10 @@ export default function LandingPage() {
                 <h3 style={{ fontFamily: "var(--font-display)", fontSize: "17px", fontWeight: 700, color: "var(--ms-text)", margin: "0 0 10px", letterSpacing: "-0.02em" }}>
                   {f.title}
                 </h3>
-                <p style={{ fontSize: "14px", color: "var(--ms-text-2)", lineHeight: 1.65, margin: "0 0 14px" }}>
+                <p style={{ fontSize: "15px", color: "var(--ms-text-2)", lineHeight: 1.7, margin: "0 0 14px" }}>
                   {f.body}
                 </p>
-                <p style={{ fontSize: "11px", color: "var(--ms-text-3)", fontWeight: 600, margin: 0, background: "var(--ms-surface-2)", display: "inline-block", padding: "3px 10px", borderRadius: "3px" }}>
+                <p style={{ fontSize: "12px", color: "var(--ms-text-3)", fontWeight: 600, margin: 0, background: "var(--ms-surface-2)", display: "inline-block", padding: "3px 10px", borderRadius: "3px" }}>
                   {f.example}
                 </p>
               </div>
@@ -426,7 +426,7 @@ export default function LandingPage() {
         className="section-pad"
       >
         <div style={{ maxWidth: "1160px", margin: "0 auto" }}>
-          <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" as const, color: "var(--ms-blue)", margin: "0 0 10px" }}>
+          <p style={{ display: "inline-flex", alignItems: "center", fontSize: "13px", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "#2563EB", background: "#EFF6FF", border: "1px solid #BFDBFE", borderRadius: "20px", padding: "5px 14px", margin: "0 0 16px" }}>
             등급 시스템
           </p>
           <h2
@@ -463,10 +463,10 @@ export default function LandingPage() {
                 <p style={{ fontSize: "13px", fontWeight: 700, color: "var(--ms-text)", margin: "0 0 8px" }}>
                   {item.label}
                 </p>
-                <p style={{ fontSize: "11px", color: "var(--ms-text-2)", lineHeight: 1.55, margin: "0 0 10px" }}>
+                <p style={{ fontSize: "13px", color: "var(--ms-text-2)", lineHeight: 1.6, margin: "0 0 10px" }}>
                   {item.sub}
                 </p>
-                <p style={{ fontSize: "10px", color: item.tc, fontWeight: 700, margin: 0 }}>
+                <p style={{ fontSize: "13px", color: item.tc, fontWeight: 700, margin: 0 }}>
                   예: {item.ex}
                 </p>
               </div>
@@ -478,7 +478,7 @@ export default function LandingPage() {
       {/* ── 6. DEMO CTA (dark) ───────────────────────────────── */}
       <section style={{ background: DARK_BG, padding: "80px 24px" }} className="section-pad">
         <div style={{ maxWidth: "1160px", margin: "0 auto" }}>
-          <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" as const, color: BLUE, marginBottom: "12px" }}>
+          <p style={{ display: "inline-flex", alignItems: "center", fontSize: "13px", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "#93C5FD", background: "rgba(147,197,253,0.12)", border: "1px solid rgba(147,197,253,0.25)", borderRadius: "20px", padding: "5px 14px", marginBottom: "20px" }}>
             직접 체험해보기
           </p>
           <h2

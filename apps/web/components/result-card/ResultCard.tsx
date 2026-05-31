@@ -87,7 +87,7 @@ function SectionLabel({ children, style }: { children: React.ReactNode; style?: 
   return (
     <p
       style={{
-        fontSize: "10px",
+        fontSize: "13px",
         fontWeight: 700,
         color: "var(--ms-text-3)",
         letterSpacing: "0.1em",
@@ -165,7 +165,7 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
         >
           <p
             style={{
-              fontSize: "11px",
+              fontSize: "12px",
               color: "var(--ms-text-3)",
               margin: 0,
               display: "flex",
@@ -193,7 +193,7 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
                   border: `1px solid ${scheme.tagBorder}`,
                   padding: "1px 7px",
                   borderRadius: "3px",
-                  fontSize: "10px",
+                  fontSize: "13px",
                   letterSpacing: "0.06em",
                 }}
               >
@@ -207,7 +207,7 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               style={{
-                fontSize: "11px",
+                fontSize: "12px",
                 padding: "4px 10px",
                 borderRadius: "4px",
                 border: "1px solid var(--ms-border)",
@@ -234,7 +234,7 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
                 navigator.clipboard.writeText(text).catch(() => {});
               }}
               style={{
-                fontSize: "11px",
+                fontSize: "12px",
                 padding: "4px 10px",
                 borderRadius: "4px",
                 border: "1px solid var(--ms-border)",
@@ -376,7 +376,7 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
                       </span>
                       <span
                         style={{
-                          fontSize: "10px",
+                          fontSize: "13px",
                           fontWeight: 600,
                           color: evScheme.textColor,
                           background: evScheme.tagBg,
@@ -409,7 +409,7 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
                             target="_blank"
                             rel="noopener noreferrer"
                             style={{
-                              fontSize: "11px",
+                              fontSize: "12px",
                               color: "#2563EB",
                               textDecoration: "underline",
                               textUnderlineOffset: "2px",
@@ -454,7 +454,7 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
                 >
                   <span
                     style={{
-                      fontSize: "10px",
+                      fontSize: "13px",
                       fontFamily: "monospace",
                       color: scheme.accent,
                       fontWeight: 700,
@@ -498,7 +498,7 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
           >
             <p
               style={{
-                fontSize: "11px",
+                fontSize: "12px",
                 color: "#14532D",
                 margin: 0,
                 fontWeight: 700,
@@ -552,7 +552,7 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
           <div style={{ padding: "16px 20px" }}>
             <p
               style={{
-                fontSize: "10px",
+                fontSize: "13px",
                 fontWeight: 700,
                 color: "#1D4ED8",
                 letterSpacing: "0.1em",
@@ -586,7 +586,7 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
         <label
           htmlFor="result-memo"
           style={{
-            fontSize: "10px",
+            fontSize: "13px",
             fontWeight: 700,
             color: "var(--ms-text-3)",
             letterSpacing: "0.1em",
@@ -626,7 +626,7 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
         />
         <p
           style={{
-            fontSize: "11px",
+            fontSize: "12px",
             color: "var(--ms-text-3)",
             marginTop: "5px",
             margin: "5px 0 0",
@@ -640,7 +640,7 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
       <div style={{ padding: "0 20px 18px" }}>
         <p
           style={{
-            fontSize: "11px",
+            fontSize: "12px",
             color: "var(--ms-text-3)",
             background: "var(--ms-surface-2)",
             border: "1px solid var(--ms-border)",

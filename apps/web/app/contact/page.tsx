@@ -265,7 +265,7 @@ export default function ContactPage() {
                     onFocus={(e) => (e.target.style.borderColor = "var(--charcoal)")}
                     onBlur={(e) => (e.target.style.borderColor = "var(--border-warm)")}
                   />
-                  <p style={{ fontSize: "11px", color: "var(--muted-ink)", textAlign: "right", marginTop: "4px" }}>
+                  <p style={{ fontSize: "12px", color: "var(--muted-ink)", textAlign: "right", marginTop: "4px" }}>
                     {form.message.length}/3000
                   </p>
                 </div>

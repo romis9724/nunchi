@@ -12,3 +12,4 @@ dist/
 
 # Local MCP config (may contain access tokens) — never commit
 .mcp.json
+.claude/worktrees/
