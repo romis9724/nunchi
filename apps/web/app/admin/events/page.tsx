@@ -99,7 +99,7 @@ export default function AdminEventsPage() {
               </span>
             </div>
             <Link href="/admin/news-queue"
-              style={{ fontSize: "13px", color: "var(--ms-blue)", textDecoration: "none", fontWeight: 600, padding: "6px 14px", border: "1px solid var(--ms-blue-mid)", borderRadius: "6px", background: "var(--ms-blue-light)" }}>
+              style={{ fontSize: "13px", color: "var(--brand-red)", textDecoration: "none", fontWeight: 600, padding: "6px 14px", border: "1px solid var(--brand-red-mid)", borderRadius: "6px", background: "var(--brand-red-soft)" }}>
               검토 대기 →
             </Link>
           </div>

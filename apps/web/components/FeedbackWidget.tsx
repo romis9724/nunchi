@@ -52,7 +52,7 @@ export function FeedbackWidget() {
           width: "48px",
           height: "48px",
           borderRadius: "50%",
-          background: "var(--ms-blue)",
+          background: "var(--brand-red)",
           color: "#fff",
           border: "none",
           boxShadow: "0 4px 16px rgba(0,120,212,0.35)",
@@ -87,7 +87,7 @@ export function FeedbackWidget() {
             style={{
               padding: "16px 20px",
               borderBottom: "1px solid var(--ms-border)",
-              background: "var(--ms-blue-light)",
+              background: "var(--brand-red-soft)",
             }}
           >
             <p style={{ margin: 0, fontSize: "14px", fontWeight: 700, color: "var(--ms-text)" }}>
@@ -119,9 +119,9 @@ export function FeedbackWidget() {
                       borderRadius: "4px",
                       border: "1px solid",
                       cursor: "pointer",
-                      borderColor: type === t ? "var(--ms-blue)" : "var(--ms-border)",
-                      background: type === t ? "var(--ms-blue-light)" : "#fff",
-                      color: type === t ? "var(--ms-blue)" : "var(--ms-text-2)",
+                      borderColor: type === t ? "var(--brand-red)" : "var(--ms-border)",
+                      background: type === t ? "var(--brand-red-soft)" : "#fff",
+                      color: type === t ? "var(--brand-red)" : "var(--ms-text-2)",
                       fontWeight: type === t ? 600 : 400,
                     }}
                   >
@@ -155,7 +155,7 @@ export function FeedbackWidget() {
                   width: "100%",
                   marginTop: "10px",
                   padding: "10px",
-                  background: "var(--ms-blue)",
+                  background: "var(--brand-red)",
                   color: "#fff",
                   border: "none",
                   borderRadius: "8px",

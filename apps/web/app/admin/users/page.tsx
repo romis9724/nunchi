@@ -53,7 +53,7 @@ export default function AdminUsersPage() {
         {/* 통계 */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "12px", marginBottom: "24px" }}>
           {[
-            { label: "전체 가입자", count: stats.total, color: "var(--ms-blue)" },
+            { label: "전체 가입자", count: stats.total, color: "var(--brand-red)" },
             { label: "온보딩 완료", count: stats.onboarded, color: "#107C10" },
             { label: "관리자", count: stats.admins, color: "#8764B8" },
           ].map(({ label, count, color }) => (
@@ -81,7 +81,7 @@ export default function AdminUsersPage() {
                   <tr key={user.id} style={{ borderBottom: "1px solid var(--ms-border)" }}>
                     <td style={{ padding: "12px 16px", fontWeight: 500 }}>{user.email}</td>
                     <td style={{ padding: "12px 16px" }}>
-                      <span style={{ fontSize: "12px", fontWeight: 600, padding: "2px 8px", borderRadius: "10px", background: user.role === "admin" ? "#EDE7F6" : "var(--ms-blue-light)", color: user.role === "admin" ? "#5E35B1" : "var(--ms-blue)" }}>
+                      <span style={{ fontSize: "12px", fontWeight: 600, padding: "2px 8px", borderRadius: "10px", background: user.role === "admin" ? "#EDE7F6" : "var(--brand-red-soft)", color: user.role === "admin" ? "#5E35B1" : "var(--brand-red)" }}>
                         {user.role}
                       </span>
                     </td>

@@ -110,15 +110,15 @@ export function NearbyEventsPreview({ date }: { date: string }) {
     return (
       <div style={{
         marginTop: "0",
-        background: "var(--ms-blue-light)",
-        border: "1px solid var(--ms-blue-mid)",
+        background: "var(--ms-surface)",
+        border: "1px solid var(--ms-border)",
         borderRadius: "10px",
         padding: "10px 14px",
         fontSize: "12.5px",
         color: "var(--ms-text-2)",
         display: "flex", alignItems: "center", gap: "8px",
       }}>
-        <span style={{ color: "var(--ms-blue)" }}>✓</span>
+        <span style={{ color: "var(--grade-b-text)" }}>✓</span>
         <span>이 날짜에는 등록된 사건이 없습니다.</span>
       </div>
     );

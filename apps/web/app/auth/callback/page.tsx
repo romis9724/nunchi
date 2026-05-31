@@ -41,7 +41,7 @@ export default function AuthCallbackPage() {
   return (
     <main style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "var(--rice-paper, #F8F7F4)" }}>
       <div style={{ textAlign: "center" }}>
-        <div style={{ width: "32px", height: "32px", border: "3px solid var(--ms-border)", borderTopColor: "var(--ms-blue)", borderRadius: "50%", animation: "spin 0.8s linear infinite", margin: "0 auto 16px" }} />
+        <div style={{ width: "32px", height: "32px", border: "3px solid var(--ms-border)", borderTopColor: "var(--brand-red)", borderRadius: "50%", animation: "spin 0.8s linear infinite", margin: "0 auto 16px" }} />
         <p style={{ color: "var(--muted-ink)", fontSize: "15px" }}>{message}</p>
         <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
       </div>

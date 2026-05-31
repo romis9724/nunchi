@@ -110,9 +110,9 @@ export default function OnboardingPage() {
                   onClick={() => toggle(selectedIndustries, ind, setSelectedIndustries)}
                   style={{
                     padding: "7px 14px", borderRadius: "20px", fontSize: "13px", fontWeight: 500, cursor: "pointer",
-                    border: selectedIndustries.includes(ind) ? "1.5px solid var(--ms-blue, #2563EB)" : "1.5px solid var(--border-warm)",
-                    background: selectedIndustries.includes(ind) ? "var(--ms-blue-light, #EFF6FF)" : "#fff",
-                    color: selectedIndustries.includes(ind) ? "var(--ms-blue, #2563EB)" : "var(--charcoal)",
+                    border: selectedIndustries.includes(ind) ? "1.5px solid var(--brand-red)" : "1.5px solid var(--border-warm)",
+                    background: selectedIndustries.includes(ind) ? "var(--brand-red-soft)" : "#fff",
+                    color: selectedIndustries.includes(ind) ? "var(--brand-red)" : "var(--charcoal)",
                     transition: "all 0.1s",
                   }}
                 >
@@ -135,9 +135,9 @@ export default function OnboardingPage() {
                   onClick={() => toggle(selectedChannels, ch, setSelectedChannels)}
                   style={{
                     padding: "7px 14px", borderRadius: "20px", fontSize: "13px", fontWeight: 500, cursor: "pointer",
-                    border: selectedChannels.includes(ch) ? "1.5px solid var(--ms-blue, #2563EB)" : "1.5px solid var(--border-warm)",
-                    background: selectedChannels.includes(ch) ? "var(--ms-blue-light, #EFF6FF)" : "#fff",
-                    color: selectedChannels.includes(ch) ? "var(--ms-blue, #2563EB)" : "var(--charcoal)",
+                    border: selectedChannels.includes(ch) ? "1.5px solid var(--brand-red)" : "1.5px solid var(--border-warm)",
+                    background: selectedChannels.includes(ch) ? "var(--brand-red-soft)" : "#fff",
+                    color: selectedChannels.includes(ch) ? "var(--brand-red)" : "var(--charcoal)",
                     transition: "all 0.1s",
                   }}
                 >

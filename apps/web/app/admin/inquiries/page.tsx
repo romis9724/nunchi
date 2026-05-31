@@ -88,8 +88,8 @@ export default function AdminInquiriesPage() {
                       onClick={() => openReply(inq)}
                       style={{
                         width: "100%", textAlign: "left", cursor: "pointer",
-                        background: selected?.id === inq.id ? "var(--ms-blue-light)" : "#fff",
-                        border: `1px solid ${selected?.id === inq.id ? "var(--ms-blue-mid)" : "var(--border-warm)"}`,
+                        background: selected?.id === inq.id ? "var(--brand-red-soft)" : "#fff",
+                        border: `1px solid ${selected?.id === inq.id ? "var(--brand-red-mid)" : "var(--border-warm)"}`,
                         borderRadius: "10px", padding: "16px 20px",
                       }}
                     >
@@ -144,14 +144,14 @@ export default function AdminInquiriesPage() {
                   placeholder="답장 내용을 입력하세요…"
                   rows={8}
                   style={{ width: "100%", padding: "12px 14px", border: "1.5px solid var(--border-warm)", borderRadius: "8px", fontSize: "13px", color: "var(--charcoal)", background: "#FAFAF8", outline: "none", resize: "vertical", fontFamily: "var(--font-body)", lineHeight: 1.7, boxSizing: "border-box" }}
-                  onFocus={e => e.target.style.borderColor = "var(--ms-blue)"}
+                  onFocus={e => e.target.style.borderColor = "var(--brand-red)"}
                   onBlur={e => e.target.style.borderColor = "var(--border-warm)"}
                 />
 
                 <button
                   onClick={sendReply}
                   disabled={sending || !replyText.trim()}
-                  style={{ width: "100%", marginTop: "12px", padding: "11px", background: "var(--ms-blue)", color: "#fff", border: "none", borderRadius: "8px", fontSize: "14px", fontWeight: 700, cursor: (sending || !replyText.trim()) ? "not-allowed" : "pointer", opacity: (sending || !replyText.trim()) ? 0.6 : 1 }}
+                  style={{ width: "100%", marginTop: "12px", padding: "11px", background: "var(--brand-red)", color: "#fff", border: "none", borderRadius: "8px", fontSize: "14px", fontWeight: 700, cursor: (sending || !replyText.trim()) ? "not-allowed" : "pointer", opacity: (sending || !replyText.trim()) ? 0.6 : 1 }}
                 >
                   {sending ? "전송 중…" : "답장 보내기 →"}
                 </button>

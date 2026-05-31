@@ -131,7 +131,7 @@ export function CalendarClient({ events }: CalendarClientProps) {
     const topGrade = dayEvents[0]?.grade;
     const isHighlight = topGrade === "F" || topGrade === "A";
 
-    if (isSelected) return "var(--ms-blue-mid)";
+    if (isSelected) return "var(--brand-red-soft)";
     if (isHovered && dayEvents.length > 0) return "var(--ms-surface-3)";
     if (isHovered) return "var(--ms-surface-2)";
     if (isHighlight && topGrade) return GRADE_ROW_BG[topGrade];
@@ -193,9 +193,9 @@ export function CalendarClient({ events }: CalendarClientProps) {
                   onClick={goToday}
                   aria-label="오늘로 이동"
                   style={{
-                    background: "var(--ms-blue-light)", border: "1px solid var(--ms-blue-mid)",
+                    background: "var(--brand-red-soft)", border: "1px solid var(--brand-red-mid)",
                     borderRadius: "6px", padding: "3px 10px", cursor: "pointer",
-                    fontSize: "12px", fontWeight: 700, color: "var(--ms-blue)",
+                    fontSize: "12px", fontWeight: 700, color: "var(--brand-red)",
                     fontFamily: "var(--font-body)", letterSpacing: "0.01em",
                   }}
                 >
@@ -258,7 +258,7 @@ export function CalendarClient({ events }: CalendarClientProps) {
                     borderLeft: "none",
                     borderRight: "1px solid var(--border-faint)",
                     borderBottom: "1px solid var(--border-faint)",
-                    outline: isSelected ? "2px solid var(--ms-blue)" : "none",
+                    outline: isSelected ? "2px solid var(--brand-red)" : "none",
                     outlineOffset: "-2px",
                     transition: "background 0.12s",
                   } as React.CSSProperties}
@@ -267,7 +267,7 @@ export function CalendarClient({ events }: CalendarClientProps) {
                     fontSize: "12px", fontWeight: 700, lineHeight: 1,
                     display: "inline-flex", alignItems: "center", justifyContent: "center",
                     width: "24px", height: "24px", borderRadius: "50%",
-                    background: todayCell ? "var(--ms-blue)" : "transparent",
+                    background: todayCell ? "var(--brand-red)" : "transparent",
                     color: todayCell ? "#FFF" : "var(--charcoal)",
                   }}>
                     {d}
@@ -342,7 +342,7 @@ export function CalendarClient({ events }: CalendarClientProps) {
                     style={{
                       display: "inline-flex", alignItems: "center", gap: "4px",
                       fontSize: "12px", fontWeight: 700,
-                      color: "var(--ms-blue)", textDecoration: "none",
+                      color: "var(--brand-red)", textDecoration: "none",
                     }}
                   >
                     캠페인 검토하기 →
@@ -385,7 +385,7 @@ export function CalendarClient({ events }: CalendarClientProps) {
                             style={{
                               display: "inline-flex", alignItems: "center", gap: "3px",
                               fontSize: "12px", fontWeight: 700,
-                              color: "var(--ms-blue)", textDecoration: "none",
+                              color: "var(--brand-red)", textDecoration: "none",
                               whiteSpace: "nowrap",
                             }}
                           >
@@ -400,11 +400,11 @@ export function CalendarClient({ events }: CalendarClientProps) {
             </div>
           ) : (
             <div style={{
-              background: "var(--ms-blue-light)", border: "1px solid var(--ms-blue-mid)",
+              background: "var(--brand-red-soft)", border: "1px solid var(--brand-red-mid)",
               borderRadius: "14px", padding: "24px 20px", textAlign: "center",
             }}>
               <p style={{ fontSize: "24px", margin: "0 0 10px" }}>📅</p>
-              <p style={{ fontSize: "13px", color: "var(--ms-blue)", fontWeight: 600, margin: "0 0 4px" }}>
+              <p style={{ fontSize: "13px", color: "var(--brand-red)", fontWeight: 600, margin: "0 0 4px" }}>
                 날짜를 클릭해보세요
               </p>
               <p style={{ fontSize: "12px", color: "var(--ms-text-2)", margin: 0, lineHeight: 1.6 }}>
@@ -429,7 +429,7 @@ export function CalendarClient({ events }: CalendarClientProps) {
                     style={{
                       display: "flex", alignItems: "center", gap: "10px",
                       width: "100%", padding: "10px 16px",
-                      background: selectedDay?.day === e.day ? "var(--ms-blue-mid)" : "transparent",
+                      background: selectedDay?.day === e.day ? "var(--brand-red-soft)" : "transparent",
                       border: "none", borderBottom: "1px solid var(--border-faint)", cursor: "pointer",
                       textAlign: "left",
                     }}

@@ -180,9 +180,19 @@ function Eyebrow({ children, dark = false }: { children: React.ReactNode; dark?:
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <div style={{
-      fontSize: "12px", fontWeight: 800, letterSpacing: "0.16em",
-      textTransform: "uppercase", color: RED, marginBottom: "16px",
-    }}>{children}</div>
+      display: "inline-flex", alignItems: "center", gap: "8px",
+      fontSize: "13px", fontWeight: 800, letterSpacing: "0.14em",
+      textTransform: "uppercase",
+      color: RED,
+      background: RED_SOFT,
+      border: `1px solid ${RED_MID}`,
+      padding: "6px 14px",
+      borderRadius: "999px",
+      marginBottom: "20px",
+    }}>
+      <span style={{ width: 6, height: 6, borderRadius: "50%", background: RED }} />
+      {children}
+    </div>
   );
 }
 
@@ -405,7 +415,7 @@ export default function LandingPage() {
               <SectionLabel>왜 필요한가</SectionLabel>
               <h2 style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(1.6rem, 3vw, 2.5rem)",
+                fontSize: "clamp(2rem, 4vw, 3.25rem)",
                 fontWeight: 900, letterSpacing: "-0.03em",
                 color: TEXT, margin: "0 0 16px",
                 lineHeight: 1.15,
@@ -434,8 +444,8 @@ export default function LandingPage() {
                 }}>Before</div>
                 <div style={{
                   padding: "14px 20px", fontSize: "11px", fontWeight: 800,
-                  letterSpacing: "0.12em", color: "var(--ms-blue)",
-                  textTransform: "uppercase", background: "var(--ms-blue-light)",
+                  letterSpacing: "0.12em", color: "var(--grade-b-text)",
+                  textTransform: "uppercase", background: "var(--grade-b-bg)",
                 }}>After Nunchi</div>
               </div>
               {BEFORE_AFTER.map((row, i) => (
@@ -455,7 +465,7 @@ export default function LandingPage() {
                     padding: "16px 20px", fontSize: "14px", color: TEXT, fontWeight: 600,
                     display: "flex", gap: "8px", alignItems: "flex-start",
                   }}>
-                    <span style={{ color: "var(--ms-blue)", fontWeight: 700, marginTop: "1px" }}>✓</span>
+                    <span style={{ color: "var(--grade-b-text)", fontWeight: 700, marginTop: "1px" }}>✓</span>
                     <span>{row.after}</span>
                   </div>
                 </div>
@@ -476,7 +486,7 @@ export default function LandingPage() {
           <SectionLabel>핵심 기능</SectionLabel>
           <h2 style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(1.6rem, 3vw, 2.5rem)",
+            fontSize: "clamp(2rem, 4vw, 3.25rem)",
             fontWeight: 900, letterSpacing: "-0.03em",
             color: TEXT, margin: "0 0 48px",
             maxWidth: "640px", lineHeight: 1.15,
@@ -539,7 +549,7 @@ export default function LandingPage() {
           <SectionLabel>5단계 등급</SectionLabel>
           <h2 style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(1.6rem, 3vw, 2.5rem)",
+            fontSize: "clamp(2rem, 4vw, 3.25rem)",
             fontWeight: 900, letterSpacing: "-0.03em",
             color: TEXT, margin: "0 0 14px",
             maxWidth: "640px", lineHeight: 1.15,
@@ -591,7 +601,7 @@ export default function LandingPage() {
           <SectionLabel>지금 직접 확인하기</SectionLabel>
           <h2 style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(1.6rem, 3vw, 2.5rem)",
+            fontSize: "clamp(2rem, 4vw, 3.25rem)",
             fontWeight: 900, letterSpacing: "-0.03em",
             color: TEXT, margin: "0 0 12px",
             maxWidth: "720px", lineHeight: 1.15,

@@ -41,7 +41,7 @@ export function AdminGuard({ children }: Props) {
     return (
       <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "var(--rice-paper, #F8F7F4)" }}>
         <div style={{ textAlign: "center" }}>
-          <div style={{ width: "28px", height: "28px", border: "3px solid var(--ms-border)", borderTopColor: "var(--ms-blue)", borderRadius: "50%", animation: "spin 0.8s linear infinite", margin: "0 auto 12px" }} />
+          <div style={{ width: "28px", height: "28px", border: "3px solid var(--ms-border)", borderTopColor: "var(--brand-red)", borderRadius: "50%", animation: "spin 0.8s linear infinite", margin: "0 auto 12px" }} />
           <p style={{ fontSize: "13px", color: "var(--muted-ink)" }}>권한 확인 중…</p>
           <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
         </div>

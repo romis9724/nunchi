@@ -115,9 +115,9 @@ export default function MyPage() {
               {INDUSTRIES.map((ind) => (
                 <button key={ind} type="button" onClick={() => toggle(selectedIndustries, ind, setSelectedIndustries)}
                   style={{ padding: "7px 14px", borderRadius: "20px", fontSize: "13px", fontWeight: 500, cursor: "pointer",
-                    border: selectedIndustries.includes(ind) ? "1.5px solid var(--ms-blue, #2563EB)" : "1.5px solid var(--border-warm)",
-                    background: selectedIndustries.includes(ind) ? "var(--ms-blue-light, #EFF6FF)" : "#fff",
-                    color: selectedIndustries.includes(ind) ? "var(--ms-blue, #2563EB)" : "var(--charcoal)", transition: "all 0.1s" }}
+                    border: selectedIndustries.includes(ind) ? "1.5px solid var(--brand-red)" : "1.5px solid var(--border-warm)",
+                    background: selectedIndustries.includes(ind) ? "var(--brand-red-soft)" : "#fff",
+                    color: selectedIndustries.includes(ind) ? "var(--brand-red)" : "var(--charcoal)", transition: "all 0.1s" }}
                 >{ind}</button>
               ))}
             </div>
@@ -129,9 +129,9 @@ export default function MyPage() {
               {CHANNELS.map((ch) => (
                 <button key={ch} type="button" onClick={() => toggle(selectedChannels, ch, setSelectedChannels)}
                   style={{ padding: "7px 14px", borderRadius: "20px", fontSize: "13px", fontWeight: 500, cursor: "pointer",
-                    border: selectedChannels.includes(ch) ? "1.5px solid var(--ms-blue, #2563EB)" : "1.5px solid var(--border-warm)",
-                    background: selectedChannels.includes(ch) ? "var(--ms-blue-light, #EFF6FF)" : "#fff",
-                    color: selectedChannels.includes(ch) ? "var(--ms-blue, #2563EB)" : "var(--charcoal)", transition: "all 0.1s" }}
+                    border: selectedChannels.includes(ch) ? "1.5px solid var(--brand-red)" : "1.5px solid var(--border-warm)",
+                    background: selectedChannels.includes(ch) ? "var(--brand-red-soft)" : "#fff",
+                    color: selectedChannels.includes(ch) ? "var(--brand-red)" : "var(--charcoal)", transition: "all 0.1s" }}
                 >{ch}</button>
               ))}
             </div>
