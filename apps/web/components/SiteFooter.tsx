@@ -2,6 +2,38 @@ import Link from "next/link";
 import { NoonchiLogo } from "./NoonchiLogo";
 
 /**
+ * 인라인 브랜드 마크 — 푸터 copyright 등 본문 흐름에 자연스럽게 삽입.
+ * 풀 로고와 동일한 'noonch ● i' 패턴, 작은 크기 + 인접 텍스트 색상 상속.
+ */
+function InlineBrand({ color = "currentColor" }: { color?: string }) {
+  return (
+    <span style={{
+      display: "inline-flex",
+      alignItems: "center",
+      gap: "3px",
+      fontFamily: "var(--font-display, 'Inter Tight', sans-serif)",
+      fontWeight: 800,
+      letterSpacing: "-0.02em",
+      color,
+      lineHeight: 1,
+    }}>
+      noonch
+      <span
+        aria-hidden="true"
+        style={{
+          width: "5px", height: "5px",
+          borderRadius: "50%",
+          background: "var(--brand-red, #E11D48)",
+          display: "inline-block",
+          flexShrink: 0,
+        }}
+      />
+      i
+    </span>
+  );
+}
+
+/**
  * SiteFooter — 모든 페이지 공통 푸터
  *
  * variants:
@@ -52,8 +84,11 @@ export function SiteFooter({ variant = "default" }: SiteFooterProps) {
             color: "var(--ms-text-3)",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            <span style={{ fontWeight: 600 }}>© {new Date().getFullYear()} noonch-i</span>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontWeight: 600 }}>
+              © {new Date().getFullYear()}
+              <InlineBrand color="var(--ms-text-2)" />
+            </span>
             <span style={{ color: "var(--ms-text-3)" }}>·</span>
             <span>한국 마케터를 위한 브랜드 안전 인텔리전스</span>
           </div>
@@ -147,7 +182,11 @@ export function SiteFooter({ variant = "default" }: SiteFooterProps) {
             color: "rgba(255,255,255,0.45)",
           }}
         >
-          <span>© {new Date().getFullYear()} noonch-i. All rights reserved.</span>
+          <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", flexWrap: "wrap" }}>
+            © {new Date().getFullYear()}
+            <InlineBrand color="rgba(255,255,255,0.65)" />
+            <span>. All rights reserved.</span>
+          </span>
           <span style={{ display: "flex", gap: "16px" }}>
             {LEGAL_LINKS.map((l) => (
               <Link
