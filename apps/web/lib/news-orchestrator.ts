@@ -94,17 +94,20 @@ export async function runNewsOrchestrator(): Promise<NewsAutomationResult> {
 
     try {
       const { error } = await supabase.from("events").insert({
-        date,
+        event_date: date,       // 뉴스 이벤트 전용 YYYY-MM-DD 컬럼
+        month: new Date(date).getMonth() + 1,
+        day: new Date(date).getDate(),
+        date_type: "fixed",
         name: title,
-        category: "뉴스_자동수집",
+        category: "social",
         risk_level: "medium",
         summary: stripHtml(item.description).slice(0, 300),
         status: "pending_review",
         source: "naver_auto",
         related_keywords: [],
         related_motifs: [],
-        recommended_tone: "중립",
-        references: [item.originallink],
+        recommended_tone: "neutral",
+        references: [{ label: "원문", url: item.originallink, type: "media" }],
       });
 
       if (error) {
