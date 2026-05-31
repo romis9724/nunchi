@@ -27,6 +27,25 @@ const STATUS_COLOR: Record<string, string> = {
   archived: "#6B7280",
 };
 
+const STATUS_KR: Record<string, string> = {
+  draft: "임시저장",
+  pending_review: "검토 대기",
+  approved: "승인됨",
+  archived: "보관됨",
+};
+
+const SOURCE_KR: Record<string, string> = {
+  manual: "수동 입력",
+  naver_auto: "네이버 자동",
+};
+
+const RISK_KR: Record<string, string> = {
+  critical: "즉각 회피",
+  high: "재검토 필요",
+  medium: "일반 주의",
+  low: "안전",
+};
+
 const CATEGORY_KR: Record<string, { label: string; color: string; bg: string }> = {
   massacre:     { label: "학살·인권",   color: "#7F1D1D", bg: "#FEE2E2" },
   disaster:     { label: "재난·사고",   color: "#7C2D12", bg: "#FFEDD5" },
@@ -143,25 +162,28 @@ export default function AdminEventsPage() {
                     <td style={{ padding: "12px 16px", fontWeight: 500 }}>{event.name}</td>
                     <td style={{ padding: "12px 16px" }}><CategoryBadge category={event.category} /></td>
                     <td style={{ padding: "12px 16px" }}>
-                      <span style={{ color: RISK_COLOR[event.risk_level] ?? "#666", fontWeight: 600 }}>
-                        {event.risk_level}
+                      <span style={{ color: RISK_COLOR[event.risk_level] ?? "#666", fontWeight: 600, fontSize: "12px" }}>
+                        {RISK_KR[event.risk_level] ?? event.risk_level}
                       </span>
                     </td>
                     <td style={{ padding: "12px 16px" }}>
                       <span style={{ display: "inline-block", padding: "2px 8px", borderRadius: "10px", fontSize: "11px", fontWeight: 600, background: (STATUS_COLOR[event.status] ?? "#9CA3AF") + "20", color: STATUS_COLOR[event.status] ?? "#9CA3AF" }}>
-                        {event.status}
+                        {STATUS_KR[event.status] ?? event.status}
                       </span>
                     </td>
-                    <td style={{ padding: "12px 16px", color: "var(--muted-ink)" }}>{event.source}</td>
+                    <td style={{ padding: "12px 16px", color: "var(--muted-ink)", fontSize: "12px" }}>
+                      {SOURCE_KR[event.source] ?? event.source}
+                    </td>
                     <td style={{ padding: "12px 16px" }}>
                       <select
                         value={event.status}
                         onChange={(e) => updateStatus(event.id, e.target.value)}
                         style={{ fontSize: "12px", padding: "4px 8px", borderRadius: "4px", border: "1px solid var(--border-warm)", background: "#fff", cursor: "pointer" }}
                       >
-                        {["draft", "pending_review", "approved", "archived"].map((s) => (
-                          <option key={s} value={s}>{s}</option>
-                        ))}
+                        <option value="draft">임시저장</option>
+                        <option value="pending_review">검토 대기</option>
+                        <option value="approved">승인됨</option>
+                        <option value="archived">보관됨</option>
                       </select>
                     </td>
                   </tr>
