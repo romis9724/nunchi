@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
       await resend.emails.send({
         from: "Nunchi 문의 <onboarding@resend.dev>",
         to: [adminEmail],
-        reply_to: email.trim(),
+        replyTo: email.trim(),
         subject: `[Nunchi 문의] ${name.trim()}`,
         html: `
           <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
