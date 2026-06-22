@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS events (
   name_en     TEXT,
   category    TEXT NOT NULL CHECK (category IN (
     'massacre', 'disaster', 'political', 'social', 'memorial',
-    'independence', 'labor', 'human_rights'
+    'independence', 'labor', 'human_rights', 'celebration', 'commercial'
   )),
   risk_level  TEXT NOT NULL CHECK (risk_level IN ('critical', 'high', 'medium', 'low')),
   summary     TEXT NOT NULL,
@@ -72,6 +72,13 @@ ALTER TABLE events
 ALTER TABLE events
   ADD COLUMN IF NOT EXISTS source TEXT NOT NULL DEFAULT 'manual'
     CHECK (source IN ('manual', 'naver_auto'));
+
+-- category CHECK 정합(멱등) — 기존 테이블에 celebration·commercial 누락 보정
+ALTER TABLE events DROP CONSTRAINT IF EXISTS events_category_check;
+ALTER TABLE events ADD CONSTRAINT events_category_check CHECK (category IN (
+  'massacre', 'disaster', 'political', 'social', 'memorial',
+  'independence', 'labor', 'human_rights', 'celebration', 'commercial'
+));
 
 CREATE INDEX IF NOT EXISTS events_month_day   ON events (month, day);
 CREATE INDEX IF NOT EXISTS events_risk_level  ON events (risk_level);
