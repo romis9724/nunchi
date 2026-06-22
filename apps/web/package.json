@@ -9,7 +9,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.36.3",
     "@noonchi/llm": "workspace:*",
     "@noonchi/shared": "workspace:*",
     "@supabase/supabase-js": "^2.47.10",
