@@ -2,14 +2,13 @@ import { config } from "dotenv";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
 import fs from "fs";
-import { createClient } from "@supabase/supabase-js";
+import { Pool } from "pg";
 import type { EventRecord } from "@noonchi/shared";
 import { generateEmbedding } from "@noonchi/llm";
 
-// CLI flags: pnpm db:seed -- --embed → also populate events.embedding for
-// each curated event using packages/llm's generateEmbedding (Ollama primary,
-// Gemini fallback, hash-based safe fallback). Without --embed, only the
-// curated text columns are upserted (existing behaviour, no API calls).
+// CLI flags: pnpm db:seed -- --embed → events.embedding 도 채운다.
+// generateEmbedding(Ollama bge-m3 primary, 폴백 포함). --embed 없으면 큐레이션
+// 텍스트 컬럼만 upsert 하고 기존 임베딩은 보존한다(API 호출 없음).
 const SHOULD_EMBED = process.argv.slice(2).includes("--embed");
 
 // 루트 .env.local → apps/web/.env.local → .env 순서로 로드
@@ -28,16 +27,15 @@ if (loaded) {
   config();
 }
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-if (!supabaseUrl || !supabaseKey) {
-  console.error("❌ NEXT_PUBLIC_SUPABASE_URL 또는 SUPABASE_SERVICE_ROLE_KEY 환경변수가 없습니다.");
-  console.error("   apps/web/.env.local 파일을 확인해주세요.");
+const connectionString = process.env.DATABASE_URL;
+if (!connectionString) {
+  console.error("❌ DATABASE_URL 환경변수가 없습니다. (RDS nunchi DB 연결 문자열)");
   process.exit(1);
 }
 
-const supabase = createClient(supabaseUrl, supabaseKey);
+// RDS 는 TLS 를 요구한다. PGSSL=disable(로컬)일 때만 비활성화.
+const ssl = process.env.PGSSL === "disable" ? false : { rejectUnauthorized: false };
+const pool = new Pool({ connectionString, ssl });
 
 const EVENTS_DIR = resolve(__dirname, "../data/events");
 
@@ -53,8 +51,7 @@ function loadEvents(): EventRecord[] {
 }
 
 /**
- * Concatenate the fields that meaningfully describe an event for embedding.
- * Keeps the text stable across runs so re-embedding doesn't churn.
+ * 임베딩 입력 텍스트. 재실행 시 동일하도록 안정적으로 구성한다.
  */
 function buildEmbeddingSource(event: EventRecord): string {
   return [
@@ -68,10 +65,15 @@ function buildEmbeddingSource(event: EventRecord): string {
     .join("\n");
 }
 
+/** number[] → pgvector 리터럴 문자열 "[v1,v2,...]". null 이면 null. */
+function toVectorLiteral(embedding: number[] | null): string | null {
+  return embedding ? `[${embedding.join(",")}]` : null;
+}
+
 async function main() {
   const events = loadEvents();
   console.log(
-    `\nSeeding ${events.length}건 → Supabase (${supabaseUrl})${SHOULD_EMBED ? " [+ embeddings]" : ""}\n`
+    `\nSeeding ${events.length}건 → RDS${SHOULD_EMBED ? " [+ embeddings]" : ""}\n`
   );
 
   let success = 0;
@@ -80,67 +82,85 @@ async function main() {
   let embedFailed = 0;
 
   for (const event of events) {
-    const { error } = await supabase
-      .from("events")
-      .upsert(
-        {
-          slug:             event.slug,
-          date_type:        event.date_type,
-          month:            event.month,
-          day:              event.day ?? null,
-          day_end:          event.day_end ?? null,
-          country:          event.country,
-          name:             event.name,
-          name_en:          event.name_en ?? null,
-          category:         event.category,
-          risk_level:       event.risk_level,
-          summary:          event.summary,
-          related_keywords: event.related_keywords,
-          related_motifs:   event.related_motifs,
-          recommended_tone: event.recommended_tone,
-          references:       event.references,
-        },
-        { onConflict: "slug" }
-      );
-
-    if (error) {
-      console.error(`  ✗ ${event.name} — ${error.message}`);
-      failed++;
-      continue;
-    }
-
-    console.log(`  ✓ ${event.name}`);
-    success++;
+    let vectorLiteral: string | null = null;
 
     if (SHOULD_EMBED) {
       try {
-        const sourceText = buildEmbeddingSource(event);
-        const embedding = await generateEmbedding(sourceText);
-
-        const { error: embedErr } = await supabase
-          .from("events")
-          .update({ embedding })
-          .eq("slug", event.slug);
-
-        if (embedErr) {
-          console.error(`    ⚠ embed update failed (${event.slug}): ${embedErr.message}`);
-          embedFailed++;
-        } else {
-          console.log(`    ↳ embedding ${embedding.length}d`);
-          embedded++;
-        }
+        const embedding = await generateEmbedding(buildEmbeddingSource(event));
+        vectorLiteral = toVectorLiteral(embedding);
+        if (vectorLiteral) embedded++;
       } catch (e) {
         const msg = e instanceof Error ? e.message : String(e);
         console.error(`    ⚠ embed generation failed (${event.slug}): ${msg}`);
         embedFailed++;
       }
     }
+
+    try {
+      // 임베딩 미생성 시 기존 임베딩 보존(COALESCE) — 텍스트만 갱신하는 재실행 안전.
+      await pool.query(
+        `INSERT INTO events (
+           slug, date_type, month, day, day_end, country, name, name_en,
+           category, risk_level, summary, related_keywords, related_motifs,
+           recommended_tone, "references", embedding, status, source
+         ) VALUES (
+           $1, $2, $3, $4, $5, $6, $7, $8,
+           $9, $10, $11, $12, $13,
+           $14, $15::jsonb, $16::vector, 'approved', 'manual'
+         )
+         ON CONFLICT (slug) DO UPDATE SET
+           date_type = EXCLUDED.date_type,
+           month = EXCLUDED.month,
+           day = EXCLUDED.day,
+           day_end = EXCLUDED.day_end,
+           country = EXCLUDED.country,
+           name = EXCLUDED.name,
+           name_en = EXCLUDED.name_en,
+           category = EXCLUDED.category,
+           risk_level = EXCLUDED.risk_level,
+           summary = EXCLUDED.summary,
+           related_keywords = EXCLUDED.related_keywords,
+           related_motifs = EXCLUDED.related_motifs,
+           recommended_tone = EXCLUDED.recommended_tone,
+           "references" = EXCLUDED."references",
+           embedding = COALESCE(EXCLUDED.embedding, events.embedding),
+           updated_at = NOW()`,
+        [
+          event.slug,
+          event.date_type,
+          event.month,
+          event.day ?? null,
+          event.day_end ?? null,
+          event.country,
+          event.name,
+          event.name_en ?? null,
+          event.category,
+          event.risk_level,
+          event.summary,
+          event.related_keywords,
+          event.related_motifs,
+          event.recommended_tone,
+          JSON.stringify(event.references ?? []),
+          vectorLiteral,
+        ]
+      );
+
+      const dim = vectorLiteral ? (vectorLiteral.match(/,/g)?.length ?? 0) + 1 : 0;
+      console.log(`  ✓ ${event.name}${dim ? ` (embedding ${dim}d)` : ""}`);
+      success++;
+    } catch (error) {
+      const msg = error instanceof Error ? error.message : String(error);
+      console.error(`  ✗ ${event.name} — ${msg}`);
+      failed++;
+    }
   }
 
   console.log(`\n완료: 성공 ${success}건 / 실패 ${failed}건`);
   if (SHOULD_EMBED) {
-    console.log(`임베딩: 성공 ${embedded}건 / 실패 ${embedFailed}건`);
+    console.log(`임베딩: 생성 ${embedded}건 / 실패 ${embedFailed}건`);
   }
+
+  await pool.end();
 }
 
 main().catch((err) => {
