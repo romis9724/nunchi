@@ -1,13 +1,11 @@
 import { NextResponse } from "next/server";
-import { getSupabaseAdmin } from "@/lib/supabase";
+import { requireAdmin } from "@/lib/auth-guard";
+import { findAdminUsers } from "@/lib/repositories/users.repo";
 
 export async function GET() {
-  const supabase = getSupabaseAdmin();
-  const { data, error } = await supabase
-    .from("users")
-    .select("id, email, role, industries, channels, onboarding_completed_at, created_at")
-    .order("created_at", { ascending: false });
+  const guard = await requireAdmin();
+  if (guard instanceof NextResponse) return guard;
 
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-  return NextResponse.json(data ?? []);
+  const users = await findAdminUsers();
+  return NextResponse.json(users);
 }

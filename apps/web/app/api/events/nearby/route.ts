@@ -10,7 +10,7 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import { getSupabaseAdmin } from "@/lib/supabase";
+import { findApprovedEvents } from "@/lib/repositories/events.repo";
 
 const RISK_ORDER: Record<string, number> = {
   critical: 0,
@@ -46,15 +46,9 @@ export async function GET(request: NextRequest) {
   const targetDay = date.getUTCDate();
 
   try {
-    const supabase = getSupabaseAdmin();
-    // ±3일 윈도우 — 월 경계 케이스는 일단 무시(MVP)
-    const { data, error } = await supabase
-      .from("events")
-      .select("id, slug, name, month, day, category, risk_level, summary, recommended_tone, references")
-      .eq("country", "KR")
-      .or(`status.is.null,status.eq.approved`);
-
-    if (error) throw error;
+    // country=KR · (status IS NULL OR status='approved') 전체 조회 후
+    // 정확히 같은 month + day만 JS 에서 매칭.
+    const data = await findApprovedEvents();
 
     // 정확히 같은 month + day만 매칭. day가 null(범위 이벤트)인 경우는 month 일치로 인정.
     const exactMatches = (data ?? []).filter((e) => {

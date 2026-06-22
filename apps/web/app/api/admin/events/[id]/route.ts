@@ -1,13 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSupabaseAdmin } from "@/lib/supabase";
+import { updateEventStatus } from "@/lib/repositories/events.repo";
+import { requireAdmin } from "@/lib/auth-guard";
 
 const ALLOWED_STATUSES = ["draft", "pending_review", "approved", "archived"] as const;
-type EventStatus = (typeof ALLOWED_STATUSES)[number];
 
 export async function PATCH(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const guard = await requireAdmin();
+  if (guard instanceof NextResponse) return guard;
+
   let body: unknown;
   try {
     body = await request.json();
@@ -20,14 +23,11 @@ export async function PATCH(
     return NextResponse.json({ error: "유효하지 않은 status 값입니다." }, { status: 422 });
   }
 
-  const supabase = getSupabaseAdmin();
-  const { error } = await supabase
-    .from("events")
-    .update({ status: status as EventStatus })
-    .eq("id", (await params).id);
-
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  try {
+    await updateEventStatus((await params).id, status);
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 
   return NextResponse.json({ ok: true });

@@ -1,78 +1,62 @@
-import { NextRequest, NextResponse } from "next/server";
+import NextAuth from "next-auth";
+import { NextResponse } from "next/server";
+import { authConfig } from "./auth.config";
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
-const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
+/**
+ * Next.js 16 Proxy(구 Middleware). 엣지에서 동작하도록 auth.config(경량) 인스턴스만 사용한다
+ * — DB(pg)를 import 하는 auth.ts 는 여기서 쓰지 않는다.
+ *
+ * NextAuth 가 세션 JWT(JWE)의 서명을 검증해 디코드하므로, 이전 proxy.ts 의
+ * "서명 무검증 base64 디코드" 결함이 해소된다. role·onboarded 는 토큰에 적재된
+ * 값을 optimistic 하게 읽어 리다이렉트만 수행하며, 최종 권위는 서버의 requireAdmin/auth() 다.
+ */
+const { auth } = NextAuth(authConfig);
 
-/** Parse the Supabase v2 auth cookie to extract the access token. */
-function getAccessToken(request: NextRequest): string | null {
-  for (const cookie of request.cookies.getAll()) {
-    if (cookie.name.startsWith("sb-") && cookie.name.endsWith("-auth-token")) {
-      try {
-        const parsed = JSON.parse(cookie.value) as { access_token?: string };
-        return parsed.access_token ?? null;
-      } catch {
-        // some versions store the raw token string
-        return cookie.value || null;
-      }
-    }
-  }
-  return null;
-}
+export default auth((req) => {
+  const { nextUrl } = req;
+  const { pathname } = nextUrl;
+  const session = req.auth;
+  const isLoggedIn = !!session?.user;
+  const role = session?.user?.role;
+  const onboarded = session?.user?.onboarded ?? false;
 
-/** Decode a JWT payload without verifying the signature (middleware-only). */
-function decodeJwtSub(token: string): string | null {
-  try {
-    const payload = Buffer.from(token.split(".")[1], "base64url").toString();
-    return (JSON.parse(payload) as { sub?: string }).sub ?? null;
-  } catch {
-    return null;
-  }
-}
+  const needsAuth =
+    pathname.startsWith("/onboarding") ||
+    pathname.startsWith("/mypage") ||
+    pathname.startsWith("/admin");
 
-/** Check user role in users table via Supabase REST API. */
-async function getUserRole(userId: string, accessToken: string): Promise<string | null> {
-  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return null;
-  try {
-    const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/users?select=role&id=eq.${userId}&limit=1`,
-      {
-        headers: {
-          apikey: SUPABASE_ANON_KEY,
-          Authorization: `Bearer ${accessToken}`,
-        },
-        cache: "no-store",
-      }
-    );
-    const rows = (await res.json()) as { role?: string }[];
-    return rows[0]?.role ?? null;
-  } catch {
-    return null;
-  }
-}
-
-export async function proxy(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-  const accessToken = getAccessToken(request);
-  const isLoggedIn = !!accessToken;
-
-  // /check는 비로그인도 접근 가능 (personalizedComment만 로그인 시 추가)
-
-  // /onboarding requires authentication
-  if (pathname.startsWith("/onboarding") && !isLoggedIn) {
-    return NextResponse.redirect(new URL("/", request.url));
+  // 1) 비로그인 보호 경로 → 홈(로그인)
+  if (needsAuth && !isLoggedIn) {
+    return NextResponse.redirect(new URL("/", nextUrl));
   }
 
-  // /mypage requires authentication
-  if (pathname.startsWith("/mypage") && !isLoggedIn) {
-    return NextResponse.redirect(new URL("/", request.url));
+  // 2) 관리자 경로 role 체크 (optimistic — 서버 requireAdmin 이 최종 권위)
+  if (pathname.startsWith("/admin") && role !== "admin") {
+    return NextResponse.redirect(new URL("/", nextUrl));
   }
 
-  // /admin/* — proxy에서는 체크하지 않음 (Supabase v2 세션이 localStorage에 있어 서버 쿠키 접근 불가)
-  // 대신 각 admin 페이지의 AdminGuard 클라이언트 컴포넌트에서 인증·권한 검증
+  // 3) 온보딩 미완료 로그인 사용자 → /onboarding 강제 (/check·/admin 진입 시)
+  if (isLoggedIn && !onboarded && (pathname.startsWith("/check") || pathname.startsWith("/admin"))) {
+    return NextResponse.redirect(new URL("/onboarding", nextUrl));
+  }
+
+  // 4) 온보딩 완료자가 /onboarding 진입 → /check
+  if (isLoggedIn && onboarded && pathname.startsWith("/onboarding")) {
+    return NextResponse.redirect(new URL("/check", nextUrl));
+  }
 
   return NextResponse.next();
-}
+});
 
 export const config = {
-  matcher: ["/onboarding/:path*", "/mypage/:path*"],
+  matcher: [
+    "/check",
+    "/check/:path*",
+    "/onboarding",
+    "/onboarding/:path*",
+    "/mypage",
+    "/mypage/:path*",
+    "/admin",
+    "/admin/:path*",
+  ],
 };

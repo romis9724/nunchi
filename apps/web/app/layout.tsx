@@ -3,6 +3,7 @@ import { Inter, Inter_Tight } from "next/font/google";
 import "./globals.css";
 import { FeedbackWidget } from "../components/FeedbackWidget";
 import { GlobalFooter } from "../components/GlobalFooter";
+import { Providers } from "../components/Providers";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -85,9 +86,11 @@ export default function RootLayout({
         {/* TODO: Google Analytics 추가 예정 */}
       </head>
       <body className="min-h-screen">
-        {children}
-        <GlobalFooter />
-        <FeedbackWidget />
+        <Providers>
+          {children}
+          <GlobalFooter />
+          <FeedbackWidget />
+        </Providers>
       </body>
     </html>
   );

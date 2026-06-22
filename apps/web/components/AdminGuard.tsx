@@ -1,41 +1,35 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { getSupabase } from "@/lib/supabase";
+import { useSession } from "next-auth/react";
 
 interface Props {
   children: React.ReactNode;
 }
 
+/**
+ * 관리자 페이지 클라이언트 가드(UX 용). 세션의 role 을 확인해 비관리자를 홈으로 보낸다.
+ * 데이터 접근의 최종 권위는 서버의 requireAdmin 가드(/api/admin/*)이며, 이 컴포넌트는
+ * 비관리자에게 관리자 UI 셸을 노출하지 않기 위한 보조 장치다.
+ */
 export function AdminGuard({ children }: Props) {
   const router = useRouter();
-  const [status, setStatus] = useState<"loading" | "authorized" | "denied">("loading");
+  const { data: session, status } = useSession();
+
+  const denied = status === "authenticated" && session?.user?.role !== "admin";
 
   useEffect(() => {
-    const supabase = getSupabase();
-
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
-      if (!session) {
-        router.replace("/");
-        return;
-      }
-
-      const { data, error } = await supabase
-        .from("users")
-        .select("role")
-        .eq("id", session.user.id)
-        .single();
-
-      if (error || data?.role !== "admin") {
-        setStatus("denied");
-        setTimeout(() => router.replace("/"), 2000);
-        return;
-      }
-
-      setStatus("authorized");
-    });
-  }, [router]);
+    if (status === "loading") return;
+    if (status === "unauthenticated") {
+      router.replace("/");
+      return;
+    }
+    if (denied) {
+      const t = setTimeout(() => router.replace("/"), 2000);
+      return () => clearTimeout(t);
+    }
+  }, [status, denied, router]);
 
   if (status === "loading") {
     return (
@@ -49,7 +43,7 @@ export function AdminGuard({ children }: Props) {
     );
   }
 
-  if (status === "denied") {
+  if (status === "unauthenticated" || denied) {
     return (
       <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "var(--rice-paper, #F8F7F4)" }}>
         <div style={{ textAlign: "center" }}>

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSupabaseAdmin } from "@/lib/supabase";
+import { insertInquiry } from "@/lib/repositories/inquiries.repo";
 import { sendMail } from "@/lib/mailer";
 
 export async function POST(request: NextRequest) {
@@ -21,16 +21,19 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "올바른 이메일 형식이 아닙니다." }, { status: 422 });
   }
 
-  // DB 저장
-  const supabase = getSupabaseAdmin();
-  const { data: inquiry, error: dbError } = await supabase
-    .from("inquiries")
-    .insert({ name: name.trim(), email: email.trim(), message: message.trim() })
-    .select()
-    .single();
-
-  if (dbError) {
-    console.error("[contact] DB insert error:", dbError.message);
+  // DB 저장 (RDS)
+  let inquiry: { id: string };
+  try {
+    inquiry = await insertInquiry({
+      name: name.trim(),
+      email: email.trim(),
+      message: message.trim(),
+    });
+  } catch (dbError) {
+    console.error(
+      "[contact] DB insert error:",
+      dbError instanceof Error ? dbError.message : dbError
+    );
     return NextResponse.json({ error: "저장 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요." }, { status: 500 });
   }
 

@@ -42,7 +42,9 @@ export async function ollamaEmbed(
     options.model ??
     process.env.OLLAMA_EMBED_MODEL ??
     "nomic-embed-text:latest";
-  const expectedDim = options.expectedDim ?? 768;
+  const expectedDim =
+    options.expectedDim ??
+    (process.env.OLLAMA_EMBED_DIM ? Number(process.env.OLLAMA_EMBED_DIM) : 768);
   const timeoutMs = options.timeoutMs ?? 10_000;
 
   // ── 1. Network call ─────────────────────────────────────────────────────────

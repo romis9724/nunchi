@@ -134,13 +134,16 @@ export async function generateEmbedding(text: string): Promise<number[]> {
     /* Ollama down / malformed response → hash fallback (service stays alive) */
   }
 
-  // 해시 기반 폴백 (768차원 — nomic-embed-text 기본 차원)
+  // 해시 기반 폴백 (차원은 OLLAMA_EMBED_DIM env, 기본 768 — bge-m3 사용 시 1024)
+  const dim = process.env.OLLAMA_EMBED_DIM
+    ? Number(process.env.OLLAMA_EMBED_DIM)
+    : 768;
   const encoder = new TextEncoder();
   const buf = encoder.encode(text);
   const hashBuffer = await crypto.subtle.digest("SHA-256", buf);
   const hashArray = Array.from(new Uint8Array(hashBuffer));
   const vector: number[] = [];
-  for (let i = 0; i < 768; i++) {
+  for (let i = 0; i < dim; i++) {
     vector.push((hashArray[i % 32] / 255) * 2 - 1);
   }
   return vector;

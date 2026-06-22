@@ -5,7 +5,7 @@ import { BETA_BADGE } from "../lib/badge-config";
 /**
  * NoonchiLogo — "Hyphen as Mark" 컨셉
  *
- * 구조:    noonch  ●  i  [Beta]
+ * 구조:    nunch  ●  i  [Beta]
  *                  ↑
  *           브랜드 시그니처 점 (빨강, 단독 마크로도 사용)
  *
@@ -41,7 +41,7 @@ export function NoonchiLogo({
   if (markOnly) {
     return (
       <span
-        aria-label="noonch-i"
+        aria-label="nunch-i"
         style={{
           display: "inline-flex",
           alignItems: "center",
@@ -92,7 +92,7 @@ export function NoonchiLogo({
             gap: Math.round(fontSize * 0.15) + "px",
           }}
         >
-          noonch
+          nunch
           {/* 빨강 점 — 브랜드 시그니처 */}
           <span
             aria-hidden="true"

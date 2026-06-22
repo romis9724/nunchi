@@ -1,32 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSupabaseAdmin } from "@/lib/supabase";
+import { findAdminEvents } from "@/lib/repositories/events.repo";
+import { requireAdmin } from "@/lib/auth-guard";
 
 export async function GET(request: NextRequest) {
+  const guard = await requireAdmin();
+  if (guard instanceof NextResponse) return guard;
+
   const { searchParams } = new URL(request.url);
   const status = searchParams.get("status");
 
-  const supabase = getSupabaseAdmin();
-  let query = supabase
-    .from("events")
-    .select("id, month, day, event_date, name, category, risk_level, status, source, summary")
-    .order("month", { ascending: true })
-    .order("day", { ascending: true });
-
-  if (status) {
-    query = query.eq("status", status);
+  let data;
+  try {
+    data = await findAdminEvents(status);
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 
-  const { data, error } = await query;
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
-  }
-
-  // 날짜 표시용 date 문자열 조합
-  const result = (data ?? []).map((e) => ({
+  // 날짜 표시용 date 문자열 조합. events 테이블에 별도 event_date 컬럼은 없으므로
+  // month-day 로 조합한다.
+  const result = data.map((e) => ({
     ...e,
-    date: e.event_date
-      ? e.event_date
-      : `${String(e.month).padStart(2, "0")}-${String(e.day ?? 0).padStart(2, "0")}`,
+    date: `${String(e.month).padStart(2, "0")}-${String(e.day ?? 0).padStart(2, "0")}`,
   }));
 
   return NextResponse.json(result);

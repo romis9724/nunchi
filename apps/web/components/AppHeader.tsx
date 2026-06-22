@@ -3,15 +3,9 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSession, signIn, signOut } from "next-auth/react";
 import { NoonchiLogo } from "./NoonchiLogo";
-import { getSupabase } from "@/lib/supabase";
-import { signInWithGoogle, signOut } from "@/lib/auth";
 import { Icon } from "./ui/Icon";
-
-interface User {
-  email?: string;
-  user_metadata?: { full_name?: string; avatar_url?: string };
-}
 
 const NAV: { label: string; href: string }[] = [
   { label: "캠페인 검토", href: "/check" },
@@ -23,20 +17,10 @@ const MOBILE_BREAKPOINT = 880;
 
 export function AppHeader() {
   const pathname = usePathname();
-  const [user, setUser] = useState<User | null>(null);
+  const { data: session } = useSession();
+  const user = session?.user ?? null;
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
-
-  useEffect(() => {
-    const supabase = getSupabase();
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
-    });
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
-      setUser(session?.user ?? null);
-    });
-    return () => subscription.unsubscribe();
-  }, []);
 
   // 라우트 변경 시 모바일 드로어 자동 닫기
   useEffect(() => {
@@ -54,18 +38,11 @@ export function AppHeader() {
     return () => { document.body.style.overflow = ""; };
   }, [mobileNavOpen]);
 
-  const handleLogin = async () => {
-    const result = await signInWithGoogle({ origin: window.location.origin });
-    if (result.url) window.location.href = result.url;
-  };
+  const handleLogin = () => signIn("google", { callbackUrl: "/check" });
 
-  const handleLogout = async () => {
-    const supabase = getSupabase();
-    await signOut(undefined, supabase as Parameters<typeof signOut>[1]);
-    window.location.href = "/";
-  };
+  const handleLogout = () => signOut({ callbackUrl: "/" });
 
-  const displayName = user?.user_metadata?.full_name?.split(" ")[0] ?? user?.email?.split("@")[0] ?? "";
+  const displayName = user?.name?.split(" ")[0] ?? user?.email?.split("@")[0] ?? "";
 
   const isActive = (href: string) =>
     pathname === href || pathname.startsWith(href + "/");

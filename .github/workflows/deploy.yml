@@ -1,0 +1,56 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  AWS_REGION: ap-northeast-2
+  ECR_REPO: 530448592916.dkr.ecr.ap-northeast-2.amazonaws.com/nunchi
+  EC2_INSTANCE_ID: i-0c4656b8a21dc1d7e
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # OIDC 로 AWS 자격증명 획득
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::530448592916:role/nunchi-github-actions
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push image
+        run: |
+          docker build -t "$ECR_REPO:${{ github.sha }}" -t "$ECR_REPO:latest" .
+          docker push "$ECR_REPO:${{ github.sha }}"
+          docker push "$ECR_REPO:latest"
+
+      - name: Deploy on EC2 via SSM
+        run: |
+          CMD_ID=$(aws ssm send-command \
+            --instance-ids "$EC2_INSTANCE_ID" \
+            --document-name "AWS-RunShellScript" \
+            --comment "Deploy nunchi ${{ github.sha }}" \
+            --parameters commands='[
+              "set -e",
+              "aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 530448592916.dkr.ecr.ap-northeast-2.amazonaws.com",
+              "docker pull '"$ECR_REPO"':latest",
+              "docker stop nunchi 2>/dev/null || true",
+              "docker rm nunchi 2>/dev/null || true",
+              "docker run -d --name nunchi --restart always --env-file /opt/nunchi/.env -p 127.0.0.1:3000:3000 '"$ECR_REPO"':latest",
+              "docker image prune -f"
+            ]' \
+            --query 'Command.CommandId' --output text)
+          echo "SSM Command: $CMD_ID"
+          aws ssm wait command-executed --command-id "$CMD_ID" --instance-id "$EC2_INSTANCE_ID" || true
+          aws ssm get-command-invocation --command-id "$CMD_ID" --instance-id "$EC2_INSTANCE_ID" \
+            --query '{Status:Status,Output:StandardOutputContent,Err:StandardErrorContent}' --output json

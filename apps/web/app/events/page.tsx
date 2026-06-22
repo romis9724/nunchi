@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { PageHeader, Card } from "@/components/ui";
-import { getSupabaseAdmin } from "@/lib/supabase";
+import { findApprovedEvents } from "@/lib/repositories/events.repo";
 import { toneToGrade } from "@noonchi/shared";
 import type { EventRecord } from "@noonchi/shared";
 
@@ -26,19 +26,8 @@ const GRADE_TEXT: Record<string, string> = {
 };
 
 async function fetchEvents(): Promise<EventRecord[]> {
-  const hasEnv = process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!hasEnv) return [];
-
   try {
-    const supabase = getSupabaseAdmin();
-    const { data } = await supabase
-      .from("events")
-      .select("id, slug, name, month, day, category, risk_level, summary, recommended_tone")
-      .eq("country", "KR")
-      .or("status.is.null,status.eq.approved")
-      .order("month", { ascending: true })
-      .order("day", { ascending: true });
-    return (data ?? []) as EventRecord[];
+    return await findApprovedEvents();
   } catch {
     return [];
   }

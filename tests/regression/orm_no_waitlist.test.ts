@@ -44,21 +44,11 @@ const SCAN_EXTENSIONS = new Set([".ts", ".tsx", ".js", ".mjs"]);
 /**
  * Workspace-relative paths that are explicitly excluded from the scan.
  *
- * apps/web/lib/waitlist.ts is the isolated legacy waitlist implementation
- * module. It is excluded because:
- *   1. It is a known, deliberate legacy artifact — not an accidental reference.
- *   2. Its regression tests (tests/regression/waitlist*.test.ts) still import
- *      from it and must remain green during the Beta transition.
- *   3. No other file in apps/ or packages/ imports from it; it is already
- *      isolated and not wired into any active application code path.
- *   4. The goal of THIS scanner is to guard against UNINTENTIONAL waitlist
- *      ORM usage appearing in new production code.
- *
- * When the module is eventually deleted, remove it from this set.
+ * 과거 격리 레거시 모듈 apps/web/lib/waitlist.ts 는 Supabase→RDS 마이그레이션 Phase 2 에서
+ * 완전히 삭제되었다(웨이트리스트 기능 제거 완료). 따라서 더 이상 예외 경로가 필요 없다 —
+ * 이 스캐너는 이제 apps/·packages/ 어디에서도 waitlist 모듈 import 가 없음을 보장한다.
  */
-const EXCLUDED_RELATIVE_PATHS = new Set<string>([
-  "apps/web/lib/waitlist.ts",
-]);
+const EXCLUDED_RELATIVE_PATHS = new Set<string>([]);
 
 /**
  * Directory names that are never descended into.

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getSupabaseAdmin } from "@/lib/supabase";
+import { findApprovedEvents } from "@/lib/repositories/events.repo";
 
 const BASE_URL = "https://nunchi-bay.vercel.app";
 
@@ -20,18 +20,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // 이벤트 상세 페이지 — 큐레이션된 이벤트만 (approved 상태)
   let eventRoutes: MetadataRoute.Sitemap = [];
-  const hasEnv = process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!hasEnv) return staticRoutes;
 
   try {
-    const supabase = getSupabaseAdmin();
-    const { data } = await supabase
-      .from("events")
-      .select("slug, updated_at")
-      .eq("country", "KR")
-      .or("status.is.null,status.eq.approved");
+    const data = await findApprovedEvents();
 
-    eventRoutes = (data ?? []).map((e) => ({
+    eventRoutes = data.map((e) => ({
       url: `${BASE_URL}/events/${e.slug}`,
       changeFrequency: "monthly" as const,
       priority: 0.7,
