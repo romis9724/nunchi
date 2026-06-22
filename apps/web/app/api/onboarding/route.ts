@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSupabase } from "@/lib/supabase";
+import { auth } from "@/auth";
+import { completeOnboarding } from "@/lib/repositories/users.repo";
 
 export async function POST(request: NextRequest) {
   let body: unknown;
@@ -24,27 +25,24 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "채널을 1개 이상 선택해 주세요." }, { status: 422 });
   }
 
-  const supabase = getSupabase();
-  const { data: { user }, error: authError } = await supabase.auth.getUser();
-
-  if (authError || !user) {
+  const session = await auth();
+  if (!session?.user?.id) {
     return NextResponse.json({ error: "로그인이 필요합니다." }, { status: 401 });
   }
 
-  const { error } = await supabase
-    .from("users")
-    .upsert({
-      id: user.id,
-      email: user.email,
+  try {
+    await completeOnboarding(session.user.id, {
       industries,
       channels,
       company: company ?? null,
       brand: brand ?? null,
       product_name: product_name ?? null,
-      onboarding_completed_at: new Date().toISOString(),
     });
-
-  if (error) {
+  } catch (error) {
+    console.error(
+      "[onboarding] DB error:",
+      error instanceof Error ? error.message : error
+    );
     return NextResponse.json({ error: "저장 중 오류가 발생했습니다." }, { status: 500 });
   }
 

@@ -132,3 +132,45 @@ export async function updateEventStatus(
     [status, id]
   );
 }
+
+export interface InsertNewsDraftInput {
+  slug: string;
+  month: number;
+  day: number;
+  name: string;
+  summary: string;
+  references: { label: string; url: string; type: string }[];
+}
+
+/**
+ * 네이버 뉴스 자동화 초안 이벤트 1건 삽입.
+ * status='pending_review', source='naver_auto' 고정. slug 중복 시 무시(DO NOTHING).
+ * 실제 삽입되면 true, 중복 스킵이면 false.
+ * (events 테이블에 event_date 컬럼은 없으므로 month·day 만 채운다.)
+ */
+export async function insertNewsDraftEvent(
+  input: InsertNewsDraftInput
+): Promise<boolean> {
+  const rows = await query<{ id: string }>(
+    `INSERT INTO events (
+       slug, date_type, month, day, country, name, category, risk_level,
+       summary, related_keywords, related_motifs, recommended_tone,
+       "references", status, source
+     ) VALUES (
+       $1, 'fixed', $2, $3, 'KR', $4, 'social', 'medium',
+       $5, '{}', '{}', 'neutral',
+       $6::jsonb, 'pending_review', 'naver_auto'
+     )
+     ON CONFLICT (slug) DO NOTHING
+     RETURNING id`,
+    [
+      input.slug,
+      input.month,
+      input.day,
+      input.name,
+      input.summary,
+      JSON.stringify(input.references),
+    ]
+  );
+  return rows.length > 0;
+}

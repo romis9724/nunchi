@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sendMail } from "@/lib/mailer";
+import { requireAdmin } from "@/lib/auth-guard";
 
 export async function POST(request: NextRequest) {
+  const guard = await requireAdmin();
+  if (guard instanceof NextResponse) return guard;
+
   const body = await request.json() as {
     inquiryId?: string;
     to?: string;

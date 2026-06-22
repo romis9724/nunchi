@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { updateEventStatus } from "@/lib/repositories/events.repo";
+import { requireAdmin } from "@/lib/auth-guard";
 
 const ALLOWED_STATUSES = ["draft", "pending_review", "approved", "archived"] as const;
 
@@ -7,6 +8,9 @@ export async function PATCH(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const guard = await requireAdmin();
+  if (guard instanceof NextResponse) return guard;
+
   let body: unknown;
   try {
     body = await request.json();

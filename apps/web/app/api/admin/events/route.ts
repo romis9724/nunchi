@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { findAdminEvents } from "@/lib/repositories/events.repo";
+import { requireAdmin } from "@/lib/auth-guard";
 
 export async function GET(request: NextRequest) {
+  const guard = await requireAdmin();
+  if (guard instanceof NextResponse) return guard;
+
   const { searchParams } = new URL(request.url);
   const status = searchParams.get("status");
 

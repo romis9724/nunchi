@@ -1,7 +1,11 @@
 import { NextResponse } from "next/server";
 import { listInquiries } from "@/lib/repositories/inquiries.repo";
+import { requireAdmin } from "@/lib/auth-guard";
 
 export async function GET() {
+  const guard = await requireAdmin();
+  if (guard instanceof NextResponse) return guard;
+
   try {
     const rows = await listInquiries();
     // 원본 응답 형태 보존 — id, name, email, message, created_at 만 노출.

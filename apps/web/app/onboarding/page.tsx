@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { NoonchiLogo } from "@/components/NoonchiLogo";
 import { PageHeader } from "@/components/ui";
 
@@ -18,6 +19,7 @@ const CHANNELS = [
 
 export default function OnboardingPage() {
   const router = useRouter();
+  const { update } = useSession();
   const [selectedIndustries, setSelectedIndustries] = useState<string[]>([]);
   const [selectedChannels, setSelectedChannels] = useState<string[]>([]);
   const [company, setCompany] = useState("");
@@ -58,6 +60,10 @@ export default function OnboardingPage() {
       setSaving(false);
       return;
     }
+
+    // 세션 토큰의 onboarded 플래그 갱신(jwt 콜백 trigger==='update' → DB 재조회).
+    // 갱신하지 않으면 proxy 가 /check 진입을 다시 /onboarding 으로 되돌린다.
+    await update();
 
     setSaving(false);
     setShowSuccess(true);

@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import type { CheckRequest } from "@noonchi/shared";
 import { runReviewEngine } from "@/lib/review-engine";
 import { personalizeRationale } from "@noonchi/llm";
-import { getSupabase } from "@/lib/supabase";
+import { auth } from "@/auth";
+import { findUserProfile } from "@/lib/repositories/users.repo";
 
 // Vercel Pro 이상에서 최대 300s, Hobby는 10s 기본값
 export const maxDuration = 60;
@@ -47,23 +48,18 @@ export async function POST(request: NextRequest) {
 
     // personalizeRationale 후처리 — 공통 캐시는 그대로, 로그인 사용자에게만 적용
     // industries·channels만 LLM에 전달 (B-2 캐시 전략 준수)
-    const supabase = getSupabase();
-    const { data: { user } } = await supabase.auth.getUser();
+    const session = await auth();
 
-    if (user) {
-      const { data: profile } = await supabase
-        .from("users")
-        .select("industries, channels")
-        .eq("id", user.id)
-        .single();
+    if (session?.user?.id) {
+      const profile = await findUserProfile(session.user.id);
 
-      if (profile && (profile.industries?.length > 0 || profile.channels?.length > 0)) {
+      if (profile && (profile.industries.length > 0 || profile.channels.length > 0)) {
         const personalizedComment = await personalizeRationale({
           grade: result.grade,
           rationale: result.rationale,
           suggestions: result.suggestions,
-          industries: profile.industries ?? [],
-          channels: profile.channels ?? [],
+          industries: profile.industries,
+          channels: profile.channels,
         });
         if (personalizedComment) {
           return NextResponse.json({ ...result, personalizedComment });
