@@ -16,7 +16,7 @@ const GEMINI_MODEL = process.env.GEMINI_MODEL ?? "gemini-2.0-flash";
 const GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai";
 
 const OLLAMA_BASE_URL = process.env.OLLAMA_BASE_URL ?? "http://localhost:11434";
-const OLLAMA_MODEL = process.env.OLLAMA_MODEL ?? "gemma4:latest";
+const OLLAMA_MODEL = process.env.OLLAMA_MODEL ?? "qwen3:8b";
 
 export async function callReviewEngine(
   input: ReviewPromptInput
