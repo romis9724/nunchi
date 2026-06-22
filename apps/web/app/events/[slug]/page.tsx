@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { PageHeader, Card, Button, Chip } from "@/components/ui";
-import { getSupabaseAdmin } from "@/lib/supabase";
+import { findEventBySlug } from "@/lib/repositories/events.repo";
 import { toneToGrade } from "@noonchi/shared";
 import type { EventRecord } from "@noonchi/shared";
 
@@ -15,16 +15,8 @@ export const revalidate = 3600;
 export const dynamicParams = true;
 
 async function fetchEvent(slug: string): Promise<EventRecord | null> {
-  const hasEnv = process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!hasEnv) return null;
   try {
-    const supabase = getSupabaseAdmin();
-    const { data } = await supabase
-      .from("events")
-      .select("*")
-      .eq("slug", slug)
-      .single();
-    return (data ?? null) as EventRecord | null;
+    return await findEventBySlug(slug);
   } catch {
     return null;
   }

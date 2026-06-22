@@ -48,3 +48,87 @@ export async function findNearbyEvents(
     [month, dayLo, dayHi]
   );
 }
+
+/**
+ * country=KR · (status IS NULL OR status='approved') 이벤트 전체.
+ * /events 인덱스 · /sitemap · /api/events/nearby 등 공개 surface 에서 사용.
+ * month·day 오름차순 정렬 — day NULL(범위 이벤트)은 NULLS FIRST 로 월 선두에 위치.
+ */
+export async function findApprovedEvents(): Promise<EventRecord[]> {
+  return query<EventRecord>(
+    `SELECT * FROM events
+     WHERE country = 'KR' AND (status IS NULL OR status = 'approved')
+     ORDER BY month ASC, day ASC NULLS FIRST`
+  );
+}
+
+/**
+ * status='approved' AND day IS NOT NULL 이벤트.
+ * /calendar 그리드용 — 범위 이벤트(day NULL)는 제외한다.
+ * month·day 오름차순 정렬.
+ */
+export async function findApprovedEventsWithDay(): Promise<EventRecord[]> {
+  return query<EventRecord>(
+    `SELECT * FROM events
+     WHERE status = 'approved' AND day IS NOT NULL
+     ORDER BY month ASC, day ASC`
+  );
+}
+
+/** slug 단건 조회. 없으면 null. (status 무관 — 상세 페이지는 직접 링크 진입) */
+export async function findEventBySlug(
+  slug: string
+): Promise<EventRecord | null> {
+  const rows = await query<EventRecord>(
+    `SELECT * FROM events WHERE slug = $1 LIMIT 1`,
+    [slug]
+  );
+  return rows[0] ?? null;
+}
+
+/** 관리자 이벤트 목록 행 (status 컬럼 포함). */
+export interface AdminEventRow {
+  id: string;
+  month: number;
+  day: number | null;
+  name: string;
+  category: string;
+  risk_level: string;
+  status: string;
+  source: string;
+  summary: string;
+}
+
+/**
+ * 관리자용 — 전체 이벤트 목록(status 필터 옵션).
+ * month·day 오름차순 정렬. status 미지정 시 전체.
+ */
+export async function findAdminEvents(
+  status?: string | null
+): Promise<AdminEventRow[]> {
+  if (status) {
+    return query<AdminEventRow>(
+      `SELECT id, month, day, name, category, risk_level, status, source, summary
+       FROM events
+       WHERE status = $1
+       ORDER BY month ASC, day ASC`,
+      [status]
+    );
+  }
+  return query<AdminEventRow>(
+    `SELECT id, month, day, name, category, risk_level, status, source, summary
+     FROM events
+     ORDER BY month ASC, day ASC`
+  );
+}
+
+/** 관리자용 — 이벤트 status 갱신. */
+export async function updateEventStatus(
+  id: string,
+  status: string
+): Promise<void> {
+  await query(
+    `UPDATE events SET status = $1, updated_at = NOW() WHERE id = $2`,
+    [status, id]
+  );
+}
