@@ -4,10 +4,10 @@ import type { EventRecord } from "@noonchi/shared";
 import { findApprovedEventsWithDay } from "@/lib/repositories/events.repo";
 import { CalendarClient, type CalendarEvent } from "./CalendarClient";
 
-// Revalidate the calendar page hourly. Events are curated content that change
-// rarely (we only seed when data/events/*.json is edited), so this matches
-// the actual update cadence and keeps Supabase reads near zero per visitor.
-export const revalidate = 3600;
+// 요청 시 동적 렌더링. 빌드 시점엔 RDS에 접근할 수 없어 정적 프리렌더가 빈 데이터로
+// 고정되는 문제(배포 직후 빈 캘린더)가 있어, 항상 런타임에 라이브 쿼리하도록 한다.
+// events 는 소량(수십 건)이라 매 요청 쿼리 비용은 무시할 수준이다.
+export const dynamic = "force-dynamic";
 
 /**
  * Server-side fetch of curated Korean sensitive-day events from RDS (pg).

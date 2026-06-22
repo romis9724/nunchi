@@ -12,7 +12,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://nunchi-bay.vercel.app/events" },
 };
 
-export const revalidate = 3600;
+// 빌드타임 정적 프리렌더가 빈 데이터로 고정되지 않도록 런타임 동적 렌더링.
+export const dynamic = "force-dynamic";
 
 const MONTH_NAMES = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
 
