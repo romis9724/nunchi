@@ -178,14 +178,22 @@ async function saveCache(
   }
 }
 
+/** 검토엔진 옵션. skipCache=true 면 reviews 캐시를 읽지도 쓰지도 않는다(평가 하니스용). */
+export interface RunReviewEngineOptions {
+  skipCache?: boolean;
+}
+
 export async function runReviewEngine(
-  req: CheckRequest
+  req: CheckRequest,
+  opts?: RunReviewEngineOptions
 ): Promise<CheckResponse> {
   const hash = hashInput(req);
 
-  // 1. Cache check
-  const cached = await getCached(hash);
-  if (cached) return cached;
+  // 1. Cache check (skipCache 시 우회 — 평가 루프가 옛 결과로 거짓 수렴하지 않도록)
+  if (!opts?.skipCache) {
+    const cached = await getCached(hash);
+    if (cached) return cached;
+  }
 
   // 2. Rule-based keyword match (in-memory, instant)
   const flaggedKeywords = matchKeywords(req);
@@ -202,7 +210,7 @@ export async function runReviewEngine(
       ruleTriggered: true,
       cached: false,
     };
-    await saveCache(hash, req, result);
+    if (!opts?.skipCache) await saveCache(hash, req, result);
     return result;
   }
 
@@ -246,7 +254,7 @@ export async function runReviewEngine(
     transient: llmResult.transient,
   };
 
-  if (!llmResult.transient) {
+  if (!llmResult.transient && !opts?.skipCache) {
     await saveCache(hash, req, result);
   }
   return result;

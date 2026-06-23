@@ -4,6 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "eval:preflight": "tsx --test eval/lib/classify-events.test.ts eval/lib/generate-cases.test.ts eval/lib/structure-gate.test.ts",
+    "eval:run": "tsx eval/run-eval.ts",
     "regression": "tsx --test regression/migration_grade.test.ts",
     "test:critical-events": "tsx --test regression/critical_events.test.ts",
     "test:grade-mapping": "tsx --test regression/grade_mapping.test.ts",
