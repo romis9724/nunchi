@@ -18,7 +18,6 @@ export default auth((req) => {
   const session = req.auth;
   const isLoggedIn = !!session?.user;
   const role = session?.user?.role;
-  const onboarded = session?.user?.onboarded ?? false;
 
   const needsAuth =
     pathname.startsWith("/onboarding") ||
@@ -35,15 +34,9 @@ export default auth((req) => {
     return NextResponse.redirect(new URL("/", nextUrl));
   }
 
-  // 3) 온보딩 미완료 로그인 사용자 → /onboarding 강제 (/check·/admin 진입 시)
-  if (isLoggedIn && !onboarded && (pathname.startsWith("/check") || pathname.startsWith("/admin"))) {
-    return NextResponse.redirect(new URL("/onboarding", nextUrl));
-  }
-
-  // 4) 온보딩 완료자가 /onboarding 진입 → /check
-  if (isLoggedIn && onboarded && pathname.startsWith("/onboarding")) {
-    return NextResponse.redirect(new URL("/check", nextUrl));
-  }
+  // 온보딩은 개인화용(선택)이라 게이트하지 않는다. 과거의 "/check→/onboarding 강제
+  // 바운스"는 토큰 onboarded 갱신 타이밍에 의존해 저장 직후 화면이 멈추는 버그를 유발했다.
+  // 신규 사용자 온보딩 유도는 클라이언트(헤더/배너)에서 처리하고 proxy는 강제하지 않는다.
 
   return NextResponse.next();
 });

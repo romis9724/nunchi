@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { NoonchiLogo } from "@/components/NoonchiLogo";
 import { PageHeader } from "@/components/ui";
@@ -18,7 +17,6 @@ const CHANNELS = [
 ];
 
 export default function OnboardingPage() {
-  const router = useRouter();
   const { update } = useSession();
   const [selectedIndustries, setSelectedIndustries] = useState<string[]>([]);
   const [selectedChannels, setSelectedChannels] = useState<string[]>([]);
@@ -67,7 +65,8 @@ export default function OnboardingPage() {
 
     setSaving(false);
     setShowSuccess(true);
-    setTimeout(() => router.push("/check"), 1800);
+    // 풀 내비게이션 — proxy 바운스 제거로 /check가 곧장 로드되고, 세션도 신선하게 재요청.
+    setTimeout(() => { window.location.assign("/check"); }, 1500);
   }
 
   if (showSuccess) {
