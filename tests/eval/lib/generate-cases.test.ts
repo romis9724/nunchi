@@ -94,13 +94,14 @@ describe("generate-cases: rule-covered banned oracle", () => {
 describe("generate-cases: rule-gap banned oracle", () => {
   const cases = generateCases(loadEvents(EVENTS_DIR));
 
-  it("a commercial event banned → no rule fire, LLM must catch", () => {
+  it("a commercial (low-risk) event banned → 관대 밴드(거짓 under-flag 없음)", () => {
     const c = caseFor(cases, "pepero-day-1111", "banned");
     assert.strictEqual(c.oracle.ruleTriggered, false);
     assert.strictEqual(c.oracle.flaggedKeywordsEmpty, true);
     assert.strictEqual(c.oracle.matchedEventsInclude, "pepero-day-1111");
     assert.strictEqual(c.qualitative.applicable, true);
-    assert.deepStrictEqual(c.qualitative.llmShouldFlagGradeIn, ["F", "D", "C"]);
+    // celebration+low → 기대 A → 밴드는 A 이상 전체. 상업 이벤트를 F/D로 강제하지 않는다.
+    assert.deepStrictEqual(c.qualitative.llmShouldFlagGradeIn, ["A", "B", "C", "D", "F"]);
   });
 });
 

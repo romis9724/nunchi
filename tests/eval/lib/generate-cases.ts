@@ -17,9 +17,19 @@
  */
 import { toneToGrade } from "@noonchi/shared";
 import type { CheckRequest, Grade } from "@noonchi/shared";
+import { matchCriticalKeywords } from "../../../apps/web/lib/critical-keywords.js";
 
 import type { EvalEvent } from "./classify-events.js";
 import { classifyEvent } from "./classify-events.js";
+
+/** 등급 심각도(낮을수록 안전). banded 기대 산출에 사용. */
+const GRADE_SEVERITY: Record<Grade, number> = { A: 0, B: 1, C: 2, D: 3, F: 4 };
+const ALL_GRADES: Grade[] = ["A", "B", "C", "D", "F"];
+
+/** expected 이상으로 심각한 등급 집합(= 허용 밴드). LLM이 더 관대하면 under-flag. */
+function bandAtLeast(expected: Grade): Grade[] {
+  return ALL_GRADES.filter((g) => GRADE_SEVERITY[g] >= GRADE_SEVERITY[expected]);
+}
 
 export type CaseKind = "banned" | "benign";
 
@@ -97,44 +107,58 @@ function buildBannedCase(
   event: EvalEvent,
   index: number
 ): EvalCase {
-  const classification = classifyEvent(event);
+  const cls = classifyEvent(event);
   const id = `${event.slug}::banned`;
-  const benignDate = synthDate(event);
+  const { date, approx } = synthDate(event);
+  const expectedGrade = toneToGrade(event.recommended_tone, event.risk_level);
+
+  // seed 선택: rule-covered면 해당 이벤트로 매핑되는 CRITICAL term.
+  // rule-gap이면 CRITICAL term이 아닌 related_keyword를 우선(진짜 LLM 갭 테스트),
+  // 없으면 첫 related_keyword(또는 이름 조각)로 폴백.
+  let seed: string;
+  if (cls.ruleCovered) {
+    seed = cls.ruleKeywords[0];
+  } else {
+    const nonCritical = event.related_keywords.find(
+      (k) => matchCriticalKeywords({ copy: k }).length === 0
+    );
+    seed = nonCritical ?? event.related_keywords[0] ?? event.name.slice(0, 4);
+  }
+  const copy = bannedCopy(seed);
+  // campaignName에 slug/answer를 넣지 않는다 — LLM에 정답이 새지 않도록.
   const request: CheckRequest = {
-    date: benignDate.date,
-    campaignName: `${EVAL_CAMPAIGN_PREFIX} ${event.slug} banned`,
-    copy: "",
+    date,
+    campaignName: EVAL_CAMPAIGN_PREFIX,
+    copy,
     assetKeywords: [],
   };
 
-  if (classification.ruleCovered) {
-    // Seed a real CRITICAL_KEYWORDS term so the rule short-circuits to F.
-    const term = classification.ruleKeywords[0];
+  // 결정론: 이 copy로 룰이 실제 발화하는지 계산해 오라클을 맞춘다(가짜 실패 방지).
+  const ruleHits = matchCriticalKeywords({ copy, campaignName: EVAL_CAMPAIGN_PREFIX });
+  if (ruleHits.length > 0) {
     return {
       id,
       eventSlug: event.slug,
       kind: "banned",
-      request: { ...request, copy: bannedCopy(term) },
+      request,
       oracle: {
         ruleTriggered: true,
         grade: "F",
         riskScore: "critical",
-        flaggedKeywordsInclude: [term],
+        flaggedKeywordsInclude: ruleHits,
         matchedEventsEmpty: true,
       },
       qualitative: { applicable: false },
-      dateApprox: benignDate.approx,
+      dateApprox: approx,
     };
   }
 
-  // RULE-GAP: no rule covers this slug. Seed the event's own first
-  // related_keyword (or a name fragment) so the LLM must do the catching.
-  const seed = event.related_keywords[0] ?? event.name.slice(0, 4);
+  // RULE-GAP: 룰이 안 잡음 → LLM이 잡아야. 밴드는 이벤트 기대등급 이상 심각도.
   return {
     id,
     eventSlug: event.slug,
     kind: "banned",
-    request: { ...request, copy: bannedCopy(seed) },
+    request,
     oracle: {
       ruleTriggered: false,
       flaggedKeywordsEmpty: true,
@@ -143,9 +167,9 @@ function buildBannedCase(
     qualitative: {
       applicable: true,
       mustIdentifyEvent: event.name,
-      llmShouldFlagGradeIn: ["F", "D", "C"],
+      llmShouldFlagGradeIn: bandAtLeast(expectedGrade),
     },
-    dateApprox: benignDate.approx,
+    dateApprox: approx,
   };
 }
 
@@ -160,7 +184,7 @@ function buildBenignCase(event: EvalEvent, index: number): EvalCase {
     kind: "benign",
     request: {
       date,
-      campaignName: `${EVAL_CAMPAIGN_PREFIX} ${event.slug} benign`,
+      campaignName: EVAL_CAMPAIGN_PREFIX,
       copy,
       assetKeywords: [],
     },

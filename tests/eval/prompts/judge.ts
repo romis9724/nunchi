@@ -40,7 +40,7 @@ export interface JudgeVerdict {
   highVariance: boolean;
 }
 
-const DEFAULT_TIMEOUT_MS = 30_000;
+const DEFAULT_TIMEOUT_MS = 60_000; // qwen3:8b 추론이 느려 여유있게
 const VARIANCE_THRESHOLD = 2;
 const JUDGE_CALLS = 2;
 
@@ -90,30 +90,41 @@ interface OllamaChatMessage {
 interface ParsedScore {
   score: number;
   reason: string;
+  /** false → 모델 응답을 점수로 파싱하지 못함(네트워크/형식 오류). 평균에서 제외한다. */
+  ok: boolean;
 }
 
 function clampScore(n: number): number {
-  if (Number.isNaN(n)) return 1;
   if (n < 1) return 1;
   if (n > 5) return 5;
   return Math.round(n);
 }
 
-/** Extract the first JSON object from a model reply and read score/reason. */
+/** qwen3 thinking 블록 제거 후 마지막 JSON 객체를 견고하게 추출. */
 function parseJudgeReply(content: string): ParsedScore {
-  const match = content.match(/\{[\s\S]*\}/);
-  if (!match) {
-    return { score: 1, reason: `unparseable judge reply: ${content.slice(0, 120)}` };
+  // qwen3:8b는 <think>…</think> 추론을 앞에 붙일 수 있다 — 제거.
+  const cleaned = content.replace(/<think>[\s\S]*?<\/think>/gi, "").trim();
+
+  // 모든 {...} 후보 중 score를 가진 마지막 것을 채택(추론 중 중괄호 오탐 회피).
+  const candidates = cleaned.match(/\{[^{}]*\}/g) ?? [];
+  for (let i = candidates.length - 1; i >= 0; i--) {
+    try {
+      const obj = JSON.parse(candidates[i]) as Record<string, unknown>;
+      if (obj.score == null || Number.isNaN(Number(obj.score))) continue;
+      return {
+        score: clampScore(Number(obj.score)),
+        reason: typeof obj.reason === "string" ? obj.reason : "(no reason)",
+        ok: true,
+      };
+    } catch {
+      /* try next candidate */
+    }
   }
-  try {
-    const obj = JSON.parse(match[0]) as Record<string, unknown>;
-    const score = clampScore(Number(obj.score));
-    const reason =
-      typeof obj.reason === "string" ? obj.reason : "(no reason given)";
-    return { score, reason };
-  } catch {
-    return { score: 1, reason: `invalid judge JSON: ${match[0].slice(0, 120)}` };
-  }
+  // score 숫자만이라도 회수 시도 (e.g. "score: 4").
+  const m = cleaned.match(/score["'\s:]+([1-5])/i);
+  if (m) return { score: clampScore(Number(m[1])), reason: cleaned.slice(0, 100), ok: true };
+
+  return { score: 0, reason: `unparseable: ${cleaned.slice(0, 120)}`, ok: false };
 }
 
 async function callOllamaChat(
@@ -130,20 +141,22 @@ async function callOllamaChat(
         model: opts.model,
         messages,
         stream: false,
+        think: false, // qwen3 thinking 비활성 → 깨끗한 JSON 출력
         options: { temperature: 0 },
       }),
       signal: AbortSignal.timeout(timeoutMs),
     });
   } catch (err) {
     return {
-      score: 1,
+      score: 0,
       reason: `judge network error: ${err instanceof Error ? err.message : String(err)}`,
+      ok: false,
     };
   }
 
   if (!res.ok) {
     const body = await res.text().catch(() => "(unreadable)");
-    return { score: 1, reason: `judge HTTP ${res.status}: ${body.slice(0, 120)}` };
+    return { score: 0, reason: `judge HTTP ${res.status}: ${body.slice(0, 120)}`, ok: false };
   }
 
   let data: unknown;
@@ -151,14 +164,15 @@ async function callOllamaChat(
     data = await res.json();
   } catch (err) {
     return {
-      score: 1,
+      score: 0,
       reason: `judge JSON parse failed: ${err instanceof Error ? err.message : String(err)}`,
+      ok: false,
     };
   }
 
   const content = (data as { message?: { content?: unknown } }).message?.content;
   if (typeof content !== "string") {
-    return { score: 1, reason: `judge reply missing message.content` };
+    return { score: 0, reason: `judge reply missing message.content`, ok: false };
   }
   return parseJudgeReply(content);
 }
@@ -182,15 +196,19 @@ export async function judgeRationale(
     results.push(await callOllamaChat(messages, opts));
   }
 
-  const rawScores = results.map((r) => r.score);
-  const sum = rawScores.reduce((acc, s) => acc + s, 0);
-  const avg = Math.round((sum / rawScores.length) * 10) / 10;
-  const spread = Math.max(...rawScores) - Math.min(...rawScores);
+  // 파싱 성공(ok)한 점수만 평균. 전부 실패하면 score=0(미채점)으로 표기.
+  const okScores = results.filter((r) => r.ok).map((r) => r.score);
+  const avg =
+    okScores.length > 0
+      ? Math.round((okScores.reduce((a, s) => a + s, 0) / okScores.length) * 10) / 10
+      : 0;
+  const spread =
+    okScores.length > 1 ? Math.max(...okScores) - Math.min(...okScores) : 0;
 
   return {
     score: avg,
     reason: results.map((r, i) => `[#${i + 1}] ${r.reason}`).join(" "),
-    rawScores,
+    rawScores: results.map((r) => r.score),
     highVariance: spread >= VARIANCE_THRESHOLD,
   };
 }
