@@ -73,7 +73,7 @@ function CheckForm() {
           eyebrow="브랜드 안전 분석"
           eyebrowIcon="shield"
           title={<>날짜 × 카피, <span style={{ color: "var(--brand-red)" }}>사전 검토</span></>}
-          subtitle={`입력한 날짜·카피·시각 키워드를 한국 사건·기념일 ${CURATED_EVENT_COUNT}건과 교차 검토해 F부터 A까지 5단계 등급으로 결과를 알려드립니다. 표현 리스크 검토는 사전 승인 후 제공됩니다.`}
+          subtitle={`입력한 날짜·카피·시각 키워드를 한국 사건·기념일 ${CURATED_EVENT_COUNT}건과 교차 검토해 F부터 A까지 5단계 등급으로 결과를 알려드립니다. 커뮤니티 은어·성별·지역 비하 표현도 함께 확인합니다.`}
         />
 
         {/* Form card */}

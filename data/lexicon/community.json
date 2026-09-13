@@ -5,7 +5,7 @@
     "category": "community",
     "tier": "contextual",
     "severity": "high",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -52,8 +52,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "minjuhwa-negative",
@@ -61,7 +61,7 @@
     "category": "community",
     "tier": "contextual",
     "severity": "medium",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "regex",
@@ -75,7 +75,7 @@
     ],
     "harmful_example": "반대 의견 나오면 다 민주화시켜 버려",
     "benign_example": "6월 항쟁은 한국 사회를 민주화시킨 결정적 계기였다",
-    "note": "'민주화시키다/당하다' 형태가 '짓밟다·비추천하다'의 뜻으로 읽힐 수 있습니다. 5·18 등 역사적 의미로 쓰는 문장이라면 문제없으나, 조롱으로 읽히지 않는지 확인을 권합니다.",
+    "note": "'민주화시키다·당하다'가 짓밟기나 비추천을 뜻하는 은어로 쓰인 사례가 있습니다. 제도·사회를 민주적으로 바꾼다는 정상 용법과 조롱 용법을 구분해 확인하세요.",
     "alternative": "'비추천', '반대' 등 의도에 맞는 일반 표현",
     "sources": [
       {
@@ -103,8 +103,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "saneophwa-ilbe",
@@ -150,7 +150,7 @@
     "category": "community",
     "tier": "hard",
     "severity": "high",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -161,7 +161,7 @@
     "benign_usages": [],
     "harmful_example": "노무노무 재밌노",
     "benign_example": "",
-    "note": "고인을 조롱하는 표기로 널리 알려진 표현입니다. 오타가 아니라면 재검토를 권합니다.",
+    "note": "고인을 조롱하는 용법으로 알려진 변형 표기입니다. 의도한 표기를 확인하고 브랜드 문구 사용을 재검토하세요.",
     "alternative": "'너무너무'",
     "sources": [
       {
@@ -177,8 +177,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "nomu-prefix-mockery",
@@ -221,7 +221,7 @@
   },
   {
     "key": "no-ending-roh-context",
-    "term": "-노 어미 (노무현 문맥 공존)",
+    "term": "-노 어미 조롱 용법",
     "category": "community",
     "tier": "contextual",
     "severity": "medium",
@@ -242,7 +242,7 @@
     ],
     "harmful_example": "봉하마을 갔다 왔노",
     "benign_example": "오늘 날씨 와 이리 춥노",
-    "note": "'-노' 어미 자체는 경상 방언의 정상 표현입니다. 같은 문장에 노무현 전 대통령 관련 표현이 함께 있어 조롱으로 읽힐 가능성만 확인을 권합니다.",
+    "note": "'-노'는 정상적인 방언 어미입니다. 관련 명사와 함께 쓰였다는 사실만으로 조롱을 판단할 수 없으며, 실제 문장의 용법을 확인해야 합니다.",
     "sources": [
       {
         "label": "YTN \"'무섭노'는 혐오 표현 아니다\" 언어학자 판단 (2026-07-08)",
@@ -290,7 +290,7 @@
     "category": "community",
     "tier": "contextual",
     "severity": "high",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -303,7 +303,7 @@
     ],
     "harmful_example": "이게 나라냐 이기야",
     "benign_example": "니 찾던 거 이기야?",
-    "note": "문장 끝 '이기야'는 고인 조롱 어미로 널리 알려진 표현입니다. 경상 방언 '이기(이것이)+야'로 쓴 문장이 아니라면 재검토를 권합니다.",
+    "note": "'이기야'는 방언으로 쓰일 수 있으며, 고인을 조롱하는 문장에 사용된 사례도 있습니다. 표현만으로 판단하지 말고 문장의 용법을 확인하세요.",
     "alternative": "'이거야', '이것이야'",
     "sources": [
       {
@@ -331,8 +331,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "geupsik-chung",
@@ -340,7 +340,7 @@
     "category": "community",
     "tier": "hard",
     "severity": "high",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -371,16 +371,16 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "teuldak",
     "term": "틀딱",
     "category": "community",
-    "tier": "contextual",
+    "tier": "hard",
     "severity": "high",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -398,7 +398,7 @@
     ],
     "harmful_example": "틀딱들은 이 앱 못 쓰겠지",
     "benign_example": "틀딱 감성이라 해도 이 노래는 못 잃어",
-    "note": "노년층 비하 표현으로 알려진 말입니다. 자조적 유머라도 수용자에 따라 불쾌하게 받아들여질 수 있어 확인을 권합니다.",
+    "note": "노년층을 낮잡아 부르는 표현입니다. 브랜드 문구 사용을 재검토하세요.",
     "alternative": "'시니어', '어르신', '중장년층'",
     "sources": [
       {
@@ -426,8 +426,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "teuldak-chung",
@@ -435,7 +435,7 @@
     "category": "community",
     "tier": "hard",
     "severity": "high",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -466,8 +466,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "aebi-chung",
@@ -475,7 +475,7 @@
     "category": "community",
     "tier": "hard",
     "severity": "high",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -506,8 +506,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "jwajom",
@@ -515,7 +515,7 @@
     "category": "community",
     "tier": "hard",
     "severity": "high",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -542,8 +542,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "jwappal",
@@ -551,7 +551,7 @@
     "category": "community",
     "tier": "hard",
     "severity": "high",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -582,8 +582,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "sukkol",
@@ -591,7 +591,7 @@
     "category": "community",
     "tier": "hard",
     "severity": "high",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -620,8 +620,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "noalla",
@@ -629,7 +629,7 @@
     "category": "community",
     "tier": "hard",
     "severity": "high",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -656,8 +656,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "dubu-roh-context",
@@ -739,7 +739,7 @@
     "category": "community",
     "tier": "hard",
     "severity": "critical",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -766,8 +766,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "jungryeokjeol",
@@ -775,7 +775,7 @@
     "category": "community",
     "tier": "hard",
     "severity": "high",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -802,8 +802,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "eomuk-sewol-context",
@@ -811,7 +811,7 @@
     "category": "community",
     "tier": "contextual",
     "severity": "medium",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -842,8 +842,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "no-o-rat-da",
@@ -883,9 +883,9 @@
     "key": "jaegi-hae",
     "term": "재기해",
     "category": "community",
-    "tier": "hard",
-    "severity": "critical",
-    "status": "draft",
+    "tier": "contextual",
+    "severity": "medium",
+    "status": "approved",
     "patterns": [
       {
         "type": "regex",
@@ -898,11 +898,11 @@
     ],
     "meaning": "2013년 남성연대 대표 성재기의 한강 투신 사망에서 이름을 따 '자살하라'는 뜻으로 쓰는 표현. 메갈리아·워마드 등 커뮤니티에서 시작되어 2018 혜화역 시위 구호로 등장해 논란. 자살 조장 표현으로 언론이 보고.",
     "benign_usages": [
-      "'재기(再起)하다'의 연결형(예: '부상에서 재기해 우승')은 패턴에서 제외됨"
+      "'재기(再起)하다' — 실패·부상 후 다시 일어선다는 뜻의 격려·회복 문맥(예: '다시 재기하세요', '부상에서 재기해 우승')"
     ],
     "harmful_example": "그런 놈들은 다 재기해.",
-    "benign_example": "부상에서 재기해 시즌 우승을 이끌었다",
-    "note": "명령형 '재기해'는 '자살하라'는 뜻으로 널리 알려진 표현입니다. 재검토를 권합니다.",
+    "benign_example": "사업 실패를 딛고 다시 재기하세요.",
+    "note": "'재기하다'는 다시 일어선다는 정상 표현입니다. 특정인을 향해 자살을 부추기는 뜻으로 쓰인 사례도 있으므로, 격려·회복 문맥과 공격적 용법을 구분해 확인하세요.",
     "alternative": "사용하지 않음",
     "sources": [
       {
@@ -924,8 +924,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "ssipchi-nam",
@@ -933,7 +933,7 @@
     "category": "community",
     "tier": "hard",
     "severity": "critical",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -964,8 +964,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "sumswil-han",
@@ -973,7 +973,7 @@
     "category": "community",
     "tier": "hard",
     "severity": "critical",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -994,8 +994,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "six-point-nine",
@@ -1043,7 +1043,7 @@
     "category": "community",
     "tier": "contextual",
     "severity": "high",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -1060,7 +1060,7 @@
     ],
     "harmful_example": "소추들은 말이 많아",
     "benign_example": "탄핵 소추 절차의 헌법적 요건",
-    "note": "법률 용어 '소추(訴追)'가 아니라면 남성 신체를 조롱하는 표현으로 읽힐 수 있습니다. 확인을 권합니다.",
+    "note": "'소추'는 법률 용어로 쓰이며, 남성의 신체를 조롱하는 용법도 있습니다. 실제 문맥을 확인하세요.",
     "alternative": "법률 문맥이라면 '공소 제기' 등으로 구체화",
     "sources": [
       {
@@ -1076,8 +1076,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "hannam-yuchung",
@@ -1127,7 +1127,7 @@
     "category": "community",
     "tier": "hard",
     "severity": "high",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -1138,7 +1138,7 @@
     "benign_usages": [],
     "harmful_example": "흉자들은 말도 섞기 싫다",
     "benign_example": "",
-    "note": "특정 입장에 동조하지 않는 여성을 공격하는 호칭으로 알려진 표현입니다. 재검토를 권합니다.",
+    "note": "여성의 견해나 태도를 이유로 비하하는 호칭으로 쓰입니다. 브랜드 문구 사용을 재검토하세요.",
     "alternative": "사용하지 않음",
     "sources": [
       {
@@ -1154,8 +1154,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "ung-aeng-ung",
@@ -1163,7 +1163,7 @@
     "category": "community",
     "tier": "watch",
     "severity": "medium",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -1176,7 +1176,7 @@
     ],
     "harmful_example": "",
     "benign_example": "자막 없으면 웅앵웅으로 들려요",
-    "note": "의미가 다투어지는 표현입니다. 2021년 남성 비하 논란이 있었던 점만 참고하세요.",
+    "note": "불분명한 말소리를 흉내 내는 표현입니다. 2021년 남성 비하라는 주장과 성별과 무관한 표현이라는 반론이 보도됐습니다. 표현 자체를 혐오로 판정하는 표시는 아닙니다.",
     "sources": [
       {
         "label": "뉴시스 '5조5억, 허버허버, 웅앵웅'…이말이 왜 남성혐오? 논란 (2021-04-20)",
@@ -1191,8 +1191,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "ojo-oeok",
@@ -1200,15 +1200,11 @@
     "category": "community",
     "tier": "watch",
     "severity": "medium",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
         "value": "오조오억"
-      },
-      {
-        "type": "regex",
-        "value": "5조\\s?5억"
       }
     ],
     "meaning": "'매우 많다'는 뜻의 과장 표현. 2017년 방송 팬덤에서 유행했으며, 2021년 남성 신체 비하 기원이라는 주장과 단순 과장어라는 반론이 함께 보고되어 의미가 다투어진다.",
@@ -1217,7 +1213,7 @@
     ],
     "harmful_example": "",
     "benign_example": "오조오억 번 들어도 좋은 노래",
-    "note": "기원·의미가 다투어지는 표현입니다. 2021년 남성 비하 논란이 있었던 점만 참고하세요.",
+    "note": "'매우 많다'는 뜻의 과장 표현입니다. 2021년 남성 비하 기원이라는 주장과 반론이 보도됐습니다. 표현 자체를 혐오로 판정하는 표시는 아닙니다.",
     "sources": [
       {
         "label": "한국일보 '허버허버' 이어 '오조오억'... 신조어 또 남성혐오 논란, 왜 (2021-04-22)",
@@ -1238,8 +1234,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "heobeo-heobeo",
@@ -1247,7 +1243,7 @@
     "category": "community",
     "tier": "watch",
     "severity": "medium",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -1260,7 +1256,7 @@
     ],
     "harmful_example": "",
     "benign_example": "배고파서 허버허버 먹었다",
-    "note": "의미가 다투어지는 표현입니다. 2021년 남성 비하 논란(이모티콘 판매 중단 등)이 있었던 점만 참고하세요.",
+    "note": "급하게 먹거나 행동하는 모습을 나타내는 표현입니다. 2021년 남성 비하라는 주장과 성별과 무관한 표현이라는 반론이 보도됐습니다. 표현 자체를 혐오로 판정하는 표시는 아닙니다.",
     "sources": [
       {
         "label": "서울신문 '허버허버' '오조오억' 논란…\"혐오단어 사전 만들어야할 판\" (2021-04-15)",
@@ -1281,7 +1277,7 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   }
 ]

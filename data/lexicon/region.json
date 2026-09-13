@@ -5,7 +5,7 @@
     "category": "region",
     "tier": "contextual",
     "severity": "high",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -56,8 +56,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "kkabojeon",
@@ -65,7 +65,7 @@
     "category": "region",
     "tier": "hard",
     "severity": "high",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -86,8 +86,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "jeolladian",
@@ -95,7 +95,7 @@
     "category": "region",
     "tier": "hard",
     "severity": "high",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -142,8 +142,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "gaessangdo",
@@ -151,7 +151,7 @@
     "category": "region",
     "tier": "hard",
     "severity": "high",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -198,8 +198,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "meongcheongdo",
@@ -207,7 +207,7 @@
     "category": "region",
     "tier": "hard",
     "severity": "high",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -240,8 +240,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "gamja-guk",
@@ -249,7 +249,7 @@
     "category": "region",
     "tier": "contextual",
     "severity": "medium",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -262,7 +262,7 @@
     ],
     "harmful_example": "감자국 애들은 촌스러워",
     "benign_example": "강원 감자국 레시피",
-    "note": "음식명이 아니라면 강원 지역을 낮잡는 표현으로 읽힐 수 있습니다. 확인을 권합니다.",
+    "note": "'감자국'은 음식명으로 쓰이며 지역의 친근한 별칭으로도 사용될 수 있습니다. 지역민을 낮잡는 문맥인지 확인하세요.",
     "alternative": "지역명이라면 '강원도'",
     "sources": [
       {
@@ -278,8 +278,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "gamja-bau",
@@ -287,7 +287,7 @@
     "category": "region",
     "tier": "contextual",
     "severity": "medium",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -300,7 +300,7 @@
     ],
     "harmful_example": "감자바우들이 뭘 알겠어",
     "benign_example": "감자바우 마을 축제에 초대합니다",
-    "note": "강원 지역 자칭·상호로도 쓰이는 표현입니다. 타인이 지역민을 지칭하는 문맥에서는 비하로 받아들여질 수 있어 확인을 권합니다.",
+    "note": "'감자바우'는 지역의 자칭·상호·캐릭터명으로도 쓰입니다. 지역민을 낮잡는 문맥인지 확인하세요.",
     "alternative": "'강원도민'",
     "sources": [
       {
@@ -310,8 +310,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "gwamegi",
@@ -319,7 +319,7 @@
     "category": "region",
     "tier": "contextual",
     "severity": "medium",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -348,8 +348,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "seven-oclock-jeolla",
@@ -397,7 +397,7 @@
     "category": "region",
     "tier": "contextual",
     "severity": "high",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "literal",
@@ -410,7 +410,7 @@
     ],
     "harmful_example": "슨상님 덕에 5·18이 났지",
     "benign_example": "\"슨상님, 밥은 잡숫고 가시오\" (사투리 대사)",
-    "note": "전라 방언 발음 표기가 아니라면 고인 조롱·지역 비하로 읽힐 수 있습니다. 확인을 권합니다.",
+    "note": "'슨상님'은 방언 발음을 나타내는 표기로 쓰일 수 있습니다. 특정 고인이나 지역민을 조롱하는 문맥인지 구분해 확인하세요.",
     "alternative": "표준어 '선생님'",
     "sources": [
       {
@@ -432,8 +432,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "gotham-daegu",
@@ -441,7 +441,7 @@
     "category": "region",
     "tier": "contextual",
     "severity": "medium",
-    "status": "draft",
+    "status": "approved",
     "patterns": [
       {
         "type": "regex",
@@ -476,8 +476,8 @@
         "accessed": "2026-09-13"
       }
     ],
-    "reviewed_by": null,
-    "reviewed_at": null
+    "reviewed_by": "claude-fable-5.1 + codex gpt-6-astra (owner-delegated)",
+    "reviewed_at": "2026-09-13"
   },
   {
     "key": "tongguyi-daegu-context",

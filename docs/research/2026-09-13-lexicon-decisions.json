@@ -1,0 +1,546 @@
+{
+ "unji": {
+  "decision": "approve",
+  "tier": "contextual",
+  "rename": null,
+  "note_fix": null,
+  "reason": "복수 보도가 조롱 용법을 뒷받침한다. 운지법은 literal에서 제외되지만 악기를 운지하는 정상 동사형도 있으므로 contextual을 유지하고 실제 매칭되는 정상 예문을 보강한다.",
+  "codex": "approve"
+ },
+ "minjuhwa-negative": {
+  "decision": "approve",
+  "tier": "contextual",
+  "rename": null,
+  "note_fix": "'민주화시키다·당하다'가 짓밟기나 비추천을 뜻하는 은어로 쓰인 사례가 있습니다. 제도·사회를 민주적으로 바꾼다는 정상 용법과 조롱 용법을 구분해 확인하세요.",
+  "reason": "복수 보도와 직접적인 기사 제목이 있다. 역사뿐 아니라 제도·조직의 민주화도 정상 용법이므로 안내 범위를 넓힌다.",
+  "codex": "approve"
+ },
+ "saneophwa-ilbe": {
+  "decision": "hold",
+  "tier": "contextual",
+  "rename": null,
+  "note_fix": null,
+  "reason": "SBS 인터뷰와 위키만으로 추천 은어를 비하·제압 의미까지 확장하기 어렵다. 공격 예문도 단순 추천 요청이며 정상 산업화 문장과 겹친다. 비하 용례를 직접 뒷받침하는 근거가 필요하다.",
+  "codex": "hold"
+ },
+ "nomu-nomu": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": "고인을 조롱하는 용법으로 알려진 변형 표기입니다. 의도한 표기를 확인하고 브랜드 문구 사용을 재검토하세요.",
+  "reason": "복수 보도에 근거한 특정 조롱 표기이며 일반 노동 용어를 포괄하지 않는다. meaning의 노무현의 성이라는 설명은 이름 일부로 고친다. 자동 D 처리와 모순되는 오타 예외 안내도 정리한다.",
+  "codex": "approve"
+ },
+ "nomu-prefix-mockery": {
+  "decision": "hold",
+  "tier": "contextual",
+  "rename": null,
+  "note_fix": null,
+  "reason": "노무노무·노알라 보도에서 임의의 노무 접두형 전체를 추론했다. 노무관리·노무사 상담이 실제 매칭된다. 접두어 일반화를 폐기하고 개별 출처가 있는 표기만 경계 있는 literal로 등록한다.",
+  "codex": "hold"
+ },
+ "no-ending-roh-context": {
+  "decision": "hold",
+  "tier": "contextual",
+  "rename": "-노 어미 조롱 용법",
+  "note_fix": "'-노'는 정상적인 방언 어미입니다. 관련 명사와 함께 쓰였다는 사실만으로 조롱을 판단할 수 없으며, 실제 문장의 용법을 확인해야 합니다.",
+  "reason": "봉하마을 갔다 왔노는 공격의 증거가 없는 정상 방언 문장이다. 기타 운지 강좌 듣고 아메리카노 한 잔도 매칭된다. 공격 예문 교체, 어미·공기어 범위 축소, 줄바꿈 보존 후 재심한다. 표시명은 공백·기호 포함 11자다.",
+  "codex": "hold"
+ },
+ "igiya": {
+  "decision": "approve",
+  "tier": "contextual",
+  "rename": null,
+  "note_fix": "'이기야'는 방언으로 쓰일 수 있으며, 고인을 조롱하는 문장에 사용된 사례도 있습니다. 표현만으로 판단하지 말고 문장의 용법을 확인하세요.",
+  "reason": "공식 간행물과 복수 보도가 개연성 있는 근거다. 정상 방언을 우선 설명하고 방언 이외의 사용을 자동으로 조롱으로 연결하지 않는다.",
+  "codex": "approve"
+ },
+ "geupsik-chung": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "커뮤니티 은어 기원(공식·보도 근거). 연령 축은 meaning에 기재 — ADR 연령 범주 유보는 '연령 비하 전반 큐레이션 안 함'의 의미이며 커뮤니티 은어 등록을 막지 않음 (lead 판단) | codex: hold",
+  "codex": "hold"
+ },
+ "teuldak": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": "노년층을 낮잡아 부르는 표현입니다. 브랜드 문구 사용을 재검토하세요.",
+  "reason": "정상 동형어 없음 → hard(Codex 의미 판단 동일). 범주 쟁점은 급식충과 같은 이유로 승인 (lead 판단) | codex: hold",
+  "codex": "hold"
+ },
+ "teuldak-chung": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "공식 간행물+보도, 비인간화 명확. 범주 쟁점 동일 처리 (lead 판단) | codex: hold",
+  "codex": "hold"
+ },
+ "aebi-chung": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "공식 간행물·보도가 개연성 있는 근거이며 아버지를 벌레에 비유한다. 맘충과 같은 hard 기준을 적용한다. 주된 위해 대상 원칙에 맞춰 gender로 범주를 정리하는 것이 적절하다.",
+  "codex": "approve"
+ },
+ "jwajom": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "공식 간행물과 해당 표현을 직접 다룬 제목이 있다. 비하 용법을 설명하는 note는 사용자 정치성향을 분류하지 않으며 수꼴과 동일 기준을 적용한다.",
+  "codex": "approve"
+ },
+ "jwappal": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "공식 간행물과 직접 제목의 보도가 근거다. 좌파라는 정상 정치 용어 자체는 매칭하지 않고 비하형을 특정하므로 hard가 타당하다.",
+  "codex": "approve"
+ },
+ "sukkol": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "공식 간행물 근거와 독립적인 비하성이 있으므로 유지한다. 단순한 진영별 숫자 맞추기가 승인 이유는 아니다. 좌좀·좌빨과 함께 community의 정치적 비하 하위 범위를 명시하고 meaning의 대칭 항목이라는 편집 설명은 제거한다.",
+  "codex": "approve"
+ },
+ "noalla": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "서울경제 기사 제목이 고인 비하 캐릭터임을 직접 설명한다. 특정 합성 캐릭터 명칭에 한정된 literal이라 일반 코알라 상품을 포괄하지 않는다.",
+  "codex": "approve"
+ },
+ "dubu-roh-context": {
+  "decision": "hold",
+  "tier": "contextual",
+  "rename": null,
+  "note_fix": null,
+  "reason": "시빅뉴스 단일 포괄 기사에 의존하고 봉하마을 두부 요리 특집은 정상 음식 콘텐츠일 수 있다. 독립적인 직접 용례 근거와 명확한 공격 예문이 필요하며 공통 문장 경계 결함도 수정해야 한다.",
+  "codex": "hold"
+ },
+ "podo-518-context": {
+  "decision": "hold",
+  "tier": "contextual",
+  "rename": null,
+  "note_fix": null,
+  "reason": "머니투데이 포괄 기사와 위키만으로 개별 조롱 용법의 근거가 얇다. 광주만으로 정상 농산물 광고가 후보가 된다. 직접 근거와 더 구체적인 역사 문맥, 문장 경계 보존을 확보한 뒤 재심한다.",
+  "codex": "hold"
+ },
+ "pitteok-galbi": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "이데일리 제목이 해당 표현과 지역 비하를 직접 연결하고 추가 보도도 있다. 정상 음식명 떡갈비와 구별되는 특정 조롱 표기다.",
+  "codex": "approve"
+ },
+ "jungryeokjeol": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "관련 주제의 서로 다른 언론 보도가 두 건 있고 특정 고인의 기일을 조롱하는 의미와 맞는다. 중력이라는 일반 과학 용어 자체는 매칭하지 않는다.",
+  "codex": "approve"
+ },
+ "eomuk-sewol-context": {
+  "decision": "approve",
+  "tier": "contextual",
+  "rename": null,
+  "note_fix": null,
+  "reason": "경향신문 직접 근거+형사처벌 사례. 문장 경계 결함은 매처 수정으로 해소 (lead 판단) | codex: hold",
+  "codex": "hold"
+ },
+ "no-o-rat-da": {
+  "decision": "hold",
+  "tier": "watch",
+  "rename": null,
+  "note_fix": null,
+  "reason": "자료 자체가 단일 매체 근거와 일반 강조 표기의 중첩을 인정한다. 봉하의 풍경 묘사도 정상 용법이며 상시 참고 표시의 마케팅 효용이 낮아 draft를 유지한다.",
+  "codex": "hold"
+ },
+ "jaegi-hae": {
+  "decision": "approve",
+  "tier": "contextual",
+  "rename": null,
+  "note_fix": "'재기하다'는 다시 일어선다는 정상 표현입니다. 특정인을 향해 자살을 부추기는 뜻으로 쓰인 사례도 있으므로, 격려·회복 문맥과 공격적 용법을 구분해 확인하세요.",
+  "reason": "Codex 지적 수용: '재기하세요' 정상 격려가 매칭됨 → contextual 전환, benign_usages 추가. 자살 조장 용법은 LLM 문맥 판정 | codex: hold",
+  "codex": "hold"
+ },
+ "ssipchi-nam": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "서울신문 제목이 표현을 직접 다룬다. 비속어 결합 남성 비하에 여성 비하와 동일한 hard 기준을 적용하며 기원 설명은 위해 판정의 면책 사유가 아니다.",
+  "codex": "approve"
+ },
+ "sumswil-han": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "서울신문 제목이 직접 용어를 제시하며 폭력 정당화 의미가 명확하다. 삼일한과 동일한 hard 기준을 적용한다.",
+  "codex": "approve"
+ },
+ "six-point-nine": {
+  "decision": "hold",
+  "tier": "contextual",
+  "rename": null,
+  "note_fix": null,
+  "reason": "관련 뉴시스 보도는 개연성 있는 근거지만 현재 문장 분리가 6.9의 점을 경계로 처리해 자체 공격 예문조차 매칭하지 못한다. 소수점 보존과 줄바꿈 보존을 수정하고 실제 수치·남성 상품 문맥의 정상 대조군을 검증해야 한다.",
+  "codex": "hold"
+ },
+ "sochu": {
+  "decision": "approve",
+  "tier": "contextual",
+  "rename": null,
+  "note_fix": "'소추'는 법률 용어로 쓰이며, 남성의 신체를 조롱하는 용법도 있습니다. 실제 문맥을 확인하세요.",
+  "reason": "뉴시스 제목이 개별 표현을 직접 다룬다. 법률 문맥의 독립된 소추도 매칭되므로 contextual이 필수다. 탄핵 소추를 일괄 공소 제기로 대체하도록 하는 alternative는 삭제한다.",
+  "codex": "approve"
+ },
+ "hannam-yuchung": {
+  "decision": "hold",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "비인간화 의미상 hard 후보지만 유일한 비위키 출처는 다른 표현을 둘러싼 논문 변조 보도다. 문제가 제기된 논문에 등장했다는 사실과 독립적인 공격 용법 입증을 분리해 별도 보도·공식 근거를 확보한다.",
+  "codex": "hold"
+ },
+ "hyungja": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": "여성의 견해나 태도를 이유로 비하하는 호칭으로 쓰입니다. 브랜드 문구 사용을 재검토하세요.",
+  "reason": "온라인 성별 비하를 다룬 중앙일보 탐사 기사는 개연성 있는 근거다. 특정 진영에 대한 동조 여부를 서비스가 판단하는 듯한 설명을 줄이고 표현의 공격 용법을 기술한다.",
+  "codex": "approve"
+ },
+ "ung-aeng-ung": {
+  "decision": "approve",
+  "tier": "watch",
+  "rename": null,
+  "note_fix": "불분명한 말소리를 흉내 내는 표현입니다. 2021년 남성 비하라는 주장과 성별과 무관한 표현이라는 반론이 보도됐습니다. 표현 자체를 혐오로 판정하는 표시는 아닙니다.",
+  "reason": "복수 주요 보도가 논란 자체를 뒷받침하고 대사·자막 등 콘텐츠와 관련성이 있다. watch로만 승인하며 일반 용법과 반론을 같은 안내에 포함한다.",
+  "codex": "approve"
+ },
+ "ojo-oeok": {
+  "decision": "approve",
+  "tier": "watch",
+  "rename": null,
+  "note_fix": "'매우 많다'는 뜻의 과장 표현입니다. 2021년 남성 비하 기원이라는 주장과 반론이 보도됐습니다. 표현 자체를 혐오로 판정하는 표시는 아닙니다.",
+  "reason": "Codex 지적 수용: 숫자 regex '5조 5억' 제거(매출액 오탐). 한글 '오조오억' literal만 watch 승인 | codex: hold",
+  "codex": "hold"
+ },
+ "heobeo-heobeo": {
+  "decision": "approve",
+  "tier": "watch",
+  "rename": null,
+  "note_fix": "급하게 먹거나 행동하는 모습을 나타내는 표현입니다. 2021년 남성 비하라는 주장과 성별과 무관한 표현이라는 반론이 보도됐습니다. 표현 자체를 혐오로 판정하는 표시는 아닙니다.",
+  "reason": "복수 보도와 이모티콘 판매 관련 기록은 제품·콘텐츠 마케팅에서 논란 이력을 알릴 개연성 있는 근거다. 일반 의태어 용법을 먼저 설명하며 hard나 contextual로 올리지 않는다.",
+  "codex": "approve"
+ },
+ "kimchi-nyeo": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "공식 간행물과 여러 매체의 성별 비하 보도가 있다. literal은 김치라는 음식명 자체를 매칭하지 않으며 정상 동형어가 없는 여성 비하형이다.",
+  "codex": "approve"
+ },
+ "doenjang-nyeo": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "공식 간행물·복수 보도가 개연성 있는 근거다. 소비 성향을 여성 비하로 연결하는 특정 표현으로 된장이라는 정상 음식명은 제외된다.",
+  "codex": "approve"
+ },
+ "mom-chung": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": "어머니를 벌레에 비유하는 비하 표현입니다. 브랜드 문구 사용을 재검토하세요.",
+  "reason": "공식 간행물과 복수 보도에 근거하며 정상 동형어가 없다. 인용·비판·자조는 README가 hard에서도 D 처리한다고 명시한 문맥이므로 애비충·한남충과 동일하게 hard로 조정한다. 특정 커뮤니티 기원은 단정하지 않는다.",
+  "codex": "approve"
+ },
+ "samil-han": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "공식 간행물과 해당 표현을 직접 명시한 보도가 있다. 여성에 대한 폭력 정당화 표현으로 숨쉴한과 같은 hard 기준을 적용한다.",
+  "codex": "approve"
+ },
+ "boseul-achi": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "공식 간행물과 복수의 관련 언론 보도가 뒷받침한다. 성기 비속어를 포함한 여성 비하형으로 일반 벼슬아치라는 단어는 매칭하지 않는다.",
+  "codex": "approve"
+ },
+ "bojeok-bo": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "여성혐오 실태를 직접 다루는 서울신문 보도는 단일 출처라도 개연성 있는 주요 언론 근거다. 성기 비속어로 여성을 일반화하는 특정 약어다.",
+  "codex": "approve"
+ },
+ "bojeon-kkae": {
+  "decision": "hold",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "의미 설명상 hard 후보지만 단일 전문매체의 포괄적인 여성혐오 기사만 제시되어 개별 표현의 근거가 얇다. 직접 용어를 다룬 추가 보도나 공식·학술 근거를 확보한 뒤 승인한다.",
+  "codex": "hold"
+ },
+ "sangpye-nyeo": {
+  "decision": "hold",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "여성신문 단일 포괄 기사와 위키에 의존하며 상장폐지녀 변형까지의 개별 근거가 불명확하다. 직접 근거를 보강하고 현재 미탐지되는 상폐녀지 예문도 매처 범위에 맞게 고친다.",
+  "codex": "hold"
+ },
+ "kim-yeosa": {
+  "decision": "approve",
+  "tier": "contextual",
+  "rename": null,
+  "note_fix": null,
+  "reason": "공식 간행물과 표현을 직접 포함한 보도 제목이 있다. 실제 인물 호칭·상호가 regex에 잡힐 수 있지만 정상 용법과 예문이 있어 contextual이 적절하다.",
+  "codex": "approve"
+ },
+ "yeojeok-yeo": {
+  "decision": "approve",
+  "tier": "contextual",
+  "rename": null,
+  "note_fix": "여성 간 갈등을 성별 전체의 특성으로 일반화할 때 고정관념을 강화할 수 있습니다. 특정 인물 관계를 묘사하거나 이 표현을 비판하는 문맥과 구분해 확인하세요.",
+  "reason": "직접적인 프레임 비판 보도가 있다. 일반 문장형은 작품 속 한정된 인물 관계도 표현할 수 있으므로 해당 정상 용법을 benign_usages에 추가한다. 여돕여로의 일괄 대체 대신 의도에 맞는 구체적 서술을 권한다.",
+  "codex": "approve"
+ },
+ "megal": {
+  "decision": "approve",
+  "tier": "contextual",
+  "rename": null,
+  "note_fix": "사이트 약칭으로 쓰일 수 있으며, 여성을 공격하는 호칭으로 사용된 사례도 있습니다. 지칭 대상과 문맥을 확인하세요.",
+  "reason": "공식 간행물·관련 보도가 있다. 메갈리아 전체 단어와 메갈이지는 현재 literal에 매칭되지 않으므로 정상·공격 예문을 실제 매칭되는 약칭 용례로 정리한다. 정상 지칭을 일괄 피하라는 alternative도 수정한다.",
+  "codex": "approve"
+ },
+ "me-twaeji": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "서울신문 제목이 개별 표현을 직접 다룬다. 일반 동물명 멧돼지와 표기가 다르며 여성을 동물에 빗대는 특정 비하형이다.",
+  "codex": "approve"
+ },
+ "saengni-chung": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "성별 혐오 표현을 다룬 세계일보 보도는 개연성 있는 근거다. 생리라는 정상 보건 용어는 탐지하지 않고 벌레 비유 결합형만 대상으로 한다.",
+  "codex": "approve"
+ },
+ "hannyeo-chung": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "공식 간행물과 성별 혐오 보도가 있고 여성·여아를 벌레에 비유하는 의미가 명확하다. 한남충과 같은 위해 기준을 적용한다.",
+  "codex": "approve"
+ },
+ "gae-jumma": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "공식 간행물 근거가 있고 정상 호칭 아줌마와 구별되는 비하 결합형이다. 개저씨와 대칭으로 처리한다.",
+  "codex": "approve"
+ },
+ "kkotbaem": {
+  "decision": "hold",
+  "tier": "contextual",
+  "rename": null,
+  "note_fix": "'꽃뱀'은 동물명으로 쓰입니다. 사람을 지칭하며 성별 고정관념이나 피해자에 대한 근거 없는 의심을 전달하는 용법인지 문맥을 확인하세요.",
+  "reason": "단일 전문매체 출처의 제목이 한남충·맘충·김치녀 중심이라 이 표현의 개별 근거가 간접적이다. 동물명 외 인용·교육 문맥도 존재한다. 직접 근거와 정상 용례를 보강한 뒤 contextual로 재심한다.",
+  "codex": "hold"
+ },
+ "boiru": {
+  "decision": "reject",
+  "tier": "watch",
+  "rename": null,
+  "note_fix": null,
+  "reason": "제공된 의미 설명과 파이낸셜뉴스 제목은 여성혐오 기원 주장의 왜곡·반박과 논문 문제를 제시한다. 이를 현재도 동등하게 다투어지는 혐오 의미의 근거로 쓰기 어렵다. gender 위험 사전의 자동 watch 등록은 배제하고 필요하면 별도 논란 이력 자료에서 반박 경과를 정확히 다룬다.",
+  "codex": "reject"
+ },
+ "hannam": {
+  "decision": "approve",
+  "tier": "contextual",
+  "rename": null,
+  "note_fix": "'한남'은 지명·기관명 등으로 쓰이며, 한국 남성을 비하하는 호칭으로 사용된 사례도 있습니다. 실제 지칭 대상과 문맥을 확인하세요.",
+  "reason": "공식 간행물과 복수 보도가 개연성 있는 근거다. 한남동·한남대 같은 복합어는 literal에서 제외되지만 한남 신규 매장은 매칭되므로 정상 고유명사 용법을 충분히 안내한다.",
+  "codex": "approve"
+ },
+ "hannam-chung": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": "남성을 비하하거나 모욕하는 표현입니다. 브랜드 문구 사용을 재검토하세요.",
+  "reason": "공식 간행물과 직접적인 보도 근거가 충분하다. 한남놈·한남새끼까지 묶인 항목에 벌레 비유와 특정 사건의 법적 판단을 일괄 적용하지 않도록 note를 일반화한다.",
+  "codex": "approve"
+ },
+ "gae-jeossi": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "공식 간행물과 직접 제목을 포함한 복수 보도가 있다. 중년 남성을 비하하는 특정 결합형으로 개줌마와 동일하게 처리한다.",
+  "codex": "approve"
+ },
+ "kimchi-nam": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "SBS 제목이 해당 표현의 혐오 분류 논란을 직접 다룬다. 특정 기관의 과거 분류나 발생 진영과 별개로 성별을 이용한 비하에 김치녀와 같은 위해 기준을 적용한다.",
+  "codex": "approve"
+ },
+ "naemjeo": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "공식 간행물 근거가 있으며 남자라는 정상 지칭어와 다른 비하 변형 표기만 literal로 탐지한다.",
+  "codex": "approve"
+ },
+ "seolgeoji-ron": {
+  "decision": "approve",
+  "tier": "contextual",
+  "rename": null,
+  "note_fix": null,
+  "reason": "Codex 지적 수용: literal '설거지'+공기어(퐁퐁·결혼 등) 제거, '설거지론' 명시형만 매칭 → 승인 | codex: hold",
+  "codex": "hold"
+ },
+ "pongpong-nam": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": "배우자 관계를 근거로 기혼 남성을 낮잡아 부르거나 그 배우자를 함께 비하하는 용법의 표현입니다. 브랜드 문구 사용을 재검토하세요.",
+  "reason": "복수 기사 제목이 퐁퐁남과 설거지론을 직접 다룬다. 단순히 가사를 맡는 남성이라는 meaning은 지나치게 넓으므로 배우자 관계를 비하하는 담론상의 의미로 정리한다. 세제 상표 퐁퐁 자체는 매칭하지 않는다.",
+  "codex": "approve"
+ },
+ "dotae-nam": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "파이낸셜뉴스 제목에 공격적 용례가 직접 나타난다. 도태라는 일반 단어 자체가 아니라 연애·결혼 성취로 남성을 비하하는 결합형이다.",
+  "codex": "approve"
+ },
+ "hongeo": {
+  "decision": "approve",
+  "tier": "contextual",
+  "rename": null,
+  "note_fix": null,
+  "reason": "공식 간행물과 직접 제목을 포함한 복수 보도가 있다. 홍어회는 literal에서 제외되지만 독립 음식명 홍어는 매칭되므로 문맥 판정을 유지한다. regex 변형도 contextual에 머문다.",
+  "codex": "approve"
+ },
+ "kkabojeon": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "공식 간행물이 개연성 있는 근거다. 부정적 사건을 특정 지역 출신 탓으로 돌리는 전용 약어로 정상 용법의 중첩이 거의 없다.",
+  "codex": "approve"
+ },
+ "jeolladian": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "공식 간행물과 지역 비하를 직접 다루는 복수 보도가 있다. 일반 지명 전라도와 구별되는 비하 변형어를 한정해 탐지한다.",
+  "codex": "approve"
+ },
+ "gaessangdo": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "공식 간행물과 개별 표현을 제목에 포함한 복수 보도가 있다. 전라 지역 비하와 동일 기준으로 경상 지역 비하도 hard 처리한다.",
+  "codex": "approve"
+ },
+ "meongcheongdo": {
+  "decision": "approve",
+  "tier": "hard",
+  "rename": null,
+  "note_fix": null,
+  "reason": "공식 간행물·직접 제목 근거가 충분하다. 멍청도라서는 현재 조사 목록 밖이므로 공격 예문을 멍청도는 느리다처럼 매칭되는 형태로 정리하며 일반 충청도나 방언은 포함하지 않는다.",
+  "codex": "approve"
+ },
+ "gamja-guk": {
+  "decision": "approve",
+  "tier": "contextual",
+  "rename": null,
+  "note_fix": "'감자국'은 음식명으로 쓰이며 지역의 친근한 별칭으로도 사용될 수 있습니다. 지역민을 낮잡는 문맥인지 확인하세요.",
+  "reason": "관련 지역 비하 보도가 두 건 있어 개연성 있는 근거다. 음식이 아니면 비하라는 이분법을 피하고 친근한 지역 별칭·자칭을 정상 용법에 추가한다.",
+  "codex": "approve"
+ },
+ "gamja-bau": {
+  "decision": "approve",
+  "tier": "contextual",
+  "rename": null,
+  "note_fix": "'감자바우'는 지역의 자칭·상호·캐릭터명으로도 쓰입니다. 지역민을 낮잡는 문맥인지 확인하세요.",
+  "reason": "국민일보 제목이 개별 표현을 직접 명시한다. 정상 브랜드·캐릭터 용법이 있으므로 contextual을 유지하고 타인이 지칭한다는 사실만으로 비하 가능성을 강조하지 않는다.",
+  "codex": "approve"
+ },
+ "gwamegi": {
+  "decision": "approve",
+  "tier": "contextual",
+  "rename": null,
+  "note_fix": null,
+  "reason": "개별 표현이 등장하는 제목과 추가 지역 비하 보도가 있다. 홍어와 동일하게 음식명은 정상 용법으로 구분하고 사람을 낮잡는 사용만 문맥 판정한다.",
+  "codex": "approve"
+ },
+ "seven-oclock-jeolla": {
+  "decision": "hold",
+  "tier": "contextual",
+  "rename": null,
+  "note_fix": null,
+  "reason": "공기어 라도가 늦더라도에서 매칭되고 일곱 시 분기는 일곱 시간도 잡는다. 늦더라도 7시 오세요가 실제 후보가 되며 자체 공격 예문은 공기어 부재로 미탐지된다. 라도 제거, 양 분기 경계 보강, 문장 경계 보존과 직접 용례 확인이 필요하다.",
+  "codex": "hold"
+ },
+ "seunsangnim": {
+  "decision": "approve",
+  "tier": "contextual",
+  "rename": null,
+  "note_fix": "'슨상님'은 방언 발음을 나타내는 표기로 쓰일 수 있습니다. 특정 고인이나 지역민을 조롱하는 문맥인지 구분해 확인하세요.",
+  "reason": "관련 복수 보도가 개연성 있는 근거다. 방언 표기 자체를 혐오로 간주하지 않도록 안내하고 정상 방언의 일괄 표준어 대체를 권하는 alternative는 정리한다.",
+  "codex": "approve"
+ },
+ "gotham-daegu": {
+  "decision": "approve",
+  "tier": "contextual",
+  "rename": null,
+  "note_fix": null,
+  "reason": "공식 간행물과 복수 지역 비하 보도가 근거다. 지역 별칭의 재사용과 그 별칭을 비판하는 콘텐츠가 가능하므로 contextual을 유지하며 일반 지역명 대구만으로는 탐지하지 않는다.",
+  "codex": "approve"
+ },
+ "tongguyi-daegu-context": {
+  "decision": "hold",
+  "tier": "contextual",
+  "rename": null,
+  "note_fix": null,
+  "reason": "이데일리 제목은 직접적이고 충분한 용례 근거다. 다만 지하철 출구 앞 통구이 맛집도 실제 매칭되며 경상·영남만으로도 후보가 된다. 일반 교통·광역 지칭만의 공기를 축소하고 정상 맛집 대조군 및 줄바꿈 보존을 반영한 뒤 재심한다.",
+  "codex": "hold"
+ }
+}

@@ -544,12 +544,11 @@ export default function LandingPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════
-          4-1. EXPRESSION RISK (준비 중)
+          4-1. EXPRESSION RISK
       ════════════════════════════════════════════════════════ */}
-      {/* TODO(lexicon): 사전 approved 전환 후 "준비 중" 문구 교체 */}
       <section style={{ background: "#fff", padding: "clamp(48px, 7vw, 80px) 24px", borderTop: `1px solid ${BORDER}` }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <SectionLabel>표현 리스크 · 준비 중</SectionLabel>
+          <SectionLabel>표현 리스크</SectionLabel>
           <h2 style={{
             fontFamily: "var(--font-display)",
             fontSize: "clamp(2rem, 4vw, 3.25rem)",
@@ -560,8 +559,8 @@ export default function LandingPage() {
             날짜뿐 아니라, <span style={{ color: RED }}>표현의 맥락</span>도.
           </h2>
           <p style={{ fontSize: "15px", color: MUTED, margin: 0, maxWidth: "640px", lineHeight: 1.65 }}>
-            커뮤니티 은어, 성별·지역 비하로 쓰일 수 있는 표현을 등록된 사전과 문맥으로 검토하는 기능을 준비하고 있습니다.
-            사람의 성향이나 소속은 판단하지 않습니다. 사전 승인 후 제공 범위를 안내합니다.
+            같은 표현도 쓰임에 따라 다릅니다. 커뮤니티 은어와 성별·지역 비하로 쓰일 수 있는 표현을
+            검증된 출처가 있는 사전과 문맥으로 함께 검토합니다. 사람의 성향이나 소속은 판단하지 않습니다.
           </p>
         </div>
       </section>

@@ -81,7 +81,8 @@ const PARTICLES = [
 /** 한글/영문/숫자가 아닌 문자 = 단어 경계 */
 const BOUNDARY = "[^\\p{L}\\p{N}]";
 
-const SENTENCE_DELIMITER = /[.!?…\n]/;
+// 문장 경계: 마침표·물음표·느낌표·말줄임표·줄바꿈. 단 "6.9"처럼 숫자 사이의 점은 소수점이라 자르지 않는다.
+const SENTENCE_DELIMITER = /(?<!\d)\.|\.(?!\d)|[!?…\n]/;
 
 function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -116,7 +117,12 @@ function testPattern(pattern: LexiconPattern, text: string): boolean {
 }
 
 function normalize(text: string): string {
-  return text.normalize("NFC").replace(/\s+/g, " ").trim();
+  // 줄바꿈은 문장 경계로 살려 둔다(cooccur 판정용). 가로 공백만 1개로 접는다.
+  return text
+    .normalize("NFC")
+    .replace(/[^\S\n]+/g, " ")
+    .replace(/\s*\n\s*/g, "\n")
+    .trim();
 }
 
 interface FieldText {

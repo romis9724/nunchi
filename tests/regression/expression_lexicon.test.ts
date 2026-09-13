@@ -197,6 +197,39 @@ describe("matchLexicon — 방언 대조군(-노 어미)은 0건", () => {
       ["community.no-ending"]
     );
   });
+
+  it("treats a line break inside the copy as a sentence boundary", () => {
+    assert.deepEqual(
+      matchedKeys(req({ copy: "노무현 대통령 추모 주간\n날씨가 춥노" })),
+      []
+    );
+  });
+});
+
+describe("matchLexicon — 문장 분리는 소수점을 자르지 않는다", () => {
+  const DECIMAL_COOCCUR = entry({
+    key: "community.six-point-nine",
+    term: "6.9",
+    tier: "contextual",
+    severity: "high",
+    patterns: [{ type: "regex", value: "(?<![0-9])6\\.9(?![0-9%])" }],
+    cooccur: ["남성|남자"],
+    benign_usages: ["치수·비율 등 일반 수치"],
+  });
+
+  it("matches a decimal pattern whose cooccur term is in the same sentence", () => {
+    assert.deepEqual(
+      matchLexicon(req({ copy: "남성 평균은 6.9라는 조롱" }), [DECIMAL_COOCCUR]).map((m) => m.entry.key),
+      ["community.six-point-nine"]
+    );
+  });
+
+  it("still splits on a sentence-final period", () => {
+    assert.deepEqual(
+      matchLexicon(req({ copy: "남성용 신상 출시. 할인율 6.9" }), [DECIMAL_COOCCUR]),
+      []
+    );
+  });
 });
 
 describe("matchLexicon — contextual 티어", () => {
