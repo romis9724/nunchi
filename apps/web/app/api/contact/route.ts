@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
     const adminEmail = process.env.ADMIN_EMAIL ?? process.env.GMAIL_USER ?? "romis9724@gmail.com";
     await sendMail({
       to: adminEmail,
-      subject: `[noonchi 문의] ${name.trim()}`,
+      subject: `[nunch-i 문의] ${name.trim()}`,
       replyTo: email.trim(),
       html: `
         <div style="font-family:sans-serif;max-width:600px;margin:0 auto">

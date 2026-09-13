@@ -3,7 +3,7 @@ import { CURATED_EVENT_COUNT } from "@noonchi/shared";
 import { SITE_HOST } from "@/lib/site";
 
 export const runtime = "edge";
-export const alt = "noonch-i — 캠페인 날짜 리스크 & 호재 검증";
+export const alt = "nunch-i — 캠페인 날짜 리스크 & 호재 검증";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -51,7 +51,7 @@ export default async function OpenGraphImage() {
               gap: 10,
             }}
           >
-            noonch
+            nunch
             <span
               style={{
                 width: 14,

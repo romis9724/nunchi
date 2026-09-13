@@ -258,7 +258,7 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
                       .map((f) => `${f.term}(${EXPRESSION_STATUS_SCHEME[f.status].label})`)
                       .join(", ")}`
                   : "";
-                const text = `[noonch-i 검토 결과] ${date} ${campaignName ?? ""}\n등급: ${result.grade} — ${GRADE_LABEL[result.grade]}\n${result.rationale}${expressionLine}`;
+                const text = `[nunch-i 검토 결과] ${date} ${campaignName ?? ""}\n등급: ${result.grade} — ${GRADE_LABEL[result.grade]}\n${result.rationale}${expressionLine}`;
                 navigator.clipboard.writeText(text).catch(() => {});
               }}
               style={{

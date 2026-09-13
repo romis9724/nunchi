@@ -23,10 +23,10 @@ const RISK_COLOR: Record<string, string> = {
 };
 
 const RISK_LABEL: Record<string, string> = {
-  critical: "즉각회피",
+  critical: "회피 권고",
   high:     "재검토",
   medium:   "주의",
-  low:      "안전",
+  low:      "우려 낮음",
 };
 
 const CAT: Record<string, { label: string; color: string; bg: string }> = {

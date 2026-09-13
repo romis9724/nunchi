@@ -5,6 +5,7 @@ import Link from "next/link";
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, getDay, isToday } from "date-fns";
 import { ko } from "date-fns/locale";
 import type { Grade } from "@noonchi/shared";
+import { GRADE_LABEL } from "@noonchi/shared";
 import { GradeBadge } from "@/components/result-card/GradeBadge";
 import { PageHeader } from "@/components/ui";
 
@@ -68,12 +69,7 @@ interface CalendarClientProps {
   events: CalendarEvent[];
 }
 
-const LEGEND_ITEMS: { grade: Grade; label: string }[] = [
-  { grade: "F", label: "즉각회피" },
-  { grade: "D", label: "재검토" },
-  { grade: "C", label: "주의" },
-  { grade: "B", label: "안전" },
-];
+const LEGEND_GRADES: Grade[] = ["F", "D", "C", "B"];
 
 export function CalendarClient({ events }: CalendarClientProps) {
   const [current, setCurrent] = useState(new Date());
@@ -167,7 +163,7 @@ export function CalendarClient({ events }: CalendarClientProps) {
             background: "#fff", padding: "8px 14px", borderRadius: "999px",
             border: "1px solid var(--ms-border)",
           }}>
-            {LEGEND_ITEMS.map(({ grade, label }) => (
+            {LEGEND_GRADES.map((grade) => (
               <div key={grade} style={{ display: "flex", alignItems: "center", gap: "6px" }}>
                 <span
                   aria-hidden="true"
@@ -178,7 +174,7 @@ export function CalendarClient({ events }: CalendarClientProps) {
                   }}
                 />
                 <span style={{ fontSize: "12px", fontWeight: 600, color: "var(--ms-text-2)", letterSpacing: "0.02em" }}>
-                  {label}
+                  {GRADE_LABEL[grade]}
                 </span>
               </div>
             ))}

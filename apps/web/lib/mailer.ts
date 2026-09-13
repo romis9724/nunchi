@@ -27,7 +27,7 @@ interface SendMailOptions {
 
 export async function sendMail({ to, subject, html, replyTo }: SendMailOptions) {
   const transporter = createTransporter();
-  const from = `noonch-i <${process.env.GMAIL_USER}>`;
+  const from = `nunch-i <${process.env.GMAIL_USER}>`;
 
   await transporter.sendMail({ from, to, subject, html, replyTo });
 }

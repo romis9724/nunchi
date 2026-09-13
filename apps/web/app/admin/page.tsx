@@ -21,7 +21,7 @@ export default function AdminPage() {
         <PageHeader
           eyebrow="관리자"
           eyebrowIcon="lock"
-          title={<>noonch-i <span style={{ color: "var(--brand-red)" }}>관리 패널</span></>}
+          title={<>nunch-i <span style={{ color: "var(--brand-red)" }}>관리 패널</span></>}
           subtitle="이벤트·유저·문의·뉴스 큐를 한곳에서 관리합니다."
         />
 

@@ -192,11 +192,11 @@ export interface WaitlistEntry {
 export const CURATED_EVENT_COUNT = 50;
 
 export const GRADE_LABEL: Record<Grade, string> = {
-  F: "회피 필수",
+  F: "회피 권고",
   D: "재검토 권고",
   C: "일반 주의",
-  B: "안전",
-  A: "최적 타이밍",
+  B: "우려 낮음",
+  A: "긍정 연관",
 };
 
 export const GRADE_EMOJI: Record<Grade, string> = {

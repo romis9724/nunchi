@@ -5,7 +5,7 @@ import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "개인정보처리방침",
-  description: "noonch-i 서비스의 개인정보 수집·이용·전송·보관과 권리 행사 방법 안내",
+  description: "nunch-i 서비스의 개인정보 수집·이용·전송·보관과 권리 행사 방법 안내",
   alternates: { canonical: `${SITE_URL}/privacy` },
 };
 

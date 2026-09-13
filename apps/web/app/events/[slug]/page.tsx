@@ -86,7 +86,7 @@ export default async function EventDetailPage({ params }: PageProps) {
     headline: event.name,
     description: event.summary,
     about: { "@type": "Thing", name: event.name },
-    publisher: { "@type": "Organization", name: "noonch-i", url: SITE_URL },
+    publisher: { "@type": "Organization", name: "nunch-i", url: SITE_URL },
   };
 
   return (

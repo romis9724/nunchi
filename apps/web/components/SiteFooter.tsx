@@ -3,7 +3,7 @@ import { NoonchiLogo } from "./NoonchiLogo";
 
 /**
  * 인라인 브랜드 마크 — 푸터 copyright 등 본문 흐름에 자연스럽게 삽입.
- * 풀 로고와 동일한 'noonch ● i' 패턴, 작은 크기 + 인접 텍스트 색상 상속.
+ * 풀 로고와 동일한 'nunch ● i' 패턴, 작은 크기 + 인접 텍스트 색상 상속.
  */
 function InlineBrand({ color = "currentColor" }: { color?: string }) {
   return (
@@ -17,7 +17,7 @@ function InlineBrand({ color = "currentColor" }: { color?: string }) {
       color,
       lineHeight: 1,
     }}>
-      noonch
+      nunch
       <span
         aria-hidden="true"
         style={{

@@ -15,10 +15,10 @@ interface Event {
 
 // DB 값 → 화면 표시
 const RISK_LABEL: Record<string, string> = {
-  critical: "즉각 회피",
+  critical: "회피 권고",
   high:     "재검토",
   medium:   "주의",
-  low:      "안전",
+  low:      "우려 낮음",
 };
 const RISK_COLOR: Record<string, string> = {
   critical: "#C50F1F",
