@@ -3,10 +3,11 @@
 **/.next
 **/dist
 
-# 시크릿 (런타임에 docker -e 로 주입)
-.env
-.env.*
+# 시크릿 (런타임에 env_file/-e 로 주입) — 하위 디렉터리까지 전부 제외
+**/.env
+**/.env.*
 !.env.example
+!.env.docker.example
 
 # VCS·에이전트·가상환경
 .git

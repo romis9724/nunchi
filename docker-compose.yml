@@ -1,0 +1,63 @@
+# Nunchi 로컬 실행 (web=3100, db=5434 — 호스트 3000/5432/5433 은 다른 서비스가 점유)
+#   1) cp .env.docker.example .env.docker  →  값 채우고  docker compose --profile tools build
+#   2) docker compose up -d db web                                    # http://localhost:3100
+#   3) docker compose run --rm tools                                  # 마이그레이션(pnpm db:migrate)
+#   4) docker compose run --rm tools node scripts/seed-rds.mjs --embed  # events 50건(_template 제외) + 1024d 임베딩
+# 재빌드: docker compose --profile tools build && docker compose up -d web
+
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: nunchi-db
+    environment:
+      POSTGRES_USER: noonchi
+      POSTGRES_PASSWORD: noonchi
+      POSTGRES_DB: noonchi
+    ports:
+      - "5434:5432"
+    volumes:
+      - nunchi-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U noonchi -d noonchi"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nunchi-web
+    ports:
+      - "3100:3000"
+    env_file: .env.docker
+    environment:
+      DATABASE_URL: postgresql://noonchi:noonchi@db:5432/noonchi
+      PGSSL: disable
+      # 1 로 두면 아직 승인되지 않은 표현 사전 draft 항목까지 로드 (로컬 미리보기 전용)
+      LEXICON_INCLUDE_DRAFT: ${LEXICON_INCLUDE_DRAFT:-0}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # 마이그레이션·시딩 전용. runner 가 아닌 builder 스테이지를 쓴다
+  # (tsx/pg 등 워크스페이스 의존성이 리눅스용으로 설치되어 있는 이미지).
+  tools:
+    profiles: ["tools"]
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
+    env_file: .env.docker
+    environment:
+      DATABASE_URL: postgresql://noonchi:noonchi@db:5432/noonchi
+      PGSSL: disable
+    depends_on:
+      db:
+        condition: service_healthy
+    command: ["pnpm", "db:migrate"]
+
+volumes:
+  nunchi-pgdata:
