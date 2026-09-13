@@ -102,10 +102,12 @@ CREATE TABLE IF NOT EXISTS reviews (
   suggestions     TEXT[]  NOT NULL DEFAULT '{}',
   llm_rationale   TEXT NOT NULL,
   rule_triggered  BOOLEAN NOT NULL DEFAULT FALSE,
+  expression_flags JSONB  NOT NULL DEFAULT '[]',
   cached_until    TIMESTAMPTZ NOT NULL,
   reviewed_at     TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 ALTER TABLE reviews ADD COLUMN IF NOT EXISTS grade TEXT CHECK (grade IN ('F', 'D', 'C', 'B', 'A'));
+ALTER TABLE reviews ADD COLUMN IF NOT EXISTS expression_flags JSONB NOT NULL DEFAULT '[]';
 CREATE INDEX IF NOT EXISTS reviews_input_hash ON reviews (input_hash);
 CREATE INDEX IF NOT EXISTS reviews_date       ON reviews (date);
 

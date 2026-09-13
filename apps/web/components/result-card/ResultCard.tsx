@@ -2,7 +2,12 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import type { CheckResponse, Grade } from "@noonchi/shared";
+import type {
+  CheckResponse,
+  ExpressionFlag,
+  ExpressionFlagStatus,
+  Grade,
+} from "@noonchi/shared";
 import { GRADE_LABEL, toneToGrade } from "@noonchi/shared";
 import { GradeBadge } from "./GradeBadge";
 
@@ -73,6 +78,23 @@ const GRADE_SCHEME: Record<Grade, {
     tagBg: "#DBEAFE",
     tagBorder: "#93C5FD",
   },
+};
+
+/* ── 표현 리스크 tokens (ADR-0004) ──────────────────────────── */
+// 사람을 분류하지 않는다 — 표현의 "용법"에 대한 권고만 라벨로 쓴다.
+const EXPRESSION_STATUS_SCHEME: Record<
+  ExpressionFlagStatus,
+  { label: string; color: string; bg: string; border: string }
+> = {
+  harmful: { label: "재검토 권고", color: "#DC2626", bg: "#FEE2E2", border: "#FCA5A5" },
+  uncertain: { label: "문맥 확인 권고", color: "#B45309", bg: "#FEF3C7", border: "#FCD34D" },
+  informational: { label: "참고", color: "#4B5563", bg: "#F3F4F6", border: "#E5E7EB" },
+};
+
+const EXPRESSION_FIELD_LABEL: Record<ExpressionFlag["field"], string> = {
+  campaignName: "캠페인명",
+  copy: "카피",
+  assetKeywords: "비주얼 키워드",
 };
 
 const GRADE_HEADLINE: Record<Grade, string> = {
@@ -231,7 +253,12 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
             </button>
             <button
               onClick={() => {
-                const text = `[noonch-i 검토 결과] ${date} ${campaignName ?? ""}\n등급: ${result.grade} — ${GRADE_LABEL[result.grade]}\n${result.rationale}`;
+                const expressionLine = result.expressionFlags?.length
+                  ? `\n표현 리스크: ${result.expressionFlags
+                      .map((f) => `${f.term}(${EXPRESSION_STATUS_SCHEME[f.status].label})`)
+                      .join(", ")}`
+                  : "";
+                const text = `[noonch-i 검토 결과] ${date} ${campaignName ?? ""}\n등급: ${result.grade} — ${GRADE_LABEL[result.grade]}\n${result.rationale}${expressionLine}`;
                 navigator.clipboard.writeText(text).catch(() => {});
               }}
               style={{
@@ -363,6 +390,156 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
                 </span>
               ))}
             </div>
+          </div>
+        </>
+      )}
+
+      {/* ── EXPRESSION RISK (ADR-0004) ────────────────────────── */}
+      {/* undefined = 표현 레이어 도입 전 캐시 결과 → 섹션 자체를 감춘다 */}
+      {result.expressionFlags !== undefined && (
+        <>
+          <Divider />
+          <div style={{ padding: "16px 20px" }}>
+            <SectionLabel>표현 리스크</SectionLabel>
+            {result.expressionFlags.length === 0 ? (
+              <p
+                style={{
+                  fontSize: "13px",
+                  color: "var(--ms-text-3)",
+                  lineHeight: 1.65,
+                  margin: 0,
+                }}
+              >
+                등록된 표현 사전에서 추가 위험을 찾지 못했습니다.
+              </p>
+            ) : (
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                {result.expressionFlags.map((flag) => {
+                  const exScheme = EXPRESSION_STATUS_SCHEME[flag.status];
+                  return (
+                    <div
+                      key={flag.key}
+                      style={{
+                        background: "#fff",
+                        border: `1px solid ${exScheme.border}`,
+                        borderLeft: `4px solid ${exScheme.color}`,
+                        borderRadius: "8px",
+                        padding: "12px 14px",
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "8px",
+                          marginBottom: "6px",
+                          flexWrap: "wrap",
+                        }}
+                      >
+                        <span
+                          style={{
+                            fontSize: "13px",
+                            fontWeight: 700,
+                            color: exScheme.color,
+                            background: exScheme.bg,
+                            border: `1px solid ${exScheme.border}`,
+                            padding: "1px 6px",
+                            borderRadius: "3px",
+                            letterSpacing: "0.05em",
+                            whiteSpace: "nowrap",
+                          }}
+                        >
+                          {exScheme.label}
+                        </span>
+                        <span
+                          style={{
+                            fontWeight: 700,
+                            fontSize: "13px",
+                            color: "var(--ms-text)",
+                            fontFamily: "var(--font-display)",
+                            letterSpacing: "-0.01em",
+                            wordBreak: "break-word",
+                          }}
+                        >
+                          ‘{flag.term}’
+                        </span>
+                        <span style={{ fontSize: "11.5px", color: "var(--ms-text-3)" }}>
+                          {EXPRESSION_FIELD_LABEL[flag.field]}에서 발견
+                        </span>
+                      </div>
+
+                      <p
+                        style={{
+                          fontSize: "13px",
+                          color: "var(--ms-text-2)",
+                          lineHeight: 1.65,
+                          margin: 0,
+                        }}
+                      >
+                        {flag.note}
+                      </p>
+
+                      {flag.rationale && (
+                        <p
+                          style={{
+                            fontSize: "13px",
+                            color: "var(--ms-text-2)",
+                            lineHeight: 1.65,
+                            margin: "6px 0 0",
+                          }}
+                        >
+                          {flag.rationale}
+                        </p>
+                      )}
+
+                      {flag.alternative && (
+                        <p
+                          style={{
+                            fontSize: "13px",
+                            color: "var(--ms-text)",
+                            lineHeight: 1.65,
+                            margin: "6px 0 0",
+                          }}
+                        >
+                          <strong>대안:</strong> {flag.alternative}
+                        </p>
+                      )}
+
+                      {flag.sources.length > 0 && (
+                        <div
+                          style={{
+                            display: "flex",
+                            gap: "12px",
+                            flexWrap: "wrap",
+                            paddingTop: "8px",
+                            marginTop: "8px",
+                            borderTop: "1px dashed var(--ms-border)",
+                          }}
+                        >
+                          {flag.sources.map((ref) => (
+                            <a
+                              key={ref.url}
+                              href={ref.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{
+                                fontSize: "12px",
+                                color: "var(--ms-text-2)",
+                                textDecoration: "underline",
+                                textUnderlineOffset: "2px",
+                                wordBreak: "break-word",
+                              }}
+                            >
+                              {ref.label} ↗
+                            </a>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </>
       )}

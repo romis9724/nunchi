@@ -13,7 +13,8 @@
     "test:orchestrator": "tsx --test src/embeddingOrchestrator.test.ts",
     "test:naver-news": "tsx --test src/naverNewsClient.test.ts",
     "test:news-filter": "tsx --test src/newsFilter.test.ts",
-    "test": "tsx --test src/generateEmbedding.test.ts src/ollamaEmbedClient.test.ts src/geminiEmbedClient.test.ts src/embeddingOrchestrator.test.ts src/naverNewsClient.test.ts src/newsFilter.test.ts"
+    "test:parse-review": "tsx --test src/claude.test.ts",
+    "test": "tsx --test src/generateEmbedding.test.ts src/ollamaEmbedClient.test.ts src/geminiEmbedClient.test.ts src/embeddingOrchestrator.test.ts src/naverNewsClient.test.ts src/newsFilter.test.ts src/claude.test.ts"
   },
   "dependencies": {
     "@noonchi/shared": "workspace:*"

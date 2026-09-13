@@ -1,8 +1,21 @@
 import crypto from "crypto";
-import type { CheckRequest, CheckResponse, EventRecord, Grade } from "@noonchi/shared";
+import type {
+  CheckRequest,
+  CheckResponse,
+  EventRecord,
+  Grade,
+} from "@noonchi/shared";
 import { toneToGrade } from "@noonchi/shared";
-import { callReviewEngine, generateEmbedding } from "@noonchi/llm";
+import { callReviewEngine, generateEmbedding, PROMPT_VERSION } from "@noonchi/llm";
 import { matchCriticalKeywords } from "./critical-keywords";
+import {
+  buildExpressionFlags,
+  getActiveLexicon,
+  LEXICON_VERSION,
+  matchLexicon,
+  TIER_DEFAULT_STATUS,
+  toExpressionFlag,
+} from "./expression-lexicon";
 import {
   findEmbeddedApprovedEvents,
   findNearbyEvents as findNearbyEventsRepo,
@@ -87,13 +100,30 @@ const CACHE_TTL_DAYS = 7;
 function hashInput(req: CheckRequest): string {
   const payload = JSON.stringify({
     date: req.date,
+    // campaignName 도 검토 대상(룰·표현 매칭이 읽는다) — 키에서 빠지면
+    // 캠페인명만 다른 입력이 남의 결과를 돌려받는다.
+    campaignName: (req.campaignName ?? "").trim().toLowerCase(),
     copy: req.copy.trim().toLowerCase(),
     assetKeywords: (req.assetKeywords ?? [])
       .map((k) => k.trim().toLowerCase())
       .sort(),
+    // 사전·프롬프트가 바뀌면 기존 캐시는 자동 무효화된다.
+    lexiconVersion: LEXICON_VERSION,
+    promptVersion: PROMPT_VERSION,
   });
   return crypto.createHash("sha256").update(payload).digest("hex");
 }
+
+/** F > D > C > B > A. 둘 중 더 나쁜 등급을 고른다. */
+const GRADE_BY_SEVERITY: Grade[] = ["F", "D", "C", "B", "A"];
+
+function worseGrade(a: Grade, b: Grade): Grade {
+  return GRADE_BY_SEVERITY.indexOf(a) <= GRADE_BY_SEVERITY.indexOf(b) ? a : b;
+}
+
+const RISK_SCORE_BY_GRADE: Record<Grade, CheckResponse["riskScore"]> = {
+  F: "critical", D: "danger", C: "caution", B: "safe", A: "safe",
+};
 
 function matchKeywords(req: CheckRequest): string[] {
   return matchCriticalKeywords({
@@ -143,6 +173,7 @@ async function getCached(hash: string): Promise<CheckResponse | null> {
       suggestions: row.suggestions,
       ruleTriggered: row.rule_triggered,
       cached: true,
+      expressionFlags: row.expression_flags ?? [],
     };
   } catch {
     return null;
@@ -171,6 +202,7 @@ async function saveCache(
       suggestions: result.suggestions,
       llmRationale: result.rationale,
       ruleTriggered: result.ruleTriggered,
+      expressionFlags: result.expressionFlags ?? [],
       cachedUntil: cachedUntil.toISOString(),
     });
   } catch {
@@ -195,11 +227,13 @@ export async function runReviewEngine(
     if (cached) return cached;
   }
 
-  // 2. Rule-based keyword match (in-memory, instant)
+  // 2. Rule-based keyword match + 표현 사전 매칭 (in-memory, instant)
   const flaggedKeywords = matchKeywords(req);
   const ruleTriggered = flaggedKeywords.length > 0;
+  const lexMatches = matchLexicon(req, getActiveLexicon());
 
   if (ruleTriggered) {
+    // ponytail: 룰-F 경로는 LLM 문맥판정 생략(이미 F). 티어 기본 상태로만 표시한다.
     const result: CheckResponse = {
       grade: "F",
       riskScore: "critical",
@@ -209,6 +243,9 @@ export async function runReviewEngine(
       suggestions: [],
       ruleTriggered: true,
       cached: false,
+      expressionFlags: lexMatches.map((m) =>
+        toExpressionFlag(m, TIER_DEFAULT_STATUS[m.entry.tier])
+      ),
     };
     if (!opts?.skipCache) await saveCache(hash, req, result);
     return result;
@@ -226,16 +263,20 @@ export async function runReviewEngine(
     request: req,
     matchedEvents: candidateEvents,
     flaggedByRule: flaggedKeywords,
+    lexiconMatches: lexMatches.map((m) => m.entry),
   });
 
-  const gradeFromLLM: Grade = llmResult.grade;
-  const riskScoreMap: Record<Grade, CheckResponse["riskScore"]> = {
-    F: "critical", D: "danger", C: "caution", B: "safe", A: "safe",
-  };
+  const expressionFlags = buildExpressionFlags(lexMatches, llmResult.expressionRisk);
+
+  // hard 티어는 등급 상한 D (ADR-0004 결정 1). contextual·watch 는 등급 불변.
+  const hasHardExpression = lexMatches.some((m) => m.entry.tier === "hard");
+  const grade: Grade = hasHardExpression
+    ? worseGrade(llmResult.grade, "D")
+    : llmResult.grade;
 
   const result: CheckResponse = {
-    grade: gradeFromLLM,
-    riskScore: riskScoreMap[gradeFromLLM],
+    grade,
+    riskScore: RISK_SCORE_BY_GRADE[grade],
     flaggedKeywords,
     matchedEvents: candidateEvents.map((e) => ({
       id: e.id ?? e.slug,
@@ -252,6 +293,7 @@ export async function runReviewEngine(
     ruleTriggered: false,
     cached: false,
     transient: llmResult.transient,
+    expressionFlags,
   };
 
   if (!llmResult.transient && !opts?.skipCache) {

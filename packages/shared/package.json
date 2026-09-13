@@ -7,7 +7,8 @@
   "types": "./src/index.ts",
   "scripts": {
     "type-check": "tsc --noEmit",
-    "test": "tsx --test src/validateEventSchema.test.ts",
+    "test": "tsx --test src/validateEventSchema.test.ts src/validateLexiconSchema.test.ts",
+    "test:lexicon": "tsx --test src/validateLexiconSchema.test.ts",
     "test:count": "tsx --test src/countEventFiles.test.ts",
     "test:completeness": "tsx --test src/assertDataCompleteness.test.ts"
   },

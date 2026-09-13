@@ -57,6 +57,91 @@ export interface KeywordBlacklist {
   context_note?: string;
 }
 
+// ---------------------------------------------------------------------------
+// 표현 리스크 레이어 (ADR-0004) — data/lexicon/*.json 스키마
+// ---------------------------------------------------------------------------
+
+export type LexiconCategory =
+  | "community"
+  | "gender"
+  | "region"
+  | "age"
+  | "disability"
+  | "sexual_minority"
+  | "race"
+  | "religion";
+
+/**
+ * hard        정상 용법이 사실상 없는 명백한 비하 → 등급 상한 D
+ * contextual  정상 용법과 겹침(음식·지명·방언) → LLM 문맥 판정, 등급 불변
+ * watch       기원·의미가 다투어지는 표현 → 정보 제공만
+ */
+export type LexiconTier = "hard" | "contextual" | "watch";
+
+/** approved 만 런타임 로드된다 (LEXICON_INCLUDE_DRAFT=1 이면 draft 미리보기). */
+export type LexiconStatus = "draft" | "approved" | "deprecated";
+
+export interface LexiconPattern {
+  type: "literal" | "regex";
+  value: string;
+}
+
+export interface LexiconSource {
+  label: string;
+  url: string;
+  type: "official" | "academic" | "news" | "wiki";
+  /** ISO date — 출처 확인 시점 */
+  accessed: string;
+}
+
+export interface LexiconEntry {
+  key: string;
+  term: string;
+  category: LexiconCategory;
+  tier: LexiconTier;
+  severity: "critical" | "high" | "medium";
+  status: LexiconStatus;
+  patterns: LexiconPattern[];
+  /** 있으면 patterns 와 **같은 문장** 안에서 전부 매칭돼야 플래그 (방언 오탐 방지) */
+  cooccur?: string[];
+  meaning: string;
+  benign_usages: string[];
+  harmful_example: string;
+  benign_example: string;
+  note: string;
+  alternative?: string;
+  sources: LexiconSource[];
+  reviewed_by?: string | null;
+  reviewed_at?: string | null;
+}
+
+export type ExpressionDisposition = "harmful" | "benign" | "uncertain";
+
+/** LLM 이 표현 사전 항목 하나에 대해 내린 **용법** 판정 (사람에 대한 판정이 아니다). */
+export interface ExpressionVerdict {
+  key: string;
+  disposition: ExpressionDisposition;
+  rationale: string;
+  alternative?: string;
+}
+
+/** harmful=재검토 권고 · uncertain=문맥 확인 권고 · informational=참고 */
+export type ExpressionFlagStatus = "harmful" | "uncertain" | "informational";
+
+export interface ExpressionFlag {
+  key: string;
+  term: string;
+  category: LexiconCategory;
+  tier: LexiconTier;
+  status: ExpressionFlagStatus;
+  field: "campaignName" | "copy" | "assetKeywords";
+  note: string;
+  /** LLM 문맥 판정 근거. 룰-F 경로에서는 없음 */
+  rationale?: string;
+  alternative?: string;
+  sources: { label: string; url: string }[];
+}
+
 export interface CheckRequest {
   date: string;
   campaignName?: string;
@@ -89,6 +174,8 @@ export interface CheckResponse {
   personalizedComment?: string;
   /** true면 LLM 일시 장애로 인한 임시 fallback 결과 — UI에서 경고 표시 권장 */
   transient?: boolean;
+  /** 표현 사전(ADR-0004) 플래그. undefined = 레이어 도입 전 캐시된 구버전 결과 */
+  expressionFlags?: ExpressionFlag[];
 }
 
 export interface WaitlistEntry {
