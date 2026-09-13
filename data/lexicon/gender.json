@@ -1,0 +1,971 @@
+[
+  {
+    "key": "kimchi-nyeo",
+    "term": "김치녀",
+    "category": "gender",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "김치녀"
+      }
+    ],
+    "meaning": "'김치+녀' 구성으로 한국 여성 전반을 물질적·의존적이라고 규정해 비하하는 표현. 국립국어원 자료에서 성차별 표현으로 분류하며, 국립국어원은 신조어 채집에서 제외한 바 있음.",
+    "benign_usages": [],
+    "harmful_example": "김치녀 감별법",
+    "benign_example": "",
+    "note": "여성 전반을 비하하는 표현으로 널리 알려져 있습니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "시빅뉴스 저질, 패륜 '일베 용어,' 일반인 대화에도 스며들어 (2016-06-17)",
+        "url": "https://www.civicnews.com/news/articleView.html?idxno=3165",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "아시아경제 차고 넘치는 'OO남 vs OO녀'..혐오민국, 어디까지 왔나 (2019-12-19, 다음뉴스)",
+        "url": "https://v.daum.net/v/NddJnZ6yxY",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "여성신문 도 넘은 여성 혐오, '일베'만의 문제 아니다 (2015-02-03)",
+        "url": "https://www.womennews.co.kr/news/articleView.html?idxno=80227",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "doenjang-nyeo",
+    "term": "된장녀",
+    "category": "gender",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "된장녀"
+      }
+    ],
+    "meaning": "소비 성향을 근거로 여성을 허영심 있다고 규정해 비하하는 표현. 국립국어원 자료와 언론에서 성차별 표현으로 분류.",
+    "benign_usages": [],
+    "harmful_example": "된장녀 필수템",
+    "benign_example": "",
+    "note": "여성을 소비 성향으로 낙인찍는 비하 표현으로 알려져 있습니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "아시아경제 차고 넘치는 'OO남 vs OO녀'..혐오민국, 어디까지 왔나 (2019-12-19, 다음뉴스)",
+        "url": "https://v.daum.net/v/NddJnZ6yxY",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "세계일보 김치녀·한남충·개저씨·김여사… 오늘도 '혐오'하십니까? (2018-05-15)",
+        "url": "https://m.segye.com/view/20180514004929",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "mom-chung",
+    "term": "맘충",
+    "category": "gender",
+    "tier": "contextual",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "맘충"
+      }
+    ],
+    "meaning": "'맘(mom)+충(蟲)' 구성으로 어머니를 벌레에 비유해 비하하는 표현. 국립국어원 자료에서 성차별 표현으로 분류. 기원 주장은 다양하며 특정 커뮤니티 기원으로 단정하지 않음.",
+    "benign_usages": [
+      "해당 표현을 비판·인용하는 문맥(예: 노키즈존·혐오 표현 논의)",
+      "자조적 자기지칭"
+    ],
+    "harmful_example": "맘충 없는 카페",
+    "benign_example": "'맘충'이라는 말이 왜 문제인지 이야기해요",
+    "note": "어머니를 벌레에 비유하는 비하 표현으로 알려져 있습니다. 해당 표현 자체를 비판·인용하는 문맥이 아니라면 재검토를 권합니다.",
+    "alternative": "'양육자', '아이 동반 고객'",
+    "sources": [
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "머니투데이 \"너 일베야?\" 오해 피하려면…이 단어 주의하세요 (2020-07-30)",
+        "url": "https://www.mt.co.kr/culture/2020/07/30/2020072914584753531",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "세계일보 김치녀·한남충·개저씨·김여사… 오늘도 '혐오'하십니까? (2018-05-15)",
+        "url": "https://m.segye.com/view/20180514004929",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "아시아경제 차고 넘치는 'OO남 vs OO녀'..혐오민국, 어디까지 왔나 (2019-12-19, 다음뉴스)",
+        "url": "https://v.daum.net/v/NddJnZ6yxY",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "samil-han",
+    "term": "삼일한",
+    "category": "gender",
+    "tier": "hard",
+    "severity": "critical",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "삼일한"
+      }
+    ],
+    "meaning": "'여자는 삼 일에 한 번씩 패야 한다'의 준말로 여성에 대한 폭력을 정당화하는 표현. 국립국어원 자료와 국가인권위 실태조사 보도에서 여성 혐오 표현 사례로 기록.",
+    "benign_usages": [],
+    "harmful_example": "역시 삼일한",
+    "benign_example": "",
+    "note": "폭력을 정당화하는 표현입니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "서울신문 [단독] '메퇘지' '삼일한'…도 넘는 여성혐오, 처벌커녕 시정도 어렵다 (2019-02-17)",
+        "url": "https://www.seoul.co.kr/news/society/2019/02/17/20190217500071",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "여성신문 도 넘은 여성 혐오, '일베'만의 문제 아니다 (2015-02-03)",
+        "url": "https://www.womennews.co.kr/news/articleView.html?idxno=80227",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "boseul-achi",
+    "term": "보슬아치",
+    "category": "gender",
+    "tier": "hard",
+    "severity": "critical",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "보슬아치"
+      }
+    ],
+    "meaning": "여성 성기 비속어와 '벼슬아치'를 결합해 여성이 성별로 특혜를 누린다고 비하하는 표현. 국립국어원 자료와 언론에서 여성 혐오 표현으로 기록.",
+    "benign_usages": [],
+    "harmful_example": "보슬아치 특혜 논란",
+    "benign_example": "",
+    "note": "비속어를 포함해 여성을 비하하는 표현입니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "서울신문 [단독] '메퇘지' '삼일한'…도 넘는 여성혐오, 처벌커녕 시정도 어렵다 (2019-02-17)",
+        "url": "https://www.seoul.co.kr/news/society/2019/02/17/20190217500071",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "여성신문 도 넘은 여성 혐오, '일베'만의 문제 아니다 (2015-02-03)",
+        "url": "https://www.womennews.co.kr/news/articleView.html?idxno=80227",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "bojeok-bo",
+    "term": "보적보",
+    "category": "gender",
+    "tier": "hard",
+    "severity": "critical",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "보적보"
+      }
+    ],
+    "meaning": "'여자의 적은 여자'를 여성 성기 비속어로 바꿔 표현한 말. 언론에서 여성 혐오 표현 사례로 기록.",
+    "benign_usages": [],
+    "harmful_example": "보적보는 과학",
+    "benign_example": "",
+    "note": "비속어를 포함해 여성을 비하하는 표현입니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "서울신문 [단독] '메퇘지' '삼일한'…도 넘는 여성혐오, 처벌커녕 시정도 어렵다 (2019-02-17)",
+        "url": "https://www.seoul.co.kr/news/society/2019/02/17/20190217500071",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "bojeon-kkae",
+    "term": "보전깨",
+    "category": "gender",
+    "tier": "hard",
+    "severity": "critical",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "보전깨"
+      }
+    ],
+    "meaning": "여성 성기에 대한 극단적 폭력을 뜻하는 준말. 일베저장소에서 화제가 되어 확산된 것으로 언론이 보고.",
+    "benign_usages": [],
+    "harmful_example": "(공격적 용법은 성폭력 서술이어서 예문 생략)",
+    "benign_example": "",
+    "note": "극단적 성폭력을 뜻하는 표현입니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "여성신문 도 넘은 여성 혐오, '일베'만의 문제 아니다 (2015-02-03)",
+        "url": "https://www.womennews.co.kr/news/articleView.html?idxno=80227",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "sangpye-nyeo",
+    "term": "상폐녀",
+    "category": "gender",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "상폐녀"
+      },
+      {
+        "type": "literal",
+        "value": "상장폐지녀"
+      }
+    ],
+    "meaning": "'상장폐지+녀' 구성으로 30대 이상 미혼 여성을 가치가 사라진 주식에 비유해 비하하는 표현. 2012~2013년 주식 갤러리에서 만들어진 것으로 알려지며 언론이 여성 혐오 표현으로 보고.",
+    "benign_usages": [],
+    "harmful_example": "30대면 상폐녀지",
+    "benign_example": "",
+    "note": "나이를 근거로 여성을 비하하는 표현입니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "여성신문 도 넘은 여성 혐오, '일베'만의 문제 아니다 (2015-02-03)",
+        "url": "https://www.womennews.co.kr/news/articleView.html?idxno=80227",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "나무위키 상폐녀",
+        "url": "https://namu.wiki/w/%EC%83%81%ED%8F%90%EB%85%80",
+        "type": "wiki",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "kim-yeosa",
+    "term": "김여사",
+    "category": "gender",
+    "tier": "contextual",
+    "severity": "medium",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "김\\s?여사"
+      }
+    ],
+    "meaning": "여성 운전자를 운전이 미숙한 사람으로 일반화해 비하하는 호칭. 국립국어원 자료와 언론에서 성차별 표현으로 분류. 실제 인물에 대한 존칭 '김 여사'와 표면형이 같다.",
+    "benign_usages": [
+      "실제 인물에 대한 호칭 '김 여사'"
+    ],
+    "harmful_example": "김여사 주차 실력",
+    "benign_example": "김 여사님이 매장을 방문하셨습니다",
+    "note": "실제 인물 호칭이 아니라면 여성 운전자를 비하하는 표현으로 읽힐 수 있습니다. 확인을 권합니다.",
+    "alternative": "'초보 운전자', '운전자'",
+    "sources": [
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "세계일보 김치녀·한남충·개저씨·김여사… 오늘도 '혐오'하십니까? (2018-05-15)",
+        "url": "https://m.segye.com/view/20180514004929",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "yeojeok-yeo",
+    "term": "여적여",
+    "category": "gender",
+    "tier": "contextual",
+    "severity": "medium",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "여적여"
+      },
+      {
+        "type": "regex",
+        "value": "여자의\\s?적은\\s?여자"
+      }
+    ],
+    "meaning": "'여자의 적은 여자'의 준말로 여성 간 갈등을 성별 특성으로 일반화하는 고정관념 프레임. 언론이 여성 혐오 프레임으로 비판.",
+    "benign_usages": [
+      "해당 프레임을 비판·반박하는 문맥(예: '여적여는 없다')"
+    ],
+    "harmful_example": "여적여 현실판",
+    "benign_example": "여적여라는 말, 이제 그만",
+    "note": "여성 간 관계를 고정관념으로 일반화하는 프레임으로 비판받는 표현입니다. 프레임을 반박하는 문맥이 아니라면 확인을 권합니다.",
+    "alternative": "'여돕여' 등 연대를 표현하는 문구",
+    "sources": [
+      {
+        "label": "경향신문 '여적여' 프레임의 낡은 봉인 풀기 [플랫] (2021-09-06)",
+        "url": "https://www.khan.co.kr/article/202109061449001",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "서울신문 [단독] '메퇘지' '삼일한'…도 넘는 여성혐오, 처벌커녕 시정도 어렵다 (2019-02-17)",
+        "url": "https://www.seoul.co.kr/news/society/2019/02/17/20190217500071",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "megal",
+    "term": "메갈",
+    "category": "gender",
+    "tier": "contextual",
+    "severity": "medium",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "메갈"
+      }
+    ],
+    "meaning": "커뮤니티 '메갈리아'의 약칭이 여성을 낙인찍는 호칭으로 쓰이는 용법(예: '메갈X'). 국립국어원 자료에서 남성 누리꾼이 만든 여성 차별 표현 사례로 기록.",
+    "benign_usages": [
+      "커뮤니티 '메갈리아'를 지칭하는 문맥 ('메갈리아'는 literal 규칙상 매칭되지 않음)"
+    ],
+    "harmful_example": "너 메갈이지?",
+    "benign_example": "2015년 메갈리아 등장 이후의 온라인 젠더 담론",
+    "note": "사이트명 지칭이 아니라면 여성을 낙인찍는 호칭으로 읽힐 수 있습니다. 확인을 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "뉴시스 \"너 소추지?\" \"메갈X\"…이수역 주점서 난무한 남녀 비하戰 (2018-11-17)",
+        "url": "https://www.newsis.com/view/NISX20181116_0000475596",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "me-twaeji",
+    "term": "메퇘지",
+    "category": "gender",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "메퇘지"
+      }
+    ],
+    "meaning": "'메갈리아+멧돼지' 구성으로 여성을 동물에 비유해 비하하는 표현. 언론에서 여성 혐오 표현 사례로 기록.",
+    "benign_usages": [],
+    "harmful_example": "메퇘지 출몰 주의",
+    "benign_example": "",
+    "note": "여성을 동물에 비유하는 비하 표현입니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "서울신문 [단독] '메퇘지' '삼일한'…도 넘는 여성혐오, 처벌커녕 시정도 어렵다 (2019-02-17)",
+        "url": "https://www.seoul.co.kr/news/society/2019/02/17/20190217500071",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "saengni-chung",
+    "term": "생리충",
+    "category": "gender",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "생리충"
+      }
+    ],
+    "meaning": "생리에 '충(蟲)'을 붙여 여성을 벌레에 비유해 비하하는 표현. 언론에서 여성 혐오 표현 사례로 기록.",
+    "benign_usages": [],
+    "harmful_example": "생리충 예민하네",
+    "benign_example": "",
+    "note": "여성을 벌레에 비유하는 비하 표현입니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "세계일보 김치녀·한남충·개저씨·김여사… 오늘도 '혐오'하십니까? (2018-05-15)",
+        "url": "https://m.segye.com/view/20180514004929",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "hannyeo-chung",
+    "term": "한녀충",
+    "category": "gender",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "한녀충"
+      },
+      {
+        "type": "literal",
+        "value": "한녀유충"
+      }
+    ],
+    "meaning": "'한국 여자+충(蟲)' 구성으로 한국 여성을 벌레에 비유해 비하하는 표현. '한남충'의 대응어로 국립국어원 자료에 기록. '한녀유충'은 여자 어린이 비하형.",
+    "benign_usages": [],
+    "harmful_example": "한녀충 특징",
+    "benign_example": "",
+    "note": "여성을 벌레에 비유하는 비하 표현입니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "세계일보 김치녀·한남충·개저씨·김여사… 오늘도 '혐오'하십니까? (2018-05-15)",
+        "url": "https://m.segye.com/view/20180514004929",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "gae-jumma",
+    "term": "개줌마",
+    "category": "gender",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "개줌마"
+      }
+    ],
+    "meaning": "'개+아줌마' 구성으로 중년 여성을 비하하는 표현. '개저씨'의 대응어로 국립국어원 자료에 기록.",
+    "benign_usages": [],
+    "harmful_example": "개줌마 진상",
+    "benign_example": "",
+    "note": "중년 여성을 비하하는 표현입니다. 재검토를 권합니다.",
+    "alternative": "'중년 여성', '고객'",
+    "sources": [
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "kkotbaem",
+    "term": "꽃뱀",
+    "category": "gender",
+    "tier": "contextual",
+    "severity": "medium",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "꽃뱀"
+      }
+    ],
+    "meaning": "남성에게 접근해 금품을 노리는 여성이라는 고정관념을 담은 표현으로, 성폭력 피해자를 의심하는 프레임에 쓰여 언론이 여성 비하 표현 사례로 기록. 뱀의 일종(유혈목이)을 가리키는 동물명과 표면형이 같다.",
+    "benign_usages": [
+      "뱀의 일종 '꽃뱀(유혈목이)'"
+    ],
+    "harmful_example": "꽃뱀 조심하세요",
+    "benign_example": "산책로에서 꽃뱀(유혈목이)이 관찰되었습니다",
+    "note": "동물명이 아니라면 여성을 고정관념으로 낙인찍는 표현으로 읽힐 수 있습니다. 확인을 권합니다.",
+    "alternative": "상황을 구체적으로 서술",
+    "sources": [
+      {
+        "label": "여성신문 '한남충'이 모욕죄? 그럼 맘충·김치녀는? (2017-07-24)",
+        "url": "https://www.womennews.co.kr/news/articleView.html?idxno=115864",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "boiru",
+    "term": "보이루",
+    "category": "gender",
+    "tier": "watch",
+    "severity": "medium",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "보이루"
+      }
+    ],
+    "meaning": "유튜버 인사말로 널리 쓰인 표현. 2021년 여성 성기 비속어와 결합된 인사라는 논문 주장이 있었으나, 대학 연구윤리위가 수정 전 논문을 '변조'로 판정하고 학술지가 논문을 철회해 기원·의미가 다투어진다.",
+    "benign_usages": [
+      "유튜버 인사말('보겸+하이루')"
+    ],
+    "harmful_example": "",
+    "benign_example": "보이루~ 오늘 방송 시작합니다",
+    "note": "기원·의미가 다투어지는 표현입니다. 2021년 논란과 논문 철회 경과만 참고하세요.",
+    "sources": [
+      {
+        "label": "파이낸셜뉴스 \"보겸 '보이루'=여혐은 왜곡\".. 윤지선 수정 전 논문 '변조' 판정 (2021-11-08)",
+        "url": "https://www.fnnews.com/news/202111081050145537",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "한국일보 '허버허버' 이어 '오조오억'... 신조어 또 남성혐오 논란, 왜 (2021-04-22)",
+        "url": "https://www.hankookilbo.com/news/article/A2021042110280003760",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "hannam",
+    "term": "한남",
+    "category": "gender",
+    "tier": "contextual",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "한남"
+      }
+    ],
+    "meaning": "'한국 남자'의 준말이 한국 남성 전반을 비하하는 호칭으로 쓰이는 용법. 국립국어원 자료와 언론에서 남성 비하 표현으로 기록. 지명 '한남(동)'과 표면형이 같다.",
+    "benign_usages": [
+      "지명 한남동·한남대교·한남 오거리 (복합어는 literal 규칙상 매칭되지 않음)",
+      "대학명 한남대"
+    ],
+    "harmful_example": "한남들은 다 똑같아",
+    "benign_example": "한남 신규 매장 오픈 기념 이벤트",
+    "note": "지명(한남동·한남대교 등)이 아니라면 한국 남성 전반을 비하하는 호칭으로 읽힐 수 있습니다. 확인을 권합니다.",
+    "alternative": "지명이라면 '한남동'처럼 구체화",
+    "sources": [
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "아시아경제 차고 넘치는 'OO남 vs OO녀'..혐오민국, 어디까지 왔나 (2019-12-19, 다음뉴스)",
+        "url": "https://v.daum.net/v/NddJnZ6yxY",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "뉴시스 \"너 소추지?\" \"메갈X\"…이수역 주점서 난무한 남녀 비하戰 (2018-11-17)",
+        "url": "https://www.newsis.com/view/NISX20181116_0000475596",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "중앙일보 [탐사하다] \"한남, 존재가 죄\" \"김치녀, 혜택만 누려\" (2019-08-13, 다음뉴스)",
+        "url": "https://v.daum.net/v/20190813050054401",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "hannam-chung",
+    "term": "한남충",
+    "category": "gender",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "한남충"
+      },
+      {
+        "type": "regex",
+        "value": "한남(?:놈|새끼)"
+      }
+    ],
+    "meaning": "'한국 남자+충(蟲)' 구성으로 한국 남성을 벌레에 비유해 비하하는 표현. 2017년 법원이 개인을 향한 사용에 모욕죄를 인정. 국립국어원 자료에 성차별 표현으로 기록.",
+    "benign_usages": [],
+    "harmful_example": "한남충 감별법",
+    "benign_example": "",
+    "note": "남성을 벌레에 비유하는 비하 표현으로 모욕죄가 인정된 사례가 있습니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "YTN '한남충' 표현 모욕죄 인정...벌금형 선고 (2017-07-17)",
+        "url": "https://www.ytn.co.kr/_ln/0103_201707171850138574",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "세계일보 김치녀·한남충·개저씨·김여사… 오늘도 '혐오'하십니까? (2018-05-15)",
+        "url": "https://m.segye.com/view/20180514004929",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "gae-jeossi",
+    "term": "개저씨",
+    "category": "gender",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "개저씨"
+      }
+    ],
+    "meaning": "'개+아저씨' 구성으로 중년 남성을 비하하는 표현. 국립국어원 자료와 언론에서 성차별 표현으로 기록.",
+    "benign_usages": [],
+    "harmful_example": "개저씨 출입 금지",
+    "benign_example": "",
+    "note": "중년 남성을 비하하는 표현입니다. 재검토를 권합니다.",
+    "alternative": "'중년 남성', '고객'",
+    "sources": [
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "세계일보 김치녀·한남충·개저씨·김여사… 오늘도 '혐오'하십니까? (2018-05-15)",
+        "url": "https://m.segye.com/view/20180514004929",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "조선일보 그래프 공개된 한 정치인의 '개저씨', 뜻이 뭐길래? (2024-05-04, 네이트뉴스)",
+        "url": "https://news.nate.com/view/20240504n00535",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "kimchi-nam",
+    "term": "김치남",
+    "category": "gender",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "김치남"
+      }
+    ],
+    "meaning": "'김치녀'의 대응어로 한국 남성을 비하하는 표현. 2019년 정부 교육자료가 '김치녀'는 혐오 표현, '김치남'은 아니라고 구분해 논란이 된 바 있음.",
+    "benign_usages": [],
+    "harmful_example": "김치남 특징 정리",
+    "benign_example": "",
+    "note": "한국 남성 전반을 비하하는 표현으로 알려져 있습니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "SBS [뉴스딱] '김치녀'는 혐오 표현, '김치남'은 괜찮다? '시끌' (2019-03-13, 다음뉴스)",
+        "url": "https://v.daum.net/v/aaojh4y3J8",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "naemjeo",
+    "term": "냄저",
+    "category": "gender",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "냄저"
+      },
+      {
+        "type": "literal",
+        "value": "냄져"
+      }
+    ],
+    "meaning": "'남자'의 모음을 바꿔 '냄새 나는' 이미지를 덧씌운 남성 비하 표기. 국립국어원 자료에서 남성 차별·혐오 표현 사례로 기록.",
+    "benign_usages": [],
+    "harmful_example": "냄저들 냄새 나",
+    "benign_example": "",
+    "note": "남성을 비하하는 변형 표기입니다. 재검토를 권합니다.",
+    "alternative": "'남성'",
+    "sources": [
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "나무위키 메갈리아/용어",
+        "url": "https://namu.wiki/w/%EB%A9%94%EA%B0%88%EB%A6%AC%EC%95%84/%EC%9A%A9%EC%96%B4",
+        "type": "wiki",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "seolgeoji-ron",
+    "term": "설거지 (설거지론 문맥)",
+    "category": "gender",
+    "tier": "contextual",
+    "severity": "medium",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "설거지"
+      },
+      {
+        "type": "regex",
+        "value": "설거지\\s?론"
+      }
+    ],
+    "cooccur": [
+      "퐁퐁|도태|유부|결혼|연애|처녀|경험|설거지\\s?론"
+    ],
+    "meaning": "2021년 확산된 '설거지론'에서 결혼을 '남이 쓴 그릇을 닦는 일'에 비유해 기혼 남성과 배우자 여성을 동시에 비하하는 용법. 같은 문장에 결혼·연애 관련 표현이 함께 있을 때만 후보가 된다.",
+    "benign_usages": [
+      "가사 노동 '설거지'"
+    ],
+    "harmful_example": "결혼은 결국 설거지",
+    "benign_example": "식기세척기로 설거지 시간 절약",
+    "note": "'설거지'는 일상 가사 표현입니다. 결혼·연애 문맥에서 '설거지론' 비하로 읽힐 가능성만 확인을 권합니다.",
+    "sources": [
+      {
+        "label": "파이낸셜뉴스 설거지론 갑론을박.. \"퐁퐁남처럼 안 살아\" vs \"도태남 주제\" (2021-10-25)",
+        "url": "https://www.fnnews.com/news/202110242057513023",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "뉴스핌 [2021 갈등] ④ '설거지론'·'퐁퐁남'…젠더갈등 노골화 (2021-12-31)",
+        "url": "https://www.newspim.com/news/view/20211230000767",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "pongpong-nam",
+    "term": "퐁퐁남",
+    "category": "gender",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "퐁퐁남"
+      },
+      {
+        "type": "literal",
+        "value": "퐁퐁단"
+      },
+      {
+        "type": "literal",
+        "value": "퐁퐁시티"
+      }
+    ],
+    "meaning": "주방세제 상표에 '남'을 붙여 가사를 맡는 기혼 남성을 비하하는 표현. '퐁퐁단·퐁퐁시티'는 집단·지역 확장형. 2021년 '설거지론' 논란에서 확산된 것으로 언론이 보고.",
+    "benign_usages": [],
+    "harmful_example": "퐁퐁남 탈출법",
+    "benign_example": "",
+    "note": "기혼 남성을 비하하는 표현으로 알려져 있습니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "파이낸셜뉴스 설거지론 갑론을박.. \"퐁퐁남처럼 안 살아\" vs \"도태남 주제\" (2021-10-25)",
+        "url": "https://www.fnnews.com/news/202110242057513023",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "뉴스핌 [2021 갈등] ④ '설거지론'·'퐁퐁남'…젠더갈등 노골화 (2021-12-31)",
+        "url": "https://www.newspim.com/news/view/20211230000767",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "dotae-nam",
+    "term": "도태남",
+    "category": "gender",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "도태남"
+      }
+    ],
+    "meaning": "'도태된 남자'의 준말로 연애·결혼에서 배제됐다고 지목된 남성을 비하하는 표현. 2021년 '설거지론' 논쟁에서 반격 용어로 쓰인 것으로 언론이 보고.",
+    "benign_usages": [],
+    "harmful_example": "도태남 주제에",
+    "benign_example": "",
+    "note": "남성을 연애·결혼 성취로 낙인찍는 비하 표현입니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "파이낸셜뉴스 설거지론 갑론을박.. \"퐁퐁남처럼 안 살아\" vs \"도태남 주제\" (2021-10-25)",
+        "url": "https://www.fnnews.com/news/202110242057513023",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  }
+]

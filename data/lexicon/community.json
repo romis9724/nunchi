@@ -1,0 +1,1287 @@
+[
+  {
+    "key": "unji",
+    "term": "운지",
+    "category": "community",
+    "tier": "contextual",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "운지"
+      },
+      {
+        "type": "regex",
+        "value": "운지(?:하|했|한|해|시켰|당했)"
+      }
+    ],
+    "meaning": "고(故) 노무현 전 대통령의 사망(투신)을 '떨어지다·죽다'의 뜻으로 조롱하는 용법으로 쓰인다. 음료 광고 '운지천'에서 따온 말로 일베저장소에서 만들어져 확산된 것으로 알려짐. 동사형 '운지하다'로도 쓰인다.",
+    "benign_usages": [
+      "악기 연주법 '운지법' (복합어는 literal 규칙상 매칭되지 않음)",
+      "과거 음료 상표 '운지천'",
+      "인명·지명"
+    ],
+    "harmful_example": "이번 분기 실적 운지했네",
+    "benign_example": "기타 초보를 위한 운지법 강좌",
+    "note": "고인의 사망을 조롱하는 용법으로 널리 알려진 표현입니다. 악기 연주법(운지법)·상표·인명 등 정상 용법이 아니라면 재검토를 권합니다.",
+    "alternative": "'떨어졌다', '급락했다' 등 일반 표현",
+    "sources": [
+      {
+        "label": "시빅뉴스 저질, 패륜 '일베 용어,' 일반인 대화에도 스며들어 (2016-06-17)",
+        "url": "https://www.civicnews.com/news/articleView.html?idxno=3165",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "오마이스타 민주화, 운지…방송에 침투한 '일베' 용어 (2013-05-15)",
+        "url": "https://star.ohmynews.com/NWS_Web/OhmyStar/at_pg.aspx?CNTN_CD=A0001865449",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "오마이뉴스 '노무현 조롱', '5.18 혐오' 대열에 끼지 않은 아이들의 특징 (2026-07-12)",
+        "url": "https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003250209",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "위키백과 일베저장소",
+        "url": "https://ko.wikipedia.org/wiki/%EC%9D%BC%EB%B2%A0%EC%A0%80%EC%9E%A5%EC%86%8C",
+        "type": "wiki",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "minjuhwa-negative",
+    "term": "민주화 (부정 용법)",
+    "category": "community",
+    "tier": "contextual",
+    "severity": "medium",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "민주화\\s?(?:시켜|시키|시킴|당해|당했|당하|먹)"
+      }
+    ],
+    "meaning": "'민주화'를 본래 의미와 반대로 '집단으로 짓밟다·비추천하다'의 뜻으로 쓰는 용법. 일베저장소의 비추천 버튼 명칭에서 비롯된 것으로 알려짐. 방송 자막 등에 오용되어 논란이 된 사례가 있다.",
+    "benign_usages": [
+      "본래 의미의 '민주화시키다'(제도·사회를 민주적으로 바꾸다)",
+      "'민주화운동', '민주화 이후' 등 역사·정치 용어"
+    ],
+    "harmful_example": "반대 의견 나오면 다 민주화시켜 버려",
+    "benign_example": "6월 항쟁은 한국 사회를 민주화시킨 결정적 계기였다",
+    "note": "'민주화시키다/당하다' 형태가 '짓밟다·비추천하다'의 뜻으로 읽힐 수 있습니다. 5·18 등 역사적 의미로 쓰는 문장이라면 문제없으나, 조롱으로 읽히지 않는지 확인을 권합니다.",
+    "alternative": "'비추천', '반대' 등 의도에 맞는 일반 표현",
+    "sources": [
+      {
+        "label": "머니투데이 \"너 일베야?\" 오해 피하려면…이 단어 주의하세요 (2020-07-30)",
+        "url": "https://www.mt.co.kr/culture/2020/07/30/2020072914584753531",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "오마이스타 민주화, 운지…방송에 침투한 '일베' 용어 (2013-05-15)",
+        "url": "https://star.ohmynews.com/NWS_Web/OhmyStar/at_pg.aspx?CNTN_CD=A0001865449",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "오마이뉴스 '노무현 조롱', '5.18 혐오' 대열에 끼지 않은 아이들의 특징 (2026-07-12)",
+        "url": "https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003250209",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "SBS [인터뷰] \"'일베', 보수 아닌 선정적인 사이트\" (2013-05-22)",
+        "url": "https://news.sbs.co.kr/news/endPage.do?news_id=N1001796535",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "saneophwa-ilbe",
+    "term": "산업화 (커뮤니티 용법)",
+    "category": "community",
+    "tier": "contextual",
+    "severity": "medium",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "산업화\\s?(?:시켜|시키|시킴|당해|당했|당하|먹)"
+      }
+    ],
+    "meaning": "'산업화'를 '추천하다' 또는 '반대 성향 집단을 제압하다'의 뜻으로 쓰는 용법. 일베저장소 추천 버튼 명칭(민주화의 대응어)에서 비롯된 것으로 알려짐.",
+    "benign_usages": [
+      "경제사적 의미의 '산업화'(농업 사회를 공업 사회로 바꾸다)"
+    ],
+    "harmful_example": "이 글 산업화시켜서 베스트 보내자",
+    "benign_example": "1970년대 산업화 시기의 노동자 주거 문제",
+    "note": "'산업화시키다' 형태가 커뮤니티 은어(추천·제압)로 읽힐 수 있습니다. 경제사적 의미라면 문제없으며, 은어로 오해될 여지만 확인을 권합니다.",
+    "alternative": "'추천', '공유' 등 일반 표현",
+    "sources": [
+      {
+        "label": "SBS [인터뷰] \"'일베', 보수 아닌 선정적인 사이트\" (2013-05-22)",
+        "url": "https://news.sbs.co.kr/news/endPage.do?news_id=N1001796535",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "나무위키 산업화",
+        "url": "https://namu.wiki/w/%EC%82%B0%EC%97%85%ED%99%94",
+        "type": "wiki",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "nomu-nomu",
+    "term": "노무노무",
+    "category": "community",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "노무노무"
+      }
+    ],
+    "meaning": "'너무너무'의 표기를 바꿔 고(故) 노무현 전 대통령의 성(姓)을 연상시키도록 만든 조롱 용법. 일베저장소에서 만들어져 확산된 것으로 알려짐.",
+    "benign_usages": [],
+    "harmful_example": "노무노무 재밌노",
+    "benign_example": "",
+    "note": "고인을 조롱하는 표기로 널리 알려진 표현입니다. 오타가 아니라면 재검토를 권합니다.",
+    "alternative": "'너무너무'",
+    "sources": [
+      {
+        "label": "시빅뉴스 저질, 패륜 '일베 용어,' 일반인 대화에도 스며들어 (2016-06-17)",
+        "url": "https://www.civicnews.com/news/articleView.html?idxno=3165",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "머니투데이 \"너 일베야?\" 오해 피하려면…이 단어 주의하세요 (2020-07-30)",
+        "url": "https://www.mt.co.kr/culture/2020/07/30/2020072914584753531",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "nomu-prefix-mockery",
+    "term": "노무- 접두 조롱형",
+    "category": "community",
+    "tier": "contextual",
+    "severity": "medium",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "노무(?!현|노무|라)[가-힣]{1,3}"
+      }
+    ],
+    "meaning": "'노무-'를 낱말 앞에 붙여 고(故) 노무현 전 대통령을 연상시키도록 만드는 조롱 표기(예: '노무노무'의 확장형). 노무노무·노알라 등 관련 표기가 여러 매체에서 조롱 용법으로 보고되어 있다.",
+    "benign_usages": [
+      "노무관리·노무사·노무비 등 노동 행정 용어",
+      "인명·상호(노무라 등)"
+    ],
+    "harmful_example": "노무카 타고 봉하 가자",
+    "benign_example": "노무관리 전문 노무사 상담",
+    "note": "'노무'로 시작하는 낱말이 고인을 연상시키는 조롱 표기로 읽힐 수 있습니다. 노무관리·노무사 등 정상 용어라면 문제없습니다.",
+    "alternative": "정상 용어라면 그대로 사용",
+    "sources": [
+      {
+        "label": "시빅뉴스 저질, 패륜 '일베 용어,' 일반인 대화에도 스며들어 (2016-06-17)",
+        "url": "https://www.civicnews.com/news/articleView.html?idxno=3165",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "머니투데이 \"너 일베야?\" 오해 피하려면…이 단어 주의하세요 (2020-07-30)",
+        "url": "https://www.mt.co.kr/culture/2020/07/30/2020072914584753531",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "no-ending-roh-context",
+    "term": "-노 어미 (노무현 문맥 공존)",
+    "category": "community",
+    "tier": "contextual",
+    "severity": "medium",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "[가-힣]{1,6}(?<!피아|카지|테크|카푸치|도미)노(?=[\\s.!?…,~)\\]]|$)"
+      }
+    ],
+    "cooccur": [
+      "노무현|봉하|부엉이\\s?바위|운지|노알라|노무노무|중력절|MC무현"
+    ],
+    "meaning": "경상 방언의 의문·감탄형 어미 '-노'를 고(故) 노무현 전 대통령 조롱에 결부시켜 문장 끝마다 기계적으로 붙이는 용법이 일베저장소 등에서 확산된 것으로 알려짐. 2026-07 '무섭노' 사건에서 언어학자들이 '-노' 자체는 정상 방언이며 어미만으로 혐오 표현을 판정할 수 없다고 반박하였다. 이 항목은 같은 문장 안에 노무현 관련 명사가 함께 있을 때만 후보가 된다.",
+    "benign_usages": [
+      "경상 방언 의문형 '어디 가노', 감탄형 '무섭노·춥노'",
+      "'피아노·카지노' 등 '노'로 끝나는 명사"
+    ],
+    "harmful_example": "봉하마을 갔다 왔노",
+    "benign_example": "오늘 날씨 와 이리 춥노",
+    "note": "'-노' 어미 자체는 경상 방언의 정상 표현입니다. 같은 문장에 노무현 전 대통령 관련 표현이 함께 있어 조롱으로 읽힐 가능성만 확인을 권합니다.",
+    "sources": [
+      {
+        "label": "YTN \"'무섭노'는 혐오 표현 아니다\" 언어학자 판단 (2026-07-08)",
+        "url": "https://m.ytn.co.kr/news_view.amp.php?param=0103_202607080709417957&version=1",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "한국경제 리센느 원이가 '무섭노'가 일베?…노무현재단 이사, 결국 사과 (2026-07-09)",
+        "url": "https://www.hankyung.com/article/2026070966027",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "노컷뉴스 \"무섭노\"가 쏘아 올린 '노' 논란…일베 용어? 사투리? 확인해 보니 [노컷체크] (2026-07-06, 다음뉴스)",
+        "url": "https://v.daum.net/v/20260706163300231",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "한국일보 '무섭노' 일베 표현 맞나…경상도 방언에 씌워진 오해와 낙인 (2026-07-11)",
+        "url": "https://www.hankookilbo.com/news/article/A2026071006370001085",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "경향신문 [에디터의 창] 일베 혐오놀이 그 후 10년 (2026-07-09)",
+        "url": "https://www.khan.co.kr/article/202607092019005",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "머니투데이 \"너 일베야?\" 오해 피하려면…이 단어 주의하세요 (2020-07-30)",
+        "url": "https://www.mt.co.kr/culture/2020/07/30/2020072914584753531",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "igiya",
+    "term": "이기야",
+    "category": "community",
+    "tier": "contextual",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "이기야"
+      }
+    ],
+    "meaning": "고(故) 노무현 전 대통령의 발언을 흉내 내어 문장 끝에 붙이는 조롱형 어미로 일베저장소에서 확산된 것으로 알려짐. 국립국어원 자료에도 혐오 표현 예문의 어미로 등장한다.",
+    "benign_usages": [
+      "경상 방언 '이기(이것이)'+'야'(이거야)"
+    ],
+    "harmful_example": "이게 나라냐 이기야",
+    "benign_example": "니 찾던 거 이기야?",
+    "note": "문장 끝 '이기야'는 고인 조롱 어미로 널리 알려진 표현입니다. 경상 방언 '이기(이것이)+야'로 쓴 문장이 아니라면 재검토를 권합니다.",
+    "alternative": "'이거야', '이것이야'",
+    "sources": [
+      {
+        "label": "시빅뉴스 저질, 패륜 '일베 용어,' 일반인 대화에도 스며들어 (2016-06-17)",
+        "url": "https://www.civicnews.com/news/articleView.html?idxno=3165",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "머니투데이 \"너 일베야?\" 오해 피하려면…이 단어 주의하세요 (2020-07-30)",
+        "url": "https://www.mt.co.kr/culture/2020/07/30/2020072914584753531",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "나무위키 일베저장소/용어",
+        "url": "https://namu.wiki/w/%EC%9D%BC%EB%B2%A0%EC%A0%80%EC%9E%A5%EC%86%8C/%EC%9A%A9%EC%96%B4",
+        "type": "wiki",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "geupsik-chung",
+    "term": "급식충",
+    "category": "community",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "급식충"
+      },
+      {
+        "type": "literal",
+        "value": "학식충"
+      }
+    ],
+    "meaning": "'급식(을 먹는)+충(蟲, 벌레)' 구성으로 초·중·고 학생을 벌레에 비유해 비하하는 표현. '학식충'은 대학생 비하형. 온라인 커뮤니티에서 확산된 것으로 알려짐.",
+    "benign_usages": [],
+    "harmful_example": "급식충들은 이런 거 모르지",
+    "benign_example": "",
+    "note": "학생을 벌레에 비유하는 비하 표현으로 알려져 있습니다. 재검토를 권합니다.",
+    "alternative": "'학생', '10대'",
+    "sources": [
+      {
+        "label": "머니투데이 \"너 일베야?\" 오해 피하려면…이 단어 주의하세요 (2020-07-30)",
+        "url": "https://www.mt.co.kr/culture/2020/07/30/2020072914584753531",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "teuldak",
+    "term": "틀딱",
+    "category": "community",
+    "tier": "contextual",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "틀딱"
+      },
+      {
+        "type": "literal",
+        "value": "틀딱이"
+      }
+    ],
+    "meaning": "'틀니 딱딱'의 준말로 노년층을 비하하는 표현. 국가인권위원회 웹진과 학술 논문에서 노인 혐오 표현 사례로 기록되어 있다. 온라인 커뮤니티에서 확산된 것으로 알려짐.",
+    "benign_usages": [
+      "옛 감성·취향을 자조적으로 가리키는 용법(예: '틀딱 감성')",
+      "해당 표현을 비판·인용하는 문맥"
+    ],
+    "harmful_example": "틀딱들은 이 앱 못 쓰겠지",
+    "benign_example": "틀딱 감성이라 해도 이 노래는 못 잃어",
+    "note": "노년층 비하 표현으로 알려진 말입니다. 자조적 유머라도 수용자에 따라 불쾌하게 받아들여질 수 있어 확인을 권합니다.",
+    "alternative": "'시니어', '어르신', '중장년층'",
+    "sources": [
+      {
+        "label": "국가인권위원회 웹진 [말속의 칼] 노인이 싫은 나라 혐로(嫌老) 사회 (2018-10)",
+        "url": "https://www.humanrights.go.kr/webzine/webzineListAndDetail?issueNo=7603284&boardNo=7603271",
+        "type": "official",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "KCI 광고학연구 31(6) — 신경아·최윤형, 혐로(嫌老)사회: 뉴스 댓글에 나타난 노인인식과 공공PR의 과제 (2020)",
+        "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002621249",
+        "type": "academic",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "머니투데이 \"너 일베야?\" 오해 피하려면…이 단어 주의하세요 (2020-07-30)",
+        "url": "https://www.mt.co.kr/culture/2020/07/30/2020072914584753531",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "teuldak-chung",
+    "term": "틀딱충",
+    "category": "community",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "틀딱충"
+      },
+      {
+        "type": "literal",
+        "value": "틀니딱딱충"
+      }
+    ],
+    "meaning": "'틀딱'에 '충(蟲)'을 붙여 노년층을 벌레에 비유해 비하하는 표현. 국립국어원 자료에서 나이 차별 표현으로 분류.",
+    "benign_usages": [],
+    "harmful_example": "틀딱충 때문에 못 살겠다",
+    "benign_example": "",
+    "note": "노년층을 벌레에 비유하는 비하 표현입니다. 재검토를 권합니다.",
+    "alternative": "'시니어', '어르신'",
+    "sources": [
+      {
+        "label": "머니투데이 \"너 일베야?\" 오해 피하려면…이 단어 주의하세요 (2020-07-30)",
+        "url": "https://www.mt.co.kr/culture/2020/07/30/2020072914584753531",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "aebi-chung",
+    "term": "애비충",
+    "category": "community",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "애비충"
+      },
+      {
+        "type": "literal",
+        "value": "아빠충"
+      }
+    ],
+    "meaning": "아버지(애비·아빠)에 '충(蟲)'을 붙여 특정 부류의 남성 보호자를 벌레에 비유해 비하하는 표현. 국립국어원 자료와 언론에서 성차별 표현 사례로 기록.",
+    "benign_usages": [],
+    "harmful_example": "놀이터에 애비충 등장",
+    "benign_example": "",
+    "note": "부모를 벌레에 비유하는 비하 표현입니다. 재검토를 권합니다.",
+    "alternative": "'아버지', '보호자'",
+    "sources": [
+      {
+        "label": "세계일보 김치녀·한남충·개저씨·김여사… 오늘도 '혐오'하십니까? (2018-05-15)",
+        "url": "https://m.segye.com/view/20180514004929",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "jwajom",
+    "term": "좌좀",
+    "category": "community",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "좌좀"
+      }
+    ],
+    "meaning": "'좌파 좀비'의 준말로 진보 성향으로 지목된 사람·집단을 비하하는 표현. 국립국어원 자료에서 정치·이념 차별 표현으로 분류.",
+    "benign_usages": [],
+    "harmful_example": "좌좀들 또 몰려왔네",
+    "benign_example": "",
+    "note": "정치 성향을 근거로 사람을 비하하는 표현입니다. 브랜드 커뮤니케이션에서는 재검토를 권합니다.",
+    "alternative": "정치 성향 언급 자체를 피하거나 중립적 서술",
+    "sources": [
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "한국일보 [장정일 칼럼] 아둔한 학자와 '좌좀'들 (2019-10-16)",
+        "url": "https://www.hankookilbo.com/News/Read/201910161383399949",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "jwappal",
+    "term": "좌빨",
+    "category": "community",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "좌빨"
+      },
+      {
+        "type": "literal",
+        "value": "종북좌빨"
+      }
+    ],
+    "meaning": "'좌파 빨갱이'의 준말로 진보 성향으로 지목된 사람·집단을 비하하는 표현. '종북좌빨'은 강화형. 국립국어원 자료에서 정치·이념 차별 표현으로 분류.",
+    "benign_usages": [],
+    "harmful_example": "좌빨 방송은 안 본다",
+    "benign_example": "",
+    "note": "정치 성향을 근거로 사람을 비하하는 표현입니다. 브랜드 커뮤니케이션에서는 재검토를 권합니다.",
+    "alternative": "정치 성향 언급 자체를 피하거나 중립적 서술",
+    "sources": [
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "오마이뉴스 좌파, 아직도 '좌빨'로만 보이는가 (2008-03-22)",
+        "url": "https://m.ohmynews.com/NWS_Web/Mobile/amp.aspx?CNTN_CD=A0000861531",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "sukkol",
+    "term": "수꼴",
+    "category": "community",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "수꼴"
+      },
+      {
+        "type": "literal",
+        "value": "수구꼴통"
+      },
+      {
+        "type": "literal",
+        "value": "보수꼴통"
+      }
+    ],
+    "meaning": "'수구 꼴통'의 준말로 보수 성향으로 지목된 사람·집단을 비하하는 표현. 국립국어원 자료에서 '좌좀·좌빨'과 나란히 정치·이념 차별 표현으로 분류. 좌좀·좌빨의 진영 대칭 항목.",
+    "benign_usages": [],
+    "harmful_example": "수꼴들은 말이 안 통해",
+    "benign_example": "",
+    "note": "정치 성향을 근거로 사람을 비하하는 표현입니다. 브랜드 커뮤니케이션에서는 재검토를 권합니다.",
+    "alternative": "정치 성향 언급 자체를 피하거나 중립적 서술",
+    "sources": [
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "noalla",
+    "term": "노알라",
+    "category": "community",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "노알라"
+      }
+    ],
+    "meaning": "고(故) 노무현 전 대통령의 얼굴을 코알라와 합성한 조롱 이미지·명칭. 일베저장소에서 만들어진 것으로 알려지며, 방송·학생회 선거 등에 등장해 논란이 되었다.",
+    "benign_usages": [],
+    "harmful_example": "노알라 스티커 이벤트",
+    "benign_example": "",
+    "note": "고인을 조롱하는 합성 캐릭터 명칭으로 알려진 표현입니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "서울경제 학생회장 선거에 노무현 비하캐릭터 '노알라' 등장 물의 (2014-12-18)",
+        "url": "https://www.sedaily.com/article/11232624",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "위키백과 일베저장소",
+        "url": "https://ko.wikipedia.org/wiki/%EC%9D%BC%EB%B2%A0%EC%A0%80%EC%9E%A5%EC%86%8C",
+        "type": "wiki",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "dubu-roh-context",
+    "term": "두부 (노무현 문맥 공존)",
+    "category": "community",
+    "tier": "contextual",
+    "severity": "medium",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "두부"
+      }
+    ],
+    "cooccur": [
+      "노무현|봉하|부엉이\\s?바위|운지|노알라|노무노무|중력절|MC무현"
+    ],
+    "meaning": "고(故) 노무현 전 대통령의 사망 정황을 연상시키는 조롱 소재로 쓰이는 용법이 보고됨. 같은 문장에 노무현 관련 명사가 함께 있을 때만 후보가 된다.",
+    "benign_usages": [
+      "음식 두부"
+    ],
+    "harmful_example": "봉하마을 두부 요리 특집",
+    "benign_example": "국산 콩 두부 신제품 출시",
+    "note": "'두부'는 일상적 음식명입니다. 같은 문장에 노무현 전 대통령 관련 표현이 있어 조롱으로 읽힐 가능성만 확인을 권합니다.",
+    "sources": [
+      {
+        "label": "시빅뉴스 저질, 패륜 '일베 용어,' 일반인 대화에도 스며들어 (2016-06-17)",
+        "url": "https://www.civicnews.com/news/articleView.html?idxno=3165",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "podo-518-context",
+    "term": "포도 (5·18 문맥 공존)",
+    "category": "community",
+    "tier": "contextual",
+    "severity": "medium",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "포도"
+      }
+    ],
+    "cooccur": [
+      "5\\s?[.·]\\s?18|오일팔|광주|폭도|계엄"
+    ],
+    "meaning": "'폭도'의 표기를 바꿔 5·18 광주민주화운동 참여자를 조롱하는 용법으로 쓰인다고 보고됨. 같은 문장에 5·18·광주 관련 명사가 함께 있을 때만 후보가 된다.",
+    "benign_usages": [
+      "과일 포도"
+    ],
+    "harmful_example": "5월 광주엔 포도가 많았지",
+    "benign_example": "광주 지역 포도 농가 상생 프로모션",
+    "note": "'포도'는 일상적 과일명입니다. 같은 문장에 5·18·광주 관련 표현이 있어 조롱으로 읽힐 가능성만 확인을 권합니다.",
+    "sources": [
+      {
+        "label": "머니투데이 \"너 일베야?\" 오해 피하려면…이 단어 주의하세요 (2020-07-30)",
+        "url": "https://www.mt.co.kr/culture/2020/07/30/2020072914584753531",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "나무위키 일베저장소/용어",
+        "url": "https://namu.wiki/w/%EC%9D%BC%EB%B2%A0%EC%A0%80%EC%9E%A5%EC%86%8C/%EC%9A%A9%EC%96%B4",
+        "type": "wiki",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "pitteok-galbi",
+    "term": "피떡갈비",
+    "category": "community",
+    "tier": "hard",
+    "severity": "critical",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "피떡갈비"
+      }
+    ],
+    "meaning": "광주 특산 음식 '떡갈비'에 '피'를 붙여 5·18 광주민주화운동 희생자를 조롱하는 표현. 언론에서 도를 넘은 지역 비하·고인 조롱 사례로 보고.",
+    "benign_usages": [],
+    "harmful_example": "광주 가면 피떡갈비 먹어야지",
+    "benign_example": "",
+    "note": "5·18 희생자를 조롱하는 표현으로 알려져 있습니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "이데일리 '통구이부터 피떡갈비까지'…도를 넘은 지역 비하 발언 (2020-06-14)",
+        "url": "https://m.edaily.co.kr/News/Read?newsId=01125046625801720&mediaCodeNo=257",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "오마이뉴스 '노무현 조롱', '5.18 혐오' 대열에 끼지 않은 아이들의 특징 (2026-07-12)",
+        "url": "https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003250209",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "jungryeokjeol",
+    "term": "중력절",
+    "category": "community",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "중력절"
+      }
+    ],
+    "meaning": "고(故) 노무현 전 대통령의 기일(5월 23일)을 '중력'에 빗대어 조롱하는 명칭. 일베저장소 등 온라인 커뮤니티에서 시작된 것으로 알려짐.",
+    "benign_usages": [],
+    "harmful_example": "5월 23일 중력절 세일",
+    "benign_example": "",
+    "note": "고인의 기일을 조롱하는 명칭으로 알려진 표현입니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "오마이뉴스 '노무현 조롱', '5.18 혐오' 대열에 끼지 않은 아이들의 특징 (2026-07-12)",
+        "url": "https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003250209",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "경향신문 [에디터의 창] 일베 혐오놀이 그 후 10년 (2026-07-09)",
+        "url": "https://www.khan.co.kr/article/202607092019005",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "eomuk-sewol-context",
+    "term": "어묵 (세월호 문맥 공존)",
+    "category": "community",
+    "tier": "contextual",
+    "severity": "medium",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "어묵"
+      }
+    ],
+    "cooccur": [
+      "세월호|4\\s?[.·]\\s?16|단원고|친구\\s?먹"
+    ],
+    "meaning": "세월호 참사 희생자를 조롱하는 게시물('친구 먹었다')에 쓰여 형사 처벌(징역 4월)까지 이어진 표현. 같은 문장에 세월호 관련 명사가 함께 있을 때만 후보가 된다.",
+    "benign_usages": [
+      "음식 어묵"
+    ],
+    "harmful_example": "4월 16일엔 어묵이지",
+    "benign_example": "부산 어묵 명가 신메뉴",
+    "note": "'어묵'은 일상적 음식명입니다. 같은 문장에 세월호 관련 표현이 있어 조롱으로 읽힐 가능성만 확인을 권합니다.",
+    "sources": [
+      {
+        "label": "경향신문 세월호 희생자 '어묵' 비하 일베회원에 징역 4월 선고 (2015-05-29)",
+        "url": "https://www.khan.co.kr/article/201505291328071",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "위키백과 일베저장소",
+        "url": "https://ko.wikipedia.org/wiki/%EC%9D%BC%EB%B2%A0%EC%A0%80%EC%9E%A5%EC%86%8C",
+        "type": "wiki",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "no-o-rat-da",
+    "term": "노오랗다 (노무현 문맥 공존)",
+    "category": "community",
+    "tier": "watch",
+    "severity": "medium",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "노오+(?:랗|란|래)"
+      }
+    ],
+    "cooccur": [
+      "노무현|봉하|부엉이\\s?바위|운지|노알라|노무노무|중력절|MC무현"
+    ],
+    "meaning": "'노랗다'를 길게 늘인 표기가 고(故) 노무현 전 대통령 조롱 표현으로 쓰인다는 보고가 있으나(머니투데이 2020), 일반적 강조 표기와 구분이 어렵고 근거가 한 매체에 한정된다. 같은 문장에 노무현 관련 명사가 함께 있을 때만 정보 제공.",
+    "benign_usages": [
+      "색상 강조 표기 '노오란 은행잎'"
+    ],
+    "harmful_example": "봉하 들녘이 노오랗게 물들었노",
+    "benign_example": "가을 은행나무가 노오랗게 물들었다",
+    "note": "'노오랗다'는 일반적 강조 표기입니다. 조롱 용법 보고가 있어 참고용으로만 표시합니다.",
+    "sources": [
+      {
+        "label": "머니투데이 \"너 일베야?\" 오해 피하려면…이 단어 주의하세요 (2020-07-30)",
+        "url": "https://www.mt.co.kr/culture/2020/07/30/2020072914584753531",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "jaegi-hae",
+    "term": "재기해",
+    "category": "community",
+    "tier": "hard",
+    "severity": "critical",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "재기해(?:라|요)?(?=\\s*[.!?…~]|\\s*$)"
+      },
+      {
+        "type": "regex",
+        "value": "재기하(?:라|세요|십시오|길)"
+      }
+    ],
+    "meaning": "2013년 남성연대 대표 성재기의 한강 투신 사망에서 이름을 따 '자살하라'는 뜻으로 쓰는 표현. 메갈리아·워마드 등 커뮤니티에서 시작되어 2018 혜화역 시위 구호로 등장해 논란. 자살 조장 표현으로 언론이 보고.",
+    "benign_usages": [
+      "'재기(再起)하다'의 연결형(예: '부상에서 재기해 우승')은 패턴에서 제외됨"
+    ],
+    "harmful_example": "그런 놈들은 다 재기해.",
+    "benign_example": "부상에서 재기해 시즌 우승을 이끌었다",
+    "note": "명령형 '재기해'는 '자살하라'는 뜻으로 널리 알려진 표현입니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "문화일보 SNS 난무하는 \"재기해\"… 너무 쉽게 말하는 '자살' (2018-07-10)",
+        "url": "https://www.munhwa.com/article/11092852",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "위키백과 워마드의 사건 및 사고",
+        "url": "https://ko.wikipedia.org/wiki/%EC%9B%8C%EB%A7%88%EB%93%9C%EC%9D%98_%EC%82%AC%EA%B1%B4_%EB%B0%8F_%EC%82%AC%EA%B3%A0",
+        "type": "wiki",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "나무위키 재기해",
+        "url": "https://namu.wiki/w/%EC%9E%AC%EA%B8%B0%ED%95%B4",
+        "type": "wiki",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "ssipchi-nam",
+    "term": "씹치남",
+    "category": "community",
+    "tier": "hard",
+    "severity": "critical",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "씹치남"
+      },
+      {
+        "type": "literal",
+        "value": "씹치"
+      }
+    ],
+    "meaning": "성기 비속어 '씹'과 '김치남'을 결합해 한국 남성을 비하하는 표현. 2015년 여성 커뮤니티의 '미러링' 과정에서 '김치녀'의 대응어로 만들어진 것으로 언론이 보고.",
+    "benign_usages": [],
+    "harmful_example": "씹치남 특징 모음",
+    "benign_example": "",
+    "note": "비속어를 포함해 남성을 비하하는 표현입니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "서울신문 '김치녀·삼일한'에 맞서는 '씹치남·숨쉴한' (2015-07-16)",
+        "url": "https://www.seoul.co.kr/news/society/2015/07/17/20150717500033",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "나무위키 메갈리아/용어",
+        "url": "https://namu.wiki/w/%EB%A9%94%EA%B0%88%EB%A6%AC%EC%95%84/%EC%9A%A9%EC%96%B4",
+        "type": "wiki",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "sumswil-han",
+    "term": "숨쉴한",
+    "category": "community",
+    "tier": "hard",
+    "severity": "critical",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "숨쉴한"
+      }
+    ],
+    "meaning": "'숨 쉴 때마다 한 번씩 때려야 한다'는 뜻으로 남성에 대한 폭력을 정당화하는 표현. '삼일한'의 대응어로 여성 커뮤니티에서 만들어진 것으로 언론이 보고.",
+    "benign_usages": [],
+    "harmful_example": "한남은 역시 숨쉴한",
+    "benign_example": "",
+    "note": "폭력을 정당화하는 표현입니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "서울신문 '김치녀·삼일한'에 맞서는 '씹치남·숨쉴한' (2015-07-16)",
+        "url": "https://www.seoul.co.kr/news/society/2015/07/17/20150717500033",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "six-point-nine",
+    "term": "6.9",
+    "category": "community",
+    "tier": "contextual",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?<![0-9])6\\.9(?:\\s?(?:cm|㎝|센치|센티|센티미터))?(?![0-9%])"
+      }
+    ],
+    "cooccur": [
+      "한남|소추|남자|남성|남친|남편"
+    ],
+    "meaning": "한국 남성의 신체(성기 크기)를 '6.9cm'로 규정해 조롱하는 용법. 메갈리아·워마드 등에서 확산된 것으로 알려지며 2018 이수역 사건 보도에 등장. 같은 문장에 남성 지칭 표현이 함께 있을 때만 후보가 된다.",
+    "benign_usages": [
+      "가격·치수·비율 등 일반 수치(6.9인치, 6.9%)"
+    ],
+    "harmful_example": "한남 평균 6.9의 자신감",
+    "benign_example": "6.9인치 대화면 스마트폰 출시",
+    "note": "'6.9'는 수치로 흔히 쓰입니다. 같은 문장에 남성 지칭 표현이 있어 신체 조롱으로 읽힐 가능성만 확인을 권합니다.",
+    "sources": [
+      {
+        "label": "뉴시스 \"너 소추지?\" \"메갈X\"…이수역 주점서 난무한 남녀 비하戰 (2018-11-17)",
+        "url": "https://www.newsis.com/view/NISX20181116_0000475596",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "나무위키 메갈리아/용어",
+        "url": "https://namu.wiki/w/%EB%A9%94%EA%B0%88%EB%A6%AC%EC%95%84/%EC%9A%A9%EC%96%B4",
+        "type": "wiki",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "sochu",
+    "term": "소추",
+    "category": "community",
+    "tier": "contextual",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "소추"
+      },
+      {
+        "type": "literal",
+        "value": "소추소심"
+      }
+    ],
+    "meaning": "'작은 성기'를 뜻하는 준말로 한국 남성의 신체를 조롱하는 표현. '소추소심'은 확장형. 메갈리아·워마드 등에서 확산된 것으로 알려지며 2018 이수역 사건 보도에 등장.",
+    "benign_usages": [
+      "법률 용어 소추(訴追): 공소 제기. '탄핵소추·소추권' 등 복합어는 literal 규칙상 매칭되지 않음"
+    ],
+    "harmful_example": "소추들은 말이 많아",
+    "benign_example": "탄핵 소추 절차의 헌법적 요건",
+    "note": "법률 용어 '소추(訴追)'가 아니라면 남성 신체를 조롱하는 표현으로 읽힐 수 있습니다. 확인을 권합니다.",
+    "alternative": "법률 문맥이라면 '공소 제기' 등으로 구체화",
+    "sources": [
+      {
+        "label": "뉴시스 \"너 소추지?\" \"메갈X\"…이수역 주점서 난무한 남녀 비하戰 (2018-11-17)",
+        "url": "https://www.newsis.com/view/NISX20181116_0000475596",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "나무위키 메갈리아/용어",
+        "url": "https://namu.wiki/w/%EB%A9%94%EA%B0%88%EB%A6%AC%EC%95%84/%EC%9A%A9%EC%96%B4",
+        "type": "wiki",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "hannam-yuchung",
+    "term": "한남유충",
+    "category": "community",
+    "tier": "hard",
+    "severity": "critical",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "한남유충"
+      }
+    ],
+    "meaning": "'한남충'의 어린 개체라는 뜻으로 한국 남자 어린이를 벌레에 비유해 비하하는 표현. 워마드 등에서 쓰이는 것으로 알려지며, 논문 검증 보도에서 편향 우려 표현으로 언급.",
+    "benign_usages": [],
+    "harmful_example": "한남유충 출입 금지",
+    "benign_example": "",
+    "note": "아동을 벌레에 비유하는 비하 표현입니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "파이낸셜뉴스 \"보겸 '보이루'=여혐은 왜곡\".. 윤지선 수정 전 논문 '변조' 판정 (2021-11-08)",
+        "url": "https://www.fnnews.com/news/202111081050145537",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "위키백과 워마드의 사건 및 사고",
+        "url": "https://ko.wikipedia.org/wiki/%EC%9B%8C%EB%A7%88%EB%93%9C%EC%9D%98_%EC%82%AC%EA%B1%B4_%EB%B0%8F_%EC%82%AC%EA%B3%A0",
+        "type": "wiki",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "나무위키 메갈리아/용어",
+        "url": "https://namu.wiki/w/%EB%A9%94%EA%B0%88%EB%A6%AC%EC%95%84/%EC%9A%A9%EC%96%B4",
+        "type": "wiki",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "hyungja",
+    "term": "흉자",
+    "category": "community",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "흉자"
+      }
+    ],
+    "meaning": "'흉내 내는 자지'의 준말로 알려지며, 남성 중심 사고를 한다고 지목된 여성을 공격하는 호칭. '명예자지'의 대체어로 워마드 등에서 쓰이는 것으로 보고.",
+    "benign_usages": [],
+    "harmful_example": "흉자들은 말도 섞기 싫다",
+    "benign_example": "",
+    "note": "특정 입장에 동조하지 않는 여성을 공격하는 호칭으로 알려진 표현입니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "중앙일보 [탐사하다] \"한남, 존재가 죄\" \"김치녀, 혜택만 누려\" (2019-08-13, 다음뉴스)",
+        "url": "https://v.daum.net/v/20190813050054401",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "나무위키 흉자",
+        "url": "https://namu.wiki/w/%ED%9D%89%EC%9E%90",
+        "type": "wiki",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "ung-aeng-ung",
+    "term": "웅앵웅",
+    "category": "community",
+    "tier": "watch",
+    "severity": "medium",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "웅앵웅"
+      }
+    ],
+    "meaning": "알아듣기 힘든 말을 흉내 낸 의성어. 2021년 남성의 말을 무시하는 표현이라는 주장과 성별 무관한 일반 의성어라는 반론이 함께 보고되어 의미가 다투어진다.",
+    "benign_usages": [
+      "불분명한 말소리를 흉내 내는 일반 의성어"
+    ],
+    "harmful_example": "",
+    "benign_example": "자막 없으면 웅앵웅으로 들려요",
+    "note": "의미가 다투어지는 표현입니다. 2021년 남성 비하 논란이 있었던 점만 참고하세요.",
+    "sources": [
+      {
+        "label": "뉴시스 '5조5억, 허버허버, 웅앵웅'…이말이 왜 남성혐오? 논란 (2021-04-20)",
+        "url": "https://www.newsis.com/view/NISX20210420_0001413064",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "서울신문 '허버허버' '오조오억' 논란…\"혐오단어 사전 만들어야할 판\" (2021-04-15)",
+        "url": "https://www.seoul.co.kr/news/society/2021/04/15/20210415500060",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "ojo-oeok",
+    "term": "오조오억",
+    "category": "community",
+    "tier": "watch",
+    "severity": "medium",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "오조오억"
+      },
+      {
+        "type": "regex",
+        "value": "5조\\s?5억"
+      }
+    ],
+    "meaning": "'매우 많다'는 뜻의 과장 표현. 2017년 방송 팬덤에서 유행했으며, 2021년 남성 신체 비하 기원이라는 주장과 단순 과장어라는 반론이 함께 보고되어 의미가 다투어진다.",
+    "benign_usages": [
+      "'매우 많다'는 과장 표현"
+    ],
+    "harmful_example": "",
+    "benign_example": "오조오억 번 들어도 좋은 노래",
+    "note": "기원·의미가 다투어지는 표현입니다. 2021년 남성 비하 논란이 있었던 점만 참고하세요.",
+    "sources": [
+      {
+        "label": "한국일보 '허버허버' 이어 '오조오억'... 신조어 또 남성혐오 논란, 왜 (2021-04-22)",
+        "url": "https://www.hankookilbo.com/news/article/A2021042110280003760",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "뉴시스 '5조5억, 허버허버, 웅앵웅'…이말이 왜 남성혐오? 논란 (2021-04-20)",
+        "url": "https://www.newsis.com/view/NISX20210420_0001413064",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "서울신문 '허버허버' '오조오억' 논란…\"혐오단어 사전 만들어야할 판\" (2021-04-15)",
+        "url": "https://www.seoul.co.kr/news/society/2021/04/15/20210415500060",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "heobeo-heobeo",
+    "term": "허버허버",
+    "category": "community",
+    "tier": "watch",
+    "severity": "medium",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "허버허버"
+      }
+    ],
+    "meaning": "급하게 먹거나 행동하는 모습을 나타내는 의태어. 2021년 남성의 식사 모습을 희화화한 표현이라는 주장과 성별 무관한 일반 의태어라는 반론이 함께 보고되어 의미가 다투어진다.",
+    "benign_usages": [
+      "급히 먹는 모습을 나타내는 일반 의태어"
+    ],
+    "harmful_example": "",
+    "benign_example": "배고파서 허버허버 먹었다",
+    "note": "의미가 다투어지는 표현입니다. 2021년 남성 비하 논란(이모티콘 판매 중단 등)이 있었던 점만 참고하세요.",
+    "sources": [
+      {
+        "label": "서울신문 '허버허버' '오조오억' 논란…\"혐오단어 사전 만들어야할 판\" (2021-04-15)",
+        "url": "https://www.seoul.co.kr/news/society/2021/04/15/20210415500060",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "한국일보 '허버허버' 이어 '오조오억'... 신조어 또 남성혐오 논란, 왜 (2021-04-22)",
+        "url": "https://www.hankookilbo.com/news/article/A2021042110280003760",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "뉴시스 '5조5억, 허버허버, 웅앵웅'…이말이 왜 남성혐오? 논란 (2021-04-20)",
+        "url": "https://www.newsis.com/view/NISX20210420_0001413064",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  }
+]

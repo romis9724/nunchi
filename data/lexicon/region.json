@@ -1,0 +1,522 @@
+[
+  {
+    "key": "hongeo",
+    "term": "홍어",
+    "category": "region",
+    "tier": "contextual",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "홍어"
+      },
+      {
+        "type": "regex",
+        "value": "홍어(?:족|놈|새끼|년|충)"
+      }
+    ],
+    "meaning": "전라 지역 음식인 홍어를 전라 지역민 전체를 가리키는 비하 호칭으로 쓰는 용법. 국립국어원 자료와 다수 언론에서 지역 차별 표현으로 기록. '홍어족'은 확장형.",
+    "benign_usages": [
+      "음식 홍어(삭힌 홍어, 홍어 삼합). '홍어회·홍어탕' 등 음식 복합어는 literal 규칙상 매칭되지 않음"
+    ],
+    "harmful_example": "홍어들 또 몰려왔네",
+    "benign_example": "흑산도 홍어 삼합 신메뉴 출시",
+    "note": "음식명으로 쓰는 표현입니다. 사람·지역을 지칭하는 문맥에서는 비하로 받아들여질 수 있어 대상 확인을 권합니다.",
+    "alternative": "음식명이라면 '흑산도 홍어'처럼 대상을 구체화",
+    "sources": [
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "머니투데이 \"너 일베야?\" 오해 피하려면…이 단어 주의하세요 (2020-07-30)",
+        "url": "https://www.mt.co.kr/culture/2020/07/30/2020072914584753531",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "국민일보 \"홍어, 과메기, 멍청도, 감자바우, 절라디언, 개쌍도,,,\" 지역비하 발언땐 금배지 날아간다 (2015-08-18)",
+        "url": "https://www.kmib.co.kr/article/view.asp?arcid=0009763828",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "세계일보 개쌍도 vs 전라디언..도 넘은 '사이버 지역감정' (2013-03-12, 다음뉴스)",
+        "url": "https://v.daum.net/v/20130312184209832",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "허프포스트코리아 지역감정의 진화 \"전라도 갈 땐 여권 챙겨라\"",
+        "url": "https://www.huffingtonpost.kr/article/257466",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "kkabojeon",
+    "term": "까보전",
+    "category": "region",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "까보전"
+      }
+    ],
+    "meaning": "'까고 보니 전라도'의 준말로 알려지며, 부정적 사건의 원인을 특정 지역 출신으로 귀속시키는 지역 차별 표현. 국립국어원 자료에 기록.",
+    "benign_usages": [],
+    "harmful_example": "역시 까보전",
+    "benign_example": "",
+    "note": "특정 지역 출신을 부정적 사건과 결부시키는 비하 표현입니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "jeolladian",
+    "term": "전라디언",
+    "category": "region",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "전라디언"
+      },
+      {
+        "type": "literal",
+        "value": "절라디언"
+      },
+      {
+        "type": "literal",
+        "value": "설라디언"
+      }
+    ],
+    "meaning": "'전라도+-ian' 구성으로 전라 지역민을 별개 집단처럼 떼어 놓아 비하하는 표현. '절라디언·설라디언(서울+전라디언)'은 변형. 국립국어원 자료와 다수 언론에서 지역 차별 표현으로 기록.",
+    "benign_usages": [],
+    "harmful_example": "전라디언 출신은 거른다",
+    "benign_example": "",
+    "note": "특정 지역민을 비하하는 표현입니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "머니투데이 \"너 일베야?\" 오해 피하려면…이 단어 주의하세요 (2020-07-30)",
+        "url": "https://www.mt.co.kr/culture/2020/07/30/2020072914584753531",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "국민일보 \"홍어, 과메기, 멍청도, 감자바우, 절라디언, 개쌍도,,,\" 지역비하 발언땐 금배지 날아간다 (2015-08-18)",
+        "url": "https://www.kmib.co.kr/article/view.asp?arcid=0009763828",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "허프포스트코리아 지역감정의 진화 \"전라도 갈 땐 여권 챙겨라\"",
+        "url": "https://www.huffingtonpost.kr/article/257466",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "gaessangdo",
+    "term": "개쌍도",
+    "category": "region",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "개쌍도"
+      },
+      {
+        "type": "literal",
+        "value": "개상도"
+      },
+      {
+        "type": "literal",
+        "value": "견상도"
+      }
+    ],
+    "meaning": "'경상도'의 발음을 바꿔 비속어 '개·쌍'을 결합해 경상 지역민을 비하하는 표현. '개상도·견상도'는 변형. 국립국어원 자료와 다수 언론에서 지역 차별 표현으로 기록.",
+    "benign_usages": [],
+    "harmful_example": "개쌍도 놈들은 안 받아",
+    "benign_example": "",
+    "note": "특정 지역민을 비하하는 표현입니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "국민일보 \"홍어, 과메기, 멍청도, 감자바우, 절라디언, 개쌍도,,,\" 지역비하 발언땐 금배지 날아간다 (2015-08-18)",
+        "url": "https://www.kmib.co.kr/article/view.asp?arcid=0009763828",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "세계일보 개쌍도 vs 전라디언..도 넘은 '사이버 지역감정' (2013-03-12, 다음뉴스)",
+        "url": "https://v.daum.net/v/20130312184209832",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "이데일리 '통구이부터 피떡갈비까지'…도를 넘은 지역 비하 발언 (2020-06-14)",
+        "url": "https://m.edaily.co.kr/News/Read?newsId=01125046625801720&mediaCodeNo=257",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "meongcheongdo",
+    "term": "멍청도",
+    "category": "region",
+    "tier": "hard",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "멍청도"
+      }
+    ],
+    "meaning": "'충청도'를 '멍청'과 결합해 충청 지역민을 비하하는 표현. 국립국어원 자료와 언론에서 지역 차별 표현으로 기록.",
+    "benign_usages": [],
+    "harmful_example": "멍청도라서 느리지",
+    "benign_example": "",
+    "note": "특정 지역민을 비하하는 표현입니다. 재검토를 권합니다.",
+    "alternative": "사용하지 않음",
+    "sources": [
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "국민일보 \"홍어, 과메기, 멍청도, 감자바우, 절라디언, 개쌍도,,,\" 지역비하 발언땐 금배지 날아간다 (2015-08-18)",
+        "url": "https://www.kmib.co.kr/article/view.asp?arcid=0009763828",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "허프포스트코리아 지역감정의 진화 \"전라도 갈 땐 여권 챙겨라\"",
+        "url": "https://www.huffingtonpost.kr/article/257466",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "gamja-guk",
+    "term": "감자국",
+    "category": "region",
+    "tier": "contextual",
+    "severity": "medium",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "감자국"
+      }
+    ],
+    "meaning": "강원 지역 특산물 감자를 들어 강원 지역민·지역을 낮잡아 부르는 표현으로 언론이 보고. 음식 '감자국(감잣국)'과 표면형이 같다.",
+    "benign_usages": [
+      "음식 감자국(감잣국)"
+    ],
+    "harmful_example": "감자국 애들은 촌스러워",
+    "benign_example": "강원 감자국 레시피",
+    "note": "음식명이 아니라면 강원 지역을 낮잡는 표현으로 읽힐 수 있습니다. 확인을 권합니다.",
+    "alternative": "지역명이라면 '강원도'",
+    "sources": [
+      {
+        "label": "국민일보 \"홍어, 과메기, 멍청도, 감자바우, 절라디언, 개쌍도,,,\" 지역비하 발언땐 금배지 날아간다 (2015-08-18)",
+        "url": "https://www.kmib.co.kr/article/view.asp?arcid=0009763828",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "허프포스트코리아 지역감정의 진화 \"전라도 갈 땐 여권 챙겨라\"",
+        "url": "https://www.huffingtonpost.kr/article/257466",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "gamja-bau",
+    "term": "감자바우",
+    "category": "region",
+    "tier": "contextual",
+    "severity": "medium",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "감자바우"
+      }
+    ],
+    "meaning": "강원 지역민을 '감자·바위'에 빗대어 낮잡아 부르는 표현으로 언론이 보고. 강원 지역에서 자칭·상호·캐릭터명으로도 쓰인다.",
+    "benign_usages": [
+      "강원 지역의 자칭·상호·캐릭터명"
+    ],
+    "harmful_example": "감자바우들이 뭘 알겠어",
+    "benign_example": "감자바우 마을 축제에 초대합니다",
+    "note": "강원 지역 자칭·상호로도 쓰이는 표현입니다. 타인이 지역민을 지칭하는 문맥에서는 비하로 받아들여질 수 있어 확인을 권합니다.",
+    "alternative": "'강원도민'",
+    "sources": [
+      {
+        "label": "국민일보 \"홍어, 과메기, 멍청도, 감자바우, 절라디언, 개쌍도,,,\" 지역비하 발언땐 금배지 날아간다 (2015-08-18)",
+        "url": "https://www.kmib.co.kr/article/view.asp?arcid=0009763828",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "gwamegi",
+    "term": "과메기",
+    "category": "region",
+    "tier": "contextual",
+    "severity": "medium",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "과메기"
+      }
+    ],
+    "meaning": "포항 특산 음식 과메기를 경북·경상 지역민 비하 호칭으로 쓰는 용법. '홍어'의 대응어로 확산된 것으로 언론이 보고.",
+    "benign_usages": [
+      "음식 과메기"
+    ],
+    "harmful_example": "과메기들은 말이 안 통해",
+    "benign_example": "구룡포 과메기 시즌 오픈",
+    "note": "음식명으로 쓰는 표현입니다. 사람·지역을 지칭하는 문맥에서는 비하로 받아들여질 수 있어 대상 확인을 권합니다.",
+    "alternative": "음식명이라면 '구룡포 과메기'처럼 대상을 구체화",
+    "sources": [
+      {
+        "label": "국민일보 \"홍어, 과메기, 멍청도, 감자바우, 절라디언, 개쌍도,,,\" 지역비하 발언땐 금배지 날아간다 (2015-08-18)",
+        "url": "https://www.kmib.co.kr/article/view.asp?arcid=0009763828",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "세계일보 개쌍도 vs 전라디언..도 넘은 '사이버 지역감정' (2013-03-12, 다음뉴스)",
+        "url": "https://v.daum.net/v/20130312184209832",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "seven-oclock-jeolla",
+    "term": "7시 (전라 문맥 공존)",
+    "category": "region",
+    "tier": "contextual",
+    "severity": "medium",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?<![0-9])7\\s?시(?![0-9간])|일곱\\s?시"
+      }
+    ],
+    "cooccur": [
+      "전라|호남|광주|홍어|라도"
+    ],
+    "meaning": "한반도 지도에서 전라 지역의 위치(7시 방향)를 들어 전라 지역민을 우회적으로 지칭·비하하는 용법으로 언론이 보고. 같은 문장에 전라·호남 관련 명사가 함께 있을 때만 후보가 된다.",
+    "benign_usages": [
+      "시각 표현 '7시'"
+    ],
+    "harmful_example": "7시 쪽 사람들은 믿지 마",
+    "benign_example": "광주 매장 7시 오픈",
+    "note": "'7시'는 일상적 시각 표현입니다. 같은 문장에 전라·호남 관련 표현이 있어 우회 비하로 읽힐 가능성만 확인을 권합니다.",
+    "sources": [
+      {
+        "label": "머니투데이 \"너 일베야?\" 오해 피하려면…이 단어 주의하세요 (2020-07-30)",
+        "url": "https://www.mt.co.kr/culture/2020/07/30/2020072914584753531",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "허프포스트코리아 지역감정의 진화 \"전라도 갈 땐 여권 챙겨라\"",
+        "url": "https://www.huffingtonpost.kr/article/257466",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "seunsangnim",
+    "term": "슨상님",
+    "category": "region",
+    "tier": "contextual",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "슨상님"
+      }
+    ],
+    "meaning": "전라 방언 '선생님'의 발음을 흉내 내어 고(故) 김대중 전 대통령을 조롱하고 전라 지역민을 함께 비하하는 표현으로 언론이 보고. 방언 발음 표기 자체와 표면형이 같다.",
+    "benign_usages": [
+      "전라 방언 '선생님' 발음의 사실적 표기(지역 콘텐츠·대사)"
+    ],
+    "harmful_example": "슨상님 덕에 5·18이 났지",
+    "benign_example": "\"슨상님, 밥은 잡숫고 가시오\" (사투리 대사)",
+    "note": "전라 방언 발음 표기가 아니라면 고인 조롱·지역 비하로 읽힐 수 있습니다. 확인을 권합니다.",
+    "alternative": "표준어 '선생님'",
+    "sources": [
+      {
+        "label": "국민일보 \"홍어, 과메기, 멍청도, 감자바우, 절라디언, 개쌍도,,,\" 지역비하 발언땐 금배지 날아간다 (2015-08-18)",
+        "url": "https://www.kmib.co.kr/article/view.asp?arcid=0009763828",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "오마이뉴스 '노무현 조롱', '5.18 혐오' 대열에 끼지 않은 아이들의 특징 (2026-07-12)",
+        "url": "https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003250209",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "나무위키 지역 비하 표현",
+        "url": "https://namu.wiki/w/%EC%A7%80%EC%97%AD%20%EB%B9%84%ED%95%98%20%ED%91%9C%ED%98%84",
+        "type": "wiki",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "gotham-daegu",
+    "term": "고담대구",
+    "category": "region",
+    "tier": "contextual",
+    "severity": "medium",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "고담\\s?대구"
+      }
+    ],
+    "meaning": "영화 속 범죄 도시 '고담'에 대구를 빗대어 치안·지역 이미지를 비하하는 표현. 국립국어원 자료에서 경상 지역민 차별 표현으로 분류. 대구 지역에서 자조적으로 쓰이는 경우도 있다.",
+    "benign_usages": [
+      "대구 지역의 자조적 용법"
+    ],
+    "harmful_example": "고담대구라 밤에 못 다닌다",
+    "benign_example": "고담대구라는 별명, 이제 바꿔 봅시다",
+    "note": "대구를 범죄 도시에 빗대는 표현입니다. 자조적 용법이라도 수용자에 따라 지역 비하로 받아들여질 수 있어 확인을 권합니다.",
+    "alternative": "'대구'",
+    "sources": [
+      {
+        "label": "국립국어원 새국어생활 2017 제27권 3호 특집 — 이정복, 한국어와 한국 사회의 혐오, 차별 표현",
+        "url": "https://www.korean.go.kr/nkview/nklife/2017_3/27_0301.pdf",
+        "type": "official",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "국민일보 \"홍어, 과메기, 멍청도, 감자바우, 절라디언, 개쌍도,,,\" 지역비하 발언땐 금배지 날아간다 (2015-08-18)",
+        "url": "https://www.kmib.co.kr/article/view.asp?arcid=0009763828",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "허프포스트코리아 지역감정의 진화 \"전라도 갈 땐 여권 챙겨라\"",
+        "url": "https://www.huffingtonpost.kr/article/257466",
+        "type": "news",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "key": "tongguyi-daegu-context",
+    "term": "통구이 (대구 지하철 문맥 공존)",
+    "category": "region",
+    "tier": "contextual",
+    "severity": "high",
+    "status": "draft",
+    "patterns": [
+      {
+        "type": "literal",
+        "value": "통구이"
+      }
+    ],
+    "cooccur": [
+      "대구|지하철|2\\s?[.·]\\s?18|중앙로역|경상|영남"
+    ],
+    "meaning": "2003년 대구 지하철 화재 참사 희생자를 '통구이'에 빗대어 조롱하고 대구·경상 지역민을 비하하는 용법으로 언론이 보고. 같은 문장에 대구·지하철 관련 명사가 함께 있을 때만 후보가 된다.",
+    "benign_usages": [
+      "음식 조리법 '통구이'(통닭 통구이 등)"
+    ],
+    "harmful_example": "2월 18일 대구 통구이 데이",
+    "benign_example": "장작 통구이 바비큐 신메뉴",
+    "note": "'통구이'는 일상적 음식 조리 표현입니다. 같은 문장에 대구·지하철 관련 표현이 있어 참사 조롱으로 읽힐 가능성만 확인을 권합니다.",
+    "sources": [
+      {
+        "label": "이데일리 '통구이부터 피떡갈비까지'…도를 넘은 지역 비하 발언 (2020-06-14)",
+        "url": "https://m.edaily.co.kr/News/Read?newsId=01125046625801720&mediaCodeNo=257",
+        "type": "news",
+        "accessed": "2026-09-13"
+      },
+      {
+        "label": "나무위키 지역 비하 표현",
+        "url": "https://namu.wiki/w/%EC%A7%80%EC%97%AD%20%EB%B9%84%ED%95%98%20%ED%91%9C%ED%98%84",
+        "type": "wiki",
+        "accessed": "2026-09-13"
+      }
+    ],
+    "reviewed_by": null,
+    "reviewed_at": null
+  }
+]
