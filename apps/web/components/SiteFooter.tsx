@@ -145,8 +145,8 @@ export function SiteFooter({ variant = "default" }: SiteFooterProps) {
                 maxWidth: "320px",
               }}
             >
-              한국 마케터를 위한 브랜드 안전 인텔리전스.
-              캠페인 출시 전, AI가 60+ 한국 민감일과 5초에 교차 검토합니다.
+              캠페인 출시 전, 관련 사건과 표현의 맥락을 확인하는 도구입니다.
+              결과는 참고 정보이며, 모든 위험의 발견이나 캠페인의 안전을 보장하지 않습니다.
             </p>
           </div>
 

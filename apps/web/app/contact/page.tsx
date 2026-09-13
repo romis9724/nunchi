@@ -48,7 +48,7 @@ const FAQS = [
   },
   {
     q: "입력한 카피가 외부에 공유되나요?",
-    a: "절대 공유되지 않습니다. 검토 결과는 캐싱 목적으로만 저장되며, 제3자에게 제공하지 않습니다.",
+    a: "입력한 카피는 검토 처리를 위해 분석 서버로 전송되고 결과와 함께 저장됩니다. 제3자에게 판매·제공하지 않습니다. 자세한 처리 범위는 개인정보처리방침을 확인해 주세요.",
   },
   {
     q: "API 연동이 가능한가요?",
@@ -121,7 +121,7 @@ export default function ContactPage() {
             eyebrow="피드백 환영"
             eyebrowIcon="mail"
             title={<>무엇이든 <span style={{ color: "var(--brand-red)" }}>편하게</span> 보내주세요</>}
-            subtitle="질문, 제안, 파트너십 문의 — 로그인 없이 누구나 문의할 수 있습니다. 보통 1영업일 안에 답변드립니다."
+            subtitle="질문, 제안, 파트너십 문의 — 로그인 없이 누구나 문의할 수 있습니다. 접수한 문의는 이메일로 답변드립니다."
           />
 
 
@@ -235,7 +235,7 @@ export default function ContactPage() {
                     required={CONTACT_FORM_FIELDS[2].required}
                     value={form.message}
                     onChange={handleChange}
-                    placeholder="문의 내용을 입력해주세요…"
+                    placeholder="문의 내용을 입력해 주세요…"
                     rows={6}
                     maxLength={3000}
                     style={{ ...INPUT_STYLE, resize: "none" }}

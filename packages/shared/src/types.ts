@@ -176,12 +176,20 @@ export interface CheckResponse {
   transient?: boolean;
   /** 표현 사전(ADR-0004) 플래그. undefined = 레이어 도입 전 캐시된 구버전 결과 */
   expressionFlags?: ExpressionFlag[];
+  /** 검토 시점의 활성 표현 사전 항목 수. 0이면 사전 승인 전이라 표현 리스크 검토가 비어 있다. */
+  expressionCoverage?: number;
 }
 
 export interface WaitlistEntry {
   email: string;
   source?: string;
 }
+
+/**
+ * 큐레이션된 사건 파일 수 (data/events/ 에서 _template.json 제외).
+ * 변경 시 data/events 와 함께 갱신한다 — countEventFiles() 테스트가 이 값을 검증한다.
+ */
+export const CURATED_EVENT_COUNT = 50;
 
 export const GRADE_LABEL: Record<Grade, string> = {
   F: "회피 필수",

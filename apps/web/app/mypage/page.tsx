@@ -104,7 +104,7 @@ export default function MyPage() {
           eyebrow="프로필"
           eyebrowIcon="user"
           title={<>내 <span style={{ color: "var(--brand-red)" }}>정보</span></>}
-          subtitle="업종·채널·브랜드 정보를 수정합니다. 모든 검토 결과의 맞춤 코멘트에 즉시 반영됩니다."
+          subtitle="업종·채널·브랜드 정보를 수정합니다. 다음 검토의 맞춤 코멘트에 반영됩니다."
         />
 
 

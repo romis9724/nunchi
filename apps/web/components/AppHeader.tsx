@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import { NoonchiLogo } from "./NoonchiLogo";
 import { Icon } from "./ui/Icon";
 
@@ -37,8 +37,6 @@ export function AppHeader() {
     }
     return () => { document.body.style.overflow = ""; };
   }, [mobileNavOpen]);
-
-  const handleLogin = () => signIn("google", { callbackUrl: "/check" });
 
   const handleLogout = () => signOut({ callbackUrl: "/" });
 
@@ -151,22 +149,7 @@ export function AppHeader() {
                   </div>
                 )}
               </div>
-            ) : (
-              <button
-                onClick={handleLogin}
-                style={{
-                  display: "inline-flex", alignItems: "center", gap: "8px",
-                  fontSize: "13.5px", fontWeight: 700,
-                  background: "var(--brand-red)", color: "#fff",
-                  padding: "9px 18px", borderRadius: "10px",
-                  border: "none", cursor: "pointer",
-                  boxShadow: "0 4px 12px rgba(225, 29, 72, 0.22), 0 0 0 1px var(--brand-red-dark)",
-                  transition: "transform 0.12s", whiteSpace: "nowrap",
-                }}
-              >
-                무료로 시작하기 <span style={{ fontSize: "15px" }}>→</span>
-              </button>
-            )}
+            ) : null /* 로그인 CTA 임시 제거 — 추후 재추가 예정 */}
           </nav>
 
           {/* ─── 모바일 햄버거 (< 880px) ─── */}
@@ -282,22 +265,7 @@ export function AppHeader() {
                   로그아웃
                 </button>
               </>
-            ) : (
-              <button
-                onClick={handleLogin}
-                style={{
-                  display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
-                  fontSize: "15px", fontWeight: 700,
-                  background: "var(--brand-red)", color: "#fff",
-                  padding: "14px 16px", borderRadius: "10px",
-                  border: "none", cursor: "pointer",
-                  boxShadow: "0 6px 16px rgba(225, 29, 72, 0.22), 0 0 0 1px var(--brand-red-dark)",
-                  marginTop: "4px",
-                }}
-              >
-                무료로 시작하기 <span style={{ fontSize: "17px" }}>→</span>
-              </button>
-            )}
+            ) : null /* 로그인 CTA 임시 제거 — 추후 재추가 예정 */}
 
             {/* 모바일 드로어 하단 — 법적 링크 */}
             <div style={{

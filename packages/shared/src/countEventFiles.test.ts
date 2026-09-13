@@ -17,6 +17,7 @@ import { mkdirSync, writeFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { countEventFiles } from "./countEventFiles.js";
+import { CURATED_EVENT_COUNT } from "./types.js";
 
 // ---------------------------------------------------------------------------
 // Helper: create isolated temp directory
@@ -127,6 +128,15 @@ describe("countEventFiles — integration: data/events/ completeness", () => {
       count >= 50,
       `Expected ≥ 50 event files in data/events/, found ${count}. ` +
         `Add more curated events to meet the events_50_curated exit condition.`
+    );
+  });
+
+  it("matches CURATED_EVENT_COUNT — the number shown in the UI", () => {
+    assert.equal(
+      countEventFiles(),
+      CURATED_EVENT_COUNT,
+      `UI copy states ${CURATED_EVENT_COUNT} curated events. ` +
+        `Update CURATED_EVENT_COUNT in types.ts when data/events/ changes.`
     );
   });
 });

@@ -1,4 +1,6 @@
 import { ImageResponse } from "next/og";
+import { CURATED_EVENT_COUNT } from "@noonchi/shared";
+import { SITE_HOST } from "@/lib/site";
 
 export const runtime = "edge";
 export const alt = "noonch-i — 캠페인 날짜 리스크 & 호재 검증";
@@ -83,7 +85,7 @@ export default async function OpenGraphImage() {
         <div style={{ display: "flex", flexDirection: "column", gap: 24, zIndex: 1 }}>
           <div
             style={{
-              display: "inline-flex",
+              display: "flex",
               alignItems: "center",
               gap: 8,
               fontSize: 18,
@@ -125,7 +127,7 @@ export default async function OpenGraphImage() {
               display: "flex",
             }}
           >
-            한국 역사 60+ 사건과 교차 검토 · F부터 A까지 5단계 등급
+            {`한국 사건·기념일 ${CURATED_EVENT_COUNT}건과 교차 검토 · F부터 A까지 5단계 등급`}
           </div>
         </div>
 
@@ -139,7 +141,7 @@ export default async function OpenGraphImage() {
           }}
         >
           <span style={{ fontSize: 20, color: "#475569", fontWeight: 600 }}>
-            nunchi-bay.vercel.app
+            {SITE_HOST}
           </span>
           <span style={{ display: "flex", gap: 16 }}>
             {(["F", "D", "C", "B", "A"] as const).map((g) => {

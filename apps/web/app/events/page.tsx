@@ -3,13 +3,14 @@ import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { PageHeader, Card } from "@/components/ui";
 import { findApprovedEvents } from "@/lib/repositories/events.repo";
-import { toneToGrade } from "@noonchi/shared";
+import { toneToGrade, CURATED_EVENT_COUNT } from "@noonchi/shared";
+import { SITE_URL } from "@/lib/site";
 import type { EventRecord } from "@noonchi/shared";
 
 export const metadata: Metadata = {
   title: "리스크 라이브러리",
-  description: "마케팅 캠페인 검토에 필요한 한국 민감일·호재일 60+. 5·18, 세월호, 이태원, 광복절 등 일자별 위험도·키워드·권장 톤 정리.",
-  alternates: { canonical: "https://nunchi-bay.vercel.app/events" },
+  description: `마케팅 캠페인 검토에 사용하는 한국 사건·기념일 ${CURATED_EVENT_COUNT}건. 일자별 위험도·키워드·권장 톤과 출처를 정리했습니다.`,
+  alternates: { canonical: `${SITE_URL}/events` },
 };
 
 // 빌드타임 정적 프리렌더가 빈 데이터로 고정되지 않도록 런타임 동적 렌더링.

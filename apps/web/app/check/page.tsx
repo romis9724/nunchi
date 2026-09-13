@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
+import { CURATED_EVENT_COUNT } from "@noonchi/shared";
 import type { CheckRequest, CheckResponse } from "@noonchi/shared";
 import { ResultCard } from "@/components/result-card/ResultCard";
 import { AppHeader } from "@/components/AppHeader";
@@ -57,7 +58,7 @@ function CheckForm() {
       if (!res.ok) { setError(data.error ?? "검토 중 오류가 발생했습니다."); return; }
       setResult(data as CheckResponse);
     } catch {
-      setError("네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+      setError("네트워크 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
     } finally {
       setLoading(false);
     }
@@ -71,8 +72,8 @@ function CheckForm() {
         <PageHeader
           eyebrow="브랜드 안전 분석"
           eyebrowIcon="shield"
-          title={<>날짜 × 카피, <span style={{ color: "var(--brand-red)" }}>5초 검토</span></>}
-          subtitle="입력한 날짜·카피·시각 키워드를 한국 역사 60+ 사건과 교차 분석해 F부터 A까지 5단계 등급으로 결과를 알려드립니다."
+          title={<>날짜 × 카피, <span style={{ color: "var(--brand-red)" }}>사전 검토</span></>}
+          subtitle={`입력한 날짜·카피·시각 키워드를 한국 사건·기념일 ${CURATED_EVENT_COUNT}건과 교차 검토해 F부터 A까지 5단계 등급으로 결과를 알려드립니다. 표현 리스크 검토는 사전 승인 후 제공됩니다.`}
         />
 
         {/* Form card */}
@@ -224,7 +225,7 @@ function CheckForm() {
               날짜·카피를 한국 역사 데이터와 교차 검토 중…
             </p>
             <p style={{ fontSize: "12px", color: "var(--ms-text-3)", marginTop: "4px" }}>
-              보통 5–10초 소요됩니다
+              AI 분석에는 약 10~20초가 걸리며, 요청에 따라 더 길어질 수 있습니다
             </p>
           </div>
         )}
@@ -237,7 +238,7 @@ function CheckForm() {
               날짜와 카피를 입력하고 검토해보세요
             </p>
             <p style={{ fontSize: "12.5px", color: "var(--ms-text-2)", margin: 0, lineHeight: 1.6 }}>
-              5·18, 세월호, 이태원 등 60개+ 민감일과 즉시 교차 분석합니다
+              {`5·18, 세월호, 이태원 등 한국 사건·기념일 ${CURATED_EVENT_COUNT}건과 교차 검토합니다`}
             </p>
           </Card>
         )}

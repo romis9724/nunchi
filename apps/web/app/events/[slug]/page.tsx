@@ -5,6 +5,7 @@ import { AppHeader } from "@/components/AppHeader";
 import { PageHeader, Card, Button, Chip } from "@/components/ui";
 import { findEventBySlug } from "@/lib/repositories/events.repo";
 import { toneToGrade } from "@noonchi/shared";
+import { SITE_URL } from "@/lib/site";
 import type { EventRecord } from "@noonchi/shared";
 
 interface PageProps {
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const title = `${event.month}월 ${event.day ?? ""}일 — ${event.name}`;
   const description = `${event.name} · ${event.summary?.slice(0, 140) ?? ""}`;
-  const canonical = `https://nunchi-bay.vercel.app/events/${slug}`;
+  const canonical = `${SITE_URL}/events/${slug}`;
 
   return {
     title,
@@ -78,16 +79,14 @@ export default async function EventDetailPage({ params }: PageProps) {
   const dateLabel = `${event.month}월 ${event.day ?? ""}일`;
   const checkUrl = `/check?date=2027-${String(event.month).padStart(2, "0")}-${String(event.day ?? 1).padStart(2, "0")}`;
 
-  // Schema.org Event 구조화 데이터
+  // Schema.org Article 구조화 데이터 — 예정된 행사가 아니라 사건 소개 문서다.
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Event",
-    name: event.name,
+    "@type": "Article",
+    headline: event.name,
     description: event.summary,
-    eventStatus: "https://schema.org/EventScheduled",
-    location: { "@type": "Place", name: "대한민국" },
-    isAccessibleForFree: true,
-    organizer: { "@type": "Organization", name: "noonch-i", url: "https://nunchi-bay.vercel.app" },
+    about: { "@type": "Thing", name: event.name },
+    publisher: { "@type": "Organization", name: "noonch-i", url: SITE_URL },
   };
 
   return (
@@ -227,7 +226,7 @@ export default async function EventDetailPage({ params }: PageProps) {
             이 날짜로 캠페인을 기획 중이신가요?
           </h3>
           <p style={{ fontSize: "13.5px", color: "var(--ms-text-2)", margin: "0 0 16px", lineHeight: 1.65 }}>
-            카피·시각 키워드를 입력하면 AI가 이 사건과의 충돌 여부를 5초에 분석해 드립니다.
+            카피·시각 키워드를 입력하면 이 사건과의 충돌 여부를 검토해 드립니다.
           </p>
           <Button href={checkUrl} variant="primary" size="md" iconRight="arrow-right">
             지금 무료로 검토하기

@@ -98,11 +98,11 @@ const EXPRESSION_FIELD_LABEL: Record<ExpressionFlag["field"], string> = {
 };
 
 const GRADE_HEADLINE: Record<Grade, string> = {
-  F: "즉각 회피 — 캠페인 재설계를 권고합니다",
-  D: "재검토 필요 — 컨셉·카피를 수정하세요",
-  C: "일반 주의 — 특이사항 없음",
-  B: "안전 — 진행 가능합니다",
-  A: "최적 타이밍 — 강력한 호재입니다",
+  F: "회피 권고 — 날짜·표현 조정을 검토해 주세요",
+  D: "재검토 권고 — 콘셉트·카피 조정을 고려해 주세요",
+  C: "일반 주의 — 분석 근거를 확인해 주세요",
+  B: "우려 낮음 — 확인한 범위에서 우려가 낮습니다",
+  A: "긍정 연관 — 기념일과 긍정적으로 연결됩니다",
 };
 
 /* ── Label ──────────────────────────────────────────────────── */
@@ -370,7 +370,7 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
         <>
           <Divider />
           <div style={{ padding: "16px 20px" }}>
-            <SectionLabel>감지된 위험 단어</SectionLabel>
+            <SectionLabel>확인이 필요한 키워드</SectionLabel>
             <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
               {result.flaggedKeywords.map((kw) => (
                 <span
@@ -410,7 +410,9 @@ export function ResultCard({ result, date, campaignName }: ResultCardProps) {
                   margin: 0,
                 }}
               >
-                등록된 표현 사전에서 추가 위험을 찾지 못했습니다.
+                {result.expressionCoverage === 0
+                  ? "표현 리스크 검토는 표현 사전 승인 후 제공됩니다."
+                  : "등록된 표현 사전에서 추가 위험을 찾지 못했습니다."}
               </p>
             ) : (
               <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>

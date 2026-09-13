@@ -97,7 +97,7 @@ export default function OnboardingPage() {
           eyebrow="환영합니다"
           eyebrowIcon="sparkle"
           title={<>당신의 브랜드에 <span style={{ color: "var(--brand-red)" }}>맞춤</span></>}
-          subtitle="업종과 채널을 선택하면 검토 결과를 당신의 컨텍스트에 맞춰 정밀하게 분석합니다."
+          subtitle="업종과 채널을 저장하면 다음 검토에서 맞춤 코멘트를 받을 수 있습니다."
         />
 
 

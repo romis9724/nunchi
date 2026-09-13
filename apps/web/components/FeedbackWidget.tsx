@@ -16,24 +16,31 @@ export function FeedbackWidget() {
   const [text, setText] = useState("");
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
+  const [failed, setFailed] = useState(false);
 
   const submit = async () => {
     if (!text.trim()) return;
     setSending(true);
+    setFailed(false);
     try {
-      await fetch("/api/feedback", {
+      const res = await fetch("/api/feedback", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ type, text }),
       });
-      setSent(true);
-      setTimeout(() => {
-        setSent(false);
-        setOpen(false);
-        setText("");
-      }, 2000);
+      const data = (await res.json().catch(() => null)) as { ok?: boolean } | null;
+      if (!res.ok || data?.ok !== true) {
+        setFailed(true);
+      } else {
+        setSent(true);
+        setTimeout(() => {
+          setSent(false);
+          setOpen(false);
+          setText("");
+        }, 2000);
+      }
     } catch {
-      // silent: feedback failure should not disrupt the user
+      setFailed(true);
     }
     setSending(false);
   };
@@ -102,7 +109,7 @@ export function FeedbackWidget() {
             <div style={{ padding: "32px", textAlign: "center" }}>
               <p style={{ fontSize: "24px", margin: "0 0 8px" }}>✅</p>
               <p style={{ fontSize: "14px", color: "var(--ms-text)", margin: 0 }}>
-                전송됐습니다. 감사합니다!
+                의견이 접수되었습니다.
               </p>
             </div>
           ) : (
@@ -167,6 +174,11 @@ export function FeedbackWidget() {
               >
                 {sending ? "전송 중…" : "보내기"}
               </button>
+              {failed && (
+                <p style={{ margin: "8px 0 0", fontSize: "12px", color: "var(--brand-red)" }}>
+                  접수하지 못했습니다. 잠시 후 다시 시도해 주세요.
+                </p>
+              )}
             </div>
           )}
         </div>

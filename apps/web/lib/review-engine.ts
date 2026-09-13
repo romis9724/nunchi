@@ -174,6 +174,7 @@ async function getCached(hash: string): Promise<CheckResponse | null> {
       ruleTriggered: row.rule_triggered,
       cached: true,
       expressionFlags: row.expression_flags ?? [],
+      expressionCoverage: getActiveLexicon().length,
     };
   } catch {
     return null;
@@ -246,6 +247,7 @@ export async function runReviewEngine(
       expressionFlags: lexMatches.map((m) =>
         toExpressionFlag(m, TIER_DEFAULT_STATUS[m.entry.tier])
       ),
+      expressionCoverage: getActiveLexicon().length,
     };
     if (!opts?.skipCache) await saveCache(hash, req, result);
     return result;
@@ -294,6 +296,7 @@ export async function runReviewEngine(
     cached: false,
     transient: llmResult.transient,
     expressionFlags,
+    expressionCoverage: getActiveLexicon().length,
   };
 
   if (!llmResult.transient && !opts?.skipCache) {
